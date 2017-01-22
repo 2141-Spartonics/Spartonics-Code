@@ -1,6 +1,5 @@
 # The Spartonics Repository
 ### Team 2141
-###### Managed by Bernie Conrad
 
 ###Introduction
 
