@@ -1,3 +1,9 @@
-# Spartonics-2141
+# The Spartonics Repository
+### Team 2141
+####### Managed by Bernie Conrad
 
-This is the official Github repository for the De La Salle and Carondelet robotics team Spartonics, or FRC team 2141. The current active site for competition code is the 2017 Code Folder.
+###Introduction
+
+This is the official Github repository for the De La Salle and Carondelet robotics team Spartonics, or FRC team 2141. We program in Java with the WPILIB plugins in eclipse and our Github utilization is through the Egit plugin. Please feel free to look through our code or Fork it and use it with your own robots!
+
+-Team Leadership
