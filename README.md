@@ -9,4 +9,8 @@ This is the official Github repository for the De La Salle and Carondelet roboti
 
 ####Active Code
 
-Currently we are using the 2017 Code files as the primary projects. Anything labeled with prototype is for prototyping.
+Currently we are using the 2017 Code files as the primary projects. Anything labeled with prototype is for prototyping. Feel free to use any of them.
+
+####Installation
+
+1. To install verify that the Egit plugin is up to date by going to the eclipse help tab and navigating to the Eclipse Marketplace. In the installed tab Egit should show that it is up to date, or requries an update. asd
