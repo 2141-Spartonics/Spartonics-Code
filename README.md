@@ -27,4 +27,24 @@ Currently we are using the 2017 Code files as the primary projects. Anything lab
 
 7. When you navigate back to the Java perspective the project should be there. 
 
-8. 
+####Submitting your work
+
+1. At the end of the day any files you made a change to will look similar to this: >Robot.Java. Select all the files you would like to submit for review by right clicking the files and navigating to the team tab (towards the bottom) and selecting add to index.
+
+2. Somewhere on your Eclipse page should have a Git staging tab, navigate to it. All your changes you want to push should be in the Staged Changes tab. Add a commit message describing what you are adding or removing. The more descriptive the faster your changes can be approved. Verify that the Author is you and press commit and push!
+
+3. If everything worked you should navigate and click on the ok once the push goes through and your changes have been applied to your branch. 
+
+4. If you want to submit your changes for review by an approved editer go to the repository online (https://github.com/Bernstern/Spartonics-2141) and navigate to pull requests.
+
+5. Navigate to new pull request and select the master branch as your base and the compare as your branch you submitted too. All of your changes will be highlighted and you can select Create pull request. Congratulations you have sucessfuly submitted a merge request!
+
+####At the start of every day
+
+1. Every day at the very start go to the Git tab in eclipse. Reopen the brances tab under the repository and choose the master branch under local. 
+
+2. Navigate to the top of the hierarchy where it says Spartonics-2141 and right click it. Select *pull* and click through the wizard. Once it is completed go back to your local branch. 
+
+####Q&A
+
+If you have any questions feel free to email me at charlie.conrad16@gmail.com. Thank you and have a nice day!
