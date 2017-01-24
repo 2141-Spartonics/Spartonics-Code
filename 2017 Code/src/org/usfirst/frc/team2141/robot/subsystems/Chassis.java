@@ -54,19 +54,19 @@ public class Chassis extends Subsystem {
 
 	}
 
-	public void setLeftMotors(double speed) {
-		this.leftMotorA.set(speed);
+	public void setLeftMotors(double speed) {//sets leftMotorA to speed for autonomous
+		this.leftMotorA.set(speed); 
 
 	}
 
-	public void setRightMotors(double speed) {
+	public void setRightMotors(double speed) {//set the rightMotorA to speed for autonomous
 		this.rightMotorA.set(speed);
 	}
-	public void turn(double speed){
+	public void turn(double speed){ //turns for autonomous 
 		this.leftMotorA.set(speed);
 		this.rightMotorA.set(-speed);
 	}
-	public void arcadeDrive(Joystick stick){
+	public void arcadeDrive(Joystick stick){//uses a Joystick called arcadeDrive
 		this.drive.arcadeDrive(stick);
 		
 	}
