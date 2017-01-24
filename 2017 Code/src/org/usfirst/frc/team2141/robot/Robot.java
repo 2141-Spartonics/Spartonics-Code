@@ -23,7 +23,7 @@ public class Robot extends IterativeRobot {
 	public static Chassis chassis;
 	public static PowerDistributionPanel PDP;
 	public static OI oi;
-											//My Name is Justin!
+											//My Name is Justin and Ray!
 	Command autonomousCommand;
 	SendableChooser chooser;
 //test
