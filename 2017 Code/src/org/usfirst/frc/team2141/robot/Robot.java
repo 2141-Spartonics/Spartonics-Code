@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
+import org.usfirst.frc.team2141.robot.subsystems.Intake;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,6 +25,7 @@ public class Robot extends IterativeRobot {
 	public static Chassis chassis;
 	public static PowerDistributionPanel PDP;
 	public static OI oi;
+	public static Intake intake;
 											//My Name is Justin!
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -36,6 +39,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		PDP = new PowerDistributionPanel();
 		chooser = new SendableChooser();
+		intake = new Intake();
 		chooser.addDefault("Default Auto", new JoyStickDriving());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -92,7 +96,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		if (autonomousCommand != null)	
 			autonomousCommand.cancel();
 	}
 
