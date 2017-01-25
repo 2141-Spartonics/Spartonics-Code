@@ -103,7 +103,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 	}
 
-	/**
+	/**  =
 	 * This function is called periodically during test mode
 	 */
 	public void testPeriodic() {

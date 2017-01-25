@@ -25,21 +25,19 @@ public class shooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    //Declares the CanTalon and PidController
     public shooter(){
     	shooterMotor = new CANTalon(RobotMap.SHOOTER_MOTOR);
-    	output = new PIDOutput() {
-			
-			@Override
-			public void pidWrite(double output) {
-				// TODO Auto-generated method stub
-				
-			}
-		};
+    	
     	shooterPID = new PIDController(0, 0, 0, this.shooterEncoder, output);
     }
+    
+    //Sets shooter motor to a speed :)
     public void setShooterMotor(double speed){
     	this.shooterMotor.set(speed);
     }
+    //Gives the user the speed of the motor
     public double getVelocity(){
     	return this.shooterEncoder.getRate();
     }
