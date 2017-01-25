@@ -30,12 +30,12 @@ public class Shooter extends Subsystem {
     	output = new PIDOutput() {
 			
 			@Override
-			public void pidWrite(double output) { //what the hell is this... - Justin
+			public void pidWrite(double output) { 
 				// TODO Auto-generated method stub
 				
 			}
 		};
-    	shooterPID = new PIDController(0, 0, 0, this.shooterEncoder, output);// this too -Justin
+    	shooterPID = new PIDController(0, 0, 0, this.shooterEncoder, output);
     }
     public void setShooterMotor(double speed){
     	this.shooterMotor.set(speed);

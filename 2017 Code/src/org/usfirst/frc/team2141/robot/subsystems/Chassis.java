@@ -53,20 +53,22 @@ public class Chassis extends Subsystem {
 		this.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 
 	}
-
-	public void setLeftMotors(double speed) {//sets leftMotorA to speed for autonomous
+	//sets the leftMotorA to speed
+	public void setLeftMotors(double speed) {
 		this.leftMotorA.set(speed); 
 
 	}
-
-	public void setRightMotors(double speed) {//set the rightMotorA to speed for autonomous
+	//set the rightMotorA to speed
+	public void setRightMotors(double speed) {
 		this.rightMotorA.set(speed);
 	}
-	public void turn(double speed){ //turns for autonomous 
+	//turns the Robot for autonomous
+	public void turn(double speed){
 		this.leftMotorA.set(speed);
 		this.rightMotorA.set(-speed);
 	}
-	public void arcadeDrive(Joystick stick){//uses a Joystick called arcadeDrive
+	//method for driving with a joystick
+	public void arcadeDrive(Joystick stick){
 		this.drive.arcadeDrive(stick);
 		
 	}
