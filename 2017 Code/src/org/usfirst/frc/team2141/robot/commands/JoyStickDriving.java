@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class JoyStickDriving extends Command {
 
-    public JoyStickDriving() {
+	public JoyStickDriving() {
         // Use requires() here to declare subsystem dependencies
          requires(Robot.chassis);
     }
