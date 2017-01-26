@@ -22,6 +22,10 @@ public class Intake extends Subsystem {
     public Intake(){
     	intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
     }
+    /**
+     * Sets the intakeMotor to speed
+     * @param speed ~speed is the speed that the motor will be set~
+     */
     public void setIntakeMotor(double speed){
     	//sets the intakeMotor to speed 
     	this.intakeMotor.set(speed);
