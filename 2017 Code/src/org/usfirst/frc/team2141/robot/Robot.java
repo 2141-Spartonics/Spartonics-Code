@@ -23,10 +23,9 @@ public class Robot extends IterativeRobot {
 	public static Chassis chassis;
 	public static PowerDistributionPanel PDP;
 	public static OI oi;
-											//My Name is Justin and Ray!
+											
 	Command autonomousCommand;
 	SendableChooser chooser;
-//test
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -103,7 +102,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 	}
 
-	/**  =
+	/**  
 	 * This function is called periodically during test mode
 	 */
 	public void testPeriodic() {
