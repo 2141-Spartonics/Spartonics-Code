@@ -6,9 +6,11 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team2141.robot.commands.ExampleCommand;
+
+import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
-import org.usfirst.frc.team2141.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team2141.robot.subsystems.Intake;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -22,12 +24,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	public static Chassis chassis;
 	public static PowerDistributionPanel PDP;
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
+	public static Intake intake;
 											//My Name is Justin!
 	Command autonomousCommand;
 	SendableChooser chooser;
-
+//test
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -37,7 +39,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		PDP = new PowerDistributionPanel();
 		chooser = new SendableChooser();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+		intake = new Intake();
+		chooser.addDefault("Default Auto", new JoyStickDriving());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
@@ -93,7 +96,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		if (autonomousCommand != null)	
 			autonomousCommand.cancel();
 	}
 

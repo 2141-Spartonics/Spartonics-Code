@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class shooter extends Subsystem {
+public class Shooter extends Subsystem {
 	CANTalon shooterMotor;
 	Encoder shooterEncoder;
 	PIDController shooterPID;
@@ -25,12 +25,12 @@ public class shooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public shooter(){
+    public Shooter(){
     	shooterMotor = new CANTalon(RobotMap.SHOOTER_MOTOR);
     	output = new PIDOutput() {
 			
 			@Override
-			public void pidWrite(double output) {
+			public void pidWrite(double output) { 
 				// TODO Auto-generated method stub
 				
 			}

@@ -8,9 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
+
 public class Chassis extends Subsystem {
 
 	CANTalon leftMotorA;
@@ -53,19 +51,33 @@ public class Chassis extends Subsystem {
 		this.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 
 	}
-
+	/**
+	 * Sets the leftMotorA to speed
+	 * @param speed ~speed is speed motor is set~
+	 */
 	public void setLeftMotors(double speed) {
-		this.leftMotorA.set(speed);
+		this.leftMotorA.set(speed); 
 
 	}
-
+	/**
+	 * Sets the rightMotorA to Speed
+	 * @param speed ~speed is speed motor is set~
+	 */
 	public void setRightMotors(double speed) {
 		this.rightMotorA.set(speed);
 	}
+	/**
+	 * Turns the Robot for autonomous
+	 * @param speed ~speed is speed motor is set~
+	 */
 	public void turn(double speed){
 		this.leftMotorA.set(speed);
 		this.rightMotorA.set(-speed);
 	}
+	/**
+	 * Method for driving with a Joystick
+	 * @param stick ~stick is joystick for driving~
+	 */
 	public void arcadeDrive(Joystick stick){
 		this.drive.arcadeDrive(stick);
 		
