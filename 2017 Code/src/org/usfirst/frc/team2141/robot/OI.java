@@ -14,7 +14,7 @@ public class OI {
 		driveStick = new Joystick(RobotMap.DRIVE_STICK);
 	}
 
-	public static Joystick getDriveStick() {
+	public Joystick getDriveStick() {
 		return driveStick;
 	}
 
