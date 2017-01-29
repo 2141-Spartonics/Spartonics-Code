@@ -2,6 +2,7 @@ package org.usfirst.frc.team2141.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -9,13 +10,26 @@ import edu.wpi.first.wpilibj.buttons.Button;
  */
 public class OI {
 	public static Joystick driveStick;
+	
+    JoystickButton[] buttons;
+
+    
 
 	public OI() {
 		driveStick = new Joystick(RobotMap.DRIVE_STICK);
+		   buttons = new JoystickButton[13];
+
+	        for(int i = 2;i<11;i++) {
+	            buttons[i] = new JoystickButton(driveStick, i);
+	        }
 	}
 
-	public static Joystick getDriveStick() {
+	public Joystick getDriveStick() {
 		return driveStick;
+	}
+	
+	public boolean getButton(int buttonNum){
+		return this.buttons[buttonNum].get();
 	}
 
 	//// CREATING BUTTONS
