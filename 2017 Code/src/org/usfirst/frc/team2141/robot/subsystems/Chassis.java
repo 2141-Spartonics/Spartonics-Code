@@ -6,10 +6,12 @@ import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Chassis extends Subsystem {
@@ -22,9 +24,11 @@ public class Chassis extends Subsystem {
 	CANTalon rightMotorC;
 	RobotDrive drive;
 	
+	AnalogInput leftEncoder;
+	AnalogInput rightEncoder;
+	
 	//Pnuematic Shifter Code
-	DoubleSolenoid shifterSolenoidLeft;
-	DoubleSolenoid shifterSolenoidRight;
+	DoubleSolenoid shifterSolenoid;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -38,10 +42,10 @@ public class Chassis extends Subsystem {
 		rightMotorB = new CANTalon(RobotMap.RIGHT_MOTOR_B);
 		rightMotorC = new CANTalon(RobotMap.RIGHT_MOTOR_C);
 		
-		shifterSolenoidLeft = new DoubleSolenoid(RobotMap.SHIFTER_SOLENOID_LEFT_CHANNEL_A,RobotMap.SHIFTER_SOLENOID_LEFT_CHANNEL_B);
-		shifterSolenoidRight = new DoubleSolenoid(RobotMap.SHIFTER_SOLENOID_RIGHT_CHANNEL_A,RobotMap.SHIFTER_SOLENOID_RIGHT_CHANNEL_B);
+		shifterSolenoid = new DoubleSolenoid(RobotMap.SHIFTER_SOLENOID_CHANNEL_A,RobotMap.SHIFTER_SOLENOID_CHANNEL_B);
 		
-		
+		leftEncoder = new AnalogInput(RobotMap.LEFT_DRIVE_ENCODER);
+		rightEncoder = new AnalogInput(RobotMap.RIGHT_DRIVE_ENCODER);
 		
 		drive = new RobotDrive(leftMotorA, rightMotorA);
 		this.leftMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
@@ -71,22 +75,17 @@ public class Chassis extends Subsystem {
 	}
 	
     public void pulloutLeftSolenoid(){
-    	this.shifterSolenoidLeft.set(DoubleSolenoid.Value.kForward);
+    	this.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
     	
-    }
-    public void pushinLeftSolenoid(){
-    	this.shifterSolenoidLeft.set(DoubleSolenoid.Value.kReverse);
     }
     
-    public void pulloutRightSolenoid(){
-    	this.shifterSolenoidRight.set(DoubleSolenoid.Value.kForward);
-    	
+    public void pushinLeftSolenoid(){
+    	this.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
-    public void pushinRightSolenoid(){
-    	this.shifterSolenoidRight.set(DoubleSolenoid.Value.kReverse);
-    }
+    
 	
 	public void publishToSmartDashboard() {
+		SmartDashboard.putNumber("Left Distance Sensor", leftEncoder.getValue());
 	}
 
 	public void setDrive(RobotDrive drive) {
