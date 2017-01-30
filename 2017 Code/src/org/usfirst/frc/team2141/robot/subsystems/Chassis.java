@@ -1,67 +1,58 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
-import org.usfirst.frc.team2141.robot.OI;
 import org.usfirst.frc.team2141.robot.RobotMap;
 import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 
 public class Chassis extends Subsystem {
 
-	CANTalon leftMotorA;
-	CANTalon leftMotorB;
-	CANTalon leftMotorC;
-	CANTalon rightMotorA;
-	CANTalon rightMotorB;
-	CANTalon rightMotorC;
-	RobotDrive drive;
-	
-	AnalogInput leftEncoder;
-	AnalogInput rightEncoder;
-	
-	//Pnuematic Shifter Code
-	DoubleSolenoid shifterSolenoid;
+	private CANTalon leftMasterMotor;
+	private CANTalon leftSlaveMotorA;
+	private CANTalon leftSlaveMotorB;
+	private CANTalon rightMasterMotor;
+	private CANTalon rightSlaveMotorA;
+	private CANTalon rightSlaveMotorB;
+
+	// Pnuematic Shifter Code
+	private DoubleSolenoid shifterSolenoid;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
-
 	public Chassis() {
-		leftMotorA = new CANTalon(RobotMap.LEFT_MOTOR_A);
-		leftMotorB = new CANTalon(RobotMap.LEFT_MOTOR_B);
-		leftMotorC = new CANTalon(RobotMap.LEFT_MOTOR_C);
-		rightMotorA = new CANTalon(RobotMap.RIGHT_MOTOR_A);
-		rightMotorB = new CANTalon(RobotMap.RIGHT_MOTOR_B);
-		rightMotorC = new CANTalon(RobotMap.RIGHT_MOTOR_C);
+		shifterSolenoid = new DoubleSolenoid(
+				RobotMap.SHIFTER_SOLENOID_CHANNEL_A,
+				RobotMap.SHIFTER_SOLENOID_CHANNEL_B);
 		
-		shifterSolenoid = new DoubleSolenoid(RobotMap.SHIFTER_SOLENOID_CHANNEL_A,RobotMap.SHIFTER_SOLENOID_CHANNEL_B);
+		leftMasterMotor = new CANTalon(RobotMap.LEFT_MOTOR_A);
+		leftSlaveMotorA = new CANTalon(RobotMap.LEFT_MOTOR_B);
+		leftSlaveMotorB = new CANTalon(RobotMap.LEFT_MOTOR_C);
+		rightMasterMotor = new CANTalon(RobotMap.RIGHT_MOTOR_A);
+		rightSlaveMotorA = new CANTalon(RobotMap.RIGHT_MOTOR_B);
+		rightSlaveMotorB = new CANTalon(RobotMap.RIGHT_MOTOR_C);
+
+		this.leftSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.leftSlaveMotorA.set(RobotMap.LEFT_MOTOR_A);
+		this.leftSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.leftSlaveMotorB.set(RobotMap.LEFT_MOTOR_A);
+		this.rightSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.rightSlaveMotorA.set(RobotMap.RIGHT_MOTOR_A);
+		this.rightSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.rightSlaveMotorB.set(RobotMap.RIGHT_MOTOR_A);
 		
-		leftEncoder = new AnalogInput(RobotMap.LEFT_DRIVE_ENCODER);
-		rightEncoder = new AnalogInput(RobotMap.RIGHT_DRIVE_ENCODER);
-		
-		drive = new RobotDrive(leftMotorA, rightMotorA);
-		this.leftMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
-		this.leftMotorB.set(RobotMap.LEFT_MOTOR_A);
-		this.leftMotorC.changeControlMode(CANTalon.TalonControlMode.Follower);
-		this.leftMotorC.set(RobotMap.LEFT_MOTOR_A);
-		this.rightMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
-		this.rightMotorB.set(RobotMap.RIGHT_MOTOR_A);
-		this.rightMotorC.changeControlMode(CANTalon.TalonControlMode.Follower);
-		this.rightMotorC.set(RobotMap.RIGHT_MOTOR_A);
-		this.drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		this.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		this.rightMasterMotor.configEncoderCodesPerRev(256);;
+		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		this.leftMasterMotor.configEncoderCodesPerRev(256);
 
 	}
-	public RobotDrive getDrive() {
-		return drive;
+
+	public void publishToSmartDashboard() {
 	}
 
 	public void initDefaultCommand() {
@@ -70,28 +61,110 @@ public class Chassis extends Subsystem {
 		setDefaultCommand(new JoyStickDriving());
 	}
 
-	public void driveWithJoystick() {
-		drive.arcadeDrive(OI.driveStick);
+	//Encoder methods
+	
+	public void zeroEncoders(){
+		this.leftMasterMotor.setPosition(0);
+		this.rightMasterMotor.setPosition(0);
 	}
 	
-    public void pulloutLeftSolenoid(){
-    	this.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
-    	
-    }
-    
-    public void pushinLeftSolenoid(){
-    	this.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
-    }
-    
+	public double getLeftEncoderCount(){
+		return this.leftMasterMotor.getPosition();
+	}
 	
-	public void publishToSmartDashboard() {
-		SmartDashboard.putNumber("Left Distance Sensor", leftEncoder.getValue());
+	public double getLeftEncoderVelocity(){
+		return this.leftMasterMotor.getSpeed();
+	}
+	
+	public double getRightEncoderCount(){
+		return this.rightMasterMotor.getPosition();
+	}
+	
+	public double getRightEncoderVelocity(){
+		return this.rightMasterMotor.getSpeed();
+	}
+	
+	// Shifter methods
+
+	public void setToHighSpeed() {
+		this.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
 	}
 
-	public void setDrive(RobotDrive drive) {
-		this.drive = drive;
+	public void setToLowSpeed() {
+		this.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
-	
 
-	
+	public void closeSolenoid() {
+		this.shifterSolenoid.set(DoubleSolenoid.Value.kOff);
+	}
+
+	// Basic driving methods
+
+	public void setLeftMotors(double speed) {
+		this.leftMasterMotor.set(speed);
+	}
+
+	public void setRightMotors(double speed) {
+		this.rightMasterMotor.set(speed);
+	}
+
+	// Teleoperated driving methods
+
+	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
+
+		double leftMotorSpeed;
+		double rightMotorSpeed;
+
+		moveValue = limit(moveValue);
+		rotateValue = limit(rotateValue);
+
+		if (squaredInputs) {
+			// square the inputs (while preserving the sign) to increase fine
+			// control
+			// while permitting full power
+			if (moveValue >= 0.0) {
+				moveValue = moveValue * moveValue;
+			} else {
+				moveValue = -(moveValue * moveValue);
+			}
+			if (rotateValue >= 0.0) {
+				rotateValue = rotateValue * rotateValue;
+			} else {
+				rotateValue = -(rotateValue * rotateValue);
+			}
+		}
+
+		if (moveValue > 0.0) {
+			if (rotateValue > 0.0) {
+				leftMotorSpeed = moveValue - rotateValue;
+				rightMotorSpeed = Math.max(moveValue, rotateValue);
+			} else {
+				leftMotorSpeed = Math.max(moveValue, -rotateValue);
+				rightMotorSpeed = moveValue + rotateValue;
+			}
+		} else {
+			if (rotateValue > 0.0) {
+				leftMotorSpeed = -Math.max(-moveValue, rotateValue);
+				rightMotorSpeed = moveValue + rotateValue;
+			} else {
+				leftMotorSpeed = moveValue - rotateValue;
+				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
+			}
+		}
+
+		this.setLeftMotors(leftMotorSpeed);
+		this.setRightMotors(rightMotorSpeed);
+	}
+
+	private double limit(double val) {
+		if (val > 1.0) {
+			return 1.0;
+		} else if (val < -1.0) {
+			return -1.0;
+		} else {
+			return val;
+		}
+
+	}
+
 }

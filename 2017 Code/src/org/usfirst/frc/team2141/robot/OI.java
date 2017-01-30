@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2141.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -9,11 +8,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public static Joystick driveStick;
 	
-    JoystickButton[] buttons;
-
-    
+	private Joystick driveStick;
+    private JoystickButton[] buttons;
 
 	public OI() {
 		driveStick = new Joystick(RobotMap.DRIVE_STICK);

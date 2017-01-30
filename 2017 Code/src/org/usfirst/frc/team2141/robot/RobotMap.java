@@ -32,12 +32,6 @@ public class RobotMap {
 	public static final int SHIFT_UP_BUTTON = 3;
 	public static final int SHIFT_DOWN_BUTTON = 2;
 	
-	public static final int LEFT_DRIVE_ENCODER = 0;
-	public static final int RIGHT_DRIVE_ENCODER = 1;
-
-	
-	
-	
     
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:

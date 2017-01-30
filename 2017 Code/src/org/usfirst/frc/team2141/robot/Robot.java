@@ -11,6 +11,7 @@ import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
 
+import utils.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -22,14 +23,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
 	public static Chassis chassis;
 	public static PowerDistributionPanel PDP;
+	public static ADIS16448_IMU imu;
 	public static OI oi;
 	public static Intake intake;
-											//My Name is Justin!
+										
 	Command autonomousCommand;
 	SendableChooser chooser;
-//test
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -37,6 +40,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		chassis = new Chassis();
 		oi = new OI();
+		imu = new ADIS16448_IMU();
 		PDP = new PowerDistributionPanel();
 		chooser = new SendableChooser();
 		intake = new Intake();

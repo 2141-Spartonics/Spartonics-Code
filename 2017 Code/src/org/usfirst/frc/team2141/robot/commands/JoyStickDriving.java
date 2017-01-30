@@ -1,10 +1,8 @@
 package org.usfirst.frc.team2141.robot.commands;
 
-import org.usfirst.frc.team2141.robot.OI;
 import org.usfirst.frc.team2141.robot.Robot;
 import org.usfirst.frc.team2141.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -23,13 +21,15 @@ public class JoyStickDriving extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.driveWithJoystick(); 
+    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true); 
     	
     	if(Robot.oi.getButton(RobotMap.SHIFT_UP_BUTTON)){
-    		Robot.chassis.pulloutLeftSolenoid();
+    		Robot.chassis.setToHighSpeed();
     	}  
-    	else{
-    		Robot.chassis.pushinLeftSolenoid();
+    	else if (Robot.oi.getButton(RobotMap.SHIFT_DOWN_BUTTON)){
+    		Robot.chassis.setToLowSpeed();
+    	}else{
+    		Robot.chassis.closeSolenoid();
     	}
     	
     }
