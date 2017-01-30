@@ -10,7 +10,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
+import org.usfirst.frc.team2141.robot.subsystems.Shooter;
+import org.usfirst.frc.team2141.robot.subsystems.Winch;
 
+import utils.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -22,24 +25,34 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static Chassis chassis;
+	
 	public static PowerDistributionPanel PDP;
+	public static ADIS16448_IMU imu;
 	public static OI oi;
+	
+	public static Chassis chassis;
 	public static Intake intake;
-											//My Name is Justin!
+	public static Winch winch;
+	public static Shooter shooter;
+										
 	Command autonomousCommand;
 	SendableChooser chooser;
-//test
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		chassis = new Chassis();
 		oi = new OI();
+		imu = new ADIS16448_IMU();
 		PDP = new PowerDistributionPanel();
-		chooser = new SendableChooser();
+		
+		chassis = new Chassis();
 		intake = new Intake();
+		winch = new Winch();
+		shooter = new Shooter();
+		
+		chooser = new SendableChooser();
 		chooser.addDefault("Default Auto", new JoyStickDriving());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
