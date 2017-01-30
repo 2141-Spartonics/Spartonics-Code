@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Shooter extends Subsystem {
+	
 	private CANTalon shooterMotor;
 	Encoder shooterEncoder;
 	PIDController shooterPID;
