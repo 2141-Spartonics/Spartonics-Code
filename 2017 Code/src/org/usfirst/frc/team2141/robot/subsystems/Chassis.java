@@ -29,21 +29,21 @@ public class Chassis extends Subsystem {
 				RobotMap.SHIFTER_SOLENOID_CHANNEL_A,
 				RobotMap.SHIFTER_SOLENOID_CHANNEL_B);
 		
-		leftMasterMotor = new CANTalon(RobotMap.LEFT_MOTOR_A);
-		leftSlaveMotorA = new CANTalon(RobotMap.LEFT_MOTOR_B);
-		leftSlaveMotorB = new CANTalon(RobotMap.LEFT_MOTOR_C);
-		rightMasterMotor = new CANTalon(RobotMap.RIGHT_MOTOR_A);
-		rightSlaveMotorA = new CANTalon(RobotMap.RIGHT_MOTOR_B);
-		rightSlaveMotorB = new CANTalon(RobotMap.RIGHT_MOTOR_C);
+		leftMasterMotor = new CANTalon(RobotMap.LEFT_MASTER_MOTOR);
+		leftSlaveMotorA = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_A);
+		leftSlaveMotorB = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_B);
+		rightMasterMotor = new CANTalon(RobotMap.RIGHT_MASTER_MOTOR);
+		rightSlaveMotorA = new CANTalon(RobotMap.RIGHT_SLAVE_MOTOR_A);
+		rightSlaveMotorB = new CANTalon(RobotMap.RIGHT_SLAVE_MOTOR_B);
 
 		this.leftSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
-		this.leftSlaveMotorA.set(RobotMap.LEFT_MOTOR_A);
+		this.leftSlaveMotorA.set(RobotMap.LEFT_MASTER_MOTOR);
 		this.leftSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
-		this.leftSlaveMotorB.set(RobotMap.LEFT_MOTOR_A);
+		this.leftSlaveMotorB.set(RobotMap.LEFT_MASTER_MOTOR);
 		this.rightSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
-		this.rightSlaveMotorA.set(RobotMap.RIGHT_MOTOR_A);
+		this.rightSlaveMotorA.set(RobotMap.RIGHT_MASTER_MOTOR);
 		this.rightSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
-		this.rightSlaveMotorB.set(RobotMap.RIGHT_MOTOR_A);
+		this.rightSlaveMotorB.set(RobotMap.RIGHT_MASTER_MOTOR);
 		
 		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.rightMasterMotor.configEncoderCodesPerRev(256);;
