@@ -27,21 +27,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-<<<<<<< Upstream, based on master
-	
-=======
+
 	public static Feeder feeder;
 	public static Chassis chassis;
->>>>>>> 131ce76 Ray's Feeder that is better than James'
 	public static PowerDistributionPanel PDP;
 	public static ADIS16448_IMU imu;
 	public static OI oi;
-	
-	public static Chassis chassis;
 	public static Intake intake;
 	public static Winch winch;
 	public static Shooter shooter;
-										
+
 	Command autonomousCommand;
 	SendableChooser chooser;
 
@@ -50,11 +45,9 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-<<<<<<< Upstream, based on master
-=======
+
 		chassis = new Chassis();
 		feeder = new Feeder();
->>>>>>> 131ce76 Ray's Feeder that is better than James'
 		oi = new OI();
 		imu = new ADIS16448_IMU();
 		PDP = new PowerDistributionPanel();
@@ -121,7 +114,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)	
+		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
 

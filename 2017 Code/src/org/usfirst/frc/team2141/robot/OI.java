@@ -20,7 +20,7 @@ public class OI {
 	            buttons[i] = new JoystickButton(driveStick, i);
 	        }
 	}
-
+ 
 	public Joystick getDriveStick() {
 		return driveStick;
 	}
