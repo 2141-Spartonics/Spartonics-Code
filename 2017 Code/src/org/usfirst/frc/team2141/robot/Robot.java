@@ -5,10 +5,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
+import org.usfirst.frc.team2141.robot.subsystems.Feeder;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
 import org.usfirst.frc.team2141.robot.subsystems.Shooter;
 import org.usfirst.frc.team2141.robot.subsystems.Winch;
@@ -25,7 +27,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+<<<<<<< Upstream, based on master
 	
+=======
+	public static Feeder feeder;
+	public static Chassis chassis;
+>>>>>>> 131ce76 Ray's Feeder that is better than James'
 	public static PowerDistributionPanel PDP;
 	public static ADIS16448_IMU imu;
 	public static OI oi;
@@ -43,6 +50,11 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+<<<<<<< Upstream, based on master
+=======
+		chassis = new Chassis();
+		feeder = new Feeder();
+>>>>>>> 131ce76 Ray's Feeder that is better than James'
 		oi = new OI();
 		imu = new ADIS16448_IMU();
 		PDP = new PowerDistributionPanel();

@@ -37,9 +37,10 @@ public class RobotMap {
     // following variables to use with your drivetrain subsystem.
     // public static int leftMotor = 1;
     // public static int rightMotor = 2;
-	public static final int WINCH_STOPPER_CHANNEL_A = 0;
-	public static final int WINCH_STOPPER_CHANNEL_B = 0;
+	public static final int WINCH_STOPPER_CHANNEL_A = 11;
+	public static final int WINCH_STOPPER_CHANNEL_B = 12;
 	
+<<<<<<< Upstream, based on master
 >>>>>>> 3d7535d Added hopper code to Shooter subsystem and updated Robotmap
 	public static final int WINCH_PDP_CHANNEL = 0;
 <<<<<<< Upstream, based on master
@@ -47,6 +48,11 @@ public class RobotMap {
 =======
 	
 	
+=======
+	public static final int WINCH_PDP_CHANNEL = 13;
+
+	public static final int FEEDER_MOTOR = 0;
+>>>>>>> 131ce76 Ray's Feeder that is better than James'
 	
 	
 	
