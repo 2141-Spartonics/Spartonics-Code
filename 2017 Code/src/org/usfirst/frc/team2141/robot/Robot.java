@@ -5,10 +5,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
+import org.usfirst.frc.team2141.robot.subsystems.Feeder;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
 import org.usfirst.frc.team2141.robot.subsystems.Shooter;
 import org.usfirst.frc.team2141.robot.subsystems.Winch;
@@ -25,16 +27,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	
+
+	public static Feeder feeder;
+	public static Chassis chassis;
 	public static PowerDistributionPanel PDP;
 	public static ADIS16448_IMU imu;
 	public static OI oi;
-	
-	public static Chassis chassis;
 	public static Intake intake;
 	public static Winch winch;
 	public static Shooter shooter;
-										
+
 	Command autonomousCommand;
 	SendableChooser chooser;
 
@@ -43,6 +45,9 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+
+		chassis = new Chassis();
+		feeder = new Feeder();
 		oi = new OI();
 		imu = new ADIS16448_IMU();
 		PDP = new PowerDistributionPanel();
@@ -109,7 +114,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)	
+		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
 
