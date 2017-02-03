@@ -45,7 +45,6 @@ public class Chassis extends Subsystem {
 
 		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.rightMasterMotor.configEncoderCodesPerRev(256);
-		;
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.leftMasterMotor.configEncoderCodesPerRev(256);
 
