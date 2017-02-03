@@ -26,6 +26,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+/**
+ * Declares all components of the code
+ * @author Justi
+ *
+ */
 public class Robot extends IterativeRobot {
 
 	public static Feeder feeder;
@@ -43,6 +48,9 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
+	 */
+	/**
+	 * Instantisheates the components of the code
 	 */
 	public void robotInit() {
 
