@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
 import org.usfirst.frc.team2141.robot.RobotMap;
+import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
 
 import com.ctre.CANTalon;
 
@@ -18,13 +19,14 @@ public class Intake extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new IntakeCommand());
     }
     public Intake(){
     	intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
     }
     /**
      * Sets the intakeMotor to speed
-     * @param speed ~speed is the speed that the motor will be set~
+     * @param speed the speed that the motor will be set
      */
     public void setIntakeMotor(double speed){
     	//sets the intakeMotor to speed 

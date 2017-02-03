@@ -62,7 +62,7 @@ public class Chassis extends Subsystem {
 	// Encoder methods
 
 	/** 
-	 * Taring the drive train encoders.
+	 * Zeroes the drive train encoders.
 	 */
 	public void zeroEncoders() {
 		this.leftMasterMotor.setPosition(0);
@@ -70,32 +70,32 @@ public class Chassis extends Subsystem {
 	}
 
 	/**
-	 *  Gets left Motors position.
-	 *  @return 
+	 * Gets the left wheel's position
+	 * @return the amount of ticks the left side has driven since it was zeroed
 	 */
 	public double getLeftEncoderCount() {
 		return this.leftMasterMotor.getPosition();
 	}
 
 	/**
-	 * Gets the left Motors velocity.
-	 * @return
+	 * Gets the left wheel's velocity
+	 * @return the velocity of the left wheels in encoder RPMs
 	 */
 	public double getLeftEncoderVelocity() {
 		return this.leftMasterMotor.getSpeed();
 	}
 
 	/**
-	 * Gets right Motors position
-	 * @return
+	 * Gets the right wheel's position
+	 * @return the amount of ticks the right side has driven since it was zeroed
 	 */
 	public double getRightEncoderCount() {
 		return this.rightMasterMotor.getPosition();
 	}
 
 	/**
-	 *  Gets right Motors velocity. :) Hi Bernie
-	 * @return
+	 * Gets the right wheel's velocity
+	 * @return the velocity of the right wheels in encoder RPMs
 	 */
 	public double getRightEncoderVelocity() {
 		return this.rightMasterMotor.getSpeed();
@@ -105,7 +105,6 @@ public class Chassis extends Subsystem {
 
 	/**
 	 * Sets gear to a higher speed using pnuematics.
-	 * @return 
 	 */
 	public void setToHighSpeed() {
 		this.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
@@ -113,21 +112,20 @@ public class Chassis extends Subsystem {
 
 	/**
 	 * Sets gear to a lower speed using pnuematics.
-	 * @return
 	 */
 	public void setToLowSpeed() {
 		this.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 	
     /**
-     * Closes the soleniod.
-     * @return
+     * Closes the soleniod and prevents the robot from shifting.
      */
 	public void closeSolenoid() {
 		this.shifterSolenoid.set(DoubleSolenoid.Value.kOff);
 	}
 
 	// Basic driving methods
+	
 	/**
 	 * Sets the left motors to speed.
 	 * @param speed
@@ -136,7 +134,10 @@ public class Chassis extends Subsystem {
 		this.leftMasterMotor.set(speed);
 	}
 	
-	//Sets the right Motors speed.
+	/**
+	 * Sets the right motors to speed.
+	 * @param speed 
+	 */
 	public void setRightMotors(double speed) {
 		this.rightMasterMotor.set(speed);
 	}
