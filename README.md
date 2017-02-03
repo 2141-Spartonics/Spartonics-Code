@@ -41,11 +41,9 @@ Currently we are using the 2017 Code files as the primary projects. Anything lab
 
 ####At the start of every day
 
-1. Every day at the very start go to the Git tab in eclipse. Reopen the brances tab under the repository and double click the master branch under local. 
+1. Every day at the very start go to the Git tab in eclipse. Reopen the brances tab under the repository and double click your branch. 
 
-2. Navigate to the top of the hierarchy where it says Spartonics-2141 and right click it. Select *pull* and click through the wizard. 
-
-3. After completing the wizard, double click on your branch again.
+2. Navigate to the top of the hierarchy where it says Spartonics-2141 and right click it. Select *pull...* and in reference, type "master" and complete the wizard.
 
 ####Q&A
 
