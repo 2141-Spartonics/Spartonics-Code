@@ -19,9 +19,14 @@ public class IntakeCommand extends Command {
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    // Sets the intake motors speed.
     protected void execute() {
-    	Robot.intake.setIntakeMotor(.8);
+    	if (Robot.oi.getButton(1)){
+    	Robot.intake.setIntakeMotor(.8);	
+    	} else {
+    		Robot.intake.setIntakeMotor(0.0);
+    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

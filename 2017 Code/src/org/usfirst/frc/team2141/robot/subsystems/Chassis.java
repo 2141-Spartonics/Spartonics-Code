@@ -25,10 +25,8 @@ public class Chassis extends Subsystem {
 	// here. Call these from Commands.
 
 	public Chassis() {
-		shifterSolenoid = new DoubleSolenoid(
-				RobotMap.SHIFTER_SOLENOID_CHANNEL_A,
-				RobotMap.SHIFTER_SOLENOID_CHANNEL_B);
-		
+		shifterSolenoid = new DoubleSolenoid(RobotMap.SHIFTER_SOLENOID_CHANNEL_A, RobotMap.SHIFTER_SOLENOID_CHANNEL_B);
+
 		leftMasterMotor = new CANTalon(RobotMap.LEFT_MASTER_MOTOR);
 		leftSlaveMotorA = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_A);
 		leftSlaveMotorB = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_B);
@@ -44,9 +42,10 @@ public class Chassis extends Subsystem {
 		this.rightSlaveMotorA.set(RobotMap.RIGHT_MASTER_MOTOR);
 		this.rightSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.rightSlaveMotorB.set(RobotMap.RIGHT_MASTER_MOTOR);
-		
+
 		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		this.rightMasterMotor.configEncoderCodesPerRev(256);;
+		this.rightMasterMotor.configEncoderCodesPerRev(256);
+		;
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.leftMasterMotor.configEncoderCodesPerRev(256);
 
@@ -61,55 +60,91 @@ public class Chassis extends Subsystem {
 		setDefaultCommand(new JoyStickDriving());
 	}
 
-	//Encoder methods
-	
-	public void zeroEncoders(){
+	// Encoder methods
+
+	/** 
+	 * Taring the drive train encoders.
+	 */
+	public void zeroEncoders() {
 		this.leftMasterMotor.setPosition(0);
 		this.rightMasterMotor.setPosition(0);
 	}
-	
-	public double getLeftEncoderCount(){
+
+	/**
+	 *  Gets left Motors position.
+	 *  @return 
+	 */
+	public double getLeftEncoderCount() {
 		return this.leftMasterMotor.getPosition();
 	}
-	
-	public double getLeftEncoderVelocity(){
+
+	/**
+	 * Gets the left Motors velocity.
+	 * @return
+	 */
+	public double getLeftEncoderVelocity() {
 		return this.leftMasterMotor.getSpeed();
 	}
-	
-	public double getRightEncoderCount(){
+
+	/**
+	 * Gets right Motors position
+	 * @return
+	 */
+	public double getRightEncoderCount() {
 		return this.rightMasterMotor.getPosition();
 	}
-	
-	public double getRightEncoderVelocity(){
+
+	/**
+	 *  Gets right Motors velocity. :) Hi Bernie
+	 * @return
+	 */
+	public double getRightEncoderVelocity() {
 		return this.rightMasterMotor.getSpeed();
 	}
-	
+
 	// Shifter methods
 
+	/**
+	 * Sets gear to a higher speed using pnuematics.
+	 * @return 
+	 */
 	public void setToHighSpeed() {
 		this.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
 	}
 
+	/**
+	 * Sets gear to a lower speed using pnuematics.
+	 * @return
+	 */
 	public void setToLowSpeed() {
 		this.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
-
+	
+    /**
+     * Closes the soleniod.
+     * @return
+     */
 	public void closeSolenoid() {
 		this.shifterSolenoid.set(DoubleSolenoid.Value.kOff);
 	}
 
 	// Basic driving methods
-
+	/**
+	 * Sets the left motors to speed.
+	 * @param speed
+	 */
 	public void setLeftMotors(double speed) {
 		this.leftMasterMotor.set(speed);
 	}
-
+	
+	//Sets the right Motors speed.
 	public void setRightMotors(double speed) {
 		this.rightMasterMotor.set(speed);
 	}
 
 	// Teleoperated driving methods
 
+		//Alex's weird code(Ray didn't put that Bernie did but I'm going to keep it :))
 	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
 
 		double leftMotorSpeed;
@@ -155,7 +190,7 @@ public class Chassis extends Subsystem {
 		this.setLeftMotors(leftMotorSpeed);
 		this.setRightMotors(rightMotorSpeed);
 	}
-
+	
 	private double limit(double val) {
 		if (val > 1.0) {
 			return 1.0;
