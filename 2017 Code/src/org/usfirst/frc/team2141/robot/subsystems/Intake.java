@@ -4,6 +4,7 @@ import org.usfirst.frc.team2141.robot.RobotMap;
 import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
 	CANTalon intakeMotor;
-
+	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -23,6 +24,7 @@ public class Intake extends Subsystem {
     }
     public Intake(){
     	intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
+    	intakeMotor.changeControlMode(TalonControlMode.Voltage);
     }
     /**
      * Sets the intakeMotor to speed
@@ -30,7 +32,7 @@ public class Intake extends Subsystem {
      */
     public void setIntakeMotor(double speed){
     	//sets the intakeMotor to speed 
-    	this.intakeMotor.set(speed);
+    	this.intakeMotor.set(speed * 12);
     }
 }
 
