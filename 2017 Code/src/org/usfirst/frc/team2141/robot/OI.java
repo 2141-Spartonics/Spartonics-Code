@@ -8,24 +8,24 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
+
 	private Joystick driveStick;
-    private JoystickButton[] buttons;
+	private JoystickButton[] buttons;
 
 	public OI() {
 		driveStick = new Joystick(RobotMap.DRIVE_STICK);
-		   buttons = new JoystickButton[13];
+		buttons = new JoystickButton[13];
 
-	        for(int i = 2;i<11;i++) {
-	            buttons[i] = new JoystickButton(driveStick, i);
-	        }
+		for (int i = 2; i < 10; i++) {
+			buttons[i] = new JoystickButton(driveStick, i);
+		}
 	}
- 
+
 	public Joystick getDriveStick() {
 		return driveStick;
 	}
-	
-	public boolean getButton(int buttonNum){
+
+	public boolean getButton(int buttonNum) {
 		return this.buttons[buttonNum].get();
 	}
 
@@ -49,8 +49,6 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenPressed(new ExampleCommand());
 
-	
-	
 	// Run the command while the button is being held down and interrupt it once
 	// the button is released.
 	// button.whileHeld(new ExampleCommand());
@@ -58,6 +56,5 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
-
 
 }
