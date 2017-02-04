@@ -5,9 +5,6 @@ import org.usfirst.frc.team2141.robot.RobotMap;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -32,6 +29,7 @@ public class Shooter extends Subsystem {
 	}
 
 	public void setShooterMotor(double speed) {
+		shooterMotor.changeControlMode(TalonControlMode.Voltage);
 		this.shooterMotor.set(speed * 12);
 	}
 

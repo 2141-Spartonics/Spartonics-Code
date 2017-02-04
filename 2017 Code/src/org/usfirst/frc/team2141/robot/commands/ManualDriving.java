@@ -7,25 +7,22 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class JoyStickDriving extends Command {
+public class ManualDriving extends Command {
 
-    public JoyStickDriving() {
+    public ManualDriving() {
         // Use requires() here to declare subsystem dependencies
-         requires(Robot.chassis);
+        // eg. requires(chassis);
+    	requires(Robot.chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+		Robot.chassis.setToLowSpeed();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true); 
-    	
-
-    	if (Robot.oi.getDriveStick().getY() > 0.46296296296 || Robot.oi.getDriveStick().getY() < -0.46296296296 ){
-    		Robot.chassis.setToHighSpeed();
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -9,15 +9,16 @@ public class RobotMap {
 	
 	//OI numbers
 	
-	//Controller 1
+	//Drive Controller
 	public static final int DRIVE_STICK = 0;
 	public static final int INTAKE_CONTROL_BUTTON = 2;
 	public static final int FEEDER_CONTROL_BUTTON = 4;
 	public static final int WINCH_CONTROL_BUTTON = 9;
 	public static final int SHOOTER_CONTROL_BUTTON = 4;
 	public static final int REVERSE_DRIVE_BUTTON = 10;
+	public static final int SHIFT_DOWN_BUTTON = 0;
 	
-	//ManiBoard
+	//Manual Board
 	public static final int FORCE_SHOOTER_OFF = 3;
 	public static final int FORCE_INTAKE_OFF = 2;
 

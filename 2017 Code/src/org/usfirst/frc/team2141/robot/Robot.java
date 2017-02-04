@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 import org.usfirst.frc.team2141.robot.subsystems.Feeder;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
@@ -26,11 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-/**
- * Declares all components of the code
- * @author Justi
- *
- */
+
 public class Robot extends IterativeRobot {
 
 	public static Feeder feeder;
@@ -43,7 +38,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 
 	Command autonomousCommand;
-	SendableChooser chooser;
+	//SendableChooser chooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -54,21 +49,20 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 
-		chassis = new Chassis();
-		feeder = new Feeder();
 		oi = new OI();
 		imu = new ADIS16448_IMU();
 		PDP = new PowerDistributionPanel();
-		
+
 		chassis = new Chassis();
+		feeder = new Feeder();		
 		intake = new Intake();
 		winch = new Winch();
 		shooter = new Shooter();
 		
-		chooser = new SendableChooser();
-		chooser.addDefault("Default Auto", new JoyStickDriving());
+		//chooser = new SendableChooser();
+		//chooser.addDefault("Default Auto", new JoyStickDriving());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		//SmartDashboard.putData("Auto mode", chooser);
 	}
 
 	/**
@@ -96,7 +90,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		autonomousCommand = (Command) chooser.getSelected();
+		//autonomousCommand = (Command) chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",

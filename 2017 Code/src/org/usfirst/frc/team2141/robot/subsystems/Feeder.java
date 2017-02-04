@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
 import org.usfirst.frc.team2141.robot.RobotMap;
+import org.usfirst.frc.team2141.robot.commands.DoNothing;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -19,7 +20,7 @@ public class Feeder extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
- 
+    	setDefaultCommand(new DoNothing());
     }
     public Feeder(){
     	feederMotor = new CANTalon(RobotMap.FEEDER_MOTOR);
@@ -32,10 +33,6 @@ public class Feeder extends Subsystem {
     public void setFeederSpeed(double speed){
 	  this.feederMotor.set(speed * 12);
     }    
-    
-    
-    
-    
     
 }
 
