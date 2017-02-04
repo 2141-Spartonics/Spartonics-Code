@@ -18,7 +18,6 @@ public class Chassis extends Subsystem {
 	private CANTalon rightSlaveMotorA;
 	private CANTalon rightSlaveMotorB;
 
-	// Pnuematic Shifter Code
 	private DoubleSolenoid shifterSolenoid;
 
 	// Put methods for controlling this subsystem

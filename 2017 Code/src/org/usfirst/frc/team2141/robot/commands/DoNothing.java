@@ -1,17 +1,15 @@
 package org.usfirst.frc.team2141.robot.commands;
 
-import org.usfirst.frc.team2141.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class JoyStickDriving extends Command {
+public class DoNothing extends Command {
 
-    public JoyStickDriving() {
+    public DoNothing() {
         // Use requires() here to declare subsystem dependencies
-         requires(Robot.chassis);
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -20,12 +18,6 @@ public class JoyStickDriving extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true); 
-    	
-
-    	if (Robot.oi.getDriveStick().getY() > 0.46296296296 || Robot.oi.getDriveStick().getY() < -0.46296296296 ){
-    		Robot.chassis.setToHighSpeed();
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

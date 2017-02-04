@@ -27,11 +27,7 @@ public class WinchCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (Robot.winch.getCurrent() > 40) {
-			return true;
-		} else {
-			return false;
-		}
+			return Robot.winch.getCurrent() > 40;
 	}
 
 	// Called once after isFinished returns true

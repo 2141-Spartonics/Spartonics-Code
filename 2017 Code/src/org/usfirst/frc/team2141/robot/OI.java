@@ -1,5 +1,9 @@
 package org.usfirst.frc.team2141.robot;
 
+import org.usfirst.frc.team2141.robot.commands.FeederControl;
+import org.usfirst.frc.team2141.robot.commands.ManualDriving;
+import org.usfirst.frc.team2141.robot.commands.WinchCommand;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -12,49 +16,31 @@ public class OI {
 	private Joystick driveStick;
 	private JoystickButton[] buttons;
 
+	public Joystick getDriveStick() {
+		return driveStick;
+	}
+
+	public boolean getButtonValue(int buttonNum) {
+		return this.buttons[buttonNum].get();
+	}
+
+	public JoystickButton getButton(int buttonNum) {
+		return this.buttons[buttonNum];
+	}
+
 	public OI() {
+
 		driveStick = new Joystick(RobotMap.DRIVE_STICK);
 		buttons = new JoystickButton[13];
 
 		for (int i = 2; i < 10; i++) {
 			buttons[i] = new JoystickButton(driveStick, i);
 		}
+
+		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ManualDriving());
+		this.getButton(RobotMap.FEEDER_CONTROL_BUTTON).toggleWhenPressed(new FeederControl());
+		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).whenPressed(new WinchCommand());
+		
+
 	}
-
-	public Joystick getDriveStick() {
-		return driveStick;
-	}
-
-	public boolean getButton(int buttonNum) {
-		return this.buttons[buttonNum].get();
-	}
-
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
-
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
-
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
-
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
-
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
-
 }
