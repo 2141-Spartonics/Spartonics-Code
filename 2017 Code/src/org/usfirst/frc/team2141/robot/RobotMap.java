@@ -8,11 +8,18 @@ package org.usfirst.frc.team2141.robot;
 public class RobotMap {
 	
 	//OI numbers
+	
+	//Controller 1
 	public static final int DRIVE_STICK = 0;
-	public static final int SHIFT_UP_BUTTON = 3;
-	public static final int SHIFT_DOWN_BUTTON = 2;
+	public static final int INTAKE_CONTROL_BUTTON = 2;
 	public static final int FEEDER_CONTROL_BUTTON = 4;
-	public static final int INTAKE_CONTROL_BUTTON = 1;	
+	public static final int WINCH_CONTROL_BUTTON = 9;
+	public static final int SHOOTER_CONTROL_BUTTON = 4;
+	public static final int REVERSE_DRIVE_BUTTON = 10;
+	
+	//ManiBoard
+	public static final int FORCE_SHOOTER_OFF = 3;
+	public static final int FORCE_INTAKE_OFF = 2;
 
 	//Motor channel numbers
 	public static final int LEFT_MASTER_MOTOR = 1;
@@ -34,6 +41,5 @@ public class RobotMap {
 
 	//Miscellaneous
 	public static final int WINCH_PDP_CHANNEL = 0;
-
 
 }
