@@ -4,6 +4,7 @@ import org.usfirst.frc.team2141.robot.Robot;
 import org.usfirst.frc.team2141.robot.RobotMap;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -25,7 +26,9 @@ public class Winch extends Subsystem {
 
 	public Winch() {
 		winchMotor = new CANTalon(RobotMap.WINCH_MOTOR);
+		winchMotor.changeControlMode(TalonControlMode.Voltage);
 		winchBrake = new DoubleSolenoid(RobotMap.WINCH_STOPPER_CHANNEL_A, RobotMap.WINCH_STOPPER_CHANNEL_B);
+		
 	}
 
 	/**
@@ -34,7 +37,7 @@ public class Winch extends Subsystem {
 	 * @param speed the speed the motor is set to
 	 */
 	public void setWinchSpeed(double speed) {
-		this.winchMotor.set(speed);
+		this.winchMotor.set(speed * 12);
 	}
 
 	/**
