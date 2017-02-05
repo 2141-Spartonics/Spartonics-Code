@@ -28,8 +28,9 @@ public class Winch extends Subsystem {
 
 	public Winch() {
 		winchMotor = new CANTalon(RobotMap.WINCH_MOTOR);
-		winchMotor.changeControlMode(TalonControlMode.Voltage);
 		winchBrake = new DoubleSolenoid(RobotMap.WINCH_STOPPER_CHANNEL_A, RobotMap.WINCH_STOPPER_CHANNEL_B);
+
+		this.winchMotor.changeControlMode(TalonControlMode.Voltage);
 		
 	}
 

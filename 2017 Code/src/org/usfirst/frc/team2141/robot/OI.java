@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2141.robot;
 
+import org.usfirst.frc.team2141.robot.commands.FlipChassisDirection;
 import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2141.robot.commands.ManualDriving;
 import org.usfirst.frc.team2141.robot.commands.ShooterControl;
@@ -17,18 +18,6 @@ public class OI {
 	private Joystick driveStick;
 	private JoystickButton[] buttons;
 
-	public Joystick getDriveStick() {
-		return driveStick;
-	}
-
-	public boolean getButtonValue(int buttonNum) {
-		return this.buttons[buttonNum].get();
-	}
-
-	public JoystickButton getButton(int buttonNum) {
-		return this.buttons[buttonNum];
-	}
-
 	public OI() {
 
 		driveStick = new Joystick(RobotMap.DRIVE_STICK);
@@ -42,6 +31,19 @@ public class OI {
 		this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
 		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).whenPressed(new WinchCommand());
 		this.getButton(RobotMap.INTAKE_CONTROL_BUTTON).toggleWhenPressed(new IntakeCommand());
+		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
+		
+	}
+	
+	public Joystick getDriveStick() {
+		return driveStick;
+	}
 
+	public boolean getButtonValue(int buttonNum) {
+		return this.buttons[buttonNum].get();
+	}
+
+	public JoystickButton getButton(int buttonNum) {
+		return this.buttons[buttonNum];
 	}
 }

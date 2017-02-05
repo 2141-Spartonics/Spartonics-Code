@@ -20,11 +20,13 @@ public class Chassis extends Subsystem {
 
 	private DoubleSolenoid shifterSolenoid;
 
+	private boolean flipped;
+
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	public Chassis() {
-		shifterSolenoid = new DoubleSolenoid(RobotMap.SHIFTER_SOLENOID_CHANNEL_A, RobotMap.SHIFTER_SOLENOID_CHANNEL_B);
+		shifterSolenoid = new DoubleSolenoid(RobotMap.SHIFTER_SOLENOID_CHANNEL_A,RobotMap.SHIFTER_SOLENOID_CHANNEL_B);
 
 		leftMasterMotor = new CANTalon(RobotMap.LEFT_MASTER_MOTOR);
 		leftSlaveMotorA = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_A);
@@ -32,6 +34,8 @@ public class Chassis extends Subsystem {
 		rightMasterMotor = new CANTalon(RobotMap.RIGHT_MASTER_MOTOR);
 		rightSlaveMotorA = new CANTalon(RobotMap.RIGHT_SLAVE_MOTOR_A);
 		rightSlaveMotorB = new CANTalon(RobotMap.RIGHT_SLAVE_MOTOR_B);
+
+		flipped = false;
 
 		this.leftSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.leftSlaveMotorA.set(RobotMap.LEFT_MASTER_MOTOR);
@@ -60,7 +64,7 @@ public class Chassis extends Subsystem {
 
 	// Encoder methods
 
-	/** 
+	/**
 	 * Zeroes the drive train encoders.
 	 */
 	public void zeroEncoders() {
@@ -70,6 +74,7 @@ public class Chassis extends Subsystem {
 
 	/**
 	 * Gets the left wheel's position
+	 * 
 	 * @return the amount of ticks the left side has driven since it was zeroed
 	 */
 	public double getLeftEncoderCount() {
@@ -78,6 +83,7 @@ public class Chassis extends Subsystem {
 
 	/**
 	 * Gets the left wheel's velocity
+	 * 
 	 * @return the velocity of the left wheels in encoder RPMs
 	 */
 	public double getLeftEncoderVelocity() {
@@ -86,6 +92,7 @@ public class Chassis extends Subsystem {
 
 	/**
 	 * Gets the right wheel's position
+	 * 
 	 * @return the amount of ticks the right side has driven since it was zeroed
 	 */
 	public double getRightEncoderCount() {
@@ -94,6 +101,7 @@ public class Chassis extends Subsystem {
 
 	/**
 	 * Gets the right wheel's velocity
+	 * 
 	 * @return the velocity of the right wheels in encoder RPMs
 	 */
 	public double getRightEncoderVelocity() {
@@ -115,27 +123,29 @@ public class Chassis extends Subsystem {
 	public void setToLowSpeed() {
 		this.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
-	
-    /**
-     * Closes the soleniod and prevents the robot from shifting.
-     */
+
+	/**
+	 * Closes the soleniod and prevents the robot from shifting.
+	 */
 	public void closeSolenoid() {
 		this.shifterSolenoid.set(DoubleSolenoid.Value.kOff);
 	}
 
 	// Basic driving methods
-	
+
 	/**
 	 * Sets the left motors to speed.
+	 * 
 	 * @param speed
 	 */
 	public void setLeftMotors(double speed) {
 		this.leftMasterMotor.set(speed);
 	}
-	
+
 	/**
 	 * Sets the right motors to speed.
-	 * @param speed 
+	 * 
+	 * @param speed
 	 */
 	public void setRightMotors(double speed) {
 		this.rightMasterMotor.set(speed);
@@ -143,8 +153,14 @@ public class Chassis extends Subsystem {
 
 	// Teleoperated driving methods
 
-		//Alex's weird code(Ray didn't put that Bernie did but I'm going to keep it :))
-	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
+	public void flipDirection() {
+		this.flipped = !this.flipped;
+	}
+
+	// Alex's weird code(Ray didn't put that Bernie did but I'm going to keep it
+	// :))
+	public void arcadeDrive(double moveValue, double rotateValue,
+			boolean squaredInputs) {
 
 		double leftMotorSpeed;
 		double rightMotorSpeed;
@@ -186,10 +202,15 @@ public class Chassis extends Subsystem {
 			}
 		}
 
-		this.setLeftMotors(leftMotorSpeed);
-		this.setRightMotors(rightMotorSpeed);
+		if (this.flipped) {
+			this.setLeftMotors(-rightMotorSpeed);
+			this.setRightMotors(-leftMotorSpeed);
+		} else {
+			this.setLeftMotors(leftMotorSpeed);
+			this.setRightMotors(rightMotorSpeed);
+		}
 	}
-	
+
 	private double limit(double val) {
 		if (val > 1.0) {
 			return 1.0;
