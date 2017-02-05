@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
-import org.usfirst.frc.team2141.robot.subsystems.Feeder;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
 import org.usfirst.frc.team2141.robot.subsystems.Shooter;
 import org.usfirst.frc.team2141.robot.subsystems.Winch;
@@ -28,14 +27,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
-	public static Feeder feeder;
-	public static Chassis chassis;
 	public static PowerDistributionPanel PDP;
 	public static ADIS16448_IMU imu;
 	public static OI oi;
+	
 	public static Intake intake;
 	public static Winch winch;
 	public static Shooter shooter;
+	public static Chassis chassis;
 
 	Command autonomousCommand;
 	//SendableChooser chooser;
@@ -45,7 +44,7 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	/**
-	 * Instantisheates the components of the code
+	 * Instantiates the components of the code
 	 */
 	public void robotInit() {
 
@@ -54,7 +53,6 @@ public class Robot extends IterativeRobot {
 		PDP = new PowerDistributionPanel();
 
 		chassis = new Chassis();
-		feeder = new Feeder();		
 		intake = new Intake();
 		winch = new Winch();
 		shooter = new Shooter();

@@ -1,7 +1,8 @@
 package org.usfirst.frc.team2141.robot;
 
-import org.usfirst.frc.team2141.robot.commands.FeederControl;
+import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2141.robot.commands.ManualDriving;
+import org.usfirst.frc.team2141.robot.commands.ShooterControl;
 import org.usfirst.frc.team2141.robot.commands.WinchCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -38,9 +39,9 @@ public class OI {
 		}
 
 		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ManualDriving());
-		this.getButton(RobotMap.FEEDER_CONTROL_BUTTON).toggleWhenPressed(new FeederControl());
+		this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
 		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).whenPressed(new WinchCommand());
-		
+		this.getButton(RobotMap.INTAKE_CONTROL_BUTTON).toggleWhenPressed(new IntakeCommand());
 
 	}
 }
