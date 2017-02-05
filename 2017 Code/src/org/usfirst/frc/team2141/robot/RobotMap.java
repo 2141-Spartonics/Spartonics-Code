@@ -12,7 +12,6 @@ public class RobotMap {
 	//Drive Controller
 	public static final int DRIVE_STICK = 0;
 	public static final int INTAKE_CONTROL_BUTTON = 2;
-	public static final int FEEDER_CONTROL_BUTTON = 4;
 	public static final int WINCH_CONTROL_BUTTON = 9;
 	public static final int SHOOTER_CONTROL_BUTTON = 4;
 	public static final int REVERSE_DRIVE_BUTTON = 10;
@@ -21,6 +20,12 @@ public class RobotMap {
 	//Manual Board
 	public static final int FORCE_SHOOTER_OFF = 3;
 	public static final int FORCE_INTAKE_OFF = 2;
+
+	//PID Values
+	public static final double SHOOTER_SPEED_P = 0.0;
+	public static final double SHOOTER_SPEED_I = 0.0;
+	public static final double SHOOTER_SPEED_D = 0.0;
+	public static final double SHOOTER_SPEED_F = 0.0;
 
 	//Motor channel numbers
 	public static final int LEFT_MASTER_MOTOR = 1;
