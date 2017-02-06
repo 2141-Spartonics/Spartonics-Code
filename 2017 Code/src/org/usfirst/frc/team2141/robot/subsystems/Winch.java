@@ -31,7 +31,7 @@ public class Winch extends Subsystem {
 		winchBrake = new DoubleSolenoid(RobotMap.WINCH_STOPPER_CHANNEL_A, RobotMap.WINCH_STOPPER_CHANNEL_B);
 
 		this.winchMotor.changeControlMode(TalonControlMode.Voltage);
-		
+		this.putBrakeOff();
 	}
 
 	/**

@@ -20,10 +20,10 @@ public class OI {
 
 	public OI() {
 
-		driveStick = new Joystick(RobotMap.DRIVE_STICK);
+		driveStick = new Joystick(RobotMap.DRIVE_STICK_NUMBER);
 		buttons = new JoystickButton[13];
 
-		for (int i = 2; i < 10; i++) {
+		for (int i = 2; i < 11; i++) {
 			buttons[i] = new JoystickButton(driveStick, i);
 		}
 
