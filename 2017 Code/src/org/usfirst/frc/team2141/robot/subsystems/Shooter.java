@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
 import org.usfirst.frc.team2141.robot.RobotMap;
+import org.usfirst.frc.team2141.robot.commands.DoNothing;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -14,8 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Shooter extends Subsystem {
 
 	private CANTalon shooterMotor;
-    private CANTalon feederMotor;
-
+	private CANTalon feederMotor;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -23,49 +23,55 @@ public class Shooter extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new DoNothing());
 	}
 
 	public Shooter() {
 		shooterMotor = new CANTalon(RobotMap.SHOOTER_MOTOR);
-    	feederMotor = new CANTalon(RobotMap.FEEDER_MOTOR);
+		feederMotor = new CANTalon(RobotMap.FEEDER_MOTOR);
 
-		
-		shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		shooterMotor.configEncoderCodesPerRev(12);
-		shooterMotor.configNominalOutputVoltage(0.0, -0.0);
-		shooterMotor.configPeakOutputVoltage(12, -12);
-		shooterMotor.enableBrakeMode(false);
-		
-		shooterMotor.setProfile(0);
-		shooterMotor.setP(RobotMap.SHOOTER_SPEED_P);
-		shooterMotor.setI(RobotMap.SHOOTER_SPEED_I);
-		shooterMotor.setD(RobotMap.SHOOTER_SPEED_D);
-		shooterMotor.setF(RobotMap.SHOOTER_SPEED_F);
+		this.shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		this.shooterMotor.configEncoderCodesPerRev(12);
+		this.shooterMotor.configNominalOutputVoltage(0.0, -0.0);
+		this.shooterMotor.configPeakOutputVoltage(12, -12);
+		this.shooterMotor.enableBrakeMode(false);
 
-		shooterMotor.changeControlMode(TalonControlMode.Speed);
-    	feederMotor.changeControlMode(TalonControlMode.Voltage);
+		this.shooterMotor.setProfile(0);
+		this.shooterMotor.setP(RobotMap.SHOOTER_SPEED_P);
+		this.shooterMotor.setI(RobotMap.SHOOTER_SPEED_I);
+		this.shooterMotor.setD(RobotMap.SHOOTER_SPEED_D);
+		this.shooterMotor.setF(RobotMap.SHOOTER_SPEED_F);
+
+		this.shooterMotor.changeControlMode(TalonControlMode.Speed);
+		this.feederMotor.changeControlMode(TalonControlMode.Voltage);
+	}
+
+	/**
+	 * Sets the feederMotor to speed
+	 * 
+	 * @param speed
+	 *            Speed is the speed chosen for the motor to be set to
+	 */
+	public void setFeederSpeed(double speed) {
+		this.feederMotor.set(speed * 12);
 	}
 
 	public void setShooterMotorVoltage(double voltage) {
-		shooterMotor.changeControlMode(TalonControlMode.Voltage);
+		this.shooterMotor.changeControlMode(TalonControlMode.Voltage);
 		this.shooterMotor.set(voltage * 12);
 	}
 
 	public double getVelocity() {
 		return this.shooterMotor.getSpeed();
 	}
-	
-	public void setShooterMotorVelocity(double targetSpeed){
-		shooterMotor.changeControlMode(TalonControlMode.Speed);
+
+	public void setShooterMotorVelocity(double targetSpeed) {
+		this.shooterMotor.changeControlMode(TalonControlMode.Speed);
 		this.shooterMotor.set(targetSpeed);
 	}
-	
-    /**
-     * Sets the feederMotor to speed
-     * @param speed Speed is the speed chosen for the motor to be set to
-     */
-    public void setFeederSpeed(double speed){
-	  this.feederMotor.set(speed * 12);
-    }
+
+	public int getVelocityError() {
+		return this.shooterMotor.getClosedLoopError();
+	}
 
 }

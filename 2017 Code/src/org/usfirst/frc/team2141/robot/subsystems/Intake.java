@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Intake extends Subsystem {
-	CANTalon intakeMotor;
+	
+	private CANTalon intakeMotor;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -24,7 +25,8 @@ public class Intake extends Subsystem {
     }
     public Intake(){
     	intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
-    	intakeMotor.changeControlMode(TalonControlMode.Voltage);
+    
+    	this.intakeMotor.changeControlMode(TalonControlMode.Voltage);
     }
     /**
      * Sets the intakeMotor to speed
