@@ -45,14 +45,14 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 
-		oi = new OI();
-		imu = new ADIS16448_IMU();
-		PDP = new PowerDistributionPanel();
-
 		chassis = new Chassis();
 		intake = new Intake();
 		winch = new Winch();
 		shooter = new Shooter();
+		
+		oi = new OI();
+		imu = new ADIS16448_IMU();
+		PDP = new PowerDistributionPanel();
 		
 		//chooser = new SendableChooser();
 		//chooser.addDefault("Default Auto", new JoyStickDriving());

@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2141.robot.commands;
 
+import org.usfirst.frc.team2141.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -10,7 +12,11 @@ public class DoNothing extends Command {
     public DoNothing() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.intake);
+    	requires(Robot.winch);
+    	requires(Robot.shooter);
     }
+    
 
     // Called just before this Command runs the first time
     protected void initialize() {
