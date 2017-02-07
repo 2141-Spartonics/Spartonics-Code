@@ -12,35 +12,42 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Chassis extends Subsystem {
 
-	//Motor Objects
+	// Motor Objects
 	private CANTalon leftMasterMotor;
 	private CANTalon leftSlaveMotorA;
 	private CANTalon leftSlaveMotorB;
 	private CANTalon rightMasterMotor;
 	private CANTalon rightSlaveMotorA;
 	private CANTalon rightSlaveMotorB;
+	private CANTalon leftMotorVelocity;
+	private CANTalon rightMotorVelocity;
 
-	//Shifter Objects
+	// Shifter Objects
 	private DoubleSolenoid leftShifterSolenoid;
 	private DoubleSolenoid rightShifterSolenoid;
-	public enum ShifterValue{
+
+	public enum ShifterValue {
 		HIGH, LOW
 	}
+
 	private ShifterValue leftGearing = ShifterValue.LOW;
 	private ShifterValue rightGearing = ShifterValue.HIGH;
-	
+
 	/**
 	 * True if the controls are flipped, and the intake is the front.
 	 */
 	private boolean flipped;
+	private Object leftMotor;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	public Chassis() {
-		leftShifterSolenoid = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_SOLENOID_CHANNEL_A, RobotMap.LEFT_SHIFTER_SOLENOID_CHANNEL_B);
-		rightShifterSolenoid = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_SOLENOID_CHANNEL_A, RobotMap.RIGHT_SHIFTER_SOLENOID_CHANNEL_B);
-		
+		leftShifterSolenoid = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_SOLENOID_CHANNEL_A,
+				RobotMap.LEFT_SHIFTER_SOLENOID_CHANNEL_B);
+		rightShifterSolenoid = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_SOLENOID_CHANNEL_A,
+				RobotMap.RIGHT_SHIFTER_SOLENOID_CHANNEL_B);
+
 		leftMasterMotor = new CANTalon(RobotMap.LEFT_MASTER_MOTOR);
 		leftSlaveMotorA = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_A);
 		leftSlaveMotorB = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_B);
@@ -63,6 +70,17 @@ public class Chassis extends Subsystem {
 		this.rightMasterMotor.configEncoderCodesPerRev(256);
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.leftMasterMotor.configEncoderCodesPerRev(256);
+
+		this.leftMasterMotor.setProfile(0);
+		this.leftMasterMotor.setP(RobotMap.LEFT_MOTOR_VELOCITY_P);
+		this.leftMasterMotor.setI(RobotMap.LEFT_MOTOR_VELOCITY_I);
+		this.leftMasterMotor.setD(RobotMap.LEFT_MOTOR_VELOCITY_D);
+		this.leftMasterMotor.setF(RobotMap.LEFT_MOTOR_VELOCITY_F);
+		this.rightMasterMotor.setProfile(0);
+		this.rightMasterMotor.setP(RobotMap.RIGHT_MOTOR_VELOCITY_P);
+		this.rightMasterMotor.setI(RobotMap.RIGHT_MOTOR_VELOCITY_I);
+		this.rightMasterMotor.setD(RobotMap.RIGHT_MOTOR_VELOCITY_D);
+		this.rightMasterMotor.setF(RobotMap.RIGHT_MOTOR_VELOCITY_F);
 
 	}
 
@@ -123,43 +141,42 @@ public class Chassis extends Subsystem {
 
 	// Shifter methods
 
-	public void setLeftToHigh(){
+	public void setLeftToHigh() {
 		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kForward);
 		this.leftGearing = ShifterValue.HIGH;
 	}
-	
-	public void setLeftToLow(){
+
+	public void setLeftToLow() {
 		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
 		this.leftGearing = ShifterValue.LOW;
 	}
-	
-	public void setRightToHigh(){
+
+	public void setRightToHigh() {
 		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kForward);
 		this.rightGearing = ShifterValue.HIGH;
 	}
-	
-	public void setRightToLow(){
+
+	public void setRightToLow() {
 		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
 		this.rightGearing = ShifterValue.LOW;
 	}
-	
-	public boolean leftInHigh(){
+
+	public boolean leftInHigh() {
 		return this.leftGearing == ShifterValue.HIGH;
 	}
-	
-	public boolean leftInLow(){
-		return this.leftGearing == ShifterValue.LOW;
-	}	
 
-	public boolean rightInHigh(){
+	public boolean leftInLow() {
+		return this.leftGearing == ShifterValue.LOW;
+	}
+
+	public boolean rightInHigh() {
 		return this.rightGearing == ShifterValue.HIGH;
 	}
-	
-	public boolean rightInLow(){
+
+	public boolean rightInLow() {
 		return this.rightGearing == ShifterValue.LOW;
 	}
-	
-	
+
 	/**
 	 * Sets gear to a higher speed using pnuematics.
 	 */
@@ -186,6 +203,16 @@ public class Chassis extends Subsystem {
 
 	// Basic driving methods
 
+	public void setLeftMotorVelocity(double speed) {
+		this.leftMasterMotor.changeControlMode(TalonControlMode.Speed);
+		this.leftMasterMotor.set(speed);
+	}
+
+	public void setRightMotorVelocity(double speed) {
+		this.rightMasterMotor.changeControlMode(TalonControlMode.Speed);
+		this.rightMasterMotor.set(speed);
+	}
+
 	/**
 	 * Sets the left motors to speed.
 	 * 
@@ -204,10 +231,10 @@ public class Chassis extends Subsystem {
 	public void setRightMotorVoltage(double speed) {
 		this.rightMasterMotor.changeControlMode(TalonControlMode.Voltage);
 		this.rightMasterMotor.set(speed * 12);
-	}	
-	
+	}
+
 	// Teleoperated driving methods
-	
+
 	/**
 	 * Flips the direction of the chassis
 	 */
@@ -217,7 +244,7 @@ public class Chassis extends Subsystem {
 
 	// Alex's weird code(Ray didn't put that Bernie did but I'm going to keep it
 	// :))
-	public void arcadeDrive(double moveValue, double rotateValue,boolean squaredInputs) {
+	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
 
 		double leftMotorSpeed;
 		double rightMotorSpeed;
