@@ -55,21 +55,33 @@ public class Shooter extends Subsystem {
 	public void setFeederSpeed(double speed) {
 		this.feederMotor.set(speed * 12);
 	}
-
+	/**
+	 * Sets the shooterMotors voltage 
+	 * @param voltage
+	 */
 	public void setShooterMotorVoltage(double voltage) {
 		this.shooterMotor.changeControlMode(TalonControlMode.Voltage);
 		this.shooterMotor.set(voltage * 12);
 	}
-
+	/**
+	 * Gets the shooter Motors speed
+	 * @return The shooter Motors speed
+	 */
 	public double getVelocity() {
 		return this.shooterMotor.getSpeed();
 	}
-
+	/**
+	 * Sets the target speed 
+	 * @return targetSpeed
+	 */
 	public void setShooterMotorVelocity(double targetSpeed) {
 		this.shooterMotor.changeControlMode(TalonControlMode.Speed);
 		this.shooterMotor.set(targetSpeed);
 	}
-
+	/**
+	 * Tells how far away you are from your set air level
+	 * @return distance from set air level
+	 */
 	public int getVelocityError() {
 		return this.shooterMotor.getClosedLoopError();
 	}
