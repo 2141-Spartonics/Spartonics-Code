@@ -152,7 +152,9 @@ public class Chassis extends Subsystem {
 	}
 
 	// Teleoperated driving methods
-
+/**
+ * Flips the direction of the chassis
+ */
 	public void flipDirection() {
 		this.flipped = !this.flipped;
 	}
