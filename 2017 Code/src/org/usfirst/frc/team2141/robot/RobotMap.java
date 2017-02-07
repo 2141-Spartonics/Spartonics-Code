@@ -15,7 +15,9 @@ public class RobotMap {
 	public static final int WINCH_CONTROL_BUTTON = 9;
 	public static final int SHOOTER_CONTROL_BUTTON = 4;
 	public static final int REVERSE_DRIVE_BUTTON = 10;
-	public static final int SHIFT_DOWN_BUTTON = 1;
+	public static final int SHIFT_DOWN_BUTTON = 0;
+	public static final int LEFT_HAND_BRAKE = 5;
+	public static final int RIGHT_HAND_BRAKE = 6;
 	
 	//Manual Board
 	public static final int MANUAL_BOARD_STICK_NUMBER = 1;
@@ -41,10 +43,12 @@ public class RobotMap {
 	public static final int FEEDER_MOTOR = 10;
 
 	//Solenoid channel numbers
-	public static final int SHIFTER_SOLENOID_CHANNEL_B = 0;
-	public static final int SHIFTER_SOLENOID_CHANNEL_A = 1;
+	public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_B = 0;
+	public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_A = 1;
 	public static final int WINCH_STOPPER_CHANNEL_A = 2;
 	public static final int WINCH_STOPPER_CHANNEL_B = 3;
+	public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_A = 4;
+	public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_B = 5;
 
 	//Miscellaneous
 	public static final int WINCH_PDP_CHANNEL = 0;
