@@ -5,12 +5,14 @@ import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Chassis extends Subsystem {
 
+	//Motor Objects
 	private CANTalon leftMasterMotor;
 	private CANTalon leftSlaveMotorA;
 	private CANTalon leftSlaveMotorB;
@@ -18,9 +20,18 @@ public class Chassis extends Subsystem {
 	private CANTalon rightSlaveMotorA;
 	private CANTalon rightSlaveMotorB;
 
+	//Shifter Objects
 	private DoubleSolenoid leftShifterSolenoid;
 	private DoubleSolenoid rightShifterSolenoid;
-
+	public enum ShifterValue{
+		HIGH, LOW
+	}
+	private ShifterValue leftGearing = ShifterValue.LOW;
+	private ShifterValue rightGearing = ShifterValue.HIGH;
+	
+	/**
+	 * True if the controls are flipped, and the intake is the front.
+	 */
 	private boolean flipped;
 
 	// Put methods for controlling this subsystem
@@ -114,18 +125,38 @@ public class Chassis extends Subsystem {
 
 	public void setLeftToHigh(){
 		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kForward);
+		this.leftGearing = ShifterValue.HIGH;
 	}
 	
 	public void setLeftToLow(){
 		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		this.leftGearing = ShifterValue.LOW;
 	}
 	
 	public void setRightToHigh(){
 		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kForward);
+		this.rightGearing = ShifterValue.HIGH;
 	}
 	
 	public void setRightToLow(){
 		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		this.rightGearing = ShifterValue.LOW;
+	}
+	
+	public boolean leftInHigh(){
+		return this.leftGearing == ShifterValue.HIGH;
+	}
+	
+	public boolean leftInLow(){
+		return this.leftGearing == ShifterValue.LOW;
+	}	
+
+	public boolean rightInHigh(){
+		return this.rightGearing == ShifterValue.HIGH;
+	}
+	
+	public boolean rightInLow(){
+		return this.rightGearing == ShifterValue.LOW;
 	}
 	
 	
@@ -160,8 +191,9 @@ public class Chassis extends Subsystem {
 	 * 
 	 * @param speed
 	 */
-	public void setLeftMotors(double speed) {
-		this.leftMasterMotor.set(speed);
+	public void setLeftMotorVoltage(double speed) {
+		this.leftMasterMotor.changeControlMode(TalonControlMode.Voltage);
+		this.leftMasterMotor.set(speed * 12);
 	}
 
 	/**
@@ -169,22 +201,23 @@ public class Chassis extends Subsystem {
 	 * 
 	 * @param speed
 	 */
-	public void setRightMotors(double speed) {
-		this.rightMasterMotor.set(speed);
-	}
-
+	public void setRightMotorVoltage(double speed) {
+		this.rightMasterMotor.changeControlMode(TalonControlMode.Voltage);
+		this.rightMasterMotor.set(speed * 12);
+	}	
+	
 	// Teleoperated driving methods
-/**
- * Flips the direction of the chassis
- */
+	
+	/**
+	 * Flips the direction of the chassis
+	 */
 	public void flipDirection() {
 		this.flipped = !this.flipped;
 	}
 
 	// Alex's weird code(Ray didn't put that Bernie did but I'm going to keep it
 	// :))
-	public void arcadeDrive(double moveValue, double rotateValue,
-			boolean squaredInputs) {
+	public void arcadeDrive(double moveValue, double rotateValue,boolean squaredInputs) {
 
 		double leftMotorSpeed;
 		double rightMotorSpeed;
@@ -227,11 +260,11 @@ public class Chassis extends Subsystem {
 		}
 
 		if (this.flipped) {
-			this.setLeftMotors(-rightMotorSpeed);
-			this.setRightMotors(-leftMotorSpeed);
+			this.setLeftMotorVoltage(-rightMotorSpeed);
+			this.setRightMotorVoltage(-leftMotorSpeed);
 		} else {
-			this.setLeftMotors(leftMotorSpeed);
-			this.setRightMotors(rightMotorSpeed);
+			this.setLeftMotorVoltage(leftMotorSpeed);
+			this.setRightMotorVoltage(rightMotorSpeed);
 		}
 	}
 

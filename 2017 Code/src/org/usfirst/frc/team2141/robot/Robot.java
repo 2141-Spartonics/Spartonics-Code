@@ -26,16 +26,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 
 public class Robot extends IterativeRobot {
-
-	public static PowerDistributionPanel PDP;
-	public static ADIS16448_IMU imu;
-	public static OI oi;
 	
 	public static Intake intake;
 	public static Winch winch;
 	public static Shooter shooter;
 	public static Chassis chassis;
 
+	public static PowerDistributionPanel PDP;
+	public static ADIS16448_IMU imu;
+	public static OI oi;
+	
 	Command autonomousCommand;
 	//SendableChooser chooser;
 
