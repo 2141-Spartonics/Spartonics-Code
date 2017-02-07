@@ -41,10 +41,12 @@ public class RobotMap {
 	public static final int FEEDER_MOTOR = 10;
 
 	//Solenoid channel numbers
-	public static final int SHIFTER_SOLENOID_CHANNEL_B = 0;
-	public static final int SHIFTER_SOLENOID_CHANNEL_A = 1;
+	public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_B = 0;
+	public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_A = 1;
 	public static final int WINCH_STOPPER_CHANNEL_A = 2;
 	public static final int WINCH_STOPPER_CHANNEL_B = 3;
+	public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_A = 4;
+	public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_B = 5;
 
 	//Miscellaneous
 	public static final int WINCH_PDP_CHANNEL = 0;
