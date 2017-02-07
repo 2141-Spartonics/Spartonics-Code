@@ -29,6 +29,15 @@ public class RobotMap {
 	public static final double SHOOTER_SPEED_I = 0.0;
 	public static final double SHOOTER_SPEED_D = 0.0;
 	public static final double SHOOTER_SPEED_F = 0.0;
+	public static final double LEFT_MOTOR_VELOCITY_P = 0.0;
+	public static final double LEFT_MOTOR_VELOCITY_I = 0.0;
+	public static final double LEFT_MOTOR_VELOCITY_D = 0.0;
+	public static final double LEFT_MOTOR_VELOCITY_F = 0.0;
+	public static final double RIGHT_MOTOR_VELOCITY_P = 0.0;
+	public static final double RIGHT_MOTOR_VELOCITY_I = 0.0;
+	public static final double RIGHT_MOTOR_VELOCITY_D = 0.0;
+	public static final double RIGHT_MOTOR_VELOCITY_F = 0.0;
+	
 
 	//Motor channel numbers
 	public static final int LEFT_MASTER_MOTOR = 1;
