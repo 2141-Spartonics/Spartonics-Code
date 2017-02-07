@@ -23,9 +23,9 @@ public class JoyStickDriving extends Command {
     	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true); 
     	
     	if (Robot.oi.getDriveStick().getY() > 0.46296296296 || Robot.oi.getDriveStick().getY() < -0.46296296296 ){
-    		Robot.chassis.setBothToHighGear();
+    		Robot.chassis.setBothToHighSpeed();
     	}else{
-    		Robot.chassis.setBothToLowGear();
+    		Robot.chassis.setBothToLowSpeed();
     	}
     }
 

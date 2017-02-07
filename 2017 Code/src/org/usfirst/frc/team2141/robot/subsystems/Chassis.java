@@ -18,7 +18,8 @@ public class Chassis extends Subsystem {
 	private CANTalon rightSlaveMotorA;
 	private CANTalon rightSlaveMotorB;
 
-	private DoubleSolenoid shifterSolenoid;
+	private DoubleSolenoid leftShifterSolenoid;
+	private DoubleSolenoid rightShifterSolenoid;
 
 	private boolean flipped;
 
@@ -26,8 +27,9 @@ public class Chassis extends Subsystem {
 	// here. Call these from Commands.
 
 	public Chassis() {
-		shifterSolenoid = new DoubleSolenoid(RobotMap.SHIFTER_SOLENOID_CHANNEL_A,RobotMap.SHIFTER_SOLENOID_CHANNEL_B);
-
+		leftShifterSolenoid = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_SOLENOID_CHANNEL_A, RobotMap.LEFT_SHIFTER_SOLENOID_CHANNEL_B);
+		rightShifterSolenoid = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_SOLENOID_CHANNEL_A, RobotMap.RIGHT_SHIFTER_SOLENOID_CHANNEL_B);
+		
 		leftMasterMotor = new CANTalon(RobotMap.LEFT_MASTER_MOTOR);
 		leftSlaveMotorA = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_A);
 		leftSlaveMotorB = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_B);
@@ -110,25 +112,45 @@ public class Chassis extends Subsystem {
 
 	// Shifter methods
 
+	public void setLeftToHigh(){
+		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void setLeftToLow(){
+		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void setRightToHigh(){
+		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void setRightToLow(){
+		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	
 	/**
 	 * Sets gear to a higher speed using pnuematics.
 	 */
-	public void setToHighSpeed() {
-		this.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
+	public void setBothToHighSpeed() {
+		this.setLeftToHigh();
+		this.setRightToHigh();
 	}
 
 	/**
 	 * Sets gear to a lower speed using pnuematics.
 	 */
-	public void setToLowSpeed() {
-		this.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+	public void setBothToLowSpeed() {
+		this.setLeftToLow();
+		this.setRightToLow();
 	}
 
 	/**
 	 * Closes the soleniod and prevents the robot from shifting.
 	 */
-	public void closeSolenoid() {
-		this.shifterSolenoid.set(DoubleSolenoid.Value.kOff);
+	public void closeSolenoids() {
+		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kOff);
+		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kOff);
 	}
 
 	// Basic driving methods
