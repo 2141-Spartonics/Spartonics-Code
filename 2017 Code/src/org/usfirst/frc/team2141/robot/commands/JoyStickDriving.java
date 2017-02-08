@@ -27,6 +27,10 @@ public class JoyStickDriving extends Command {
     	}else{
     		Robot.chassis.setBothToLowSpeed();
     	}
+    	
+    	System.out.println("Right Position " + Robot.chassis.getLeftEncoderCount());
+    	System.out.println("Right Velocity " + Robot.chassis.getLeftEncoderCount());
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
