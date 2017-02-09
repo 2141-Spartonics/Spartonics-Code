@@ -18,6 +18,7 @@ public class RobotMap {
 	public static final int SHIFT_DOWN_BUTTON = 1;
 	public static final int LEFT_HAND_BRAKE = 5;
 	public static final int RIGHT_HAND_BRAKE = 6;
+	public static final int FORCED_AUTONMOUS =3;
 	
 	//Manual Board
 	public static final int MANUAL_BOARD_STICK_NUMBER = 1;
@@ -40,10 +41,10 @@ public class RobotMap {
 	
 
 	//Motor channel numbers
-	public static final int LEFT_MASTER_MOTOR = 8;
+	public static final int LEFT_MASTER_MOTOR = 3;
 	public static final int LEFT_SLAVE_MOTOR_A = 2;
 	public static final int LEFT_SLAVE_MOTOR_B = 1;
-	public static final int RIGHT_MASTER_MOTOR = 3;
+	public static final int RIGHT_MASTER_MOTOR = 8;
 	public static final int RIGHT_SLAVE_MOTOR_A = 5; 
 	public static final int RIGHT_SLAVE_MOTOR_B = 6;
 	public static final int WINCH_MOTOR = 7;

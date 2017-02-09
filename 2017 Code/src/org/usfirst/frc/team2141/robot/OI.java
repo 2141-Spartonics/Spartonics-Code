@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2141.robot;
 
+import org.usfirst.frc.team2141.robot.commands.DriveStraight;
 import org.usfirst.frc.team2141.robot.commands.FlipChassisDirection;
 import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2141.robot.commands.ManualDriving;
@@ -32,7 +33,7 @@ public class OI {
 		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).whenPressed(new WinchCommand());
 		this.getButton(RobotMap.INTAKE_CONTROL_BUTTON).toggleWhenPressed(new IntakeCommand());
 		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
-		
+		this.getButton(RobotMap.FORCED_AUTONMOUS).whenPressed(new DriveStraight(10));
 	}
 	
 	public Joystick getDriveStick() {
