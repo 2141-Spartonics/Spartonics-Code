@@ -19,8 +19,6 @@ public class Chassis extends Subsystem {
 	private CANTalon rightMasterMotor;
 	private CANTalon rightSlaveMotorA;
 	private CANTalon rightSlaveMotorB;
-	private CANTalon leftMotorVelocity;
-	private CANTalon rightMotorVelocity;
 
 	// Shifter Objects
 	private DoubleSolenoid leftShifterSolenoid;
@@ -37,7 +35,6 @@ public class Chassis extends Subsystem {
 	 * True if the controls are flipped, and the intake is the front.
 	 */
 	private boolean flipped;
-	private Object leftMotor;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
