@@ -19,6 +19,11 @@ public class RobotMap {
 	public static final int LEFT_HAND_BRAKE = 5;
 	public static final int RIGHT_HAND_BRAKE = 6;
 	public static final int FORCED_AUTONMOUS =3;
+	public static final int AUTO_STICK = 2;
+	
+	public static final int AUTO_TURN_LEFT = 4;
+	public static final int AUTO_TURN_RIGHT = 5;
+	
 	
 	//Manual Board
 	public static final int MANUAL_BOARD_STICK_NUMBER = 1;
@@ -62,5 +67,6 @@ public class RobotMap {
 
 	//Miscellaneous
 	public static final int WINCH_PDP_CHANNEL = 0;
+	
 
 }
