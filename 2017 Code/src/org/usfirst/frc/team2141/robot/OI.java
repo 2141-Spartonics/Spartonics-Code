@@ -5,6 +5,8 @@ import org.usfirst.frc.team2141.robot.commands.FlipChassisDirection;
 import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2141.robot.commands.ManualDriving;
 import org.usfirst.frc.team2141.robot.commands.ShooterControl;
+import org.usfirst.frc.team2141.robot.commands.TurnLeft;
+import org.usfirst.frc.team2141.robot.commands.TurnRight;
 import org.usfirst.frc.team2141.robot.commands.WinchCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -15,12 +17,14 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-
+	
+	private Joystick autoStick;
 	private Joystick driveStick;
 	private JoystickButton[] buttons;
 
 	public OI() {
-
+		
+		autoStick = new Joystick(RobotMap.AUTO_STICK);
 		driveStick = new Joystick(RobotMap.DRIVE_STICK_NUMBER);
 		buttons = new JoystickButton[13];
 
@@ -28,12 +32,20 @@ public class OI {
 			buttons[i] = new JoystickButton(driveStick, i);
 		}
 
+		for (int i = 1; i <= 11; i++) {
+			buttons[i] = new JoystickButton(autoStick, i);
+		}
+		
 		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ManualDriving());
 		this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
 		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).whenPressed(new WinchCommand());
 		this.getButton(RobotMap.INTAKE_CONTROL_BUTTON).toggleWhenPressed(new IntakeCommand());
 		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
-		this.getButton(RobotMap.FORCED_AUTONMOUS).whenPressed(new DriveStraight(10));
+		
+		//Autonomous
+		//this.getButton(RobotMap.FORCED_AUTONMOUS).whenPressed(new DriveStraight(10));
+		this.getAutoButton(RobotMap.AUTO_TURN_LEFT).whileHeld(new TurnLeft());
+		this.getAutoButton(RobotMap.AUTO_TURN_RIGHT).whileHeld(new TurnRight());
 	}
 	
 	public Joystick getDriveStick() {
@@ -45,6 +57,16 @@ public class OI {
 	}
 
 	public JoystickButton getButton(int buttonNum) {
+		return this.buttons[buttonNum];
+	}
+	
+	public Joystick getAutoStick(){
+		return autoStick;
+	}
+	public boolean getAutoButtonValue(int buttonNum){
+		return this.buttons[buttonNum].get();
+	}
+	public JoystickButton getAutoButton(int buttonNum){
 		return this.buttons[buttonNum];
 	}
 }
