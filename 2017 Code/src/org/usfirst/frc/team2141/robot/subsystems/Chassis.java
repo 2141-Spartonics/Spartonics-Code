@@ -9,6 +9,7 @@ import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Chassis extends Subsystem {
 
@@ -85,6 +86,11 @@ public class Chassis extends Subsystem {
 	}
 
 	public void publishToSmartDashboard() {
+		SmartDashboard.putDouble("Left Encoder Speed", this.getLeftEncoderVelocity());
+		SmartDashboard.putDouble("Right Encoder Speed", this.getRightEncoderVelocity());
+		SmartDashboard.putDouble("Right Encoder Distance", this.getRightEncoderCount());
+		SmartDashboard.putDouble("Left Encoder Distance", this.getLeftEncoderCount());
+		SmartDashboard.putBoolean("Flip Direction", this.flipped);
 	}
 
 	public void initDefaultCommand() {
