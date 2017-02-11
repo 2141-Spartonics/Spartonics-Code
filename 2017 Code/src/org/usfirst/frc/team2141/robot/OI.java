@@ -3,10 +3,13 @@ package org.usfirst.frc.team2141.robot;
 import org.usfirst.frc.team2141.robot.commands.DriveStraight;
 import org.usfirst.frc.team2141.robot.commands.FlipChassisDirection;
 import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
+import org.usfirst.frc.team2141.robot.commands.LeftHandBrake;
 import org.usfirst.frc.team2141.robot.commands.ManualDriving;
+import org.usfirst.frc.team2141.robot.commands.RightHandBrake;
 import org.usfirst.frc.team2141.robot.commands.ShooterControl;
 import org.usfirst.frc.team2141.robot.commands.WinchCommand;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -34,6 +37,8 @@ public class OI {
 		this.getButton(RobotMap.INTAKE_CONTROL_BUTTON).toggleWhenPressed(new IntakeCommand());
 		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
 		this.getButton(RobotMap.FORCED_AUTONMOUS).whenPressed(new DriveStraight(10));
+		this.getButton(RobotMap.LEFT_HAND_BRAKE).whileHeld(new LeftHandBrake());
+		this.getButton(RobotMap.RIGHT_HAND_BRAKE).whileHeld(new RightHandBrake());
 	}
 	
 	public Joystick getDriveStick() {
@@ -46,5 +51,14 @@ public class OI {
 
 	public JoystickButton getButton(int buttonNum) {
 		return this.buttons[buttonNum];
+	}
+	
+	public void rumbleLeftJoystick(int rumbleValue) {
+		this.driveStick.setRumble(RumbleType.kLeftRumble, rumbleValue);
+		
+	}
+	
+	public void rumbleRightJoystick(int rumbeValue) {
+		this.driveStick.setRumble(RumbleType.kRightRumble, rumbeValue);
 	}
 }
