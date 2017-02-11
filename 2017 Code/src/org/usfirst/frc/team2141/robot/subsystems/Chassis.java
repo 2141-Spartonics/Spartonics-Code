@@ -28,9 +28,6 @@ public class Chassis extends Subsystem {
 		HIGH, LOW
 	}
 	
-	// Auto Values
-	private double distanceRev;
-
 	private ShifterValue leftGearing = ShifterValue.LOW;
 	private ShifterValue rightGearing = ShifterValue.HIGH;
 
@@ -66,8 +63,10 @@ public class Chassis extends Subsystem {
 		this.rightSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.rightSlaveMotorB.set(RobotMap.RIGHT_MASTER_MOTOR);
 
+		this.rightMasterMotor.setInverted(true);
 		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.rightMasterMotor.configEncoderCodesPerRev(256);
+		this.leftMasterMotor.setInverted(false);
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.leftMasterMotor.configEncoderCodesPerRev(256);
 
@@ -110,9 +109,7 @@ public class Chassis extends Subsystem {
 	 * @return the amount of ticks the left side has driven since it was zeroed
 	 */
 	public double getLeftEncoderCount() {
-		System.out.println(this.leftMasterMotor.getPosition());
 		return this.leftMasterMotor.getPosition();
-	
 	}
 
 	/**
@@ -121,7 +118,6 @@ public class Chassis extends Subsystem {
 	 * @return the velocity of the left wheels in encoder RPMs
 	 */
 	public double getLeftEncoderVelocity() {
-		System.out.println(this.leftMasterMotor.getSpeed());
 		return this.leftMasterMotor.getSpeed();
 	}
 	
@@ -135,7 +131,6 @@ public class Chassis extends Subsystem {
 	 * @return the amount of ticks the right side has driven since it was zeroed
 	 */
 	public double getRightEncoderCount() {
-		System.out.println(this.rightMasterMotor.getPosition());
 		return this.rightMasterMotor.getPosition();
 	}
 
@@ -145,9 +140,13 @@ public class Chassis extends Subsystem {
 	 * @return the velocity of the right wheels in encoder RPMs
 	 */
 	public double getRightEncoderVelocity() {
-		System.out.println(this.rightMasterMotor.getSpeed());
 		return this.rightMasterMotor.getSpeed();
 	}
+	
+	public double getAverageEncoderPosition(){
+		return (this.getLeftEncoderCount() + this.getRightEncoderCount()) / 2;
+	}
+	
 
 	// Shifter methods
 
@@ -220,7 +219,7 @@ public class Chassis extends Subsystem {
 
 	public void setRightMotorVelocity(double speed) {
 		this.rightMasterMotor.changeControlMode(TalonControlMode.Speed);
-		this.rightMasterMotor.set(-speed);
+		this.rightMasterMotor.set(speed);
 	}
 
 	/**
@@ -240,7 +239,7 @@ public class Chassis extends Subsystem {
 	 */
 	public void setRightMotorVoltage(double speed) {
 		this.rightMasterMotor.changeControlMode(TalonControlMode.Voltage);
-		this.rightMasterMotor.set(speed * -12);
+		this.rightMasterMotor.set(speed * 12);
 	}
 
 	// Teleoperated driving methods
