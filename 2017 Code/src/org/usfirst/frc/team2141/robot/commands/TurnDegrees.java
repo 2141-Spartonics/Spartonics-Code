@@ -37,7 +37,6 @@ public class TurnDegrees extends Command {
     		Robot.chassis.setRightMotorVoltage(0.8);
     	}
     	
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
