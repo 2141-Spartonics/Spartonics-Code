@@ -33,6 +33,8 @@ public class JoyStickDriving extends Command {
     	System.out.println("Left Position " + Robot.chassis.getLeftEncoderCount());
     	System.out.println("Left Velocity " + Robot.chassis.getLeftEncoderVelocity());
 
+    	Robot.oi.rumbleLeftJoystick(0);
+    	Robot.oi.rumbleRightJoystick(0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
