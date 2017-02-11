@@ -147,6 +147,14 @@ public class Chassis extends Subsystem {
 		return (this.getLeftEncoderCount() + this.getRightEncoderCount()) / 2;
 	}
 	
+	public double convertTicksToInches(double ticks){
+		return ticks * 3.0 * 54.0 / 30.0 * 256.0 * 4.0 * Math.PI;
+	}
+	
+	public double convertEncoderRateToRPM(double rate){
+		return rate * 3.0 * 54.0 / 30.0 * 256.0;
+	}
+	
 
 	// Shifter methods
 
