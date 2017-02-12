@@ -5,16 +5,19 @@ import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.MotionProfileStatus;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import pathfinder.Pathfinder;
-import pathfinder.Trajectory;
-import pathfinder.Waypoint;
-import pathfinder.modifiers.TankModifier;
+import jaci.pathfinder.Pathfinder;
+import jaci.pathfinder.Waypoint;
+import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.modifiers.TankModifier;
+
+
 
 public class Chassis extends Subsystem {
 
@@ -25,6 +28,7 @@ public class Chassis extends Subsystem {
 	private CANTalon rightMasterMotor;
 	private CANTalon rightSlaveMotorA;
 	private CANTalon rightSlaveMotorB;
+	
 
 	// Shifter Objects
 	private DoubleSolenoid leftShifterSolenoid;
@@ -337,7 +341,7 @@ public class Chassis extends Subsystem {
 	/*
 	 * This is where we put all of Alex's retarded motion profiling :D
 	 */
-	 public static void Trajectory(String[] args) {
+	 public static void Trajectory() {
 	        Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, 1.7, 2.0, 60.0);
 	        Waypoint[] points = new Waypoint[] {
 	                new Waypoint(-4, -1, Pathfinder.d2r(-45)),
@@ -353,6 +357,9 @@ public class Chassis extends Subsystem {
 	        // Do something with the new Trajectories...
 	        Trajectory left = modifier.getLeftTrajectory();
 	        Trajectory right = modifier.getRightTrajectory();
+	        
+	        System.out.println(left); 
+	        System.out.println(right);
 	    }
 
 
