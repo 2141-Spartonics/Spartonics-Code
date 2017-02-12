@@ -353,6 +353,9 @@ public class Chassis extends Subsystem {
 	        // Do something with the new Trajectories...
 	        Trajectory left = modifier.getLeftTrajectory();
 	        Trajectory right = modifier.getRightTrajectory();
+	        
+	        System.out.println(left); 
+	        System.out.println(right);
 	    }
 
 

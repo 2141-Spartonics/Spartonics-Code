@@ -67,6 +67,9 @@ public class Robot extends IterativeRobot {
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		
+		Robot.oi.rumbleLeftJoystick(0);
+		Robot.oi.rumbleRightJoystick(0);
 	}
 
 	/**
