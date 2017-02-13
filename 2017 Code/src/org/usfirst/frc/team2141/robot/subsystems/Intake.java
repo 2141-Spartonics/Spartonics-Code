@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
 import org.usfirst.frc.team2141.robot.RobotMap;
-import org.usfirst.frc.team2141.robot.commands.DoNothing;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -21,7 +20,7 @@ public class Intake extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new DoNothing());
+    	setDefaultCommand(null);
     }
     public Intake(){
     	intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
