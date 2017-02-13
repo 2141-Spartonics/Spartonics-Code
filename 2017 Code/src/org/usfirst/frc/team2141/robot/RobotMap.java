@@ -61,6 +61,6 @@ public class RobotMap {
 	public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_B = 5;
 
 	//Miscellaneous
-	public static final int WINCH_PDP_CHANNEL = 0;
+	public static final int WINCH_PDP_CHANNEL = 7;
 
 }
