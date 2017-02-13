@@ -7,6 +7,7 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -45,6 +46,11 @@ public class Shooter extends Subsystem {
 		this.feederMotor.changeControlMode(TalonControlMode.Voltage);
 	}
 
+	public void publishToSmartDashboard(){
+		SmartDashboard.putNumber("Shooter error", this.getVelocityError());
+		SmartDashboard.putNumber("Shooter speed", this.getVelocity());
+	}
+	
 	/**
 	 * Sets the feederMotor to speed
 	 * 

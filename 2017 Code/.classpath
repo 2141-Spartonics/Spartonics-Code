@@ -7,7 +7,6 @@
 	<classpathentry exported="true" kind="var" path="opencv" sourcepath="opencv.sources"/>
 	<classpathentry exported="true" kind="var" path="cscore" sourcepath="cscore.sources"/>
 	<classpathentry exported="true" kind="var" path="USERLIBS_DIR/CTRLib.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/robotics/Desktop/Pathfinder-Java.jar"/>
-	<classpathentry kind="var" path="USERLIBS_DIR/Pathfinder-Java.jar"/>
+	<classpathentry kind="lib" path="build/jars/Pathfinder-Java.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

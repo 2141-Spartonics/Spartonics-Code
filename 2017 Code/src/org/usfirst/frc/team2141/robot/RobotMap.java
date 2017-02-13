@@ -7,8 +7,6 @@ package org.usfirst.frc.team2141.robot;
  */
 public class RobotMap {
 	
-	//OI numbers
-	
 	//Drive Controller
 	public static final int DRIVE_STICK_NUMBER = 0;
 	public static final int INTAKE_CONTROL_BUTTON = 2;
@@ -24,21 +22,6 @@ public class RobotMap {
 	public static final int MANUAL_BOARD_STICK_NUMBER = 1;
 	public static final int FORCE_SHOOTER_OFF = 3;
 	public static final int FORCE_INTAKE_OFF = 2;
-
-	//PID Values
-	public static final double SHOOTER_SPEED_P = 0.0;
-	public static final double SHOOTER_SPEED_I = 0.0;
-	public static final double SHOOTER_SPEED_D = 0.0;
-	public static final double SHOOTER_SPEED_F = 0.0;
-	public static final double LEFT_MOTOR_VELOCITY_P = 0.0;
-	public static final double LEFT_MOTOR_VELOCITY_I = 0.0;
-	public static final double LEFT_MOTOR_VELOCITY_D = 0.0;
-	public static final double LEFT_MOTOR_VELOCITY_F = 0.0;
-	public static final double RIGHT_MOTOR_VELOCITY_P = 0.0;
-	public static final double RIGHT_MOTOR_VELOCITY_I = 0.0;
-	public static final double RIGHT_MOTOR_VELOCITY_D = 0.0;
-	public static final double RIGHT_MOTOR_VELOCITY_F = 0.0;
-	
 
 	//Motor channel numbers
 	public static final int LEFT_MASTER_MOTOR = 3;
@@ -63,4 +46,31 @@ public class RobotMap {
 	//Miscellaneous
 	public static final int WINCH_PDP_CHANNEL = 7;
 
+	//PID Values
+	public static final double SHOOTER_SPEED_P = 0.0;
+	public static final double SHOOTER_SPEED_I = 0.0;
+	public static final double SHOOTER_SPEED_D = 0.0;
+	public static final double SHOOTER_SPEED_F = 0.0;
+	
+	public static final double LEFT_DRIVE_LOW_VELOCITY_P = 0.0;
+	public static final double LEFT_DRIVE_LOW_VELOCITY_I = 0.0;
+	public static final double LEFT_DRIVE_LOW_VELOCITY_D = 0.0;
+	public static final double LEFT_DRIVE_LOW_VELOCITY_F = 0.0;
+	public static final double LEFT_DRIVE_HIGH_VELOCITY_P = 0.0;
+	public static final double LEFT_DRIVE_HIGH_VELOCITY_I = 0.0;
+	public static final double LEFT_DRIVE_HIGH_VELOCITY_D = 0.0;
+	public static final double LEFT_DRIVE_HIGH_VELOCITY_F = 0.0;
+	
+	public static final double RIGHT_DRIVE_LOW_VELOCITY_P = 0.0;
+	public static final double RIGHT_DRIVE_LOW_VELOCITY_I = 0.0;
+	public static final double RIGHT_DRIVE_LOW_VELOCITY_D = 0.0;
+	public static final double RIGHT_DRIVE_LOW_VELOCITY_F = 0.0;
+	public static final double RIGHT_DRIVE_HIGH_VELOCITY_P = 0.0;
+	public static final double RIGHT_DRIVE_HIGH_VELOCITY_I = 0.0;
+	public static final double RIGHT_DRIVE_HIGH_VELOCITY_D = 0.0;
+	public static final double RIGHT_DRIVE_HIGH_VELOCITY_F = 0.0;
+	
+	public static final double DRIVE_RAMP_RATE = 24.0;
+	public static final int DRIVE_IZONE = 0;
+	
 }
