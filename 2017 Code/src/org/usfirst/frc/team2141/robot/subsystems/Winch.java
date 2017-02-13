@@ -32,6 +32,10 @@ public class Winch extends Subsystem {
 		this.winchMotor.changeControlMode(TalonControlMode.Voltage);
 		this.putBrakeOff();
 	}
+	
+	public void publishToSmartDashboard(){
+		
+	}
 
 	/**
 	 * Sets the the winchMotor to speed

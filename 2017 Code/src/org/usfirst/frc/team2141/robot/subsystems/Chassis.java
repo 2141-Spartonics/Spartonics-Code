@@ -72,15 +72,19 @@ public class Chassis extends Subsystem {
 		leftDriveFollower = new DistanceFollower();
 		rightDriveFollower = new DistanceFollower();
 		
+		//Slave motor configuration
 		this.leftSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.leftSlaveMotorA.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
 		this.leftSlaveMotorA.set(RobotMap.LEFT_MASTER_MOTOR);
 		this.leftSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.leftSlaveMotorB.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
 		this.leftSlaveMotorB.set(RobotMap.LEFT_MASTER_MOTOR);
 		this.rightSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.rightSlaveMotorA.set(RobotMap.RIGHT_MASTER_MOTOR);
 		this.rightSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.rightSlaveMotorB.set(RobotMap.RIGHT_MASTER_MOTOR);
 
+		//Master motor setup
 		this.rightMasterMotor.setInverted(true);
 		this.leftMasterMotor.reverseSensor(false);
 		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
@@ -90,26 +94,49 @@ public class Chassis extends Subsystem {
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.leftMasterMotor.configEncoderCodesPerRev(256);
 
-		this.leftMasterMotor.setProfile(0);
-		this.leftMasterMotor.setP(RobotMap.LEFT_MOTOR_VELOCITY_P);
-		this.leftMasterMotor.setI(RobotMap.LEFT_MOTOR_VELOCITY_I);
-		this.leftMasterMotor.setD(RobotMap.LEFT_MOTOR_VELOCITY_D);
-		this.leftMasterMotor.setF(RobotMap.LEFT_MOTOR_VELOCITY_F);
-		this.rightMasterMotor.setProfile(0);
-		this.rightMasterMotor.setP(RobotMap.RIGHT_MOTOR_VELOCITY_P);
-		this.rightMasterMotor.setI(RobotMap.RIGHT_MOTOR_VELOCITY_I);
-		this.rightMasterMotor.setD(RobotMap.RIGHT_MOTOR_VELOCITY_D);
-		this.rightMasterMotor.setF(RobotMap.RIGHT_MOTOR_VELOCITY_F);
-		
+		//Velocity PID profile setups
+		this.leftMasterMotor.setPID(
+				RobotMap.LEFT_DRIVE_LOW_VELOCITY_P, 
+				RobotMap.LEFT_DRIVE_LOW_VELOCITY_I,
+				RobotMap.LEFT_DRIVE_LOW_VELOCITY_D, 
+				RobotMap.LEFT_DRIVE_LOW_VELOCITY_F, 
+				RobotMap.DRIVE_IZONE, 
+				RobotMap.DRIVE_RAMP_RATE, 
+				0);
+		this.leftMasterMotor.setPID(
+				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_P,
+				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_I,
+				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_D,
+				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_F,
+				RobotMap.DRIVE_IZONE,
+				RobotMap.DRIVE_RAMP_RATE,
+				1);
+		this.rightMasterMotor.setPID(
+				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_P,
+				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_I,
+				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_D,
+				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_F,
+				RobotMap.DRIVE_IZONE,
+				RobotMap.DRIVE_RAMP_RATE,
+				0);
+		this.rightMasterMotor.setPID(
+				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_P,
+				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_I,
+				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_D,
+				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_F,
+				RobotMap.DRIVE_IZONE,
+				RobotMap.DRIVE_RAMP_RATE,
+				1);
+
 
 	}
 
 	public void publishToSmartDashboard() {
-		SmartDashboard.putDouble("Left Encoder Speed", this.getLeftEncoderVelocity());
-		SmartDashboard.putDouble("Right Encoder Speed", this.getRightEncoderVelocity());
-		SmartDashboard.putDouble("Right Encoder Distance", this.getRightEncoderCount());
-		SmartDashboard.putDouble("Left Encoder Distance", this.getLeftEncoderCount());
-		SmartDashboard.putBoolean("Flip Direction", this.flipped);
+		SmartDashboard.putNumber("Left Encoder Speed", this.getLeftEncoderVelocity());
+		SmartDashboard.putNumber("Right Encoder Speed", this.getRightEncoderVelocity());
+		SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
+		SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
+		SmartDashboard.putBoolean("Flipped", this.flipped);
 	}
 
 	public void initDefaultCommand() {
@@ -180,7 +207,6 @@ public class Chassis extends Subsystem {
 		return rate * 3.0 * 54.0 / 30.0 * 256.0;
 	}
 	
-
 	// Shifter methods
 
 	public void setLeftToHigh() {
@@ -247,11 +273,25 @@ public class Chassis extends Subsystem {
 
 	public void setLeftMotorVelocity(double speed) {
 		this.leftMasterMotor.changeControlMode(TalonControlMode.Speed);
+		
+		if(this.leftInHigh()){
+			this.leftMasterMotor.setProfile(1);
+		}else{
+			this.leftMasterMotor.setProfile(0);
+		}
+		
 		this.leftMasterMotor.set(speed);
 	}
 
 	public void setRightMotorVelocity(double speed) {
 		this.rightMasterMotor.changeControlMode(TalonControlMode.Speed);
+		
+		if(this.rightInHigh()){
+			this.rightMasterMotor.setProfile(1);
+		}else{
+			this.rightMasterMotor.setProfile(0);
+		}
+		
 		this.rightMasterMotor.set(speed);
 	}
 
