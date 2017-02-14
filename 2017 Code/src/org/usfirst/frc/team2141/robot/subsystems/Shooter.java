@@ -43,7 +43,7 @@ public class Shooter extends Subsystem {
 				RobotMap.SHOOTER_SPEED_D,
 				RobotMap.SHOOTER_SPEED_F,
 				100,
-				36.0,
+				48.0,
 				0);
 		this.shooterMotor.changeControlMode(TalonControlMode.Speed);
 		this.shooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_50Ms);
@@ -54,14 +54,14 @@ public class Shooter extends Subsystem {
 
 	public void publishToSmartDashboard(){
 		SmartDashboard.putNumber("Shooter error", this.getVelocityError());
-		SmartDashboard.putNumber("Shooter speed", this.getVelocity());
+		SmartDashboard.putNumber("Shooter speed", this.getShooterVelocity());
 	}
 	
 	/**
 	 * Sets the feederMotor to speed
 	 * 
 	 * @param speed
-	 *            Speed is the speed chosen for the motor to be set to
+	 *            the speed chosen for the motor to be set to
 	 */
 	public void setFeederSpeed(double speed) {
     	if(speed > 1.0 || speed < -1.0){
@@ -82,7 +82,7 @@ public class Shooter extends Subsystem {
 	 * Gets the shooter Motors speed
 	 * @return The shooter Motors speed
 	 */
-	public double getVelocity() {
+	public double getShooterVelocity() {
 		return this.shooterMotor.getSpeed();
 	}
 	/**
