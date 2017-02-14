@@ -1,8 +1,6 @@
 package org.usfirst.frc.team2141.robot.commands;
 
-import org.usfirst.frc.team2141.robot.OI;
 import org.usfirst.frc.team2141.robot.Robot;
-import org.usfirst.frc.team2141.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -14,7 +12,6 @@ public class RightHandBrake extends Command {
     public RightHandBrake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.chassis);
     }
     
 

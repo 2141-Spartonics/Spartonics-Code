@@ -8,6 +8,7 @@ import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -29,12 +30,13 @@ public class Winch extends Subsystem {
 		winchMotor = new CANTalon(RobotMap.WINCH_MOTOR);
 		winchBrake = new DoubleSolenoid(RobotMap.WINCH_STOPPER_CHANNEL_A, RobotMap.WINCH_STOPPER_CHANNEL_B);
 
+		this.winchMotor.enableBrakeMode(true);
 		this.winchMotor.changeControlMode(TalonControlMode.Voltage);
 		this.putBrakeOff();
 	}
 	
 	public void publishToSmartDashboard(){
-		
+		SmartDashboard.putNumber("Winch Current", this.getCurrent());
 	}
 
 	/**
@@ -43,6 +45,10 @@ public class Winch extends Subsystem {
 	 * @param speed the speed the motor is set to
 	 */
 	public void setWinchSpeed(double speed) {
+    	if(speed > 1.0 || speed < -1.0){
+    		this.winchMotor.set(speed);
+    	}
+		
 		this.winchMotor.set(speed * 12);
 	}
 
@@ -63,7 +69,7 @@ public class Winch extends Subsystem {
 	/**
 	 * Reads how much current is going into the winchMotor
 	 * 
-	 * @return the amount of current used for the winchMotor
+	 * @return the amount of current used for the winchMotor in amps
 	 */
 	public double getCurrent() {
 		return Robot.PDP.getCurrent(RobotMap.WINCH_PDP_CHANNEL);

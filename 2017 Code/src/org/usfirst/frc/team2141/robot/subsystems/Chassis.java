@@ -5,18 +5,14 @@ import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
-import com.ctre.CANTalon.MotionProfileStatus;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import jaci.pathfinder.Pathfinder;
-import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.followers.DistanceFollower;
-import jaci.pathfinder.Trajectory;
-import jaci.pathfinder.modifiers.TankModifier;
+
 
 
 
@@ -73,22 +69,34 @@ public class Chassis extends Subsystem {
 		rightDriveFollower = new DistanceFollower();
 		
 		//Slave motor configuration
+		this.leftSlaveMotorA.enableBrakeMode(true);
 		this.leftSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.leftSlaveMotorA.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
 		this.leftSlaveMotorA.set(RobotMap.LEFT_MASTER_MOTOR);
+		
+		this.leftSlaveMotorB.enableBrakeMode(true);
 		this.leftSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.leftSlaveMotorB.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
 		this.leftSlaveMotorB.set(RobotMap.LEFT_MASTER_MOTOR);
+		
+		this.rightSlaveMotorA.enableBrakeMode(true);
 		this.rightSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.rightSlaveMotorA.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
 		this.rightSlaveMotorA.set(RobotMap.RIGHT_MASTER_MOTOR);
+		
+		this.rightSlaveMotorB.enableBrakeMode(true);
 		this.rightSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.rightSlaveMotorB.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
 		this.rightSlaveMotorB.set(RobotMap.RIGHT_MASTER_MOTOR);
 
 		//Master motor setup
+		this.rightMasterMotor.enableBrakeMode(true);
 		this.rightMasterMotor.setInverted(true);
-		this.leftMasterMotor.reverseSensor(false);
+		this.rightMasterMotor.reverseSensor(false);
 		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.rightMasterMotor.configEncoderCodesPerRev(256);
+		
+		this.leftMasterMotor.enableBrakeMode(true);
 		this.leftMasterMotor.setInverted(false);
 		this.leftMasterMotor.reverseSensor(true);
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
@@ -96,38 +104,37 @@ public class Chassis extends Subsystem {
 
 		//Velocity PID profile setups
 		this.leftMasterMotor.setPID(
-				RobotMap.LEFT_DRIVE_LOW_VELOCITY_P, 
-				RobotMap.LEFT_DRIVE_LOW_VELOCITY_I,
-				RobotMap.LEFT_DRIVE_LOW_VELOCITY_D, 
-				RobotMap.LEFT_DRIVE_LOW_VELOCITY_F, 
+				RobotMap.DRIVE_LOW_VELOCITY_P, 
+				RobotMap.DRIVE_LOW_VELOCITY_I,
+				RobotMap.DRIVE_LOW_VELOCITY_D, 
+				RobotMap.DRIVE_LOW_VELOCITY_F, 
 				RobotMap.DRIVE_IZONE, 
 				RobotMap.DRIVE_RAMP_RATE, 
 				0);
 		this.leftMasterMotor.setPID(
-				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_P,
-				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_I,
-				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_D,
-				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_F,
+				RobotMap.DRIVE_HIGH_VELOCITY_P,
+				RobotMap.DRIVE_HIGH_VELOCITY_I,
+				RobotMap.DRIVE_HIGH_VELOCITY_D,
+				RobotMap.DRIVE_HIGH_VELOCITY_F,
 				RobotMap.DRIVE_IZONE,
 				RobotMap.DRIVE_RAMP_RATE,
 				1);
 		this.rightMasterMotor.setPID(
-				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_P,
-				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_I,
-				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_D,
-				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_F,
+				RobotMap.DRIVE_LOW_VELOCITY_P,
+				RobotMap.DRIVE_LOW_VELOCITY_I,
+				RobotMap.DRIVE_LOW_VELOCITY_D,
+				RobotMap.DRIVE_LOW_VELOCITY_F,
 				RobotMap.DRIVE_IZONE,
 				RobotMap.DRIVE_RAMP_RATE,
 				0);
 		this.rightMasterMotor.setPID(
-				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_P,
-				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_I,
-				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_D,
-				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_F,
+				RobotMap.DRIVE_HIGH_VELOCITY_P,
+				RobotMap.DRIVE_HIGH_VELOCITY_I,
+				RobotMap.DRIVE_HIGH_VELOCITY_D,
+				RobotMap.DRIVE_HIGH_VELOCITY_F,
 				RobotMap.DRIVE_IZONE,
 				RobotMap.DRIVE_RAMP_RATE,
 				1);
-
 
 	}
 
@@ -385,8 +392,6 @@ public class Chassis extends Subsystem {
 		} else {
 			return val;
 		}
-
 	}
-
 
 }

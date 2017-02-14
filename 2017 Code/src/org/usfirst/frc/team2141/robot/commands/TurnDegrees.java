@@ -46,7 +46,7 @@ public class TurnDegrees extends Command {
     	} else {
     		return true;
     	}
-    	    }
+    }
 
     // Called once after isFinished returns true
     protected void end() {

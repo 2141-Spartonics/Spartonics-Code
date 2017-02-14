@@ -5,6 +5,7 @@ import org.usfirst.frc.team2141.robot.RobotMap;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
+import com.ctre.CANTalon.VelocityMeasurementPeriod;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -32,17 +33,22 @@ public class Shooter extends Subsystem {
 
 		this.shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.shooterMotor.configEncoderCodesPerRev(12);
-		this.shooterMotor.configNominalOutputVoltage(0.0, -0.0);
-		this.shooterMotor.configPeakOutputVoltage(12, -12);
+		this.shooterMotor.configNominalOutputVoltage(0.0, 0.0);
+		this.shooterMotor.configPeakOutputVoltage(12, 0.0);
 		this.shooterMotor.enableBrakeMode(false);
 
-		this.shooterMotor.setProfile(0);
-		this.shooterMotor.setP(RobotMap.SHOOTER_SPEED_P);
-		this.shooterMotor.setI(RobotMap.SHOOTER_SPEED_I);
-		this.shooterMotor.setD(RobotMap.SHOOTER_SPEED_D);
-		this.shooterMotor.setF(RobotMap.SHOOTER_SPEED_F);
-
+		this.shooterMotor.setPID(
+				RobotMap.SHOOTER_SPEED_P,
+				RobotMap.SHOOTER_SPEED_I,
+				RobotMap.SHOOTER_SPEED_D,
+				RobotMap.SHOOTER_SPEED_F,
+				100,
+				36.0,
+				0);
 		this.shooterMotor.changeControlMode(TalonControlMode.Speed);
+		this.shooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_50Ms);
+		this.shooterMotor.SetVelocityMeasurementWindow(64);
+		
 		this.feederMotor.changeControlMode(TalonControlMode.Voltage);
 	}
 
@@ -58,6 +64,10 @@ public class Shooter extends Subsystem {
 	 *            Speed is the speed chosen for the motor to be set to
 	 */
 	public void setFeederSpeed(double speed) {
+    	if(speed > 1.0 || speed < -1.0){
+    		this.feederMotor.set(speed);
+    	}
+		
 		this.feederMotor.set(speed * 12);
 	}
 	/**
