@@ -13,8 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.followers.DistanceFollower;
 
 
-
-
 public class Chassis extends Subsystem {
 
 	// Motor Objects
@@ -178,10 +176,6 @@ public class Chassis extends Subsystem {
 	public double getLeftEncoderVelocity() {
 		return this.leftMasterMotor.getSpeed();
 	}
-	
-	/**Drive forward x amount of feet
-	 * 
-	 */
 
 	/**
 	 * Gets the right wheel's position
@@ -215,26 +209,6 @@ public class Chassis extends Subsystem {
 	
 	// Shifter methods
 
-	public void setLeftToHigh() {
-		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kForward);
-		this.leftGearing = ShifterValue.HIGH;
-	}
-
-	public void setLeftToLow() {
-		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
-		this.leftGearing = ShifterValue.LOW;
-	}
-
-	public void setRightToHigh() {
-		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kForward);
-		this.rightGearing = ShifterValue.HIGH;
-	}
-
-	public void setRightToLow() {
-		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
-		this.rightGearing = ShifterValue.LOW;
-	}
-
 	public boolean leftInHigh() {
 		return this.leftGearing == ShifterValue.HIGH;
 	}
@@ -251,10 +225,34 @@ public class Chassis extends Subsystem {
 		return this.rightGearing == ShifterValue.LOW;
 	}
 
+	public void setLeftToHigh() {
+		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kForward);
+		this.leftGearing = ShifterValue.HIGH;
+		this.leftMasterMotor.setProfile(1);
+	}
+
+	public void setLeftToLow() {
+		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		this.leftGearing = ShifterValue.LOW;
+		this.leftMasterMotor.setProfile(0);
+	}
+
+	public void setRightToHigh() {
+		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kForward);
+		this.rightGearing = ShifterValue.HIGH;
+		this.rightMasterMotor.setProfile(1);
+	}
+
+	public void setRightToLow() {
+		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		this.rightGearing = ShifterValue.LOW;
+		this.rightMasterMotor.setProfile(0);
+	}
+	
 	/**
 	 * Sets gear to a higher speed using pnuematics.
 	 */
-	public void setBothToHighSpeed() {
+	public void setBothToHigh() {
 		this.setLeftToHigh();
 		this.setRightToHigh();
 	}
@@ -262,7 +260,7 @@ public class Chassis extends Subsystem {
 	/**
 	 * Sets gear to a lower speed using pnuematics.
 	 */
-	public void setBothToLowSpeed() {
+	public void setBothToLow() {
 		this.setLeftToLow();
 		this.setRightToLow();
 	}
@@ -279,28 +277,22 @@ public class Chassis extends Subsystem {
 
 	public void setLeftMotorVelocity(double speed) {
 		this.leftMasterMotor.changeControlMode(TalonControlMode.Speed);
-		
-		if(this.leftInHigh()){
-			this.leftMasterMotor.setProfile(1);
-		}else{
-			this.leftMasterMotor.setProfile(0);
-		}
-		
 		this.leftMasterMotor.set(speed);
 	}
 
 	public void setRightMotorVelocity(double speed) {
 		this.rightMasterMotor.changeControlMode(TalonControlMode.Speed);
-		
-		if(this.rightInHigh()){
-			this.rightMasterMotor.setProfile(1);
-		}else{
-			this.rightMasterMotor.setProfile(0);
-		}
-		
 		this.rightMasterMotor.set(speed);
 	}
 
+	public double getLeftMotorVelocitySetpoint(){
+		return this.leftMasterMotor.getSetpoint();
+	}
+	
+	public double getRightMotorVelocitySetpoint(){
+		return this.rightMasterMotor.getSetpoint();
+	}
+	
 	/**
 	 * Sets the left motors to speed.
 	 * 
@@ -332,7 +324,7 @@ public class Chassis extends Subsystem {
 
 	// Alex's weird code(Ray didn't put that Bernie did but I'm going to keep it
 	// :))
-	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
+	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs, boolean velocity) {
 
 		double leftMotorSpeed;
 		double rightMotorSpeed;
@@ -374,12 +366,23 @@ public class Chassis extends Subsystem {
 			}
 		}
 
-		if (this.flipped) {
-			this.setLeftMotorVoltage(-rightMotorSpeed);
-			this.setRightMotorVoltage(-leftMotorSpeed);
-		} else {
-			this.setLeftMotorVoltage(leftMotorSpeed);
-			this.setRightMotorVoltage(rightMotorSpeed);
+		
+		if(velocity){
+			if (this.flipped) {
+				this.setLeftMotorVelocity(-rightMotorSpeed);
+				this.setRightMotorVelocity(-leftMotorSpeed);
+			} else {
+				this.setLeftMotorVelocity(leftMotorSpeed);
+				this.setRightMotorVelocity(rightMotorSpeed);
+			}
+		}else{
+			if (this.flipped) {
+				this.setLeftMotorVoltage(-rightMotorSpeed);
+				this.setRightMotorVoltage(-leftMotorSpeed);
+			} else {
+				this.setLeftMotorVoltage(leftMotorSpeed);
+				this.setRightMotorVoltage(rightMotorSpeed);
+			}
 		}
 	}
 

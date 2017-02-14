@@ -17,12 +17,12 @@ public class ManualDriving extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.chassis.setBothToLowSpeed();
+		Robot.chassis.setBothToLow();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true); 
+    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true, false); 
     }
 
     // Make this return true when this Command no longer needs to run execute()

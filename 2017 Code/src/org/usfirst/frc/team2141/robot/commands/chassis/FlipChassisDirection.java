@@ -17,9 +17,7 @@ public class FlipChassisDirection extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.chassis.setBothToLowSpeed();
-    	Robot.chassis.setLeftMotorVoltage(0);
-    	Robot.chassis.setRightMotorVoltage(0);
+    	Robot.chassis.setBothToLow();
     	Robot.chassis.flipDirection();
     }
 

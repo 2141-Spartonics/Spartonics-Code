@@ -62,4 +62,8 @@ public class RobotMap {
 	public static final double DRIVE_RAMP_RATE = 24.0;
 	public static final int DRIVE_IZONE = 0;
 	
+	//Velocity Constants
+	public static final double SHIFTING_SPEED_THRESHOLD = 1900;
+	
+	
 }
