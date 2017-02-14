@@ -47,9 +47,9 @@ public class Winch extends Subsystem {
 	public void setWinchSpeed(double speed) {
     	if(speed > 1.0 || speed < -1.0){
     		this.winchMotor.set(speed);
+    	}else{		
+    		this.winchMotor.set(speed * 12);
     	}
-		
-		this.winchMotor.set(speed * 12);
 	}
 
 	/**

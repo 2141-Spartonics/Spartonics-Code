@@ -66,9 +66,9 @@ public class Shooter extends Subsystem {
 	public void setFeederSpeed(double speed) {
     	if(speed > 1.0 || speed < -1.0){
     		this.feederMotor.set(speed);
+    	}else{
+    		this.feederMotor.set(speed * 12);
     	}
-		
-		this.feederMotor.set(speed * 12);
 	}
 	/**
 	 * Sets the shooterMotors voltage 

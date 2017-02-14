@@ -34,9 +34,9 @@ public class Intake extends Subsystem {
     public void setIntakeMotor(double speed){
     	if(speed > 1.0 || speed < -1.0){
     		this.intakeMotor.set(speed);
+    	}else{
+    		this.intakeMotor.set(speed * 12.0);
     	}
-    	
-    	this.intakeMotor.set(speed * 12.0);
     }
 }
 
