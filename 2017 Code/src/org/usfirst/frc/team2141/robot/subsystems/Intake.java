@@ -32,7 +32,11 @@ public class Intake extends Subsystem {
      * @param speed the speed that the motor will be set
      */
     public void setIntakeMotor(double speed){
-    	this.intakeMotor.set(speed * 12);
+    	if(speed > 1.0 || speed < -1.0){
+    		this.intakeMotor.set(speed);
+    	}else{
+    		this.intakeMotor.set(speed * 12.0);
+    	}
     }
 }
 

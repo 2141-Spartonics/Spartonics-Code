@@ -21,7 +21,7 @@ public class IntakeCommand extends Command {
 
 	// Sets the intake motors speed.
 	protected void execute() {
-		Robot.intake.setIntakeMotor(.8);
+		Robot.intake.setIntakeMotor(8.0);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

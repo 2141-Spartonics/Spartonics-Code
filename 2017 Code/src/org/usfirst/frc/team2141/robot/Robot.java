@@ -60,6 +60,7 @@ public class Robot extends IterativeRobot {
 		chassis.publishToSmartDashboard();
 		winch.publishToSmartDashboard();
 		shooter.publishToSmartDashboard();
+		
 	}
 
 	/**

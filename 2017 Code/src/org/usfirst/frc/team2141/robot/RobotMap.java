@@ -14,8 +14,6 @@ public class RobotMap {
 	public static final int SHOOTER_CONTROL_BUTTON = 4;
 	public static final int REVERSE_DRIVE_BUTTON = 10;
 	public static final int SHIFT_DOWN_BUTTON = 1;
-	public static final int LEFT_HAND_BRAKE = 5;
-	public static final int RIGHT_HAND_BRAKE = 6;
 	public static final int FORCED_AUTONMOUS =3;
 	
 	//Manual Board
@@ -52,25 +50,20 @@ public class RobotMap {
 	public static final double SHOOTER_SPEED_D = 0.0;
 	public static final double SHOOTER_SPEED_F = 0.0;
 	
-	public static final double LEFT_DRIVE_LOW_VELOCITY_P = 0.0;
-	public static final double LEFT_DRIVE_LOW_VELOCITY_I = 0.0;
-	public static final double LEFT_DRIVE_LOW_VELOCITY_D = 0.0;
-	public static final double LEFT_DRIVE_LOW_VELOCITY_F = 0.0;
-	public static final double LEFT_DRIVE_HIGH_VELOCITY_P = 0.0;
-	public static final double LEFT_DRIVE_HIGH_VELOCITY_I = 0.0;
-	public static final double LEFT_DRIVE_HIGH_VELOCITY_D = 0.0;
-	public static final double LEFT_DRIVE_HIGH_VELOCITY_F = 0.0;
-	
-	public static final double RIGHT_DRIVE_LOW_VELOCITY_P = 0.0;
-	public static final double RIGHT_DRIVE_LOW_VELOCITY_I = 0.0;
-	public static final double RIGHT_DRIVE_LOW_VELOCITY_D = 0.0;
-	public static final double RIGHT_DRIVE_LOW_VELOCITY_F = 0.0;
-	public static final double RIGHT_DRIVE_HIGH_VELOCITY_P = 0.0;
-	public static final double RIGHT_DRIVE_HIGH_VELOCITY_I = 0.0;
-	public static final double RIGHT_DRIVE_HIGH_VELOCITY_D = 0.0;
-	public static final double RIGHT_DRIVE_HIGH_VELOCITY_F = 0.0;
+	public static final double DRIVE_LOW_VELOCITY_P = 0.0;
+	public static final double DRIVE_LOW_VELOCITY_I = 0.0;
+	public static final double DRIVE_LOW_VELOCITY_D = 0.0;
+	public static final double DRIVE_LOW_VELOCITY_F = 0.0;
+	public static final double DRIVE_HIGH_VELOCITY_P = 0.0;
+	public static final double DRIVE_HIGH_VELOCITY_I = 0.0;
+	public static final double DRIVE_HIGH_VELOCITY_D = 0.0;
+	public static final double DRIVE_HIGH_VELOCITY_F = 0.0;
 	
 	public static final double DRIVE_RAMP_RATE = 24.0;
 	public static final int DRIVE_IZONE = 0;
+	
+	//Velocity Constants
+	public static final double SHIFTING_SPEED_THRESHOLD = 1900;
+	
 	
 }

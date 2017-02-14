@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="var" path="wpilib" sourcepath="wpilib.sources"/>
-	<classpathentry exported="true" kind="var" path="networktables" sourcepath="networktables.sources"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry exported="true" kind="var" path="opencv" sourcepath="opencv.sources"/>
-	<classpathentry exported="true" kind="var" path="cscore" sourcepath="cscore.sources"/>
-	<classpathentry exported="true" kind="var" path="USERLIBS_DIR/CTRLib.jar"/>
 	<classpathentry kind="lib" path="build/jars/Pathfinder-Java.jar"/>
+	<classpathentry kind="lib" path="build/jars/cscore.jar"/>
+	<classpathentry kind="lib" path="build/jars/NetworkTables.jar"/>
+	<classpathentry kind="lib" path="build/jars/opencv.jar"/>
+	<classpathentry kind="lib" path="build/jars/WPILib.jar"/>
+	<classpathentry kind="lib" path="build/jars/CTRLib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

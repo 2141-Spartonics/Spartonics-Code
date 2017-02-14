@@ -1,23 +1,16 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
 import org.usfirst.frc.team2141.robot.RobotMap;
-import org.usfirst.frc.team2141.robot.commands.JoyStickDriving;
+import org.usfirst.frc.team2141.robot.commands.chassis.ManualDriving;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
-import com.ctre.CANTalon.MotionProfileStatus;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import jaci.pathfinder.Pathfinder;
-import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.followers.DistanceFollower;
-import jaci.pathfinder.Trajectory;
-import jaci.pathfinder.modifiers.TankModifier;
-
 
 
 public class Chassis extends Subsystem {
@@ -73,22 +66,34 @@ public class Chassis extends Subsystem {
 		rightDriveFollower = new DistanceFollower();
 		
 		//Slave motor configuration
+		this.leftSlaveMotorA.enableBrakeMode(true);
 		this.leftSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.leftSlaveMotorA.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
 		this.leftSlaveMotorA.set(RobotMap.LEFT_MASTER_MOTOR);
+		
+		this.leftSlaveMotorB.enableBrakeMode(true);
 		this.leftSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.leftSlaveMotorB.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
 		this.leftSlaveMotorB.set(RobotMap.LEFT_MASTER_MOTOR);
+		
+		this.rightSlaveMotorA.enableBrakeMode(true);
 		this.rightSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.rightSlaveMotorA.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
 		this.rightSlaveMotorA.set(RobotMap.RIGHT_MASTER_MOTOR);
+		
+		this.rightSlaveMotorB.enableBrakeMode(true);
 		this.rightSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.rightSlaveMotorB.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
 		this.rightSlaveMotorB.set(RobotMap.RIGHT_MASTER_MOTOR);
 
 		//Master motor setup
+		this.rightMasterMotor.enableBrakeMode(true);
 		this.rightMasterMotor.setInverted(true);
-		this.leftMasterMotor.reverseSensor(false);
+		this.rightMasterMotor.reverseSensor(false);
 		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		this.rightMasterMotor.configEncoderCodesPerRev(256);
+		
+		this.leftMasterMotor.enableBrakeMode(true);
 		this.leftMasterMotor.setInverted(false);
 		this.leftMasterMotor.reverseSensor(true);
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
@@ -96,38 +101,37 @@ public class Chassis extends Subsystem {
 
 		//Velocity PID profile setups
 		this.leftMasterMotor.setPID(
-				RobotMap.LEFT_DRIVE_LOW_VELOCITY_P, 
-				RobotMap.LEFT_DRIVE_LOW_VELOCITY_I,
-				RobotMap.LEFT_DRIVE_LOW_VELOCITY_D, 
-				RobotMap.LEFT_DRIVE_LOW_VELOCITY_F, 
+				RobotMap.DRIVE_LOW_VELOCITY_P, 
+				RobotMap.DRIVE_LOW_VELOCITY_I,
+				RobotMap.DRIVE_LOW_VELOCITY_D, 
+				RobotMap.DRIVE_LOW_VELOCITY_F, 
 				RobotMap.DRIVE_IZONE, 
 				RobotMap.DRIVE_RAMP_RATE, 
 				0);
 		this.leftMasterMotor.setPID(
-				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_P,
-				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_I,
-				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_D,
-				RobotMap.LEFT_DRIVE_HIGH_VELOCITY_F,
+				RobotMap.DRIVE_HIGH_VELOCITY_P,
+				RobotMap.DRIVE_HIGH_VELOCITY_I,
+				RobotMap.DRIVE_HIGH_VELOCITY_D,
+				RobotMap.DRIVE_HIGH_VELOCITY_F,
 				RobotMap.DRIVE_IZONE,
 				RobotMap.DRIVE_RAMP_RATE,
 				1);
 		this.rightMasterMotor.setPID(
-				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_P,
-				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_I,
-				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_D,
-				RobotMap.RIGHT_DRIVE_LOW_VELOCITY_F,
+				RobotMap.DRIVE_LOW_VELOCITY_P,
+				RobotMap.DRIVE_LOW_VELOCITY_I,
+				RobotMap.DRIVE_LOW_VELOCITY_D,
+				RobotMap.DRIVE_LOW_VELOCITY_F,
 				RobotMap.DRIVE_IZONE,
 				RobotMap.DRIVE_RAMP_RATE,
 				0);
 		this.rightMasterMotor.setPID(
-				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_P,
-				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_I,
-				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_D,
-				RobotMap.RIGHT_DRIVE_HIGH_VELOCITY_F,
+				RobotMap.DRIVE_HIGH_VELOCITY_P,
+				RobotMap.DRIVE_HIGH_VELOCITY_I,
+				RobotMap.DRIVE_HIGH_VELOCITY_D,
+				RobotMap.DRIVE_HIGH_VELOCITY_F,
 				RobotMap.DRIVE_IZONE,
 				RobotMap.DRIVE_RAMP_RATE,
 				1);
-
 
 	}
 
@@ -142,7 +146,7 @@ public class Chassis extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-		setDefaultCommand(new JoyStickDriving());
+		setDefaultCommand(new ManualDriving());
 	}
 
 	// Encoder methods
@@ -172,10 +176,6 @@ public class Chassis extends Subsystem {
 	public double getLeftEncoderVelocity() {
 		return this.leftMasterMotor.getSpeed();
 	}
-	
-	/**Drive forward x amount of feet
-	 * 
-	 */
 
 	/**
 	 * Gets the right wheel's position
@@ -209,26 +209,6 @@ public class Chassis extends Subsystem {
 	
 	// Shifter methods
 
-	public void setLeftToHigh() {
-		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kForward);
-		this.leftGearing = ShifterValue.HIGH;
-	}
-
-	public void setLeftToLow() {
-		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
-		this.leftGearing = ShifterValue.LOW;
-	}
-
-	public void setRightToHigh() {
-		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kForward);
-		this.rightGearing = ShifterValue.HIGH;
-	}
-
-	public void setRightToLow() {
-		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
-		this.rightGearing = ShifterValue.LOW;
-	}
-
 	public boolean leftInHigh() {
 		return this.leftGearing == ShifterValue.HIGH;
 	}
@@ -245,10 +225,34 @@ public class Chassis extends Subsystem {
 		return this.rightGearing == ShifterValue.LOW;
 	}
 
+	public void setLeftToHigh() {
+		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kForward);
+		this.leftGearing = ShifterValue.HIGH;
+		this.leftMasterMotor.setProfile(1);
+	}
+
+	public void setLeftToLow() {
+		this.leftShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		this.leftGearing = ShifterValue.LOW;
+		this.leftMasterMotor.setProfile(0);
+	}
+
+	public void setRightToHigh() {
+		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kForward);
+		this.rightGearing = ShifterValue.HIGH;
+		this.rightMasterMotor.setProfile(1);
+	}
+
+	public void setRightToLow() {
+		this.rightShifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		this.rightGearing = ShifterValue.LOW;
+		this.rightMasterMotor.setProfile(0);
+	}
+	
 	/**
 	 * Sets gear to a higher speed using pnuematics.
 	 */
-	public void setBothToHighSpeed() {
+	public void setBothToHigh() {
 		this.setLeftToHigh();
 		this.setRightToHigh();
 	}
@@ -256,7 +260,7 @@ public class Chassis extends Subsystem {
 	/**
 	 * Sets gear to a lower speed using pnuematics.
 	 */
-	public void setBothToLowSpeed() {
+	public void setBothToLow() {
 		this.setLeftToLow();
 		this.setRightToLow();
 	}
@@ -273,28 +277,22 @@ public class Chassis extends Subsystem {
 
 	public void setLeftMotorVelocity(double speed) {
 		this.leftMasterMotor.changeControlMode(TalonControlMode.Speed);
-		
-		if(this.leftInHigh()){
-			this.leftMasterMotor.setProfile(1);
-		}else{
-			this.leftMasterMotor.setProfile(0);
-		}
-		
 		this.leftMasterMotor.set(speed);
 	}
 
 	public void setRightMotorVelocity(double speed) {
 		this.rightMasterMotor.changeControlMode(TalonControlMode.Speed);
-		
-		if(this.rightInHigh()){
-			this.rightMasterMotor.setProfile(1);
-		}else{
-			this.rightMasterMotor.setProfile(0);
-		}
-		
 		this.rightMasterMotor.set(speed);
 	}
 
+	public double getLeftMotorVelocitySetpoint(){
+		return this.leftMasterMotor.getSetpoint();
+	}
+	
+	public double getRightMotorVelocitySetpoint(){
+		return this.rightMasterMotor.getSetpoint();
+	}
+	
 	/**
 	 * Sets the left motors to speed.
 	 * 
@@ -326,7 +324,7 @@ public class Chassis extends Subsystem {
 
 	// Alex's weird code(Ray didn't put that Bernie did but I'm going to keep it
 	// :))
-	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
+	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs, boolean velocity) {
 
 		double leftMotorSpeed;
 		double rightMotorSpeed;
@@ -368,12 +366,23 @@ public class Chassis extends Subsystem {
 			}
 		}
 
-		if (this.flipped) {
-			this.setLeftMotorVoltage(-rightMotorSpeed);
-			this.setRightMotorVoltage(-leftMotorSpeed);
-		} else {
-			this.setLeftMotorVoltage(leftMotorSpeed);
-			this.setRightMotorVoltage(rightMotorSpeed);
+		
+		if(velocity){
+			if (this.flipped) {
+				this.setLeftMotorVelocity(-rightMotorSpeed);
+				this.setRightMotorVelocity(-leftMotorSpeed);
+			} else {
+				this.setLeftMotorVelocity(leftMotorSpeed);
+				this.setRightMotorVelocity(rightMotorSpeed);
+			}
+		}else{
+			if (this.flipped) {
+				this.setLeftMotorVoltage(-rightMotorSpeed);
+				this.setRightMotorVoltage(-leftMotorSpeed);
+			} else {
+				this.setLeftMotorVoltage(leftMotorSpeed);
+				this.setRightMotorVoltage(rightMotorSpeed);
+			}
 		}
 	}
 
@@ -385,8 +394,6 @@ public class Chassis extends Subsystem {
 		} else {
 			return val;
 		}
-
 	}
-
 
 }
