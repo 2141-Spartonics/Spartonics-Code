@@ -14,8 +14,6 @@ public class RobotMap {
 	public static final int SHOOTER_CONTROL_BUTTON = 4;
 	public static final int REVERSE_DRIVE_BUTTON = 10;
 	public static final int SHIFT_DOWN_BUTTON = 1;
-	public static final int LEFT_HAND_BRAKE = 5;
-	public static final int RIGHT_HAND_BRAKE = 6;
 	public static final int FORCED_AUTONMOUS =3;
 	
 	//Manual Board
