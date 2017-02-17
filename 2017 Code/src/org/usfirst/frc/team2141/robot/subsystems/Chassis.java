@@ -2,7 +2,6 @@ package org.usfirst.frc.team2141.robot.subsystems;
 
 import org.usfirst.frc.team2141.robot.RobotMap;
 import org.usfirst.frc.team2141.robot.commands.chassis.JoyStickDriving;
-import org.usfirst.frc.team2141.robot.commands.chassis.ManualDriving;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
