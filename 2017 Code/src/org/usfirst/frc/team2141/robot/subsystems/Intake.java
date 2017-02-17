@@ -17,16 +17,22 @@ public class Intake extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(null);
-    }
     public Intake(){
     	intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
     
     	this.intakeMotor.changeControlMode(TalonControlMode.Voltage);
     }
+    
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(null);
+    }
+    
+    public void publishToSmartDashboard(){
+    	
+    }
+    
     /**
      * Sets the intakeMotor to speed
      * @param speed the speed that the motor will be set

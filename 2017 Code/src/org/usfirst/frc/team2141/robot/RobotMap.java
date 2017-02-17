@@ -46,24 +46,33 @@ public class RobotMap {
 
 	//PID Values
 	public static final double SHOOTER_SPEED_P = 0.0;
-	public static final double SHOOTER_SPEED_I = 0.0;
+	public static final double SHOOTER_SPEED_I = 0.0;//Done
 	public static final double SHOOTER_SPEED_D = 0.0;
 	public static final double SHOOTER_SPEED_F = 0.0;
 	
-	public static final double DRIVE_LOW_VELOCITY_P = 0.0;
-	public static final double DRIVE_LOW_VELOCITY_I = 0.0;
-	public static final double DRIVE_LOW_VELOCITY_D = 0.0;
-	public static final double DRIVE_LOW_VELOCITY_F = 0.0;
-	public static final double DRIVE_HIGH_VELOCITY_P = 0.0;
-	public static final double DRIVE_HIGH_VELOCITY_I = 0.0;
-	public static final double DRIVE_HIGH_VELOCITY_D = 0.0;
-	public static final double DRIVE_HIGH_VELOCITY_F = 0.0;
+    // 54/30*3*256 = 1382.4 counts per revolution
+	public static final double DRIVE_LOW_VELOCITY_P = 1.0;
+	public static final double DRIVE_LOW_VELOCITY_I = 0.0;//Done
+	public static final double DRIVE_LOW_VELOCITY_D = 6.0;
+	public static final double DRIVE_LOW_VELOCITY_F = 0.5;
+	public static final double DRIVE_HIGH_VELOCITY_P = 1.0;
+	public static final double DRIVE_HIGH_VELOCITY_I = 0.0;//Done
+	public static final double DRIVE_HIGH_VELOCITY_D = 6.0;
+	public static final double DRIVE_HIGH_VELOCITY_F = 0.5;
 	
-	public static final double DRIVE_RAMP_RATE = 24.0;
-	public static final int DRIVE_IZONE = 0;
+	public static final double DRIVE_RAMP_RATE = 0.0;//Done
+	public static final int DRIVE_IZONE = 0;//Done
 	
 	//Velocity Constants
-	public static final double SHIFTING_SPEED_THRESHOLD = 1900;
+	//RPS of encoder shaft is at .9 on low = 5330*.9*12/50*34/50*3/60 = 39.14352
+	//Native units per 100ms = 5330*.9*12/50*34/50*3/60*256*4/10 = 4008.296448
+	public static final double SHIFTING_SPEED_THRESHOLD = 4008;//Calculated but needs to be tested to make sure
 	
+	//Motion profiling constants
+	public static final double PROFILE_LOW_P = 0.0;
+	public static final double PROFILE_LOW_I = 0.0;//Done
+	public static final double PROFILE_LOW_D = 0.0;
+	public static final double PROFILE_LOW_V = 0.0;
+	public static final double PROFILE_LOW_A = 0.0;//Done	
 	
 }

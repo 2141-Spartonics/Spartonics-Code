@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
@@ -60,6 +61,18 @@ public class Robot extends IterativeRobot {
 		chassis.publishToSmartDashboard();
 		winch.publishToSmartDashboard();
 		shooter.publishToSmartDashboard();
+		intake.publishToSmartDashboard();
+		
+	    SmartDashboard.putNumber("Value", imu.getAngle());
+	    SmartDashboard.putNumber("Pitch", imu.getPitch());
+	    SmartDashboard.putNumber("Roll", imu.getRoll());
+	    SmartDashboard.putNumber("Yaw", imu.getYaw());
+	    SmartDashboard.putNumber("AccelX", imu.getAccelX());
+	    SmartDashboard.putNumber("AccelY", imu.getAccelY());
+	    SmartDashboard.putNumber("AccelZ", imu.getAccelZ());
+	    SmartDashboard.putNumber("AngleX", imu.getAngleX());
+	    SmartDashboard.putNumber("AngleY", imu.getAngleY());
+	    SmartDashboard.putNumber("AngleZ", imu.getAngleZ());
 		
 	}
 
@@ -126,6 +139,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		publishToSmartDashboard();
 	}
 
 	/**

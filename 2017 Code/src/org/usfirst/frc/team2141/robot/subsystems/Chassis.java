@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
 import org.usfirst.frc.team2141.robot.RobotMap;
+import org.usfirst.frc.team2141.robot.commands.chassis.JoyStickDriving;
 import org.usfirst.frc.team2141.robot.commands.chassis.ManualDriving;
 
 import com.ctre.CANTalon;
@@ -91,13 +92,11 @@ public class Chassis extends Subsystem {
 		this.rightMasterMotor.setInverted(true);
 		this.rightMasterMotor.reverseSensor(false);
 		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		this.rightMasterMotor.configEncoderCodesPerRev(256);
 		
 		this.leftMasterMotor.enableBrakeMode(true);
 		this.leftMasterMotor.setInverted(false);
 		this.leftMasterMotor.reverseSensor(true);
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		this.leftMasterMotor.configEncoderCodesPerRev(256);
 
 		//Velocity PID profile setups
 		this.leftMasterMotor.setPID(
@@ -132,6 +131,21 @@ public class Chassis extends Subsystem {
 				RobotMap.DRIVE_IZONE,
 				RobotMap.DRIVE_RAMP_RATE,
 				1);
+		
+		//Configure the motion profile followers
+		this.leftDriveFollower.configurePIDVA(
+				RobotMap.PROFILE_LOW_P, 
+				RobotMap.PROFILE_LOW_I, 
+				RobotMap.PROFILE_LOW_D, 
+				RobotMap.PROFILE_LOW_V, 
+				RobotMap.PROFILE_LOW_A);
+		this.rightDriveFollower.configurePIDVA(
+				RobotMap.PROFILE_LOW_P, 
+				RobotMap.PROFILE_LOW_I, 
+				RobotMap.PROFILE_LOW_D, 
+				RobotMap.PROFILE_LOW_V, 
+				RobotMap.PROFILE_LOW_A);
+		
 
 	}
 
@@ -146,7 +160,7 @@ public class Chassis extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-		setDefaultCommand(new ManualDriving());
+		setDefaultCommand(new JoyStickDriving());
 	}
 
 	// Encoder methods
@@ -324,7 +338,7 @@ public class Chassis extends Subsystem {
 
 	// Alex's weird code(Ray didn't put that Bernie did but I'm going to keep it
 	// :))
-	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs, boolean velocity) {
+	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs, boolean velocityControl) {
 
 		double leftMotorSpeed;
 		double rightMotorSpeed;
@@ -367,7 +381,7 @@ public class Chassis extends Subsystem {
 		}
 
 		
-		if(velocity){
+		if(velocityControl){
 			if (this.flipped) {
 				this.setLeftMotorVelocity(-rightMotorSpeed);
 				this.setRightMotorVelocity(-leftMotorSpeed);

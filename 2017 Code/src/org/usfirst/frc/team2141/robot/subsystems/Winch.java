@@ -65,7 +65,7 @@ public class Winch extends Subsystem {
 	public void putBrakeOn() {
 		this.winchBrake.set(DoubleSolenoid.Value.kReverse);
 	}
-
+ 
 	/**
 	 * Reads how much current is going into the winchMotor
 	 * 
