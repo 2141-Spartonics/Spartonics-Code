@@ -2,8 +2,8 @@ package org.usfirst.frc.team2141.robot;
 
 import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2141.robot.commands.ShooterControl;
+import org.usfirst.frc.team2141.robot.commands.TestMotors;
 import org.usfirst.frc.team2141.robot.commands.WinchCommand;
-import org.usfirst.frc.team2141.robot.commands.chassis.DriveStraight;
 import org.usfirst.frc.team2141.robot.commands.chassis.FlipChassisDirection;
 import org.usfirst.frc.team2141.robot.commands.chassis.ManualDriving;
 
@@ -34,7 +34,7 @@ public class OI {
 		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).whenPressed(new WinchCommand());
 		this.getButton(RobotMap.INTAKE_CONTROL_BUTTON).toggleWhenPressed(new IntakeCommand());
 		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
-		this.getButton(RobotMap.FORCED_AUTONMOUS).whenPressed(new DriveStraight(10));
+		this.getButton(RobotMap.TEST_MOTORS).whileHeld(new TestMotors());
 
 	}
 	
