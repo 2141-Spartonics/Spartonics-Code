@@ -49,7 +49,7 @@ public class JoyStickDriving extends Command {
     		Robot.chassis.setRightToHigh();
     	}
     	
-    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true, true);
+    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true, false);
     	
     }
 
