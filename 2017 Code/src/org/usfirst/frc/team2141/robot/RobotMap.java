@@ -14,7 +14,7 @@ public class RobotMap {
 	public static final int SHOOTER_CONTROL_BUTTON = 4;
 	public static final int REVERSE_DRIVE_BUTTON = 10;
 	public static final int SHIFT_DOWN_BUTTON = 1;
-	public static final int FORCED_AUTONMOUS =3;
+	public static final int TEST_MOTORS = 3;
 	
 	//Manual Board
 	public static final int MANUAL_BOARD_STICK_NUMBER = 1;
@@ -23,15 +23,15 @@ public class RobotMap {
 
 	//Motor channel numbers
 	public static final int LEFT_MASTER_MOTOR = 3;
-	public static final int LEFT_SLAVE_MOTOR_A = 2;
-	public static final int LEFT_SLAVE_MOTOR_B = 1;
+	public static final int LEFT_SLAVE_MOTOR_A = 4;
+	public static final int LEFT_SLAVE_MOTOR_B = 10;
 	public static final int RIGHT_MASTER_MOTOR = 8;
-	public static final int RIGHT_SLAVE_MOTOR_A = 5; 
-	public static final int RIGHT_SLAVE_MOTOR_B = 6;
-	public static final int WINCH_MOTOR = 7;
-	public static final int SHOOTER_MOTOR = 4;
-	public static final int INTAKE_MOTOR = 9;
-	public static final int FEEDER_MOTOR = 10;
+	public static final int RIGHT_SLAVE_MOTOR_A = 7; 
+	public static final int RIGHT_SLAVE_MOTOR_B = 9;
+	public static final int WINCH_MOTOR = 2;
+	public static final int SHOOTER_MOTOR = 6;
+	public static final int INTAKE_MOTOR = 1;
+	public static final int FEEDER_MOTOR = 5;
 
 	//Solenoid channel numbers
 	public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_B = 0;
