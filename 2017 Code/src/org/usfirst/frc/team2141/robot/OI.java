@@ -13,6 +13,7 @@ import manual.ManualDriving;
 import manual.ManualHigh;
 import manual.ManualLeftHandbrake;
 import manual.ManualRightHandbrake;
+import manual.WinchDown;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -39,6 +40,7 @@ public class OI {
 		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
 		//this.getButton(RobotMap.LEFT_HANDBRAKE).whileHeld(new ManualLeftHandbrake());
 		//this.getButton(RobotMap.RIGHT_HANDBRAKE).whileHeld(new ManualRightHandbrake());
+		this.getButton(RobotMap.WINCH_DOWN).whileHeld(new WinchDown());
 
 	}
 	

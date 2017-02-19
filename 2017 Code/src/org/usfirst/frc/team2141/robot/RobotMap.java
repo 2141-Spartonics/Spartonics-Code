@@ -16,7 +16,7 @@ public class RobotMap {
 	public static final int SHIFT_DOWN_BUTTON = 1;
 	public static final int TEST_MOTORS = 3;
 	public static final int LEFT_HANDBRAKE = 5;
-	public static final int RIGHT_HANDBRAKE = 6;
+	public static final int WINCH_DOWN = 6;
 	
 	
 	//Manual Board
