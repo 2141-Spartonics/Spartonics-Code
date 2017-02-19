@@ -151,11 +151,13 @@ public class Chassis extends Subsystem {
 	public void publishToSmartDashboard() {
 		SmartDashboard.putNumber("Left Encoder Speed", this.getLeftEncoderVelocity());
 		SmartDashboard.putNumber("Right Encoder Speed", this.getRightEncoderVelocity());
-		SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
-		SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
+		//SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
+		//SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
 		SmartDashboard.putBoolean("Flipped", this.flipped);
 		SmartDashboard.putNumber("Left Setpoint", this.getLeftMotorVelocitySetpoint());
 		SmartDashboard.putNumber("Right Setpoint", this.getRightMotorVelocitySetpoint());
+		SmartDashboard.putNumber("Left Velocity Error", this.leftMasterMotor.getClosedLoopError());
+		SmartDashboard.putNumber("Right Velocity Error", this.rightMasterMotor.getClosedLoopError());
 		SmartDashboard.putBoolean("Left in Low", this.leftInLow());
 		SmartDashboard.putBoolean("Right in Low", this.rightInLow());
 		SmartDashboard.putNumber("Right throttle", this.rightMasterMotor.getOutputVoltage());
@@ -170,6 +172,16 @@ public class Chassis extends Subsystem {
 		setDefaultCommand(new JoyStickDriving());
 	}
 
+	public DistanceFollower getLeftFollower(){
+		return this.leftDriveFollower;
+	}
+	
+	public DistanceFollower getRightFollower(){
+		return this.rightDriveFollower;
+	}
+	
+	
+	
 	// Encoder methods
 
 	/**
@@ -306,12 +318,12 @@ public class Chassis extends Subsystem {
 
 	public void setLeftMotorVelocity(double speed) {
 		this.leftMasterMotor.changeControlMode(TalonControlMode.Speed);
-		this.leftMasterMotor.set(5330*speed*12/50*34/50*3/60*256*4/10);
+		this.leftMasterMotor.set(5330.0*speed*12.0/50.0*34.0/50.0*3.0/60.0*256.0*4.0/10.0);
 	}
 
 	public void setRightMotorVelocity(double speed) {
 		this.rightMasterMotor.changeControlMode(TalonControlMode.Speed);
-		this.rightMasterMotor.set(5330*speed*12/50*34/50*3/60*256*4/10);
+		this.rightMasterMotor.set(5330.0*speed*12.0/50.0*34.0/50.0*3.0/60.0*256.0*4.0/10.0);
 	}
 
 	public double getLeftMotorVelocitySetpoint(){
@@ -413,16 +425,16 @@ public class Chassis extends Subsystem {
 				this.setLeftMotorVelocity(rightMotorSpeed);
 				this.setRightMotorVelocity(leftMotorSpeed);
 			} else {
-				this.setLeftMotorVelocity(-leftMotorSpeed);
-				this.setRightMotorVelocity(-rightMotorSpeed);
+				this.setLeftMotorVelocity(leftMotorSpeed);
+				this.setRightMotorVelocity(rightMotorSpeed);
 			}
 		}else{
 			if (this.flipped) {
 				this.setLeftMotorVoltage(rightMotorSpeed);
 				this.setRightMotorVoltage(leftMotorSpeed);
 			} else {
-				this.setLeftMotorVoltage(-leftMotorSpeed);
-				this.setRightMotorVoltage(-rightMotorSpeed);
+				this.setLeftMotorVoltage(leftMotorSpeed);
+				this.setRightMotorVoltage(rightMotorSpeed);
 			}
 		}
 	}

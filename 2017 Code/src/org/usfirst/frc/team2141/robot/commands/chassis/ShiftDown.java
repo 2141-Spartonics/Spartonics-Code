@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShiftToLow extends Command {
+public class ShiftDown extends Command {
 
-    public ShiftToLow() {
+    public ShiftDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,7 +21,9 @@ public class ShiftToLow extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true, true);
+    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true, false);
+    	Robot.oi.rumbleLeftJoystick(1);
+    	Robot.oi.rumbleRightJoystick(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,10 +33,14 @@ public class ShiftToLow extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.oi.rumbleLeftJoystick(0);
+    	Robot.oi.rumbleRightJoystick(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.oi.rumbleLeftJoystick(0);
+    	Robot.oi.rumbleRightJoystick(0);
     }
 }
