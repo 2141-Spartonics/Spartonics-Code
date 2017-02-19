@@ -2,14 +2,17 @@ package org.usfirst.frc.team2141.robot;
 
 import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2141.robot.commands.ShooterControl;
-import org.usfirst.frc.team2141.robot.commands.TestMotors;
 import org.usfirst.frc.team2141.robot.commands.WinchCommand;
 import org.usfirst.frc.team2141.robot.commands.chassis.FlipChassisDirection;
-import org.usfirst.frc.team2141.robot.commands.chassis.ManualDriving;
+import org.usfirst.frc.team2141.robot.commands.chassis.ShiftToLow;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import manual.ManualDriving;
+import manual.ManualHigh;
+import manual.ManualLeftHandbrake;
+import manual.ManualRightHandbrake;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -29,12 +32,13 @@ public class OI {
 			buttons[i] = new JoystickButton(driveStick, i);
 		}
 
-		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ManualDriving());
+		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ShiftToLow());
 		this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
-		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).whenPressed(new WinchCommand());
+		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).toggleWhenPressed(new WinchCommand());
 		this.getButton(RobotMap.INTAKE_CONTROL_BUTTON).toggleWhenPressed(new IntakeCommand());
 		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
-		this.getButton(RobotMap.TEST_MOTORS).whileHeld(new TestMotors());
+		//this.getButton(RobotMap.LEFT_HANDBRAKE).whileHeld(new ManualLeftHandbrake());
+		//this.getButton(RobotMap.RIGHT_HANDBRAKE).whileHeld(new ManualRightHandbrake());
 
 	}
 	

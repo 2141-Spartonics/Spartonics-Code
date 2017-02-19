@@ -15,6 +15,9 @@ public class RobotMap {
 	public static final int REVERSE_DRIVE_BUTTON = 10;
 	public static final int SHIFT_DOWN_BUTTON = 1;
 	public static final int TEST_MOTORS = 3;
+	public static final int LEFT_HANDBRAKE = 5;
+	public static final int RIGHT_HANDBRAKE = 6;
+	
 	
 	//Manual Board
 	public static final int MANUAL_BOARD_STICK_NUMBER = 1;
@@ -22,27 +25,27 @@ public class RobotMap {
 	public static final int FORCE_INTAKE_OFF = 2;
 
 	//Motor channel numbers
-	public static final int LEFT_MASTER_MOTOR = 3;
-	public static final int LEFT_SLAVE_MOTOR_A = 4;
+	public static final int LEFT_MASTER_MOTOR = 8;
+	public static final int LEFT_SLAVE_MOTOR_A = 7;
 	public static final int LEFT_SLAVE_MOTOR_B = 10;
-	public static final int RIGHT_MASTER_MOTOR = 8;
-	public static final int RIGHT_SLAVE_MOTOR_A = 7; 
-	public static final int RIGHT_SLAVE_MOTOR_B = 9;
+	public static final int RIGHT_MASTER_MOTOR = 3;
+	public static final int RIGHT_SLAVE_MOTOR_A = 9; 
+	public static final int RIGHT_SLAVE_MOTOR_B = 4;
 	public static final int WINCH_MOTOR = 2;
 	public static final int SHOOTER_MOTOR = 6;
 	public static final int INTAKE_MOTOR = 1;
 	public static final int FEEDER_MOTOR = 5;
 
 	//Solenoid channel numbers
-	public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_B = 0;
-	public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_A = 1;
+	public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_B = 6;
+	public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_A = 7;
 	public static final int WINCH_STOPPER_CHANNEL_A = 2;
 	public static final int WINCH_STOPPER_CHANNEL_B = 3;
 	public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_A = 4;
 	public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_B = 5;
 
 	//Miscellaneous
-	public static final int WINCH_PDP_CHANNEL = 7;
+	public static final int WINCH_PDP_CHANNEL = 1;
 
 	//PID Values
 	public static final double SHOOTER_SPEED_P = 0.0;
@@ -58,15 +61,15 @@ public class RobotMap {
 	public static final double DRIVE_HIGH_VELOCITY_P = 0;
 	public static final double DRIVE_HIGH_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_HIGH_VELOCITY_D = 0;
-	public static final double DRIVE_HIGH_VELOCITY_F = 0.1;//Calculated
+	public static final double DRIVE_HIGH_VELOCITY_F = 0.23;//Calculated
 	
 	public static final double DRIVE_RAMP_RATE = 0.0;//Done
 	public static final int DRIVE_IZONE = 0;//Done
 	
 	//Velocity Constants
 	//RPS of encoder shaft is at .9 on low = 5330*.9*12/50*34/50*3/60 = 39.14352
-	//Native units per 100ms = 5330*.9*12/50*34/50*3/60*256*4/10 = 4008.296448
-	public static final double SHIFTING_SPEED_THRESHOLD = 4008;//Calculated but needs to be tested to make sure
+	//Native units per 100ms = 5330*.9*12/50*34/50*3/60*256*4/10 = 4008.296448 * .8
+	public static final double SHIFTING_SPEED_THRESHOLD = 3200;//Calculated but needs to be tested to make sure
 	
 	//Motion profiling constants
 	public static final double PROFILE_LOW_P = 0.0;

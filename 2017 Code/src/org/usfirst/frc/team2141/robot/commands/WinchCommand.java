@@ -39,5 +39,7 @@ public class WinchCommand extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		Robot.winch.setWinchSpeed(0.0);
+		Robot.winch.putBrakeOn();
 	}
 }

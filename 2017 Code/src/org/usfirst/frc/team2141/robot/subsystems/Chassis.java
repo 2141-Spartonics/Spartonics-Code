@@ -88,12 +88,12 @@ public class Chassis extends Subsystem {
 
 		//Master motor setup
 		this.rightMasterMotor.enableBrakeMode(true);
-		this.rightMasterMotor.setInverted(true);
+		this.rightMasterMotor.setInverted(false);
 		this.rightMasterMotor.reverseSensor(false);
 		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		
 		this.leftMasterMotor.enableBrakeMode(true);
-		this.leftMasterMotor.setInverted(false);
+		this.leftMasterMotor.setInverted(true);
 		this.leftMasterMotor.reverseSensor(true);
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 
@@ -154,6 +154,14 @@ public class Chassis extends Subsystem {
 		SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
 		SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
 		SmartDashboard.putBoolean("Flipped", this.flipped);
+		SmartDashboard.putNumber("Left Setpoint", this.getLeftMotorVelocitySetpoint());
+		SmartDashboard.putNumber("Right Setpoint", this.getRightMotorVelocitySetpoint());
+		SmartDashboard.putBoolean("Left in Low", this.leftInLow());
+		SmartDashboard.putBoolean("Right in Low", this.rightInLow());
+		SmartDashboard.putNumber("Right throttle", this.rightMasterMotor.getOutputVoltage());
+		SmartDashboard.putNumber("Left throttle", this.leftMasterMotor.getOutputVoltage());
+
+		
 	}
 
 	public void initDefaultCommand() {
@@ -187,7 +195,11 @@ public class Chassis extends Subsystem {
 	 * @return the velocity of the left wheels in encoder RPMs
 	 */
 	public double getLeftEncoderVelocity() {
-		return this.leftMasterMotor.getSpeed();
+		if(this.flipped){
+			return this.rightMasterMotor.getSpeed();
+		}else{
+			return this.leftMasterMotor.getSpeed();
+		}
 	}
 
 	/**
@@ -205,7 +217,11 @@ public class Chassis extends Subsystem {
 	 * @return the velocity of the right wheels in encoder RPMs
 	 */
 	public double getRightEncoderVelocity() {
-		return this.rightMasterMotor.getSpeed();
+		if(this.flipped){
+			return this.leftMasterMotor.getSpeed();
+		}else{
+			return this.rightMasterMotor.getSpeed();
+		}
 	}
 	
 	public double getAverageEncoderPosition(){
@@ -290,20 +306,28 @@ public class Chassis extends Subsystem {
 
 	public void setLeftMotorVelocity(double speed) {
 		this.leftMasterMotor.changeControlMode(TalonControlMode.Speed);
-		this.leftMasterMotor.set(speed);
+		this.leftMasterMotor.set(5330*speed*12/50*34/50*3/60*256*4/10);
 	}
 
 	public void setRightMotorVelocity(double speed) {
 		this.rightMasterMotor.changeControlMode(TalonControlMode.Speed);
-		this.rightMasterMotor.set(speed);
+		this.rightMasterMotor.set(5330*speed*12/50*34/50*3/60*256*4/10);
 	}
 
 	public double getLeftMotorVelocitySetpoint(){
-		return this.leftMasterMotor.getSetpoint();
+		if(this.flipped){
+			return this.rightMasterMotor.getSetpoint();
+		}else{
+			return this.leftMasterMotor.getSetpoint();
+		}
 	}
 	
 	public double getRightMotorVelocitySetpoint(){
-		return this.rightMasterMotor.getSetpoint();
+		if(this.flipped){
+			return this.leftMasterMotor.getSetpoint();
+		}else{
+			return this.rightMasterMotor.getSetpoint();
+		}
 	}
 	
 	/**
@@ -333,10 +357,14 @@ public class Chassis extends Subsystem {
 	 */
 	public void flipDirection() {
 		this.flipped = !this.flipped;
+		this.leftMasterMotor.reverseSensor(!this.flipped);
+		this.rightMasterMotor.reverseSensor(this.flipped);
+		this.leftMasterMotor.setInverted(!this.flipped);
+		this.rightMasterMotor.setInverted(this.flipped);
+		this.zeroEncoders();
+		
 	}
 
-	// Alex's weird code(Ray didn't put that Bernie did but I'm going to keep it
-	// :))
 	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs, boolean velocityControl) {
 
 		double leftMotorSpeed;
@@ -382,19 +410,19 @@ public class Chassis extends Subsystem {
 		
 		if(velocityControl){
 			if (this.flipped) {
-				this.setLeftMotorVelocity(-rightMotorSpeed);
-				this.setRightMotorVelocity(-leftMotorSpeed);
+				this.setLeftMotorVelocity(rightMotorSpeed);
+				this.setRightMotorVelocity(leftMotorSpeed);
 			} else {
-				this.setLeftMotorVelocity(leftMotorSpeed);
-				this.setRightMotorVelocity(rightMotorSpeed);
+				this.setLeftMotorVelocity(-leftMotorSpeed);
+				this.setRightMotorVelocity(-rightMotorSpeed);
 			}
 		}else{
 			if (this.flipped) {
-				this.setLeftMotorVoltage(-rightMotorSpeed);
-				this.setRightMotorVoltage(-leftMotorSpeed);
+				this.setLeftMotorVoltage(rightMotorSpeed);
+				this.setRightMotorVoltage(leftMotorSpeed);
 			} else {
-				this.setLeftMotorVoltage(leftMotorSpeed);
-				this.setRightMotorVoltage(rightMotorSpeed);
+				this.setLeftMotorVoltage(-leftMotorSpeed);
+				this.setRightMotorVoltage(-rightMotorSpeed);
 			}
 		}
 	}
