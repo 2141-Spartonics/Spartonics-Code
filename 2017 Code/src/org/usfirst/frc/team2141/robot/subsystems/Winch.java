@@ -30,7 +30,7 @@ public class Winch extends Subsystem {
 		winchMotor = new CANTalon(RobotMap.WINCH_MOTOR);
 		winchBrake = new DoubleSolenoid(RobotMap.WINCH_STOPPER_CHANNEL_A, RobotMap.WINCH_STOPPER_CHANNEL_B);
 
-		this.winchMotor.enableBrakeMode(true);
+		this.winchMotor.enableBrakeMode(false);
 		this.winchMotor.changeControlMode(TalonControlMode.Voltage);
 		this.putBrakeOff();
 	}
@@ -56,6 +56,7 @@ public class Winch extends Subsystem {
 	 * Turns off the brake for the winch
 	 */
 	public void putBrakeOff() {
+		this.winchMotor.enableBrakeMode(false);
 		this.winchBrake.set(DoubleSolenoid.Value.kForward);
 	}
 
@@ -63,6 +64,7 @@ public class Winch extends Subsystem {
 	 * Stops the winch from moving
 	 */
 	public void putBrakeOn() {
+		this.winchMotor.enableBrakeMode(true);
 		this.winchBrake.set(DoubleSolenoid.Value.kReverse);
 	}
  

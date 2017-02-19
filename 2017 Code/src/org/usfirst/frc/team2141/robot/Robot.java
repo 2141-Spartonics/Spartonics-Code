@@ -3,6 +3,7 @@ package org.usfirst.frc.team2141.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -33,8 +34,8 @@ public class Robot extends IterativeRobot {
 	public static ADIS16448_IMU imu;
 	public static OI oi;
 	
-	Command autonomousCommand;
-	//SendableChooser chooser;
+	public static Preferences prefs;
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -42,6 +43,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 
+		prefs = Preferences.getInstance();
+		
 		chassis = new Chassis();
 		intake = new Intake();
 		winch = new Winch();
@@ -51,10 +54,8 @@ public class Robot extends IterativeRobot {
 		imu = new ADIS16448_IMU();
 		PDP = new PowerDistributionPanel();
 		
-		//chooser = new SendableChooser();
-		//chooser.addDefault("Default Auto", new JoyStickDriving());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		//SmartDashboard.putData("Auto mode", chooser);
+		oi.testSpeed = prefs.getDouble("Drive Speed", 0.0);
+
 	}
 	
 	public void publishToSmartDashboard(){
@@ -114,8 +115,8 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		//if (autonomousCommand != null)
+		//	autonomousCommand.start();
 	}
 
 	/**
@@ -130,8 +131,8 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
+		//if (autonomousCommand != null)
+		//	autonomousCommand.cancel();
 	}
 
 	/**
@@ -140,6 +141,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		publishToSmartDashboard();
+		oi.testSpeed = prefs.getDouble("Drive Speed", 0.0);
 	}
 
 	/**
