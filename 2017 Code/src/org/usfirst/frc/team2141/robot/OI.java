@@ -1,19 +1,15 @@
 package org.usfirst.frc.team2141.robot;
 
-import org.usfirst.frc.team2141.robot.commands.DriveAtSpeed;
 import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2141.robot.commands.ShooterControl;
 import org.usfirst.frc.team2141.robot.commands.WinchCommand;
+import org.usfirst.frc.team2141.robot.commands.chassis.DriveAtSpeed;
 import org.usfirst.frc.team2141.robot.commands.chassis.FlipChassisDirection;
 import org.usfirst.frc.team2141.robot.commands.chassis.ShiftDown;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import manual.ManualDriving;
-import manual.ManualHigh;
-import manual.ManualLeftHandbrake;
-import manual.ManualRightHandbrake;
 import manual.WinchDown;
 
 /**

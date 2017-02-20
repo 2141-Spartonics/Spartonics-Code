@@ -70,7 +70,7 @@ public class RobotMap {
 	public static final double SHIFTING_SPEED_THRESHOLD = 3200;//Calculated but needs to be tested to make sure
 	
 	//Motion profiling constants
-	public static final double PROFILE_LOW_P = 0.0;
+	public static final double PROFILE_LOW_P = 0.01;
 	public static final double PROFILE_LOW_I = 0.0;//Done
 	public static final double PROFILE_LOW_D = 0.0;
 	public static final double PROFILE_LOW_V = 0.0;
