@@ -1,5 +1,6 @@
-package org.usfirst.frc.team2141.robot.commands;
+package org.usfirst.frc.team2141.robot.commands.chassis;
 
+import jaci.pathfinder.PathfinderJNI;
 import jaci.pathfinder.Trajectory;
 
 import java.util.concurrent.Executors;
@@ -20,12 +21,13 @@ public class FollowMotionProfile extends Command {
 	ScheduledFuture<?> motionFollower;
 	Trajectory trajectory;
 
-    public FollowMotionProfile(Trajectory traj) {
+    public FollowMotionProfile(String fileName) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.chassis);
     	scheduler = Executors.newScheduledThreadPool(1);
-    	trajectory = traj;
+    	Robot.chassis.getLeftFollower().setTrajectory(new Trajectory(PathfinderJNI.trajectoryDeserializeCSV(String.join("", "Left ", fileName, ".csv"))));
+    	Robot.chassis.getRightFollower().setTrajectory(new Trajectory(PathfinderJNI.trajectoryDeserializeCSV(String.join("", "Right ", fileName, ".csv"))));
     }
 
     // Called just before this Command runs the first time
