@@ -94,7 +94,7 @@ public class Chassis extends Subsystem {
 		
 		this.leftMasterMotor.enableBrakeMode(true);
 		this.leftMasterMotor.setInverted(true);
-		this.leftMasterMotor.reverseSensor(true);
+		this.leftMasterMotor.reverseSensor(false);
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 
 		//Velocity PID profile setups
@@ -154,8 +154,8 @@ public class Chassis extends Subsystem {
 		//SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
 		//SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
 		SmartDashboard.putBoolean("Flipped", this.flipped);
-		SmartDashboard.putNumber("Left Setpoint", this.getLeftMotorVelocitySetpoint());
-		SmartDashboard.putNumber("Right Setpoint", this.getRightMotorVelocitySetpoint());
+		SmartDashboard.putNumber("Left Setpoint", this.leftMasterMotor.getSetpoint());
+		SmartDashboard.putNumber("Right Setpoint", this.rightMasterMotor.getSetpoint());
 		SmartDashboard.putNumber("Left Velocity Error", this.leftMasterMotor.getClosedLoopError());
 		SmartDashboard.putNumber("Right Velocity Error", this.rightMasterMotor.getClosedLoopError());
 		SmartDashboard.putBoolean("Left in Low", this.leftInLow());
@@ -198,7 +198,7 @@ public class Chassis extends Subsystem {
 	 * @return the amount of ticks the left side has driven since it was zeroed
 	 */
 	public double getLeftEncoderCount() {
-		return this.leftMasterMotor.getPosition();
+		return -this.leftMasterMotor.getPosition();
 	}
 
 	/**
@@ -208,9 +208,9 @@ public class Chassis extends Subsystem {
 	 */
 	public double getLeftEncoderVelocity() {
 		if(this.flipped){
-			return this.rightMasterMotor.getSpeed();
+			return -this.rightMasterMotor.getSpeed();
 		}else{
-			return this.leftMasterMotor.getSpeed();
+			return -this.leftMasterMotor.getSpeed();
 		}
 	}
 
@@ -369,10 +369,10 @@ public class Chassis extends Subsystem {
 	 */
 	public void flipDirection() {
 		this.flipped = !this.flipped;
-		this.leftMasterMotor.reverseSensor(!this.flipped);
+		this.leftMasterMotor.reverseSensor(this.flipped);
 		this.rightMasterMotor.reverseSensor(this.flipped);
-		this.leftMasterMotor.setInverted(!this.flipped);
-		this.rightMasterMotor.setInverted(this.flipped);
+		this.leftMasterMotor.setInverted(this.flipped);
+		this.rightMasterMotor.setInverted(!this.flipped);
 		this.zeroEncoders();
 		
 	}
@@ -421,20 +421,17 @@ public class Chassis extends Subsystem {
 
 		
 		if(velocityControl){
-			if (this.flipped) {
-				this.setLeftMotorVelocity(rightMotorSpeed);
-				this.setRightMotorVelocity(leftMotorSpeed);
-			} else {
-				this.setLeftMotorVelocity(leftMotorSpeed);
-				this.setRightMotorVelocity(rightMotorSpeed);
-			}
+
+				this.setLeftMotorVelocity(-leftMotorSpeed);
+				this.setRightMotorVelocity(-rightMotorSpeed);
+			
 		}else{
 			if (this.flipped) {
-				this.setLeftMotorVoltage(rightMotorSpeed);
-				this.setRightMotorVoltage(leftMotorSpeed);
+				this.setLeftMotorVoltage(-rightMotorSpeed);
+				this.setRightMotorVoltage(-leftMotorSpeed);
 			} else {
-				this.setLeftMotorVoltage(leftMotorSpeed);
-				this.setRightMotorVoltage(rightMotorSpeed);
+				this.setLeftMotorVoltage(-leftMotorSpeed);
+				this.setRightMotorVoltage(-rightMotorSpeed);
 			}
 		}
 	}

@@ -52,11 +52,11 @@ public class RobotMap {
 	public static final double SHOOTER_SPEED_F = 0.0;
 	
     // 54.0/30.0*3.0*256.0 = 1382.4 counts per revolution
-	public static final double DRIVE_LOW_VELOCITY_P = 0;
+	public static final double DRIVE_LOW_VELOCITY_P = .1;
 	public static final double DRIVE_LOW_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_LOW_VELOCITY_D = 0;
-	public static final double DRIVE_LOW_VELOCITY_F = 0.5;//Calculated
-	public static final double DRIVE_HIGH_VELOCITY_P = 0;
+	public static final double DRIVE_LOW_VELOCITY_F = .5;//Calculated
+	public static final double DRIVE_HIGH_VELOCITY_P = .1;
 	public static final double DRIVE_HIGH_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_HIGH_VELOCITY_D = 0;
 	public static final double DRIVE_HIGH_VELOCITY_F = 0.23;//Calculated

@@ -29,6 +29,7 @@ public class OI {
 	
 	public OI() {
 
+		
 		driveStick = new Joystick(RobotMap.DRIVE_STICK_NUMBER);
 		buttons = new JoystickButton[13];
 
@@ -43,8 +44,7 @@ public class OI {
 		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
 		this.getButton(RobotMap.WINCH_DOWN).whileHeld(new WinchDown());
 		this.getButton(3).whileHeld(new DriveAtSpeed(testSpeed, true));
-		
-		
+				
 	}
 	
 	public Joystick getDriveStick() {

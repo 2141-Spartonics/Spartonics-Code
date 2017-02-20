@@ -28,25 +28,18 @@ public class JoyStickDriving extends Command {
 		double rightSetpoint = Robot.chassis.getRightMotorVelocitySetpoint();
 		    	
     	if (leftSetpoint < RobotMap.SHIFTING_SPEED_THRESHOLD &&			
-    			leftSetpoint > -RobotMap.SHIFTING_SPEED_THRESHOLD){
-    		Robot.chassis.setLeftToLow();
-    	}else if(leftVelocity > RobotMap.SHIFTING_SPEED_THRESHOLD &&
-    			leftSetpoint > leftVelocity){
-    		Robot.chassis.setLeftToHigh();
-    	}else if(leftVelocity < -RobotMap.SHIFTING_SPEED_THRESHOLD &&
-    			leftSetpoint < leftVelocity){
-    		Robot.chassis.setLeftToHigh();
-    	}
-    	
-    	if (rightSetpoint < RobotMap.SHIFTING_SPEED_THRESHOLD &&			
+    			leftSetpoint > -RobotMap.SHIFTING_SPEED_THRESHOLD && 
+    			rightSetpoint < RobotMap.SHIFTING_SPEED_THRESHOLD &&			
     			rightSetpoint > -RobotMap.SHIFTING_SPEED_THRESHOLD){
-    		Robot.chassis.setRightToLow();
-    	}else if(rightVelocity > RobotMap.SHIFTING_SPEED_THRESHOLD &&
+    		Robot.chassis.setBothToLow();
+    	}else if(leftVelocity > RobotMap.SHIFTING_SPEED_THRESHOLD &&
+    			leftSetpoint > leftVelocity && rightVelocity > RobotMap.SHIFTING_SPEED_THRESHOLD &&
     			rightSetpoint > rightVelocity){
-    		Robot.chassis.setRightToHigh();
-    	}else if(rightVelocity < -RobotMap.SHIFTING_SPEED_THRESHOLD &&
+    		Robot.chassis.setBothToHigh();
+    	}else if(leftVelocity < -RobotMap.SHIFTING_SPEED_THRESHOLD &&
+    			leftSetpoint < leftVelocity && rightVelocity < -RobotMap.SHIFTING_SPEED_THRESHOLD &&
     			rightSetpoint < rightVelocity){
-    		Robot.chassis.setRightToHigh();
+    		Robot.chassis.setBothToHigh();
     	}
     	
     	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true, true);

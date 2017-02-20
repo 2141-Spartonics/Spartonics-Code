@@ -1,11 +1,13 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
+import org.usfirst.frc.team2141.robot.Robot;
 import org.usfirst.frc.team2141.robot.RobotMap;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -30,7 +32,7 @@ public class Intake extends Subsystem {
     }
     
     public void publishToSmartDashboard(){
-    	
+    	SmartDashboard.putNumber("Intake Amps", Robot.PDP.getCurrent(5));
     }
     
     /**
