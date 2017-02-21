@@ -77,7 +77,7 @@ public class RobotMap {
 	public static final double PROFILE_LOW_P = 0.0;
 	public static final double PROFILE_LOW_I = 0.0;//Done
 	public static final double PROFILE_LOW_D = 0.0;
-	public static final double PROFILE_LOW_V = 0.01;//Calculated by finding 1/(max inchs pre min in low)
+	public static final double PROFILE_LOW_V = 0.01;//Calculated by finding 1/(max inches per min in low)
 	public static final double PROFILE_LOW_A = 0.0;//Done	
 	
 	public static final double PROFILE_DT = .05;

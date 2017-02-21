@@ -1,12 +1,10 @@
 package org.usfirst.frc.team2141.robot.commands.chassis;
 
 import jaci.pathfinder.Pathfinder;
-import jaci.pathfinder.PathfinderJNI;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.modifiers.TankModifier;
 
-import java.io.File;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -49,9 +47,11 @@ public class GenerateProfile extends Command {
     	motionFollower = scheduler.scheduleAtFixedRate(new Runnable(){
     	            	public void run(){
     	            		Robot.chassis.setLeftMotorVelocity(
-    	            				Robot.chassis.getLeftFollower().calculate(Robot.chassis.getLeftEncoderCount()));
+    	            				Robot.chassis.getLeftFollower().calculate(
+    	            						Robot.chassis.convertVelocityTicksToInchesPerSecond(Robot.chassis.getLeftEncoderCount()/10.0)));
     	            		Robot.chassis.setRightMotorVelocity(
-    	            				Robot.chassis.getRightFollower().calculate(Robot.chassis.getRightEncoderCount()));
+    	            				Robot.chassis.getRightFollower().calculate(
+    	            						Robot.chassis.convertVelocityTicksToInchesPerSecond(Robot.chassis.getRightEncoderCount()/10.0)));
     	            		}
     	            }, 
     	            (int)(RobotMap.PROFILE_DT * 1000), 
