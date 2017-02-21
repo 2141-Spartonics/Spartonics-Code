@@ -239,11 +239,11 @@ public class Chassis extends Subsystem {
 	}
 	
 	public double convertVelocityTicksToInchesPerSecond(double ticks){
-		return ticks/(256.0*4.0/10.0)*30/54*4.0*Math.PI;
+		return ticks/(3.0*256.0*4.0/10.0)*30/54*4.0*Math.PI;
 	}
 	
 	public double convertInchesPerSecondToVelocityTicks(double ticks){
-		return ticks/(256.0*4.0/10.0)*30/54*4.0*Math.PI;
+		return ticks/(3.0*256.0*4.0/10.0)*30/54*4.0*Math.PI;
 	}
 
 	public double convertPercentToLowVelocityTicks(double speed){
