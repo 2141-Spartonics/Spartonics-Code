@@ -52,14 +52,18 @@ public class RobotMap {
 	public static final double SHOOTER_SPEED_F = 0.0;
 	
     // 54.0/30.0*3.0*256.0 = 1382.4 counts per revolution
+	//Top speed in inches per min in low = 101.212341454852
+	//Top speed in ticks in low = 4453.66272
+	//Top speed in inches per min in high = 267.9150214981376
+	//Top speed in ticks in high = 11789.1072
 	public static final double DRIVE_LOW_VELOCITY_P = 0;
 	public static final double DRIVE_LOW_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_LOW_VELOCITY_D = 0;
-	public static final double DRIVE_LOW_VELOCITY_F = 0.22969857942;//Calculated
+	public static final double DRIVE_LOW_VELOCITY_F = 0.22969857942;//Calculated by finding 1/(max low in ticks) * 1023
 	public static final double DRIVE_HIGH_VELOCITY_P = 0;
 	public static final double DRIVE_HIGH_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_HIGH_VELOCITY_D = 0;
-	public static final double DRIVE_HIGH_VELOCITY_F = 0.08677501889;//Calculated
+	public static final double DRIVE_HIGH_VELOCITY_F = 0.08677501889;//Calculated finding 1/(max high in ticks) * 1023
 	
 	public static final double DRIVE_RAMP_RATE = 0.0;//Done
 	public static final int DRIVE_IZONE = 0;//Done
@@ -73,7 +77,7 @@ public class RobotMap {
 	public static final double PROFILE_LOW_P = 0.0;
 	public static final double PROFILE_LOW_I = 0.0;//Done
 	public static final double PROFILE_LOW_D = 0.0;
-	public static final double PROFILE_LOW_V = 0.01;
+	public static final double PROFILE_LOW_V = 1/101.212341454852;
 	public static final double PROFILE_LOW_A = 0.0;//Done	
 	
 	public static final double PROFILE_DT = .05;
