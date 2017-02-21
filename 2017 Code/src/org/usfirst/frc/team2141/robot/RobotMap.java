@@ -59,11 +59,11 @@ public class RobotMap {
 	public static final double DRIVE_LOW_VELOCITY_P = 0;
 	public static final double DRIVE_LOW_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_LOW_VELOCITY_D = 0;
-	public static final double DRIVE_LOW_VELOCITY_F = 0.22969857942;//Calculated by finding 1/(max low in ticks) * 1023
+	public static final double DRIVE_LOW_VELOCITY_F = 0.22969857942;//Calculated by finding 1/(max ticks in low) * 1023
 	public static final double DRIVE_HIGH_VELOCITY_P = 0;
 	public static final double DRIVE_HIGH_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_HIGH_VELOCITY_D = 0;
-	public static final double DRIVE_HIGH_VELOCITY_F = 0.08677501889;//Calculated finding 1/(max high in ticks) * 1023
+	public static final double DRIVE_HIGH_VELOCITY_F = 0.08677501889;//Calculated finding 1/(max ticks in high) * 1023
 	
 	public static final double DRIVE_RAMP_RATE = 0.0;//Done
 	public static final int DRIVE_IZONE = 0;//Done
@@ -77,7 +77,7 @@ public class RobotMap {
 	public static final double PROFILE_LOW_P = 0.0;
 	public static final double PROFILE_LOW_I = 0.0;//Done
 	public static final double PROFILE_LOW_D = 0.0;
-	public static final double PROFILE_LOW_V = 1/101.212341454852;
+	public static final double PROFILE_LOW_V = 0.01;//Calculated by finding 1/(max inchs pre min in low)
 	public static final double PROFILE_LOW_A = 0.0;//Done	
 	
 	public static final double PROFILE_DT = .05;
