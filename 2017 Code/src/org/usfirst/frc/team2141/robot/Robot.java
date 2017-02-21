@@ -24,7 +24,7 @@ import utils.ADIS16448_IMU;
  */
 
 public class Robot extends IterativeRobot {
-	
+		
 	public static Intake intake;
 	public static Winch winch;
 	public static Shooter shooter;
@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
 		chassis = new Chassis();
 		intake = new Intake();
 		winch = new Winch();
-		shooter = new Shooter();
+	//	shooter = new Shooter();
 		
 		oi = new OI();
 		imu = new ADIS16448_IMU();
@@ -61,7 +61,7 @@ public class Robot extends IterativeRobot {
 	public void publishToSmartDashboard(){
 		chassis.publishToSmartDashboard();
 		winch.publishToSmartDashboard();
-		shooter.publishToSmartDashboard();
+		//shooter.publishToSmartDashboard();
 		intake.publishToSmartDashboard();
 		
 	    SmartDashboard.putNumber("Value", imu.getAngle());

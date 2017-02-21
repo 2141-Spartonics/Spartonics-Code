@@ -52,11 +52,11 @@ public class RobotMap {
 	public static final double SHOOTER_SPEED_F = 0.0;
 	
     // 54.0/30.0*3.0*256.0 = 1382.4 counts per revolution
-	public static final double DRIVE_LOW_VELOCITY_P = .1;
+	public static final double DRIVE_LOW_VELOCITY_P = 0;
 	public static final double DRIVE_LOW_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_LOW_VELOCITY_D = 0;
 	public static final double DRIVE_LOW_VELOCITY_F = .5;//Calculated
-	public static final double DRIVE_HIGH_VELOCITY_P = .1;
+	public static final double DRIVE_HIGH_VELOCITY_P = 0;
 	public static final double DRIVE_HIGH_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_HIGH_VELOCITY_D = 0;
 	public static final double DRIVE_HIGH_VELOCITY_F = 0.23;//Calculated
@@ -70,10 +70,12 @@ public class RobotMap {
 	public static final double SHIFTING_SPEED_THRESHOLD = 3200;//Calculated but needs to be tested to make sure
 	
 	//Motion profiling constants
-	public static final double PROFILE_LOW_P = 0.01;
+	public static final double PROFILE_LOW_P = 0.0;
 	public static final double PROFILE_LOW_I = 0.0;//Done
 	public static final double PROFILE_LOW_D = 0.0;
-	public static final double PROFILE_LOW_V = 0.0;
+	public static final double PROFILE_LOW_V = 0.01;
 	public static final double PROFILE_LOW_A = 0.0;//Done	
+	
+	public static final double PROFILE_DT = .05;
 	
 }

@@ -3,6 +3,9 @@ package org.usfirst.frc.team2141.robot.commands.chassis;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
+
+import org.usfirst.frc.team2141.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -35,9 +38,7 @@ public class PathAuto extends CommandGroup {
     				new Waypoint(104.5, 16.35, Pathfinder.d2r(60))}, 
     			new Trajectory.Config(
     				Trajectory.FitMethod.HERMITE_CUBIC,
-    				Trajectory.Config.SAMPLES_HIGH, 0.05, 10, 10.0, 240.0), 
-    			"Right Gear"));
-    	addSequential(new FollowMotionProfile("Right Gear"));
+    				Trajectory.Config.SAMPLES_HIGH, RobotMap.PROFILE_DT, 10, 10.0, 240.0)));
     	
     }
 }
