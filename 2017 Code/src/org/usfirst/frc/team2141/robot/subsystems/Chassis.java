@@ -318,12 +318,20 @@ public class Chassis extends Subsystem {
 
 	public void setLeftMotorVelocity(double speed) {
 		this.leftMasterMotor.changeControlMode(TalonControlMode.Speed);
-		this.leftMasterMotor.set(5330.0*speed*12.0/50.0*34.0/50.0*3.0/60.0*256.0*4.0/10.0);
+		if(this.leftInHigh()){
+			this.leftMasterMotor.set(5330.0*speed*12.0/50.0*54.0/30.0*3.0/60.0*256.0*4/10.0);
+		}else{
+			this.leftMasterMotor.set(5330.0*speed*12.0/50.0*34.0/50.0*3.0/60.0*256.0*4.0/10.0);
+		}
 	}
 
 	public void setRightMotorVelocity(double speed) {
 		this.rightMasterMotor.changeControlMode(TalonControlMode.Speed);
-		this.rightMasterMotor.set(5330.0*speed*12.0/50.0*34.0/50.0*3.0/60.0*256.0*4.0/10.0);
+		if(this.rightInHigh()){
+			this.rightMasterMotor.set(5330.0*speed*12.0/50.0*54.0/30.0*3.0/60.0*256.0*4.0/10.0);
+		}else{
+			this.rightMasterMotor.set(5330.0*speed*12.0/50.0*34.0/50.0*3.0/60.0*256.0*4.0/10.0);
+		}
 	}
 
 	public double getLeftMotorVelocitySetpoint(){

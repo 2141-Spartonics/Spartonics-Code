@@ -40,25 +40,18 @@ public class GenerateProfile extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-    	System.out.println("In generator");
 		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(26.5);
-		System.out.println("Done generating");
     	Robot.chassis.getLeftFollower().setTrajectory(modifier.getLeftTrajectory());
     	Robot.chassis.getRightFollower().setTrajectory(modifier.getRightTrajectory());
-    	System.out.println("Finished all of generation");
     	
     	Robot.chassis.setBothToLow();
-    	Robot.chassis.zeroEncoders();
-    	
-    	System.out.println("In Follower");
-    	
+    	Robot.chassis.zeroEncoders();	
     	motionFollower = scheduler.scheduleAtFixedRate(new Runnable(){
     	            	public void run(){
     	            		Robot.chassis.setLeftMotorVelocity(
     	            				Robot.chassis.getLeftFollower().calculate(Robot.chassis.getLeftEncoderCount()));
     	            		Robot.chassis.setRightMotorVelocity(
     	            				Robot.chassis.getRightFollower().calculate(Robot.chassis.getRightEncoderCount()));
-    	            		//Robot.chassis.zeroEncoders();
     	            		}
     	            }, 
     	            (int)(RobotMap.PROFILE_DT * 1000), 
