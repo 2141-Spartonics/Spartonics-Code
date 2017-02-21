@@ -180,8 +180,6 @@ public class Chassis extends Subsystem {
 		return this.rightDriveFollower;
 	}
 	
-	
-	
 	// Encoder methods
 
 	/**
@@ -240,14 +238,30 @@ public class Chassis extends Subsystem {
 		return (this.getLeftEncoderCount() + this.getRightEncoderCount()) / 2;
 	}
 	
-	public double convertTicksToInches(double ticks){
-		return ticks * 3.0 * 54.0 / 30.0 * 256.0 * 4.0 * Math.PI;
+	public double convertVelocityTicksToInchesPerSecond(double ticks){
+		return ticks/(256.0*4.0/10.0)*30/54*4.0*Math.PI;
 	}
 	
-	public double convertEncoderRateToRPM(double rate){
-		return rate * 3.0 * 54.0 / 30.0 * 256.0;
+	public double convertInchesPerSecondToVelocityTicks(double ticks){
+		return ticks/(256.0*4.0/10.0)*30/54*4.0*Math.PI;
+	}
+
+	public double convertPercentToLowVelocityTicks(double speed){
+		return 5330.0*speed*12.0/50.0*34.0/50.0*3.0/60.0*256.0*4.0/10.0;
+	}	
+	
+	public double convertPercentToHighVelocityTicks(double speed){
+		return 5330.0*speed*12.0/50.0*54.0/30.0*3.0/60.0*256.0*4.0/10.0;
 	}
 	
+	public double convertLowVelocityTicksToPercent(double speed){
+		return speed/(5330.0*12.0/50.0*34.0/50.0*3.0/60.0*256.0*4.0/10.0);
+	}	
+	
+	public double convertHighVelocityTicksToPercent(double speed){
+		return speed/(5330.0*12.0/50.0*54.0/30.0*3.0/60.0*256.0*4.0/10.0);
+	}
+
 	// Shifter methods
 
 	public boolean leftInHigh() {
