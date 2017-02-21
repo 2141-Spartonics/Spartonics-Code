@@ -55,11 +55,11 @@ public class RobotMap {
 	public static final double DRIVE_LOW_VELOCITY_P = 0;
 	public static final double DRIVE_LOW_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_LOW_VELOCITY_D = 0;
-	public static final double DRIVE_LOW_VELOCITY_F = .5;//Calculated
+	public static final double DRIVE_LOW_VELOCITY_F = 0.22969857942;//Calculated
 	public static final double DRIVE_HIGH_VELOCITY_P = 0;
 	public static final double DRIVE_HIGH_VELOCITY_I = 0.0;//Done
 	public static final double DRIVE_HIGH_VELOCITY_D = 0;
-	public static final double DRIVE_HIGH_VELOCITY_F = 0.23;//Calculated
+	public static final double DRIVE_HIGH_VELOCITY_F = 0.08677501889;//Calculated
 	
 	public static final double DRIVE_RAMP_RATE = 0.0;//Done
 	public static final int DRIVE_IZONE = 0;//Done
