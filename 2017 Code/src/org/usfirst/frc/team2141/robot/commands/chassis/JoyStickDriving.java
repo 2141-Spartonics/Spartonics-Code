@@ -3,6 +3,7 @@ package org.usfirst.frc.team2141.robot.commands.chassis;
 import org.usfirst.frc.team2141.robot.Robot;
 import org.usfirst.frc.team2141.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -42,7 +43,7 @@ public class JoyStickDriving extends Command {
     		Robot.chassis.setBothToHigh();
     	}
     	
-    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true, true);
+    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(Hand.kLeft), Robot.oi.getDriveStick().getX(Hand.kRight), true, true);
     	
     }
 

@@ -56,14 +56,14 @@ public class RobotMap {
 	//Top speed in ticks in low = 4453.66272
 	//Top speed in inches per min in high = 267.9150214981376
 	//Top speed in ticks in high = 11789.1072
-	public static final double DRIVE_LOW_VELOCITY_P = 0;
+	public static final double DRIVE_LOW_VELOCITY_P = .41;
 	public static final double DRIVE_LOW_VELOCITY_I = 0.0;//Done
-	public static final double DRIVE_LOW_VELOCITY_D = 0;
-	public static final double DRIVE_LOW_VELOCITY_F = 0.22969857942;//Calculated by finding 1/(max ticks in low) * 1023
-	public static final double DRIVE_HIGH_VELOCITY_P = 0;
+	public static final double DRIVE_LOW_VELOCITY_D = 10;
+	public static final double DRIVE_LOW_VELOCITY_F = 0.3;//Calculated by finding 1/(max ticks in low) * 1023
+	public static final double DRIVE_HIGH_VELOCITY_P = .2;
 	public static final double DRIVE_HIGH_VELOCITY_I = 0.0;//Done
-	public static final double DRIVE_HIGH_VELOCITY_D = 0;
-	public static final double DRIVE_HIGH_VELOCITY_F = 0.08677501889;//Calculated finding 1/(max ticks in high) * 1023
+	public static final double DRIVE_HIGH_VELOCITY_D = 10;
+	public static final double DRIVE_HIGH_VELOCITY_F = 0.12;//Calculated finding 1/(max ticks in high) * 1023
 	
 	public static final double DRIVE_RAMP_RATE = 0.0;//Done
 	public static final int DRIVE_IZONE = 0;//Done
@@ -74,7 +74,7 @@ public class RobotMap {
 	public static final double SHIFTING_SPEED_THRESHOLD = 3200;//Calculated but needs to be tested to make sure
 	
 	//Motion profiling constants
-	public static final double PROFILE_LOW_P = 0.0;
+	public static final double PROFILE_LOW_P = 0.15;
 	public static final double PROFILE_LOW_I = 0.0;//Done
 	public static final double PROFILE_LOW_D = 0.0;
 	public static final double PROFILE_LOW_V = 0.01;//Calculated by finding 1/(max inches per min in low)

@@ -34,11 +34,12 @@ public class PathAuto extends CommandGroup {
     	addSequential(new GenerateProfile(
     			 new Waypoint[] {
     				new Waypoint(0, 0, 0),
-    				new Waypoint(95.5, .75, Pathfinder.d2r(60)),
-    				new Waypoint(104.5, 16.35, Pathfinder.d2r(60))}, 
+    				new Waypoint(98.35, -24.46, Pathfinder.d2r(45)),
+    				//new Waypoint(104.5, 16.35, Pathfinder.d2r(60))
+    				}, 
     			new Trajectory.Config(
     				Trajectory.FitMethod.HERMITE_CUBIC,
-    				Trajectory.Config.SAMPLES_HIGH, RobotMap.PROFILE_DT, 10, 10.0, 240.0)));
+    				Trajectory.Config.SAMPLES_HIGH, RobotMap.PROFILE_DT, 30, 20, 240.0)));
     	
     }
 }

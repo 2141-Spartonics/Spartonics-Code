@@ -151,8 +151,8 @@ public class Chassis extends Subsystem {
 	public void publishToSmartDashboard() {
 		SmartDashboard.putNumber("Left Encoder Speed", this.getLeftEncoderVelocity());
 		SmartDashboard.putNumber("Right Encoder Speed", this.getRightEncoderVelocity());
-		//SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
-		//SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
+		SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
+		SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
 		SmartDashboard.putBoolean("Flipped", this.flipped);
 		SmartDashboard.putNumber("Left Setpoint", this.leftMasterMotor.getSetpoint());
 		SmartDashboard.putNumber("Right Setpoint", this.rightMasterMotor.getSetpoint());

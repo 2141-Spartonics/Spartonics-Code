@@ -38,7 +38,7 @@ public class GenerateProfile extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(26.5);
+		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(36);
     	Robot.chassis.getLeftFollower().setTrajectory(modifier.getLeftTrajectory());
     	Robot.chassis.getRightFollower().setTrajectory(modifier.getRightTrajectory());
     	

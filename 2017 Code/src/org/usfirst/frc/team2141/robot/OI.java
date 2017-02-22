@@ -34,15 +34,15 @@ public class OI {
 			buttons[i] = new JoystickButton(driveStick, i);
 		}
 
-		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ShiftDown());
+		//this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ShiftDown());
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
 		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).toggleWhenPressed(new WinchCommand());
 		this.getButton(RobotMap.INTAKE_CONTROL_BUTTON).toggleWhenPressed(new IntakeCommand());
 		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
 		this.getButton(RobotMap.WINCH_DOWN).whileHeld(new WinchDown());
-		this.getButton(3).whileHeld(new DriveAtSpeed(1, true));
-		this.getButton(1).whileHeld(new DriveAtSpeed(1, false));
-
+		this.getButton(3).whileHeld(new DriveAtSpeed(.25, true));
+		this.getButton(1).whileHeld(new DriveAtSpeed(.25, false));
+		this.getButton(7).whenPressed(new PathAuto());
 				
 	}
 	
