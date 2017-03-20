@@ -1,8 +1,5 @@
 package org.usfirst.frc.team2141.robot.commands.chassis;
 
-import jaci.pathfinder.Pathfinder;
-import jaci.pathfinder.Trajectory;
-import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.modifiers.TankModifier;
 
 import java.util.concurrent.Executors;
@@ -18,27 +15,23 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class GenerateProfile extends Command {
+public class FollowProfile extends Command {
 
 	ScheduledExecutorService scheduler;
 	ScheduledFuture<?> motionFollower;
-	Trajectory trajectory;
-	Waypoint[] points;
-	Trajectory.Config config;
+	TankModifier modifier;
 	
-    public GenerateProfile(Waypoint[] waypoints, Trajectory.Config profileConfig) {
+    public FollowProfile(TankModifier profile) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	points = waypoints;
-    	config = profileConfig;
     	requires(Robot.chassis);
     	scheduler = Executors.newScheduledThreadPool(1);
+    	modifier = profile;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(36);
     	Robot.chassis.getLeftFollower().setTrajectory(modifier.getLeftTrajectory());
     	Robot.chassis.getRightFollower().setTrajectory(modifier.getRightTrajectory());
     	

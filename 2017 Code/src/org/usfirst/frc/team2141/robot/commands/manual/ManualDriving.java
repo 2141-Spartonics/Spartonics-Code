@@ -1,4 +1,4 @@
-package manual;
+package org.usfirst.frc.team2141.robot.commands.manual;
 
 import org.usfirst.frc.team2141.robot.Robot;
 
@@ -22,7 +22,7 @@ public class ManualDriving extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true, false); 
+    	Robot.chassis.arcadeDrive(Robot.oi.getLeftY(), Robot.oi.getRightX(), true, false); 
     }
 
     // Make this return true when this Command no longer needs to run execute()

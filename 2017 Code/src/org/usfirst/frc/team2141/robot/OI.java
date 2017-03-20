@@ -4,6 +4,7 @@ import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
 import org.usfirst.frc.team2141.robot.commands.WinchUp;
 import org.usfirst.frc.team2141.robot.commands.WinchDown;
 import org.usfirst.frc.team2141.robot.commands.chassis.FlipChassisDirection;
+import org.usfirst.frc.team2141.robot.commands.chassis.ShiftDown;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
@@ -23,11 +24,11 @@ public class OI {
 		driveStick = new Joystick(RobotMap.DRIVE_STICK_NUMBER);
 		buttons = new JoystickButton[13];
 
-		for (int i = 1; i <= 11; i++) {
+		for (int i = 1; i <= buttons.length; i++) {
 			buttons[i] = new JoystickButton(driveStick, i);
 		}
 
-		//this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ShiftDown());
+		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ShiftDown());
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
 		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).whileHeld(new WinchUp());
 		this.getButton(RobotMap.INTAKE_CONTROL_BUTTON).toggleWhenPressed(new IntakeCommand());
@@ -40,6 +41,22 @@ public class OI {
 		return driveStick;
 	}
 
+	public double getLeftX(){
+		return driveStick.getRawAxis(0);
+	}
+	
+	public double getLeftY(){
+		return driveStick.getRawAxis(1);
+	}
+	
+	public double getRightX(){
+		return driveStick.getRawAxis(2);
+	}
+	
+	public double getRightY(){
+		return driveStick.getRawAxis(3);
+	}
+	
 	public boolean getButtonValue(int buttonNum) {
 		return this.buttons[buttonNum].get();
 	}
@@ -50,7 +67,6 @@ public class OI {
 	
 	public void rumbleLeftJoystick(int rumbleValue) {
 		this.driveStick.setRumble(RumbleType.kLeftRumble, rumbleValue);
-		
 	}
 	
 	public void rumbleRightJoystick(int rumbeValue) {

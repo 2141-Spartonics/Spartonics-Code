@@ -32,11 +32,11 @@ public class TurnDegrees extends Command {
     	currentAngle = Robot.imu.getAngleX();
     	
     	if (degreesToTurn <= 0) {
-    		Robot.chassis.setLeftMotorVoltage(0.8);
-    		Robot.chassis.setRightMotorVoltage(0.8);
+    		Robot.chassis.setLeftMotorVoltage(speed);
+    		Robot.chassis.setRightMotorVoltage(speed);
     	} else if (degreesToTurn > 0) {
-    		Robot.chassis.setLeftMotorVoltage(0.8);
-    		Robot.chassis.setRightMotorVoltage(0.8);
+    		Robot.chassis.setLeftMotorVoltage(speed);
+    		Robot.chassis.setRightMotorVoltage(speed);
     	}
     	
     }
