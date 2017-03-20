@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static Chassis chassis;
 
-	public static PowerDistributionPanel PDP;
+	public static PowerDistributionPanel pdp;
 	public static ADIS16448_IMU imu;
 	public static OI oi;
 	
@@ -51,9 +51,8 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI();
 		imu = new ADIS16448_IMU();
-		PDP = new PowerDistributionPanel();
+		pdp = new PowerDistributionPanel();
 		
-		oi.testSpeed = prefs.getDouble("Drive Speed", 0.0);
 
 	}
 	
@@ -140,7 +139,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		publishToSmartDashboard();
-		oi.testSpeed = prefs.getDouble("Drive Speed", 0.0);
 	}
 
 	/**

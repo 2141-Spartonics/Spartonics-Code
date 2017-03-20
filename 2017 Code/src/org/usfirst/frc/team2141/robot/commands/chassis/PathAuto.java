@@ -39,7 +39,7 @@ public class PathAuto extends CommandGroup {
     				}, 
     			new Trajectory.Config(
     				Trajectory.FitMethod.HERMITE_CUBIC,
-    				Trajectory.Config.SAMPLES_HIGH, RobotMap.PROFILE_DT, 30, 20, 240.0)));
+    				Trajectory.Config.SAMPLES_HIGH, RobotMap.PROFILE_DT, 30.0, 20.0, 240.0)));
     	
     }
 }

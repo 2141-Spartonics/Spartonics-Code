@@ -66,13 +66,12 @@ public class GenerateProfile extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.chassis.getLeftFollower().isFinished() && Robot.chassis.getRightFollower().isFinished();
     }
 
     // Called once after isFinished returns true
     protected void end() {
 		motionFollower.cancel(true);
-
     }
 
     // Called when another command which requires one or more of the same

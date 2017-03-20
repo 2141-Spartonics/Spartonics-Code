@@ -11,12 +11,14 @@ public class TurnDegrees extends Command {
 
 	double degreesToTurn;
 	double currentAngle;
+	double speed;
 	
-    public TurnDegrees(double degrees) {
+    public TurnDegrees(double degrees, double turnSpeed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.chassis);
     	degreesToTurn = degrees;
+    	speed = turnSpeed;
     	
     }
 
