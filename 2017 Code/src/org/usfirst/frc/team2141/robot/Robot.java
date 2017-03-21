@@ -65,7 +65,7 @@ public class Robot extends IterativeRobot {
 	//	shooter = new Shooter();
 		
 		oi = new OI();
-		imu = new ADIS16448_IMU();
+		imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kZ);
 		pdp = new PowerDistributionPanel();
 		
 
@@ -77,13 +77,7 @@ public class Robot extends IterativeRobot {
 		//shooter.publishToSmartDashboard();
 		intake.publishToSmartDashboard();
 				
-	    SmartDashboard.putNumber("Value", imu.getAngle());
-	    SmartDashboard.putNumber("Pitch", imu.getPitch());
-	    SmartDashboard.putNumber("Roll", imu.getRoll());
-	    SmartDashboard.putNumber("Yaw", imu.getYaw());
-	    SmartDashboard.putNumber("AccelX", imu.getAccelX());
-	    SmartDashboard.putNumber("AccelY", imu.getAccelY());
-	    SmartDashboard.putNumber("AccelZ", imu.getAccelZ());
+	    SmartDashboard.putNumber("Angle Value", imu.getAngle());
 	    SmartDashboard.putNumber("AngleX", imu.getAngleX());
 	    SmartDashboard.putNumber("AngleY", imu.getAngleY());
 	    SmartDashboard.putNumber("AngleZ", imu.getAngleZ());

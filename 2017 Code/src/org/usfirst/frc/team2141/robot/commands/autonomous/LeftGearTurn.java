@@ -1,5 +1,8 @@
 package org.usfirst.frc.team2141.robot.commands.autonomous;
 
+import org.usfirst.frc.team2141.robot.commands.chassis.DriveStraight;
+import org.usfirst.frc.team2141.robot.commands.chassis.TurnDegrees;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -24,5 +27,10 @@ public class LeftGearTurn extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	
+    	addSequential(new DriveStraight(100, .5));
+    	addSequential(new TurnDegrees(-60, .2));
+    	addSequential(new DriveStraight(100, .5));
+    	
     }
 }

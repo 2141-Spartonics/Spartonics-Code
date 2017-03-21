@@ -36,8 +36,7 @@ public class RightGearCurve extends CommandGroup {
     	
     	Waypoint[] points =  new Waypoint[] {
 				new Waypoint(0, 0, 0),
-				new Waypoint(98.35, -24.46, Pathfinder.d2r(45)),
-				//new Waypoint(104.5, 16.35, Pathfinder.d2r(60))
+				new Waypoint(104.5, 16.35, Pathfinder.d2r(60))
 				};
     	Config config = new Config(
 				Trajectory.FitMethod.HERMITE_CUBIC,

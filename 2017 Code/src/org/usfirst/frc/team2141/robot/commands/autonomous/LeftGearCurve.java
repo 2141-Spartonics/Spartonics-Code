@@ -1,36 +1,47 @@
 package org.usfirst.frc.team2141.robot.commands.autonomous;
 
-import edu.wpi.first.wpilibj.command.Command;
+import jaci.pathfinder.Pathfinder;
+import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.Waypoint;
+import jaci.pathfinder.Trajectory.Config;
+import jaci.pathfinder.modifiers.TankModifier;
+
+import org.usfirst.frc.team2141.robot.RobotMap;
+import org.usfirst.frc.team2141.robot.commands.chassis.FollowProfile;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class LeftGearCurve extends Command {
+public class LeftGearCurve extends CommandGroup {
 
     public LeftGearCurve() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    }
+        // Add Commands here:
+        // e.g. addSequential(new Command1());
+        //      addSequential(new Command2());
+        // these will run in order.
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
+        // To run multiple commands at the same time,
+        // use addParallel()
+        // e.g. addParallel(new Command1());
+        //      addSequential(new Command2());
+        // Command1 and Command2 will run in parallel.
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
-
-    // Called once after isFinished returns true
-    protected void end() {
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
+        // A command group will require all of the subsystems that each member
+        // would require.
+        // e.g. if Command1 requires chassis, and Command2 requires arm,
+        // a CommandGroup containing them would require both the chassis and the
+        // arm.
+    	Waypoint[] points =  new Waypoint[] {
+				new Waypoint(0, 0, 0),
+				new Waypoint(104.5, -16.35, Pathfinder.d2r(-60))
+				};
+    	Config config = new Config(
+				Trajectory.FitMethod.HERMITE_CUBIC,
+				Trajectory.Config.SAMPLES_HIGH, RobotMap.PROFILE_DT, 30.0, 20.0, 240.0);
+    	TankModifier profile = new TankModifier(Pathfinder.generate(points, config)).modify(28);
+    	
+    	addSequential(new FollowProfile(profile));
     }
 }

@@ -10,8 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TurnDegrees extends Command {
 
 	double target;
-	double currentAngle;
+	double angleOffset;
 	double speed;
+	double error;
 	
     public TurnDegrees(double degrees, double turnSpeed) {
         // Use requires() here to declare subsystem dependencies
@@ -25,16 +26,17 @@ public class TurnDegrees extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.chassis.zeroEncoders();
+    	angleOffset = Robot.imu.getAngle();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	currentAngle = Robot.imu.getAngleX();
+    	error = target - (Robot.imu.getAngle() - angleOffset);
     	
-    	if (target <= 0) {
+    	if (error <= 0) {
     		Robot.chassis.setLeftMotorVelocity(speed);
     		Robot.chassis.setRightMotorVelocity(-speed);
-    	} else if (target > 0) {
+    	} else if (error > 0) {
     		Robot.chassis.setLeftMotorVelocity(-speed);
     		Robot.chassis.setRightMotorVelocity(speed);
     	}
@@ -43,11 +45,7 @@ public class TurnDegrees extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (target >= currentAngle + 1 || target <= currentAngle - 1){
-    		return false;
-    	} else {
-    		return true;
-    	}
+    	return error < 1.0;
     }
 
     // Called once after isFinished returns true

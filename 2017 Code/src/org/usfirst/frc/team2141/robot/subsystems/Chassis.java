@@ -406,7 +406,7 @@ public class Chassis extends Subsystem {
 		
 	}
 
-	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs, boolean velocityControl) {
+	public void arcadeDrive(double moveValue, double rotateValue) {
 
 		double leftMotorSpeed;
 		double rightMotorSpeed;
@@ -414,20 +414,18 @@ public class Chassis extends Subsystem {
 		moveValue = limit(moveValue);
 		rotateValue = limit(rotateValue);
 
-		if (squaredInputs) {
-			// square the inputs (while preserving the sign) to increase fine
-			// control
-			// while permitting full power
-			if (moveValue >= 0.0) {
-				moveValue = moveValue * moveValue;
-			} else {
-				moveValue = -(moveValue * moveValue);
-			}
-			if (rotateValue >= 0.0) {
-				rotateValue = rotateValue * rotateValue;
-			} else {
-				rotateValue = -(rotateValue * rotateValue);
-			}
+		// square the inputs (while preserving the sign) to increase fine
+		// control
+		// while permitting full power
+		if (moveValue >= 0.0) {
+			moveValue = moveValue * moveValue;
+		} else {
+			moveValue = -(moveValue * moveValue);
+		}
+		if (rotateValue >= 0.0) {
+			rotateValue = rotateValue * rotateValue;
+		} else {
+			rotateValue = -(rotateValue * rotateValue);
 		}
 
 		if (moveValue > 0.0) {
@@ -449,6 +447,10 @@ public class Chassis extends Subsystem {
 		}
 
 		
+		this.setLeftMotorVelocity(-leftMotorSpeed);
+		this.setRightMotorVelocity(-rightMotorSpeed);
+		
+		/*
 		if(velocityControl){
 
 				this.setLeftMotorVelocity(-leftMotorSpeed);
@@ -463,6 +465,7 @@ public class Chassis extends Subsystem {
 				this.setRightMotorVoltage(-rightMotorSpeed);
 			}
 		}
+		*/
 	}
 
 	private double limit(double val) {
