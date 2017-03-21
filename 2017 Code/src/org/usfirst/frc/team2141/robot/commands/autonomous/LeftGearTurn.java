@@ -28,9 +28,9 @@ public class LeftGearTurn extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new DriveStraight(100, .5));
-    	addSequential(new TurnDegrees(-60, .2));
-    	addSequential(new DriveStraight(100, .5));
+    	addSequential(new DriveStraight(90, .5));
+    	addSequential(new TurnDegrees(-60, .3));
+    	addSequential(new DriveStraight(10, .5));
     	
     }
 }

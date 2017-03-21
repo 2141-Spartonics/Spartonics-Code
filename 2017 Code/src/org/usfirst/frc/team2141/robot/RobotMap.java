@@ -52,6 +52,7 @@ public class RobotMap {
 	public static final double SHOOTER_SPEED_F = 0.0;
 	
     // 54.0/30.0*3.0*256.0 = 1382.4 counts per revolution
+	// 0.00909 inches per tick
 	//Top speed in inches per min in low = 101.212341454852
 	//Top speed in ticks in low = 4453.66272
 	//Top speed in inches per min in high = 267.9150214981376

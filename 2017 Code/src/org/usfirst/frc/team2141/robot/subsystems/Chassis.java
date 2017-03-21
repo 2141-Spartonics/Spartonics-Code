@@ -151,15 +151,15 @@ public class Chassis extends Subsystem {
 	public void publishToSmartDashboard() {
 		SmartDashboard.putNumber("Left Encoder Speed", this.getLeftEncoderVelocity());
 		SmartDashboard.putNumber("Right Encoder Speed", this.getRightEncoderVelocity());
-		SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
-		SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
+		//SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
+		//SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
 		SmartDashboard.putBoolean("Flipped", this.flipped);
 		SmartDashboard.putNumber("Left Setpoint", this.leftMasterMotor.getSetpoint());
 		SmartDashboard.putNumber("Right Setpoint", this.rightMasterMotor.getSetpoint());
 		SmartDashboard.putNumber("Left Velocity Error", this.leftMasterMotor.getClosedLoopError());
 		SmartDashboard.putNumber("Right Velocity Error", this.rightMasterMotor.getClosedLoopError());
-		SmartDashboard.putBoolean("Left in Low", this.leftInLow());
-		SmartDashboard.putBoolean("Right in Low", this.rightInLow());
+		//SmartDashboard.putBoolean("Left in Low", this.leftInLow());
+		//SmartDashboard.putBoolean("Right in Low", this.rightInLow());
 		SmartDashboard.putNumber("Right throttle", this.rightMasterMotor.getOutputVoltage());
 		SmartDashboard.putNumber("Left throttle", this.leftMasterMotor.getOutputVoltage());
 
@@ -242,7 +242,7 @@ public class Chassis extends Subsystem {
 	}
 	
 	public double getAverageEncoderPosition(){
-		return (this.getLeftEncoderCount() + this.getRightEncoderCount()) / 2;
+		return (this.getLeftEncoderCount() + this.getRightEncoderCount()) / 2.0;
 	}
 	
 	public double convertVelocityTicksToInchesPerSecond(double ticks){

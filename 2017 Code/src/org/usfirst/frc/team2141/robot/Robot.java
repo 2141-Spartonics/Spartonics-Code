@@ -90,7 +90,8 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-
+		Robot.oi.rumbleLeftJoystick(0);
+		Robot.oi.rumbleRightJoystick(0);
 	}
 
 	public void disabledPeriodic() {
@@ -99,8 +100,6 @@ public class Robot extends IterativeRobot {
 		publishToSmartDashboard();
 		SmartDashboard.putString("Selected Autonomous", chooser.getSelected().getName());
 		
-		Robot.oi.rumbleLeftJoystick(0);
-		Robot.oi.rumbleRightJoystick(0);
 	}
 
 	/**

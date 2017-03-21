@@ -11,7 +11,7 @@ public class TurnDegrees extends Command {
 
 	double target;
 	double angleOffset;
-	double speed;
+	double maxSpeed;
 	double error;
 	
     public TurnDegrees(double degrees, double turnSpeed) {
@@ -19,13 +19,14 @@ public class TurnDegrees extends Command {
         // eg. requires(chassis);
     	requires(Robot.chassis);
     	target = degrees;
-    	speed = turnSpeed;
+    	maxSpeed = turnSpeed;
     	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.chassis.zeroEncoders();
+    	Robot.chassis.setBothToLow();
     	angleOffset = Robot.imu.getAngle();
     }
 
@@ -33,19 +34,14 @@ public class TurnDegrees extends Command {
     protected void execute() {
     	error = target - (Robot.imu.getAngle() - angleOffset);
     	
-    	if (error <= 0) {
-    		Robot.chassis.setLeftMotorVelocity(speed);
-    		Robot.chassis.setRightMotorVelocity(-speed);
-    	} else if (error > 0) {
-    		Robot.chassis.setLeftMotorVelocity(-speed);
-    		Robot.chassis.setRightMotorVelocity(speed);
-    	}
+    	Robot.chassis.setLeftMotorVelocity(-error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.05*error)));
+    	Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.05*error)));
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return error < 1.0;
+    	return Math.abs(error) < 1.0;
     }
 
     // Called once after isFinished returns true
