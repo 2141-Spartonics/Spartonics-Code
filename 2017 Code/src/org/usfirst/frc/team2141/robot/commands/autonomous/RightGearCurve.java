@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2141.robot.commands.chassis;
+package org.usfirst.frc.team2141.robot.commands.autonomous;
 
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
@@ -7,15 +7,16 @@ import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.modifiers.TankModifier;
 
 import org.usfirst.frc.team2141.robot.RobotMap;
+import org.usfirst.frc.team2141.robot.commands.chassis.FollowProfile;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class PathAuto extends CommandGroup {
+public class RightGearCurve extends CommandGroup {
 
-    public PathAuto() {
+    public RightGearCurve() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

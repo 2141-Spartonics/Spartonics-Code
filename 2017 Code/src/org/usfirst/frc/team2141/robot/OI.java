@@ -1,10 +1,12 @@
 package org.usfirst.frc.team2141.robot;
 
-import org.usfirst.frc.team2141.robot.commands.IntakeCommand;
+import org.usfirst.frc.team2141.robot.commands.ForwardIntake;
+import org.usfirst.frc.team2141.robot.commands.ReverseIntake;
 import org.usfirst.frc.team2141.robot.commands.WinchUp;
 import org.usfirst.frc.team2141.robot.commands.WinchDown;
 import org.usfirst.frc.team2141.robot.commands.chassis.FlipChassisDirection;
 import org.usfirst.frc.team2141.robot.commands.chassis.ShiftDown;
+import org.usfirst.frc.team2141.robot.commands.chassis.ShiftUp;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
@@ -28,13 +30,15 @@ public class OI {
 			buttons[i] = new JoystickButton(driveStick, i);
 		}
 
-		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ShiftDown());
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
-		this.getButton(RobotMap.WINCH_CONTROL_BUTTON).whileHeld(new WinchUp());
-		this.getButton(RobotMap.INTAKE_CONTROL_BUTTON).toggleWhenPressed(new IntakeCommand());
+		this.getButton(RobotMap.WINCH_UP_BUTTON).whenPressed(new WinchUp());
+		this.getButton(RobotMap.WINCH_DOWN_BUTTON).whileHeld(new WinchDown());
+		this.getButton(RobotMap.INTAKE_FORWARD_BUTTON).toggleWhenPressed(new ForwardIntake());
+		this.getButton(RobotMap.INTAKE_BACKWARD_BUTTON).whileHeld(new ReverseIntake());		
 		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
-		this.getButton(RobotMap.WINCH_DOWN).whileHeld(new WinchDown());
-				
+		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ShiftDown());
+		this.getButton(RobotMap.SHIFT_UP_BUTTON).whileHeld(new ShiftUp());
+	
 	}
 	
 	public Joystick getDriveStick() {

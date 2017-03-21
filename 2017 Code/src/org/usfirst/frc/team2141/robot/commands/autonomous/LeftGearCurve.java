@@ -1,28 +1,23 @@
-package org.usfirst.frc.team2141.robot.commands.manual;
-
-import org.usfirst.frc.team2141.robot.Robot;
+package org.usfirst.frc.team2141.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ManualHigh extends Command {
+public class LeftGearCurve extends Command {
 
-    public ManualHigh() {
+    public LeftGearCurve() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.chassis.setBothToHigh();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.arcadeDrive(Robot.oi.getLeftY(), Robot.oi.getRightX(), true, true); 
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class TurnDegrees extends Command {
 
-	double degreesToTurn;
+	double target;
 	double currentAngle;
 	double speed;
 	
@@ -17,7 +17,7 @@ public class TurnDegrees extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.chassis);
-    	degreesToTurn = degrees;
+    	target = degrees;
     	speed = turnSpeed;
     	
     }
@@ -31,19 +31,19 @@ public class TurnDegrees extends Command {
     protected void execute() {
     	currentAngle = Robot.imu.getAngleX();
     	
-    	if (degreesToTurn <= 0) {
-    		Robot.chassis.setLeftMotorVoltage(speed);
-    		Robot.chassis.setRightMotorVoltage(speed);
-    	} else if (degreesToTurn > 0) {
-    		Robot.chassis.setLeftMotorVoltage(speed);
-    		Robot.chassis.setRightMotorVoltage(speed);
+    	if (target <= 0) {
+    		Robot.chassis.setLeftMotorVelocity(speed);
+    		Robot.chassis.setRightMotorVelocity(-speed);
+    	} else if (target > 0) {
+    		Robot.chassis.setLeftMotorVelocity(-speed);
+    		Robot.chassis.setRightMotorVelocity(speed);
     	}
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (degreesToTurn >= currentAngle + 1 || degreesToTurn <= currentAngle - 1){
+    	if (target >= currentAngle + 1 || target <= currentAngle - 1){
     		return false;
     	} else {
     		return true;

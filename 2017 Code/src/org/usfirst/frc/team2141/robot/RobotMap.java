@@ -9,13 +9,14 @@ public class RobotMap {
 	
 	//Drive Controller
 	public static final int DRIVE_STICK_NUMBER = 0;
-	public static final int INTAKE_CONTROL_BUTTON = 2;
-	public static final int WINCH_CONTROL_BUTTON = 9;
-	public static final int SHOOTER_CONTROL_BUTTON = 4;
+//	public static final int SHOOTER_CONTROL_BUTTON = 4;
+	public static final int INTAKE_FORWARD_BUTTON = 2;
+	public static final int INTAKE_BACKWARD_BUTTON = 3;
+	public static final int WINCH_UP_BUTTON = 9;
 	public static final int REVERSE_DRIVE_BUTTON = 10;
 	public static final int SHIFT_DOWN_BUTTON = 1;
-	public static final int WINCH_DOWN = 6;
-	
+	public static final int SHIFT_UP_BUTTON = 4;
+	public static final int WINCH_DOWN_BUTTON = 6;
 	
 	//Manual Board
 	public static final int MANUAL_BOARD_STICK_NUMBER = 1;

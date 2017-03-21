@@ -7,33 +7,24 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveAtSpeed extends Command {
+public class ShiftUp extends Command {
 
-	double setpoint;
-	boolean lowSpeed;
-	
-    public DriveAtSpeed(double speed, boolean low) {
+    public ShiftUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.chassis);
-    	setpoint = speed;
-    	lowSpeed = low;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(lowSpeed){
-    		Robot.chassis.setBothToLow();
-    	}else{
-    		Robot.chassis.setBothToHigh();
-    	}
+    	Robot.chassis.setBothToHigh();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.setLeftMotorVelocity(setpoint);
-    	Robot.chassis.setRightMotorVelocity(setpoint);
-
+    	Robot.chassis.arcadeDrive(Robot.oi.getLeftY(), Robot.oi.getRightX(), true, true);
+    	Robot.oi.rumbleLeftJoystick(1);
+    	Robot.oi.rumbleRightJoystick(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -43,14 +34,14 @@ public class DriveAtSpeed extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.chassis.setRightMotorVoltage(0);
-    	Robot.chassis.setLeftMotorVoltage(0);
+    	Robot.oi.rumbleLeftJoystick(0);
+    	Robot.oi.rumbleRightJoystick(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-       	Robot.chassis.setRightMotorVoltage(0);
-    	Robot.chassis.setLeftMotorVoltage(0);
+    	Robot.oi.rumbleLeftJoystick(0);
+    	Robot.oi.rumbleRightJoystick(0);
     }
 }
