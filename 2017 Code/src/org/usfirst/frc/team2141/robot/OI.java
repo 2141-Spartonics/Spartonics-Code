@@ -7,6 +7,7 @@ import org.usfirst.frc.team2141.robot.commands.WinchDown;
 import org.usfirst.frc.team2141.robot.commands.chassis.FlipChassisDirection;
 import org.usfirst.frc.team2141.robot.commands.chassis.ShiftDown;
 import org.usfirst.frc.team2141.robot.commands.chassis.ShiftUp;
+import org.usfirst.frc.team2141.robot.commands.manual.RemoveEncoderInfluence;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
@@ -19,15 +20,24 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	private Joystick driveStick;
-	private JoystickButton[] buttons;
+	private JoystickButton[] driveButtons;
+	private Joystick auxiliaryStick;
+	private JoystickButton[] auxiliaryButtons;
 	
 	public OI() {
 
 		driveStick = new Joystick(RobotMap.DRIVE_STICK_NUMBER);
-		buttons = new JoystickButton[13];
+		driveButtons = new JoystickButton[13];
 
-		for (int i = 1; i <= buttons.length; i++) {
-			buttons[i] = new JoystickButton(driveStick, i);
+		auxiliaryStick = new Joystick(RobotMap.AUXILIARY_STICK_NUMBER);
+		auxiliaryButtons = new JoystickButton[13];
+		
+		for(int i = 1; i <= driveButtons.length; i++) {
+			driveButtons[i] = new JoystickButton(driveStick, i);
+		}
+		
+		for(int i=1; i <= auxiliaryButtons.length; i++){
+			auxiliaryButtons[i] = new JoystickButton(auxiliaryStick, i);
 		}
 
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
@@ -39,6 +49,8 @@ public class OI {
 		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ShiftDown());
 		this.getButton(RobotMap.SHIFT_UP_BUTTON).whileHeld(new ShiftUp());
 	
+		this.getButton(RobotMap.TURN_ENCODERS_OFF, true).toggleWhenPressed(new RemoveEncoderInfluence());
+		
 	}
 	
 	public Joystick getDriveStick() {
@@ -62,11 +74,26 @@ public class OI {
 	}
 	
 	public boolean getButtonValue(int buttonNum) {
-		return this.buttons[buttonNum].get();
+		return this.driveButtons[buttonNum].get();
 	}
 
+	public boolean getButtonValue(int buttonNum, boolean auxiliary) {
+		if(auxiliary){
+			return this.auxiliaryButtons[buttonNum].get();
+		}else{		
+			return this.driveButtons[buttonNum].get();
+		}
+	}
 	public JoystickButton getButton(int buttonNum) {
-		return this.buttons[buttonNum];
+		return this.driveButtons[buttonNum];
+	}
+	
+	public JoystickButton getButton(int buttonNum, boolean auxiliary) {
+		if(auxiliary){
+			return this.auxiliaryButtons[buttonNum];
+		}else{
+			return this.driveButtons[buttonNum];
+		}
 	}
 	
 	public void rumbleLeftJoystick(int rumbleValue) {

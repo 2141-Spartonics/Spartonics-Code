@@ -76,7 +76,7 @@ public class Robot extends IterativeRobot {
 		winch.publishToSmartDashboard();
 		//shooter.publishToSmartDashboard();
 		intake.publishToSmartDashboard();
-		
+				
 	    SmartDashboard.putNumber("Value", imu.getAngle());
 	    SmartDashboard.putNumber("Pitch", imu.getPitch());
 	    SmartDashboard.putNumber("Roll", imu.getRoll());
@@ -101,6 +101,9 @@ public class Robot extends IterativeRobot {
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		
+		publishToSmartDashboard();
+		SmartDashboard.putString("Selected Autonomous", chooser.getSelected().getName());
 		
 		Robot.oi.rumbleLeftJoystick(0);
 		Robot.oi.rumbleRightJoystick(0);

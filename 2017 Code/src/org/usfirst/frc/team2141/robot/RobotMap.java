@@ -19,9 +19,8 @@ public class RobotMap {
 	public static final int WINCH_DOWN_BUTTON = 6;
 	
 	//Manual Board
-	public static final int MANUAL_BOARD_STICK_NUMBER = 1;
-	public static final int FORCE_SHOOTER_OFF = 3;
-	public static final int FORCE_INTAKE_OFF = 2;
+	public static final int AUXILIARY_STICK_NUMBER = 1;
+	public static final int TURN_ENCODERS_OFF = 2;
 
 	//Motor channel numbers
 	public static final int LEFT_MASTER_MOTOR = 8;

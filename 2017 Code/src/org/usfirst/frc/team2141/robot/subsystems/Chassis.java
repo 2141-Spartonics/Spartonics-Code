@@ -179,6 +179,14 @@ public class Chassis extends Subsystem {
 		return this.rightDriveFollower;
 	}
 	
+	public CANTalon getLeftMotor(){
+		return this.leftMasterMotor;
+	}
+	
+	public CANTalon getRightMotor(){
+		return this.rightMasterMotor;
+	}
+	
 	// Encoder methods
 
 	/**
