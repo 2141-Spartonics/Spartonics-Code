@@ -162,7 +162,6 @@ public class Chassis extends Subsystem {
 		//SmartDashboard.putBoolean("Right in Low", this.rightInLow());
 		SmartDashboard.putNumber("Right throttle", this.rightMasterMotor.getOutputVoltage());
 		SmartDashboard.putNumber("Left throttle", this.leftMasterMotor.getOutputVoltage());
-
 	}
 
 	public void initDefaultCommand() {
