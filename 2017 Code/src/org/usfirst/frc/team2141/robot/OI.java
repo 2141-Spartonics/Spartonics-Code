@@ -32,11 +32,11 @@ public class OI {
 		auxiliaryStick = new Joystick(RobotMap.AUXILIARY_STICK_NUMBER);
 		auxiliaryButtons = new JoystickButton[13];
 		
-		for(int i = 1; i <= driveButtons.length; i++) {
+		for(int i = 1; i <= driveButtons.length - 1; i++) {
 			driveButtons[i] = new JoystickButton(driveStick, i);
 		}
 		
-		for(int i=1; i <= auxiliaryButtons.length; i++){
+		for(int i=1; i <= auxiliaryButtons.length - 1; i++){
 			auxiliaryButtons[i] = new JoystickButton(auxiliaryStick, i);
 		}
 
@@ -66,11 +66,11 @@ public class OI {
 	}
 	
 	public double getRightX(){
-		return driveStick.getRawAxis(2);
+		return driveStick.getRawAxis(4);
 	}
 	
 	public double getRightY(){
-		return driveStick.getRawAxis(3);
+		return driveStick.getRawAxis(5);
 	}
 	
 	public boolean getButtonValue(int buttonNum) {

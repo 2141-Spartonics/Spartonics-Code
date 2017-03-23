@@ -1,12 +1,11 @@
 
 package org.usfirst.frc.team2141.robot;
 
-import org.usfirst.frc.team2141.robot.commands.autonomous.LeftGearCurve;
 import org.usfirst.frc.team2141.robot.commands.autonomous.LeftGearTurn;
-import org.usfirst.frc.team2141.robot.commands.autonomous.RightGearCurve;
 import org.usfirst.frc.team2141.robot.commands.autonomous.RightGearTurn;
 import org.usfirst.frc.team2141.robot.commands.autonomous.StraightGear;
 import org.usfirst.frc.team2141.robot.commands.chassis.DriveStraight;
+import org.usfirst.frc.team2141.robot.commands.chassis.TurnDegrees;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
 import org.usfirst.frc.team2141.robot.subsystems.Shooter;
@@ -42,7 +41,7 @@ public class Robot extends IterativeRobot {
 	
 	public static Preferences prefs;
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<Command> chooser;
 	
 
 	/**
@@ -51,24 +50,24 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 
-		prefs = Preferences.getInstance();
-		chooser.addDefault("Drive Straight", new DriveStraight(100, 0.5));
-		chooser.addObject("Left Gear Curve", new LeftGearCurve());
-		chooser.addObject("Left Gear Turn", new LeftGearTurn());
-		chooser.addObject("Right Gear Curve", new RightGearCurve());
-		chooser.addObject("Right Gear Turn", new RightGearTurn());
-		chooser.addObject("Middle Gear", new StraightGear());
 
+		chooser = new SendableChooser<>();
 		chassis = new Chassis();
 		intake = new Intake();
 		winch = new Winch();
 	//	shooter = new Shooter();
 		
 		oi = new OI();
-		imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kZ);
+		imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kX);
 		pdp = new PowerDistributionPanel();
 		
-
+		chooser.addDefault("Drive Straight", new DriveStraight(100, 0.5));
+		//chooser.addObject("Left Gear Curve", new LeftGearCurve());
+		chooser.addObject("Left Gear Turn", new LeftGearTurn());
+		//chooser.addObject("Right Gear Curve", new RightGearCurve());
+		chooser.addObject("Right Gear Turn", new RightGearTurn());
+		chooser.addObject("Middle Gear", new StraightGear());
+		
 	}
 	
 	public void publishToSmartDashboard(){
@@ -78,9 +77,7 @@ public class Robot extends IterativeRobot {
 		intake.publishToSmartDashboard();
 				
 	    SmartDashboard.putNumber("Angle Value", imu.getAngle());
-	    SmartDashboard.putNumber("AngleX", imu.getAngleX());
-	    SmartDashboard.putNumber("AngleY", imu.getAngleY());
-	    SmartDashboard.putNumber("AngleZ", imu.getAngleZ());
+	    imu.updateTable();
 		
 	}
 
@@ -92,13 +89,14 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		Robot.oi.rumbleLeftJoystick(0);
 		Robot.oi.rumbleRightJoystick(0);
+		Robot.imu.reset();
 	}
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		
 		publishToSmartDashboard();
-		SmartDashboard.putString("Selected Autonomous", chooser.getSelected().getName());
+		//SmartDashboard.putString("Selected Autonomous", chooser.getSelected().getName());
 		
 	}
 
@@ -114,7 +112,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = new DriveStraight(73, .5);
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -133,6 +131,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
+		publishToSmartDashboard();
 		Scheduler.getInstance().run();
 	}
 

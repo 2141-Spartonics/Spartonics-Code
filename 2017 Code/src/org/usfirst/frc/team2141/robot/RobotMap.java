@@ -66,7 +66,7 @@ public class RobotMap {
 	public static final double DRIVE_HIGH_VELOCITY_D = 10;
 	public static final double DRIVE_HIGH_VELOCITY_F = 0.12;//Calculated finding 1/(max ticks in high) * 1023
 	
-	public static final double DRIVE_RAMP_RATE = 0.0;//Done
+	public static final double DRIVE_RAMP_RATE = 48;//Done
 	public static final int DRIVE_IZONE = 0;//Done
 	
 	//Velocity Constants
