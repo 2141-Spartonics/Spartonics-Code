@@ -21,7 +21,7 @@ public class ShiftDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(), Robot.oi.getDriveStick().getX(), true, false);
+    	Robot.chassis.arcadeDrive(Robot.oi.getLeftY(), Robot.oi.getRightX());
     	Robot.oi.rumbleLeftJoystick(1);
     	Robot.oi.rumbleRightJoystick(1);
     }

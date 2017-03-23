@@ -151,19 +151,18 @@ public class Chassis extends Subsystem {
 	public void publishToSmartDashboard() {
 		SmartDashboard.putNumber("Left Encoder Speed", this.getLeftEncoderVelocity());
 		SmartDashboard.putNumber("Right Encoder Speed", this.getRightEncoderVelocity());
-		SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
-		SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
+		//SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
+		//SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
 		SmartDashboard.putBoolean("Flipped", this.flipped);
 		SmartDashboard.putNumber("Left Setpoint", this.leftMasterMotor.getSetpoint());
 		SmartDashboard.putNumber("Right Setpoint", this.rightMasterMotor.getSetpoint());
 		SmartDashboard.putNumber("Left Velocity Error", this.leftMasterMotor.getClosedLoopError());
 		SmartDashboard.putNumber("Right Velocity Error", this.rightMasterMotor.getClosedLoopError());
-		SmartDashboard.putBoolean("Left in Low", this.leftInLow());
-		SmartDashboard.putBoolean("Right in Low", this.rightInLow());
+		//SmartDashboard.putBoolean("Left in Low", this.leftInLow());
+		//SmartDashboard.putBoolean("Right in Low", this.rightInLow());
 		SmartDashboard.putNumber("Right throttle", this.rightMasterMotor.getOutputVoltage());
 		SmartDashboard.putNumber("Left throttle", this.leftMasterMotor.getOutputVoltage());
 
-		
 	}
 
 	public void initDefaultCommand() {
@@ -178,6 +177,14 @@ public class Chassis extends Subsystem {
 	
 	public DistanceFollower getRightFollower(){
 		return this.rightDriveFollower;
+	}
+	
+	public CANTalon getLeftMotor(){
+		return this.leftMasterMotor;
+	}
+	
+	public CANTalon getRightMotor(){
+		return this.rightMasterMotor;
 	}
 	
 	// Encoder methods
@@ -235,7 +242,7 @@ public class Chassis extends Subsystem {
 	}
 	
 	public double getAverageEncoderPosition(){
-		return (this.getLeftEncoderCount() + this.getRightEncoderCount()) / 2;
+		return (this.getLeftEncoderCount() + this.getRightEncoderCount()) / 2.0;
 	}
 	
 	public double convertVelocityTicksToInchesPerSecond(double ticks){
@@ -399,7 +406,7 @@ public class Chassis extends Subsystem {
 		
 	}
 
-	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs, boolean velocityControl) {
+	public void arcadeDrive(double moveValue, double rotateValue) {
 
 		double leftMotorSpeed;
 		double rightMotorSpeed;
@@ -407,20 +414,18 @@ public class Chassis extends Subsystem {
 		moveValue = limit(moveValue);
 		rotateValue = limit(rotateValue);
 
-		if (squaredInputs) {
-			// square the inputs (while preserving the sign) to increase fine
-			// control
-			// while permitting full power
-			if (moveValue >= 0.0) {
-				moveValue = moveValue * moveValue;
-			} else {
-				moveValue = -(moveValue * moveValue);
-			}
-			if (rotateValue >= 0.0) {
-				rotateValue = rotateValue * rotateValue;
-			} else {
-				rotateValue = -(rotateValue * rotateValue);
-			}
+		// square the inputs (while preserving the sign) to increase fine
+		// control
+		// while permitting full power
+		if (moveValue >= 0.0) {
+			moveValue = moveValue * moveValue;
+		} else {
+			moveValue = -(moveValue * moveValue);
+		}
+		if (rotateValue >= 0.0) {
+			rotateValue = rotateValue * rotateValue;
+		} else {
+			rotateValue = -(rotateValue * rotateValue);
 		}
 
 		if (moveValue > 0.0) {
@@ -442,6 +447,10 @@ public class Chassis extends Subsystem {
 		}
 
 		
+		this.setLeftMotorVelocity(-leftMotorSpeed);
+		this.setRightMotorVelocity(-rightMotorSpeed);
+		
+		/*
 		if(velocityControl){
 
 				this.setLeftMotorVelocity(-leftMotorSpeed);
@@ -456,6 +465,7 @@ public class Chassis extends Subsystem {
 				this.setRightMotorVoltage(-rightMotorSpeed);
 			}
 		}
+		*/
 	}
 
 	private double limit(double val) {

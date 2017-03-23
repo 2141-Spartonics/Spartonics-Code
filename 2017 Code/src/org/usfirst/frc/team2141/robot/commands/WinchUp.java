@@ -7,36 +7,39 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeCommand extends Command {
+public class WinchUp extends Command {
 
-	public IntakeCommand() {
+	public WinchUp() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.intake);
+		requires(Robot.winch);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.winch.putBrakeOff();
 	}
 
-	// Sets the intake motors speed.
+	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.intake.setIntakeMotor(8.0);
+		Robot.winch.setWinchSpeed(1.0);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return Robot.winch.getCurrent() > 50;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.intake.setIntakeMotor(0.0);
+		Robot.winch.setWinchSpeed(0.0);
+		Robot.winch.putBrakeOn();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		Robot.intake.setIntakeMotor(0.0);
+		Robot.winch.setWinchSpeed(0.0);
+		Robot.winch.putBrakeOn();
 	}
 }

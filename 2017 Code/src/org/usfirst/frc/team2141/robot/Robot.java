@@ -1,19 +1,26 @@
 
 package org.usfirst.frc.team2141.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import org.usfirst.frc.team2141.robot.commands.autonomous.LeftGearCurve;
+import org.usfirst.frc.team2141.robot.commands.autonomous.LeftGearTurn;
+import org.usfirst.frc.team2141.robot.commands.autonomous.RightGearCurve;
+import org.usfirst.frc.team2141.robot.commands.autonomous.RightGearTurn;
+import org.usfirst.frc.team2141.robot.commands.autonomous.StraightGear;
+import org.usfirst.frc.team2141.robot.commands.chassis.DriveStraight;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
 import org.usfirst.frc.team2141.robot.subsystems.Shooter;
 import org.usfirst.frc.team2141.robot.subsystems.Winch;
 
 import utils.ADIS16448_IMU;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -29,11 +36,13 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static Chassis chassis;
 
-	public static PowerDistributionPanel PDP;
+	public static PowerDistributionPanel pdp;
 	public static ADIS16448_IMU imu;
 	public static OI oi;
 	
 	public static Preferences prefs;
+	Command autonomousCommand;
+	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 
 	/**
@@ -43,17 +52,22 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 
 		prefs = Preferences.getInstance();
-		
+		chooser.addDefault("Drive Straight", new DriveStraight(100, 0.5));
+		chooser.addObject("Left Gear Curve", new LeftGearCurve());
+		chooser.addObject("Left Gear Turn", new LeftGearTurn());
+		chooser.addObject("Right Gear Curve", new RightGearCurve());
+		chooser.addObject("Right Gear Turn", new RightGearTurn());
+		chooser.addObject("Middle Gear", new StraightGear());
+
 		chassis = new Chassis();
 		intake = new Intake();
 		winch = new Winch();
 	//	shooter = new Shooter();
 		
 		oi = new OI();
-		imu = new ADIS16448_IMU();
-		PDP = new PowerDistributionPanel();
+		imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kZ);
+		pdp = new PowerDistributionPanel();
 		
-		oi.testSpeed = prefs.getDouble("Drive Speed", 0.0);
 
 	}
 	
@@ -62,14 +76,8 @@ public class Robot extends IterativeRobot {
 		winch.publishToSmartDashboard();
 		//shooter.publishToSmartDashboard();
 		intake.publishToSmartDashboard();
-		
-	    SmartDashboard.putNumber("Value", imu.getAngle());
-	    SmartDashboard.putNumber("Pitch", imu.getPitch());
-	    SmartDashboard.putNumber("Roll", imu.getRoll());
-	    SmartDashboard.putNumber("Yaw", imu.getYaw());
-	    SmartDashboard.putNumber("AccelX", imu.getAccelX());
-	    SmartDashboard.putNumber("AccelY", imu.getAccelY());
-	    SmartDashboard.putNumber("AccelZ", imu.getAccelZ());
+				
+	    SmartDashboard.putNumber("Angle Value", imu.getAngle());
 	    SmartDashboard.putNumber("AngleX", imu.getAngleX());
 	    SmartDashboard.putNumber("AngleY", imu.getAngleY());
 	    SmartDashboard.putNumber("AngleZ", imu.getAngleZ());
@@ -82,14 +90,16 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-
+		Robot.oi.rumbleLeftJoystick(0);
+		Robot.oi.rumbleRightJoystick(0);
 	}
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		
-		Robot.oi.rumbleLeftJoystick(0);
-		Robot.oi.rumbleRightJoystick(0);
+		publishToSmartDashboard();
+		SmartDashboard.putString("Selected Autonomous", chooser.getSelected().getName());
+		
 	}
 
 	/**
@@ -104,7 +114,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		//autonomousCommand = (Command) chooser.getSelected();
+		autonomousCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -114,8 +124,9 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		//if (autonomousCommand != null)
-		//	autonomousCommand.start();
+		if (autonomousCommand != null)
+			autonomousCommand.start();
+		
 	}
 
 	/**
@@ -140,7 +151,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		publishToSmartDashboard();
-		oi.testSpeed = prefs.getDouble("Drive Speed", 0.0);
 	}
 
 	/**

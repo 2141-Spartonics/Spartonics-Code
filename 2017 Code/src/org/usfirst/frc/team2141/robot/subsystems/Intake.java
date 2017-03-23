@@ -26,13 +26,11 @@ public class Intake extends Subsystem {
     }
     
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(null);
     }
     
     public void publishToSmartDashboard(){
-    	SmartDashboard.putNumber("Intake Amps", Robot.PDP.getCurrent(5));
+    	SmartDashboard.putNumber("Intake Amps", Robot.pdp.getCurrent(5));
     }
     
     /**

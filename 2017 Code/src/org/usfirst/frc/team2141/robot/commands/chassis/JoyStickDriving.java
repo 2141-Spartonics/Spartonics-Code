@@ -3,7 +3,6 @@ package org.usfirst.frc.team2141.robot.commands.chassis;
 import org.usfirst.frc.team2141.robot.Robot;
 import org.usfirst.frc.team2141.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -34,16 +33,18 @@ public class JoyStickDriving extends Command {
     			rightSetpoint > -RobotMap.SHIFTING_SPEED_THRESHOLD){
     		Robot.chassis.setBothToLow();
     	}else if(leftVelocity > RobotMap.SHIFTING_SPEED_THRESHOLD &&
-    			leftSetpoint > leftVelocity && rightVelocity > RobotMap.SHIFTING_SPEED_THRESHOLD &&
+    			leftSetpoint > leftVelocity && 
+    			rightVelocity > RobotMap.SHIFTING_SPEED_THRESHOLD &&
     			rightSetpoint > rightVelocity){
     		Robot.chassis.setBothToHigh();
     	}else if(leftVelocity < -RobotMap.SHIFTING_SPEED_THRESHOLD &&
-    			leftSetpoint < leftVelocity && rightVelocity < -RobotMap.SHIFTING_SPEED_THRESHOLD &&
+    			leftSetpoint < leftVelocity && 
+    			rightVelocity < -RobotMap.SHIFTING_SPEED_THRESHOLD &&
     			rightSetpoint < rightVelocity){
     		Robot.chassis.setBothToHigh();
     	}
     	
-    	Robot.chassis.arcadeDrive(Robot.oi.getDriveStick().getY(Hand.kLeft), Robot.oi.getDriveStick().getX(Hand.kRight), true, true);
+    	Robot.chassis.arcadeDrive(Robot.oi.getLeftY(), Robot.oi.getRightX());
     	
     }
 

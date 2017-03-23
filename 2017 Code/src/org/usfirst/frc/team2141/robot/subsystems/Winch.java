@@ -2,6 +2,7 @@ package org.usfirst.frc.team2141.robot.subsystems;
 
 import org.usfirst.frc.team2141.robot.Robot;
 import org.usfirst.frc.team2141.robot.RobotMap;
+import org.usfirst.frc.team2141.robot.commands.WinchStop;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -21,9 +22,7 @@ public class Winch extends Subsystem {
 	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
-		setDefaultCommand(null);
+		setDefaultCommand(new WinchStop());
 	}
 
 	public Winch() {
@@ -56,7 +55,6 @@ public class Winch extends Subsystem {
 	 * Turns off the brake for the winch
 	 */
 	public void putBrakeOff() {
-		this.winchMotor.enableBrakeMode(false);
 		this.winchBrake.set(DoubleSolenoid.Value.kForward);
 	}
 
@@ -74,7 +72,11 @@ public class Winch extends Subsystem {
 	 * @return the amount of current used for the winchMotor in amps
 	 */
 	public double getCurrent() {
-		return Robot.PDP.getCurrent(RobotMap.WINCH_PDP_CHANNEL);
+		return Robot.pdp.getCurrent(RobotMap.WINCH_PDP_CHANNEL);
+	}
+	
+	public CANTalon getWinchMotor(){
+		return this.winchMotor;
 	}
 
 }

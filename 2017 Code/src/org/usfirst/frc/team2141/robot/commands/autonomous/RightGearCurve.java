@@ -1,19 +1,22 @@
-package org.usfirst.frc.team2141.robot.commands.chassis;
+package org.usfirst.frc.team2141.robot.commands.autonomous;
 
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.Trajectory.Config;
 import jaci.pathfinder.Waypoint;
+import jaci.pathfinder.modifiers.TankModifier;
 
 import org.usfirst.frc.team2141.robot.RobotMap;
+import org.usfirst.frc.team2141.robot.commands.chassis.FollowProfile;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class PathAuto extends CommandGroup {
+public class RightGearCurve extends CommandGroup {
 
-    public PathAuto() {
+    public RightGearCurve() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -31,15 +34,16 @@ public class PathAuto extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new GenerateProfile(
-    			 new Waypoint[] {
-    				new Waypoint(0, 0, 0),
-    				new Waypoint(98.35, -24.46, Pathfinder.d2r(45)),
-    				//new Waypoint(104.5, 16.35, Pathfinder.d2r(60))
-    				}, 
-    			new Trajectory.Config(
-    				Trajectory.FitMethod.HERMITE_CUBIC,
-    				Trajectory.Config.SAMPLES_HIGH, RobotMap.PROFILE_DT, 30, 20, 240.0)));
+    	Waypoint[] points =  new Waypoint[] {
+				new Waypoint(0, 0, 0),
+				new Waypoint(104.5, 16.35, Pathfinder.d2r(60))
+				};
+    	Config config = new Config(
+				Trajectory.FitMethod.HERMITE_CUBIC,
+				Trajectory.Config.SAMPLES_HIGH, RobotMap.PROFILE_DT, 30.0, 20.0, 240.0);
+    	TankModifier profile = new TankModifier(Pathfinder.generate(points, config)).modify(28);
+    	
+    	addSequential(new FollowProfile(profile));
     	
     }
 }

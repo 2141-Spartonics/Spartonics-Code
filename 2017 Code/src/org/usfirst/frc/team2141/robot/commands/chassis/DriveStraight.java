@@ -10,22 +10,26 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveStraight extends Command {
 
 	double encoderCount;
+	double maxSpeed;
 	
-	public DriveStraight(double distance) {
+	public DriveStraight(double distanceInInches, double drivingSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.chassis);		
-		encoderCount = distance;
+		encoderCount = distanceInInches * 110.0;
+		maxSpeed = drivingSpeed;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Robot.chassis.zeroEncoders();
+		Robot.chassis.setBothToLow();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.chassis.setLeftMotorVoltage(.5);
-		Robot.chassis.setRightMotorVoltage(.5);
+		double error = encoderCount - Robot.chassis.getAverageEncoderPosition();
+		Robot.chassis.setLeftMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.0005*error)));
+		Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.0005*error)));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
