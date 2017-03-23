@@ -15,7 +15,7 @@ public class DriveStraight extends Command {
 	public DriveStraight(double distanceInInches, double drivingSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.chassis);		
-		encoderCount = distanceInInches * 110.0;
+		encoderCount = distanceInInches * 440.0;
 		maxSpeed = drivingSpeed;
 	}
 
@@ -28,8 +28,8 @@ public class DriveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		double error = encoderCount - Robot.chassis.getAverageEncoderPosition();
-		Robot.chassis.setLeftMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.0005*error)));
-		Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.0005*error)));
+		Robot.chassis.setLeftMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.00005*error)));
+		Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.00005*error)));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -43,6 +43,8 @@ public class DriveStraight extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.chassis.setLeftMotorVelocity(0);
+		Robot.chassis.setRightMotorVelocity(0);
 	}
 
 	// Called when another command which requires one or more of the same

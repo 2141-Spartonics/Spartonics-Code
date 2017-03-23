@@ -51,7 +51,7 @@ public class RobotMap {
 	public static final double SHOOTER_SPEED_D = 0.0;
 	public static final double SHOOTER_SPEED_F = 0.0;
 	
-    // 54.0/30.0*3.0*256.0 = 1382.4 counts per revolution
+    // 54.0/30.0*3.0*256.0 = 1382.4 mechanical counts per revolution
 	// 0.00909 inches per tick
 	//Top speed in inches per min in low = 101.212341454852
 	//Top speed in ticks in low = 4453.66272
@@ -66,7 +66,7 @@ public class RobotMap {
 	public static final double DRIVE_HIGH_VELOCITY_D = 10;
 	public static final double DRIVE_HIGH_VELOCITY_F = 0.12;//Calculated finding 1/(max ticks in high) * 1023
 	
-	public static final double DRIVE_RAMP_RATE = 0.0;//Done
+	public static final double DRIVE_RAMP_RATE = 48;//Done
 	public static final int DRIVE_IZONE = 0;//Done
 	
 	//Velocity Constants
@@ -81,6 +81,6 @@ public class RobotMap {
 	public static final double PROFILE_LOW_V = 0.01;//Calculated by finding 1/(max inches per min in low)
 	public static final double PROFILE_LOW_A = 0.0;//Done	
 	
-	public static final double PROFILE_DT = .05;
+	public static final double PROFILE_DT = .01;
 	
 }

@@ -37,6 +37,7 @@ public class TurnDegrees extends Command {
     	Robot.chassis.setLeftMotorVelocity(-error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.05*error)));
     	Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.05*error)));
     	
+    	System.out.println("Turn Error = " + Double.toString(error));
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -46,6 +47,8 @@ public class TurnDegrees extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+		Robot.chassis.setLeftMotorVelocity(0);
+		Robot.chassis.setRightMotorVelocity(0);
     }
 
     // Called when another command which requires one or more of the same

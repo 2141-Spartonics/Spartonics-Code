@@ -11,6 +11,7 @@ import org.usfirst.frc.team2141.robot.Robot;
 import org.usfirst.frc.team2141.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -41,10 +42,10 @@ public class FollowProfile extends Command {
     	            	public void run(){
     	            		Robot.chassis.setLeftMotorVelocity(
     	            				Robot.chassis.getLeftFollower().calculate(
-    	            						Robot.chassis.convertVelocityTicksToInchesPerSecond(Robot.chassis.getLeftEncoderCount()/10.0)));
+    	            						Robot.chassis.convertVelocityTicksToInchesPerSecond(Robot.chassis.getLeftEncoderCount())/10.0));
     	            		Robot.chassis.setRightMotorVelocity(
     	            				Robot.chassis.getRightFollower().calculate(
-    	            						Robot.chassis.convertVelocityTicksToInchesPerSecond(Robot.chassis.getRightEncoderCount()/10.0)));
+    	            						Robot.chassis.convertVelocityTicksToInchesPerSecond(Robot.chassis.getRightEncoderCount())/10.0));
     	            		}
     	            }, 
     	            (int)(RobotMap.PROFILE_DT * 1000), 
@@ -55,6 +56,9 @@ public class FollowProfile extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putNumber("Left Profile Error", Robot.chassis.convertVelocityTicksToInchesPerSecond(Robot.chassis.getLeftEncoderCount())/10.0 - Robot.chassis.getLeftFollower().getSegment().position);
+    	SmartDashboard.putNumber("Right Profile Error", Robot.chassis.convertVelocityTicksToInchesPerSecond(Robot.chassis.getRightEncoderCount())/10.0 - Robot.chassis.getRightFollower().getSegment().position);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -65,6 +69,8 @@ public class FollowProfile extends Command {
     // Called once after isFinished returns true
     protected void end() {
 		motionFollower.cancel(true);
+    	System.out.println("Left Profile Error = " + Double.toString(Robot.chassis.convertVelocityTicksToInchesPerSecond(Robot.chassis.getLeftEncoderCount())/10.0 - Robot.chassis.getLeftFollower().getSegment().position));
+    	System.out.println("Right Profile Error = " + Double.toString(Robot.chassis.convertVelocityTicksToInchesPerSecond(Robot.chassis.getRightEncoderCount())/10.0 - Robot.chassis.getRightFollower().getSegment().position));
     }
 
     // Called when another command which requires one or more of the same
