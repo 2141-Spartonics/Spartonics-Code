@@ -27,15 +27,15 @@ public class TurnDegrees extends Command {
     protected void initialize() {
     	Robot.chassis.zeroEncoders();
     	Robot.chassis.setBothToLow();
-    	angleOffset = Robot.imu.getAngle();
+    	angleOffset = Robot.imu.getAngleX()/4;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	error = target - (Robot.imu.getAngle() - angleOffset);
+    	error = target - (Robot.imu.getAngleX()/4 - angleOffset);
     	
-    	Robot.chassis.setLeftMotorVelocity(-error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.05*error)));
-    	Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.05*error)));
+    	Robot.chassis.setLeftMotorVelocity(-error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.005*error + .05)));
+    	Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.005*error + .05)));
     	
     	System.out.println("Turn Error = " + Double.toString(error));
     }

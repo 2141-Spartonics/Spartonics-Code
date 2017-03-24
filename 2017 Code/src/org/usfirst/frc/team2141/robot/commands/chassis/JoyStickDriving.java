@@ -44,7 +44,7 @@ public class JoyStickDriving extends Command {
     		Robot.chassis.setBothToHigh();
     	}
     	
-    	Robot.chassis.arcadeDrive(Robot.oi.getLeftY(), Robot.oi.getRightX());
+    	Robot.chassis.arcadeDrive(Robot.oi.getRightY(), Robot.oi.getLeftX());
     	
     }
 

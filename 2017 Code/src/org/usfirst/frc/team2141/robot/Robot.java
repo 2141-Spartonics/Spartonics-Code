@@ -51,7 +51,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 
 
-		chooser = new SendableChooser<>();
+		chooser = new SendableChooser<Command>();
 		chassis = new Chassis();
 		intake = new Intake();
 		winch = new Winch();
@@ -67,7 +67,7 @@ public class Robot extends IterativeRobot {
 		//chooser.addObject("Right Gear Curve", new RightGearCurve());
 		chooser.addObject("Right Gear Turn", new RightGearTurn());
 		chooser.addObject("Middle Gear", new StraightGear());
-		
+		SmartDashboard.putData("Autonomous Chooser", chooser);
 	}
 	
 	public void publishToSmartDashboard(){
@@ -75,8 +75,7 @@ public class Robot extends IterativeRobot {
 		winch.publishToSmartDashboard();
 		//shooter.publishToSmartDashboard();
 		intake.publishToSmartDashboard();
-				
-	    SmartDashboard.putNumber("Angle Value", imu.getAngle());
+		SmartDashboard.putNumber("Robot Angle", imu.getAngleX()/4);
 	    imu.updateTable();
 		
 	}
@@ -112,7 +111,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		autonomousCommand = new DriveStraight(73, .5);
+		autonomousCommand = new TurnDegrees(-180, .2);
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
