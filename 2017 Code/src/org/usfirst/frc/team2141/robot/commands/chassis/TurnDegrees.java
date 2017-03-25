@@ -34,8 +34,8 @@ public class TurnDegrees extends Command {
     protected void execute() {
     	error = target - (Robot.imu.getAngleX()/4 - angleOffset);
     	
-    	Robot.chassis.setLeftMotorVelocity(-error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.005*error + .05)));
-    	Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.005*error + .05)));
+    	Robot.chassis.setLeftMotorVelocity(-error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.005*error) + .05));
+    	Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.005*error) + .05));
     	
     	System.out.println("Turn Error = " + Double.toString(error));
     }

@@ -28,9 +28,12 @@ public class RightGearTurn extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new DriveStraight(90, .5));
-    	addSequential(new TurnDegrees(60, .3));
-    	addSequential(new DriveStraight(10, .5));
+    	
+    	//Nums for red right
+    	addSequential(new DriveStraight(79.5, .5));
+    	addSequential(new TurnDegrees(60, .2));
+    	addSequential(new DriveStraight(5, 0),.5);
+    	addSequential(new DriveStraight(18, .5));
     	
     }
 }

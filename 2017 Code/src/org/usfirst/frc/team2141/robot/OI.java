@@ -43,11 +43,11 @@ public class OI {
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
 		this.getButton(RobotMap.WINCH_UP_BUTTON).whenPressed(new WinchUp());
 		this.getButton(RobotMap.WINCH_DOWN_BUTTON).whileHeld(new WinchDown());
-		this.getButton(RobotMap.INTAKE_FORWARD_BUTTON).toggleWhenPressed(new ForwardIntake());
-		this.getButton(RobotMap.INTAKE_BACKWARD_BUTTON).whileHeld(new ReverseIntake());		
+		this.getButton(RobotMap.INTAKE_FORWARD_BUTTON, true).toggleWhenPressed(new ForwardIntake());
+		this.getButton(RobotMap.INTAKE_BACKWARD_BUTTON, true).whileHeld(new ReverseIntake());		
 		this.getButton(RobotMap.REVERSE_DRIVE_BUTTON).whenPressed(new FlipChassisDirection());
-		this.getButton(RobotMap.SHIFT_DOWN_BUTTON).whileHeld(new ShiftDown());
-		this.getButton(RobotMap.SHIFT_UP_BUTTON).whileHeld(new ShiftUp());
+		this.getButton(RobotMap.SHIFT_DOWN_BUTTON, true).whileHeld(new ShiftDown());
+		this.getButton(RobotMap.SHIFT_UP_BUTTON, true).whileHeld(new ShiftUp());
 	
 		this.getButton(RobotMap.TURN_ENCODERS_OFF, true).toggleWhenPressed(new RemoveEncoderInfluence());
 		

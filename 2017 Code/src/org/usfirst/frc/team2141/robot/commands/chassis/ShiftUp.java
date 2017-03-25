@@ -22,7 +22,7 @@ public class ShiftUp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.arcadeDrive(Robot.oi.getLeftY(), Robot.oi.getRightX());
+    	Robot.chassis.arcadeDrive(Robot.oi.getRightY(), Robot.oi.getLeftX());
     	Robot.oi.rumbleLeftJoystick(1);
     	Robot.oi.rumbleRightJoystick(1);
     }

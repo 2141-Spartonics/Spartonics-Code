@@ -61,12 +61,13 @@ public class Robot extends IterativeRobot {
 		imu = new ADIS16448_IMU(ADIS16448_IMU.Axis.kX);
 		pdp = new PowerDistributionPanel();
 		
-		chooser.addDefault("Drive Straight", new DriveStraight(100, 0.5));
+		chooser.addDefault("Drive Straight", new DriveStraight(73, 0.5));
 		//chooser.addObject("Left Gear Curve", new LeftGearCurve());
 		chooser.addObject("Left Gear Turn", new LeftGearTurn());
 		//chooser.addObject("Right Gear Curve", new RightGearCurve());
 		chooser.addObject("Right Gear Turn", new RightGearTurn());
 		chooser.addObject("Middle Gear", new StraightGear());
+		chooser.addObject("Turn in place", new TurnDegrees(60, .2));
 		SmartDashboard.putData("Autonomous Chooser", chooser);
 	}
 	
@@ -89,11 +90,13 @@ public class Robot extends IterativeRobot {
 		Robot.oi.rumbleLeftJoystick(0);
 		Robot.oi.rumbleRightJoystick(0);
 		Robot.imu.reset();
+		Robot.chassis.zeroEncoders();
 	}
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		
+		SmartDashboard.putString("Selected Auto", chooser.getSelected().getName());
 		publishToSmartDashboard();
 		//SmartDashboard.putString("Selected Autonomous", chooser.getSelected().getName());
 		
@@ -111,8 +114,9 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		autonomousCommand = new TurnDegrees(-180, .2);
-
+		autonomousCommand = new StraightGear();
+		//autonomousCommand = chooser.getSelected();
+		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

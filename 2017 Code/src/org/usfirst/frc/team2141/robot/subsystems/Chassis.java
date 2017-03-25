@@ -23,6 +23,7 @@ public class Chassis extends Subsystem {
 	private CANTalon rightSlaveMotorA;
 	private CANTalon rightSlaveMotorB;
 	
+	boolean currentEnable = false;
 
 	// Shifter Objects
 	private DoubleSolenoid leftShifterSolenoid;
@@ -44,10 +45,12 @@ public class Chassis extends Subsystem {
 	DistanceFollower rightDriveFollower;
 	
 	
+	
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	public Chassis() {
+				
 		leftShifterSolenoid = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_SOLENOID_CHANNEL_A,
 				RobotMap.LEFT_SHIFTER_SOLENOID_CHANNEL_B);
 		rightShifterSolenoid = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_SOLENOID_CHANNEL_A,
@@ -91,12 +94,27 @@ public class Chassis extends Subsystem {
 		this.rightMasterMotor.setInverted(false);
 		this.rightMasterMotor.reverseSensor(false);
 		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		//this.rightMasterMotor.setCurrentLimit(RobotMap.CURRENT_LIMIT);
+		//this.rightMasterMotor.EnableCurrentLimit(currentEnable);
 		
 		this.leftMasterMotor.enableBrakeMode(true);
 		this.leftMasterMotor.setInverted(true);
 		this.leftMasterMotor.reverseSensor(false);
 		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-
+		//this.leftMasterMotor.setCurrentLimit(RobotMap.CURRENT_LIMIT);
+		//this.leftMasterMotor.EnableCurrentLimit(currentEnable);
+		
+		/*
+		//Slave Motor Current Limit Setup
+		this.leftSlaveMotorA.setCurrentLimit(RobotMap.CURRENT_LIMIT);
+		this.leftSlaveMotorA.EnableCurrentLimit(currentEnable);
+		this.leftSlaveMotorB.setCurrentLimit(RobotMap.CURRENT_LIMIT);
+		this.leftSlaveMotorB.EnableCurrentLimit(currentEnable);
+		this.rightSlaveMotorA.setCurrentLimit(RobotMap.CURRENT_LIMIT);
+		this.rightSlaveMotorA.EnableCurrentLimit(currentEnable);
+		this.rightSlaveMotorB.setCurrentLimit(RobotMap.CURRENT_LIMIT);
+		this.rightSlaveMotorB.EnableCurrentLimit(currentEnable);
+		*/
 		//Velocity PID profile setups
 		this.leftMasterMotor.setPID(
 				RobotMap.DRIVE_LOW_VELOCITY_P, 
@@ -151,8 +169,8 @@ public class Chassis extends Subsystem {
 	public void publishToSmartDashboard() {
 		SmartDashboard.putNumber("Left Encoder Speed", this.getLeftEncoderVelocity());
 		SmartDashboard.putNumber("Right Encoder Speed", this.getRightEncoderVelocity());
-		//SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
-		//SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
+		SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
+		SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
 		SmartDashboard.putBoolean("Flipped", this.flipped);
 		SmartDashboard.putNumber("Left Setpoint", this.leftMasterMotor.getSetpoint());
 		SmartDashboard.putNumber("Right Setpoint", this.rightMasterMotor.getSetpoint());
@@ -169,7 +187,16 @@ public class Chassis extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new JoyStickDriving());
 	}
-
+/*
+	public void setCurrentLimitEnabled(boolean state){
+		this.leftMasterMotor.EnableCurrentLimit(state);
+		this.leftSlaveMotorA.EnableCurrentLimit(state);
+		this.leftSlaveMotorB.EnableCurrentLimit(state);
+		this.rightMasterMotor.EnableCurrentLimit(state);
+		this.rightSlaveMotorA.EnableCurrentLimit(state);
+		this.rightSlaveMotorB.EnableCurrentLimit(state);
+	}
+	*/
 	public DistanceFollower getLeftFollower(){
 		return this.leftDriveFollower;
 	}
