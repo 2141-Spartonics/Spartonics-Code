@@ -28,8 +28,8 @@ public class DriveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		double error = encoderCount - Robot.chassis.getAverageEncoderPosition();
-		Robot.chassis.setLeftMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.00005*error)));
-		Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.00005*error)));
+		Robot.chassis.setLeftMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.00005*error)+0.05));
+		Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.00005*error)+0.05));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
