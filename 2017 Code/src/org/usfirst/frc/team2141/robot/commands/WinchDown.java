@@ -14,7 +14,7 @@ public class WinchDown extends Command {
         // eg. requires(chassis);
     	requires(Robot.winch);
     }
-
+ 
     // Called just before this Command runs the first time
     protected void initialize() {
 		Robot.winch.getWinchMotor().enableBrakeMode(false);
