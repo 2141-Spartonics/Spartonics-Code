@@ -10,9 +10,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public Joystick driveStick = new Joystick(1);
-	
+	public Joystick driveStick = new Joystick(RobotMap.DRIVE_STICK);
 
+	public Joystick getDriveStick() {
+		return driveStick;
+	}
+	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
