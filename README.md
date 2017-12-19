@@ -1,17 +1,17 @@
 # The Spartonics Repository
-### Team 2141
+# Team 2141
 
-####Introduction
+Introduction
 
 This is the official Github repository for the De La Salle and Carondelet robotics team Spartonics, or FRC team 2141. We program in Java with the WPILIB plugins in eclipse and our Github utilization is through the Egit plugin. Please feel free to look through our code or Fork it and use it with your own robots!
 
 -Team Leadership
 
-####Active Code
+Active Code
 
 Currently we are using the 2017 Code files as the primary projects. Anything labeled with prototype is for prototyping. Feel free to use any of them.
 
-####Installation
+Installation
 
 1. To install verify that the Egit plugin is up to date by going to the eclipse help tab and navigating to the Eclipse Marketplace. In the installed tab Egit should show that it is up to date, or requries an update. 
 
@@ -27,7 +27,7 @@ Currently we are using the 2017 Code files as the primary projects. Anything lab
 
 7. When you navigate back to the Java perspective the project should be there. 
 
-####Submitting your work
+Submitting your work
 
 1. At the end of the day any files you made a change to will look similar to this: >Robot.Java. Select all the files you would like to submit for review by right clicking the files and navigating to the team tab (towards the bottom) and selecting add to index.
 
@@ -39,12 +39,12 @@ Currently we are using the 2017 Code files as the primary projects. Anything lab
 
 5. Navigate to new pull request and select the master branch as your base and the compare as your branch you submitted too. All of your changes will be highlighted and you can select Create pull request. Congratulations you have sucessfuly submitted a merge request!
 
-####At the start of every day
+At the start of every day
 
 1. Every day at the very start go to the Git tab in eclipse. Reopen the brances tab under the repository and double click your branch. 
 
 2. Navigate to the top of the hierarchy where it says Spartonics-2141 and right click it. Select *pull...* and in reference, type "master" and complete the wizard.
 
-####Q&A
+Q&A
 
 If you have any questions feel free to email me at charlie.conrad16@gmail.com. Thank you and have a nice day!
