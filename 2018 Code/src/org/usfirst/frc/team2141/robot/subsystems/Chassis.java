@@ -1,8 +1,7 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
+import org.usfirst.frc.team2141.chassis.DriveWithJoystick;
 import org.usfirst.frc.team2141.robot.RobotMap;
-import org.usfirst.frc.team2141.robot.commands.DriveWithJoystick;
-import org.usfirst.frc.team2141.robot.commands.chassis.JoyStickDriving;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis.ShifterValue;
 
 import com.ctre.CANTalon;

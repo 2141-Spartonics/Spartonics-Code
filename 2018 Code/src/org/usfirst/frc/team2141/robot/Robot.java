@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team2141.robot.commands.DriveWithJoystick;
+import org.usfirst.frc.team2141.chassis.DriveWithJoystick;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 
 /**
