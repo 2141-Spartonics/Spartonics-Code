@@ -20,7 +20,7 @@ import org.usfirst.frc.team2141.robot.subsystems.Chassis;
  */
 public class Robot extends IterativeRobot {
 
-	public static final Chassis exampleSubsystem = new Chassis();
+	public static Chassis chassis;
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -32,6 +32,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		chassis = new Chassis();
+
 		oi = new OI();
 		chooser.addDefault("Default Auto", new DriveWithJoystick());
 		// chooser.addObject("My Auto", new MyAutoCommand());
