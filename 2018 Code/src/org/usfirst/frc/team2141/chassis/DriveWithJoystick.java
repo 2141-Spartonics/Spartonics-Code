@@ -45,7 +45,7 @@ public class DriveWithJoystick extends Command {
 		    		Robot.chassis.setBothToHigh();
 		    	*/
 		    	
-		    	Robot.chassis.arcadeDrive(Robot.oi.getRightY(), Robot.oi.getLeftX());
+		    	//Robot.chassis.arcadeDrive(Robot.oi.getRightY(), Robot.oi.getLeftX());
 		    	
 	}
 

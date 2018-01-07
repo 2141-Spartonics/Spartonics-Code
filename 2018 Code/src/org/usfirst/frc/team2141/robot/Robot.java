@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2141.chassis.DriveWithJoystick;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
+import org.usfirst.frc.team2141.robot.subsystems.armMechanism;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,6 +22,7 @@ import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 public class Robot extends IterativeRobot {
 
 	public static Chassis chassis;
+	public static armMechanism armmechanism;
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -32,6 +34,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		armmechanism = new armMechanism();
 		chassis = new Chassis();
 
 		oi = new OI();
