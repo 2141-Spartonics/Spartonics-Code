@@ -21,5 +21,13 @@ public class RobotMap {
 		public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_A = 1;
 		public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_A = 2;
 		public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_B = 3;
+		
+	//Set armMechanism PWN posistions
+		public static final int ARM_MOTOR = 10;
+		
+		//Drive Controller
+		public static final int DRIVE_STICK_NUMBER = 0;
+		public static final int AUXILLIARY_STICK_NUMBER = 1;
+//		public static final int SHOOTER_CONTROL_BUTTON = 4;
 }
 
