@@ -1,19 +1,18 @@
 package org.usfirst.frc.team2141.robot.commands;
 
 import org.usfirst.frc.team2141.robot.Robot;
-import org.usfirst.frc.team2141.robot.subsystems.armMechanism;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class rawControlArm extends Command {
-	
-    public rawControlArm() {
+public class IntakeIn extends Command {
+
+    public IntakeIn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.armmechanism);
+    	requires(Robot.wheelintake);
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +21,7 @@ public class rawControlArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.armmechanism.setArmMotor(0.5);
+    	Robot.wheelintake.setMotorSpeed(.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,15 +31,13 @@ public class rawControlArm extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.armmechanism.setArmMotor(0.0);;
+    	Robot.wheelintake.setMotorSpeed(0);
 
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.armmechanism.setArmMotor(0.0);;
-
-    	
+    	Robot.wheelintake.setMotorSpeed(0);
     }
 }
