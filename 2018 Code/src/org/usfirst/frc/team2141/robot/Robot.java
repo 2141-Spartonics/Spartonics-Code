@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team2141.chassis.DriveWithJoystick;
+import org.usfirst.frc.team2141.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
-import org.usfirst.frc.team2141.robot.subsystems.armMechanism;
+import org.usfirst.frc.team2141.robot.subsystems.Intake;
+import org.usfirst.frc.team2141.robot.subsystems.wheelIntake;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,7 +24,9 @@ import org.usfirst.frc.team2141.robot.subsystems.armMechanism;
 public class Robot extends IterativeRobot {
 
 	public static Chassis chassis;
-	public static armMechanism armmechanism;
+	public static Intake intake;
+	public static wheelIntake wheelintake;
+
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -34,13 +38,23 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		armmechanism = new armMechanism();
 		chassis = new Chassis();
+		intake = new Intake();
+		wheelintake = new wheelIntake();
 
 		oi = new OI();
 		chooser.addDefault("Default Auto", new DriveWithJoystick());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		chassis.publishToSmartDashboard();
+		
+
+	}
+	
+	public void publishToSmartDashboard(){
+		chassis.publishToSmartDashboard();
+	
 	}
 
 	/**
@@ -101,6 +115,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		chassis.zeroEncoders();
 	}
 
 	/**
@@ -109,6 +124,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		publishToSmartDashboard();
 	}
 
 	/**

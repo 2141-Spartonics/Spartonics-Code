@@ -1,7 +1,11 @@
 package org.usfirst.frc.team2141.robot;
 
-
-import org.usfirst.frc.team2141.robot.commands.rawControlArm;
+import org.usfirst.frc.team2141.robot.commands.closeIntake;
+import org.usfirst.frc.team2141.robot.commands.driveForward;
+import org.usfirst.frc.team2141.robot.commands.openIntake;
+import org.usfirst.frc.team2141.robot.commands.stopIntake;
+import org.usfirst.frc.team2141.robot.commands.IntakeOut;
+import org.usfirst.frc.team2141.robot.commands.IntakeIn;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
@@ -35,7 +39,12 @@ public class OI {
 		}
 
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
-		this.getButton(4).whileActive(new rawControlArm());
+		this.getButton(2).whenPressed(new openIntake());
+		this.getButton(3).whenPressed(new closeIntake());
+		this.getButton(4).toggleWhenPressed(new IntakeIn());
+		this.getButton(5).toggleWhenPressed(new IntakeOut());
+		this.getButton(5).toggleWhenPressed(new stopIntake());
+		this.getButton(4).whenPressed(new driveForward(20, .25));
 		
 	}
 	
