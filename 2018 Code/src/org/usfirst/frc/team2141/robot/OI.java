@@ -1,11 +1,9 @@
 package org.usfirst.frc.team2141.robot;
 
-import org.usfirst.frc.team2141.robot.commands.closeIntake;
-import org.usfirst.frc.team2141.robot.commands.driveForward;
-import org.usfirst.frc.team2141.robot.commands.openIntake;
-import org.usfirst.frc.team2141.robot.commands.stopIntake;
-import org.usfirst.frc.team2141.robot.commands.IntakeOut;
-import org.usfirst.frc.team2141.robot.commands.IntakeIn;
+import org.usfirst.frc.team2141.robot.commands.Intake_Close;
+import org.usfirst.frc.team2141.robot.commands.Intake_In;
+import org.usfirst.frc.team2141.robot.commands.Intake_Open;
+import org.usfirst.frc.team2141.robot.commands.Intake_Out;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
@@ -39,13 +37,10 @@ public class OI {
 		}
 
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
-		this.getButton(2).whenPressed(new openIntake());
-		this.getButton(3).whenPressed(new closeIntake());
-		this.getButton(4).toggleWhenPressed(new IntakeIn());
-		this.getButton(5).toggleWhenPressed(new IntakeOut());
-		this.getButton(5).toggleWhenPressed(new stopIntake());
-		this.getButton(4).whenPressed(new driveForward(20, .25));
-		
+		this.getButton(2).whenPressed(new Intake_Open());
+		this.getButton(3).whenPressed(new Intake_Close());
+		this.getButton(4).toggleWhenPressed(new Intake_In(0.5));
+		this.getButton(5).toggleWhenPressed(new Intake_Out(0.5));		
 	}
 	
 	public Joystick getDriveStick() {

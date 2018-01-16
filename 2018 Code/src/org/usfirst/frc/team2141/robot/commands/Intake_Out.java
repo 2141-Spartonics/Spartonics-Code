@@ -7,12 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class stopIntake extends Command {
+public class Intake_Out extends Command {
+	double speed;
 
-    public stopIntake() {
+    public Intake_Out(double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intake);
+    	speed = -this.speed;
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +23,7 @@ public class stopIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.stopIntake();
+    	Robot.intake.setIntakeSpeed(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,10 +33,14 @@ public class stopIntake extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.intake.setIntakeSpeed(0);
+
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.intake.setIntakeSpeed(0);
+
     }
 }

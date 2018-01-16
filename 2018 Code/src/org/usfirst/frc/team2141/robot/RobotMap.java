@@ -13,7 +13,8 @@ public class RobotMap {
 		public static final int LEFT_SLAVE_MOTOR = 1;
 		public static final int RIGHT_MASTER_MOTOR = 8;
 		public static final int RIGHT_SLAVE_MOTOR = 5; 
-
+		public static final int LEFT_INTAKE_MOTOR = 0;
+		public static final int RIGHT_INTAKE_MOTOR = 0;
 
 		
 		//Drive Controller

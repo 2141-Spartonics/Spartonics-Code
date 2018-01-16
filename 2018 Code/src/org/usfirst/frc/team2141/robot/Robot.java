@@ -9,9 +9,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2141.robot.commands.DriveWithJoystick;
+import org.usfirst.frc.team2141.robot.commands.autonomous.startWithIntakeClosed;
+import org.usfirst.frc.team2141.robot.commands.autonomous.startWithIntakeOpen;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
-import org.usfirst.frc.team2141.robot.subsystems.wheelIntake;
+
+import com.analog.adis16448.frc.ADIS16448_IMU;
 
 
 /**
@@ -25,7 +28,7 @@ public class Robot extends IterativeRobot {
 
 	public static Chassis chassis;
 	public static Intake intake;
-	public static wheelIntake wheelintake;
+    ADIS16448_IMU imu;
 
 	public static OI oi;
 
@@ -40,21 +43,24 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		chassis = new Chassis();
 		intake = new Intake();
-		wheelintake = new wheelIntake();
+		imu = new ADIS16448_IMU();
 
 		oi = new OI();
 		chooser.addDefault("Default Auto", new DriveWithJoystick());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addObject("Closed Intake", new startWithIntakeClosed());
+		chooser.addObject("Open Intake", new startWithIntakeOpen());
 		SmartDashboard.putData("Auto mode", chooser);
 		
-		chassis.publishToSmartDashboard();
 		
-
+		chassis.publishToSmartDashboard();
+		intake.publishToSmartDashboard();
+	
 	}
 	
 	public void publishToSmartDashboard(){
 		chassis.publishToSmartDashboard();
-	
+		intake.publishToSmartDashboard();
+		SmartDashboard.putData("IMU", imu);
 	}
 
 	/**
@@ -116,6 +122,9 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		chassis.zeroEncoders();
+		chassis.setPIDProfile(0);
+		
+		intake.openintake();
 	}
 
 	/**
@@ -125,6 +134,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		publishToSmartDashboard();
+		
 	}
 
 	/**
