@@ -2,14 +2,22 @@
 package org.usfirst.frc.team2141.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team2141.chassis.DriveWithJoystick;
+import org.usfirst.frc.team2141.robot.commands.DriveWithJoystick;
+
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
+import org.usfirst.frc.team2141.robot.subsystems.Elevator_Climber;
+import org.usfirst.frc.team2141.robot.subsystems.Elevator_Intake;
+import org.usfirst.frc.team2141.robot.subsystems.Intake;
+
+import com.analog.adis16448.frc.ADIS16448_IMU;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,7 +28,14 @@ import org.usfirst.frc.team2141.robot.subsystems.Chassis;
  */
 public class Robot extends IterativeRobot {
 
+	public static Elevator_Climber elevator_climber;
+	public static Elevator_Intake elevator_intake;
 	public static Chassis chassis;
+	public static Intake intake;
+	
+	PowerDistributionPanel pdp;
+    ADIS16448_IMU imu;
+
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -32,12 +47,30 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		elevator_climber = new Elevator_Climber();
+		elevator_intake = new Elevator_Intake();
 		chassis = new Chassis();
+		intake = new Intake();
+		
+		imu = new ADIS16448_IMU();
+		pdp = new PowerDistributionPanel();
 
 		oi = new OI();
 		chooser.addDefault("Default Auto", new DriveWithJoystick());
-		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		chassis.publishToSmartDashboard();
+		intake.publishToSmartDashboard();
+	
+	}
+	
+	public void publishToSmartDashboard(){
+		chassis.publishToSmartDashboard();
+		intake.publishToSmartDashboard();
+		SmartDashboard.putData(imu);
+		SmartDashboard.putData(pdp);
+		
+		SmartDashboard.putNumber("Angle", imu.getYaw());
 	}
 
 	/**
@@ -98,6 +131,10 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		chassis.zeroEncoders();
+		chassis.setPIDProfile(0);
+		
+		intake.openintake();
 	}
 
 	/**
@@ -106,6 +143,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		publishToSmartDashboard();
+		
 	}
 
 	/**

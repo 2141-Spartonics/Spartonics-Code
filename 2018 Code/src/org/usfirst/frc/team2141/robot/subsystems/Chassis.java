@@ -1,14 +1,19 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
-import org.usfirst.frc.team2141.chassis.DriveWithJoystick;
 import org.usfirst.frc.team2141.robot.RobotMap;
-import org.usfirst.frc.team2141.robot.subsystems.Chassis.ShifterValue;
+import org.usfirst.frc.team2141.robot.commands.DriveWithJoystick;
 
-import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -17,99 +22,136 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Chassis extends Subsystem {
 	
 	// Motor Objects
-	private CANTalon leftMasterMotor;
-	private CANTalon leftSlaveMotorA;
-	private CANTalon leftSlaveMotorB;
-	private CANTalon rightMasterMotor;
-	private CANTalon rightSlaveMotorA;
-	private CANTalon rightSlaveMotorB;
+	TalonSRX leftMasterMotor;
+	TalonSRX leftSlaveMotor;
+	TalonSRX rightMasterMotor;
+	TalonSRX rightSlaveMotor;
 	
-	// Shifter Objects
-	private DoubleSolenoid leftShifterSolenoid;
-	private DoubleSolenoid rightShifterSolenoid;
-	
-	public enum ShifterValue {
-		HIGH, LOW
-	}
-	
-	private ShifterValue leftGearing = ShifterValue.LOW;
-	private ShifterValue rightGearing = ShifterValue.LOW;
-	
-	//DistanceFollower leftDriveFollower;
-	//DistanceFollower rightDriveFollower;
-	
-	private boolean flipped;
+	Talon testLeft;
+	Talon testRight;
+	DifferentialDrive drive;
+
+	double pidP = 0.2;
+	double pidI = 0.0;
+	double pidD = 0.0;
+	double pidF = 0.0;
+	int currentProfile;
+		
+	public static final int kSlotIdx = 0;
+	public static final int kPIDLoopIdx = 0;
+	public static final int kTimeoutMs = 10;
+		
+	//private boolean flipped;
 		
 	public Chassis() {
+		leftMasterMotor = new TalonSRX(RobotMap.LEFT_MASTER_MOTOR);
+		leftSlaveMotor = new TalonSRX(RobotMap.LEFT_SLAVE_MOTOR);
+		rightMasterMotor = new TalonSRX(RobotMap.RIGHT_MASTER_MOTOR);
+		rightSlaveMotor = new TalonSRX(RobotMap.RIGHT_SLAVE_MOTOR);
 		
-		leftShifterSolenoid = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_SOLENOID_CHANNEL_A,
-				RobotMap.LEFT_SHIFTER_SOLENOID_CHANNEL_B);
-		rightShifterSolenoid = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_SOLENOID_CHANNEL_A,
-				RobotMap.RIGHT_SHIFTER_SOLENOID_CHANNEL_B);
 		
-		leftMasterMotor = new CANTalon(RobotMap.LEFT_MASTER_MOTOR);
-		leftSlaveMotorA = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_A);
-		leftSlaveMotorB = new CANTalon(RobotMap.LEFT_SLAVE_MOTOR_B);
-		rightMasterMotor = new CANTalon(RobotMap.RIGHT_MASTER_MOTOR);
-		rightSlaveMotorA = new CANTalon(RobotMap.RIGHT_SLAVE_MOTOR_A);
-		rightSlaveMotorB = new CANTalon(RobotMap.RIGHT_SLAVE_MOTOR_B);
-		
-		//Master motor setup
-		this.rightMasterMotor.enableBrakeMode(true);
-		this.rightMasterMotor.setInverted(false);
-		//this.rightMasterMotor.reverseSensor(false);
-		this.rightMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		//this.rightMasterMotor.setCurrentLimit(RobotMap.CURRENT_LIMIT);
-		//this.rightMasterMotor.EnableCurrentLimit(currentEnable);
-		
-		this.leftMasterMotor.enableBrakeMode(true);
+		//Setup Master Motor
+		this.leftMasterMotor.setNeutralMode(NeutralMode.Brake);
+		this.leftMasterMotor.setSensorPhase(true);
 		this.leftMasterMotor.setInverted(true);
-		//this.leftMasterMotor.reverseSensor(false);
-		this.leftMasterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		//this.leftMasterMotor.setCurrentLimit(RobotMap.CURRENT_LIMIT);
-		//this.leftMasterMotor.EnableCurrentLimit(currentEnable);
+		this.leftMasterMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, kTimeoutMs);
+		this.leftMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, kSlotIdx, kTimeoutMs);
 		
+		this.rightMasterMotor.setNeutralMode(NeutralMode.Brake);
+		this.rightMasterMotor.setSensorPhase(true);
+		this.rightMasterMotor.setInverted(true);
+		this.rightMasterMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, kTimeoutMs);
+		this.rightMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, kSlotIdx, kTimeoutMs);
 		
-		//Slave motor setup
-		this.leftSlaveMotorA.enableBrakeMode(true);
-		this.leftSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
-		//this.leftSlaveMotorA.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
-		this.leftSlaveMotorA.set(RobotMap.LEFT_MASTER_MOTOR);
+		//Tell the motor its starting position
+		int absoluteLeftPosition = leftMasterMotor.getSelectedSensorPosition(kTimeoutMs) & 0xFFF;
+		leftMasterMotor.setSelectedSensorPosition(absoluteLeftPosition, kPIDLoopIdx, kTimeoutMs);
 		
-		this.leftSlaveMotorB.enableBrakeMode(true);
-		this.leftSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
-		//this.leftSlaveMotorB.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
-		this.leftSlaveMotorB.set(RobotMap.LEFT_MASTER_MOTOR);
+		int absoluteRightPosition = rightMasterMotor.getSelectedSensorPosition(kTimeoutMs) & 0xFFF;
+		rightMasterMotor.setSelectedSensorPosition(absoluteRightPosition, kPIDLoopIdx, kTimeoutMs);
+        
+        //Set motor limits for master motor
+		leftMasterMotor.configNominalOutputForward(0, kTimeoutMs);
+		leftMasterMotor.configNominalOutputReverse(0, kTimeoutMs);
+		leftMasterMotor.configPeakOutputForward(1, kTimeoutMs);
+		leftMasterMotor.configPeakOutputReverse(-1, kTimeoutMs);
 		
-		this.rightSlaveMotorA.enableBrakeMode(true);
-		this.rightSlaveMotorA.changeControlMode(CANTalon.TalonControlMode.Follower);
-		//this.rightSlaveMotorA.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
-		this.rightSlaveMotorA.set(RobotMap.RIGHT_MASTER_MOTOR);
+		rightMasterMotor.configNominalOutputForward(0, kTimeoutMs);
+		rightMasterMotor.configNominalOutputReverse(0, kTimeoutMs);
+		rightMasterMotor.configPeakOutputForward(1, kTimeoutMs);
+		rightMasterMotor.configPeakOutputReverse(-1, kTimeoutMs);
+        
+        //Configure closed pid loop
+		leftMasterMotor.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs); 
+		leftMasterMotor.config_kP(kPIDLoopIdx, pidP, kTimeoutMs);
+		leftMasterMotor.config_kI(kPIDLoopIdx, pidI, kTimeoutMs);
+		leftMasterMotor.config_kD(kPIDLoopIdx, pidD, kTimeoutMs);
+        leftMasterMotor.config_kF(kPIDLoopIdx, pidF, kTimeoutMs);
+        
+        rightMasterMotor.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs); 
+        rightMasterMotor.config_kP(kPIDLoopIdx, pidP, kTimeoutMs);
+        rightMasterMotor.config_kI(kPIDLoopIdx, pidI, kTimeoutMs);
+        rightMasterMotor.config_kD(kPIDLoopIdx, pidD, kTimeoutMs);
+        rightMasterMotor.config_kF(kPIDLoopIdx, pidF, kTimeoutMs);
+        
+        //Ignore PID
+		leftMasterMotor.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs); 
+		leftMasterMotor.config_kP(1, 0, kTimeoutMs);
+		leftMasterMotor.config_kI(1, 0, kTimeoutMs);
+		leftMasterMotor.config_kD(1, 0, kTimeoutMs);
+        leftMasterMotor.config_kF(1, 0, kTimeoutMs);
+        
+        rightMasterMotor.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs); 
+        rightMasterMotor.config_kP(1, 0, kTimeoutMs);
+        rightMasterMotor.config_kI(1, 0, kTimeoutMs);
+        rightMasterMotor.config_kD(1, 0, kTimeoutMs);
+        rightMasterMotor.config_kF(1, 0, kTimeoutMs);
+
+
+		//Setup Slave Motor
+        leftSlaveMotor.setNeutralMode(NeutralMode.Brake);
+		leftSlaveMotor.follow(leftMasterMotor);
+		leftSlaveMotor.configClosedloopRamp(0.5, 0);
+		leftSlaveMotor.setInverted(true);
 		
-		this.rightSlaveMotorB.enableBrakeMode(true);
-		this.rightSlaveMotorB.changeControlMode(CANTalon.TalonControlMode.Follower);
-		//this.rightSlaveMotorB.setVoltageRampRate(RobotMap.DRIVE_RAMP_RATE);
-		this.rightSlaveMotorB.set(RobotMap.RIGHT_MASTER_MOTOR);
+		rightSlaveMotor.setNeutralMode(NeutralMode.Brake);
+		rightSlaveMotor.follow(rightMasterMotor);
+		rightSlaveMotor.configClosedloopRamp(0.5, 0);
+		leftSlaveMotor.setInverted(true);
+				
 	}
+
 	
 	public void publishToSmartDashboard() {
-		//SmartDashboard.putNumber("Left Encoder Speed", this.getLeftEncoderVelocity());
-		//SmartDashboard.putNumber("Right Encoder Speed", this.getRightEncoderVelocity());
-		//SmartDashboard.putNumber("Right Encoder Distance", this.getRightEncoderCount());
-		//SmartDashboard.putNumber("Left Encoder Distance", this.getLeftEncoderCount());
-		SmartDashboard.putBoolean("Flipped", this.flipped);
-		SmartDashboard.putNumber("Left Setpoint", this.leftMasterMotor.getSetpoint());
-		SmartDashboard.putNumber("Right Setpoint", this.rightMasterMotor.getSetpoint());
-		SmartDashboard.putNumber("Left Velocity Error", this.leftMasterMotor.getClosedLoopError());
-		SmartDashboard.putNumber("Right Velocity Error", this.rightMasterMotor.getClosedLoopError());
-		//SmartDashboard.putBoolean("Left in Low", this.leftInLow());
-		//SmartDashboard.putBoolean("Right in Low", this.rightInLow());
-		SmartDashboard.putNumber("Right throttle", this.rightMasterMotor.getOutputVoltage());
-		SmartDashboard.putNumber("Left throttle", this.leftMasterMotor.getOutputVoltage());
+        SmartDashboard.putNumber("PID Profile", currentProfile);
+
+		SmartDashboard.putNumber("Left Encoder Speed", leftMasterMotor.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("Left Encoder Distance", leftMasterMotor.getSelectedSensorPosition(0));
+		//SmartDashboard.putNumber("Velocity Error", armMotorAlpha.getClosedLoopError());
+		SmartDashboard.putNumber("Left Motor Voltage", leftMasterMotor.getMotorOutputVoltage());
+		SmartDashboard.putNumber("Left Motor Percent", leftMasterMotor.getMotorOutputPercent());
+		SmartDashboard.putNumber("Left Motor Error", leftMasterMotor.getClosedLoopError(0));
+		
+		SmartDashboard.putNumber("Right Encoder Speed", rightMasterMotor.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("Right Encoder Distance", rightMasterMotor.getSelectedSensorPosition(0));
+		//SmartDashboard.putNumber("Velocity Error", armMotorAlpha.getClosedLoopError());
+		SmartDashboard.putNumber("Right Motor Voltage", rightMasterMotor.getMotorOutputVoltage());
+		SmartDashboard.putNumber("Right Motor Percent", rightMasterMotor.getMotorOutputPercent());
+		SmartDashboard.putNumber("Right Motor Error", rightMasterMotor.getClosedLoopError(0));
+
+		SmartDashboard.putNumber("Right Slave Motor Percent", rightSlaveMotor.getMotorOutputPercent());
+		SmartDashboard.putNumber("Left Slave Motor Percent", leftSlaveMotor.getMotorOutputPercent());
+
 	}
 	
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveWithJoystick());
+	}
+	
+	public void setPIDProfile(int profile) {
+        leftMasterMotor.selectProfileSlot(profile, 0);
+        rightMasterMotor.selectProfileSlot(profile, 0);
+        currentProfile = profile;
 	}
 	
 	public void arcadeDrive(double moveValue, double rotateValue) {
@@ -120,9 +162,6 @@ public class Chassis extends Subsystem {
 		moveValue = limit(moveValue);
 		rotateValue = limit(rotateValue);
 
-		// square the inputs (while preserving the sign) to increase fine
-		// control
-		// while permitting full power
 		if (moveValue >= 0.0) {
 			moveValue = moveValue * moveValue;
 		} else {
@@ -152,7 +191,27 @@ public class Chassis extends Subsystem {
 			}
 		}
 		
-		}
+		this.setLeftMotorSpeed(-leftMotorSpeed);
+		this.setRightMotorSpeed(-rightMotorSpeed);
+	}
+	
+	public void setLeftMotorVelocity(double speed) {
+		this.leftMasterMotor.set(ControlMode.Velocity, speed * 4096 * 500 / 600);	
+	}
+
+	public void setRightMotorVelocity(double speed) {
+		this.rightMasterMotor.set(ControlMode.Velocity, speed* 4096 * 500 / 600);	
+	
+	}
+	
+	public void setLeftMotorSpeed(double speed) {
+		this.leftMasterMotor.set(ControlMode.PercentOutput, speed);	
+	}
+
+	public void setRightMotorSpeed(double speed) {
+		this.rightMasterMotor.set(ControlMode.PercentOutput, speed);	
+	
+	}
 
 		private double limit(double val) {
 			if (val > 1.0) {
@@ -165,11 +224,33 @@ public class Chassis extends Subsystem {
 		}
 	
 	
-	public CANTalon getLeftMotor(){
+	public TalonSRX getLeftMotor(){
 		return this.leftMasterMotor;
 	}
 	
-	public CANTalon getRightMotor(){
+	public TalonSRX getRightMotor(){
 		return this.rightMasterMotor;
 	}
-}
+	
+	public double getAverageEncoderPosition(){
+		return ((rightMasterMotor.getSelectedSensorPosition(0)) + leftMasterMotor.getSelectedSensorPosition(0)) / 2.0;
+	}
+	
+	public void zeroEncoders() {
+		leftMasterMotor.setSelectedSensorPosition(0, kSlotIdx, kTimeoutMs);
+		rightMasterMotor.setSelectedSensorPosition(0, kSlotIdx, kTimeoutMs);
+	}
+	
+	public double convertRPMToTicks(double RPM) {
+		return RPM * 12;
+	}
+	
+	public double convertTicksToInches(double ticks) {
+		return ticks * 54 / 20 * 4 * Math.PI;
+	}
+	
+	public double convertInchesToTicks(double inches) {
+		return inches / (4 * Math.PI) * 20 / 54;
+	}
+	
+	}

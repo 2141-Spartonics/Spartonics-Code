@@ -9,23 +9,20 @@ package org.usfirst.frc.team2141.robot;
 public class RobotMap {
 	
 	//Motor channel numbers
-		public static final int LEFT_MASTER_MOTOR = 0;
-		public static final int LEFT_SLAVE_MOTOR_A = 2;
-		public static final int LEFT_SLAVE_MOTOR_B = 3;
-		public static final int RIGHT_MASTER_MOTOR = 4;
-		public static final int RIGHT_SLAVE_MOTOR_A = 5; 
-		public static final int RIGHT_SLAVE_MOTOR_B = 6;
-	
-	//Solenoid channel numbers
-		public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_B = 0;
-		public static final int LEFT_SHIFTER_SOLENOID_CHANNEL_A = 1;
-		public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_A = 2;
-		public static final int RIGHT_SHIFTER_SOLENOID_CHANNEL_B = 3;
-		
+		public static final int LEFT_MASTER_MOTOR = 3;
+		public static final int LEFT_SLAVE_MOTOR = 1;
+		public static final int RIGHT_MASTER_MOTOR = 8;
+		public static final int RIGHT_SLAVE_MOTOR = 5; 
+		public static final int ELEVATOR_CLIMB_MOTOR = 0;
+		public static final int ELEVATOR_INTAKE_MOTOR = 0;
 		
 		//Drive Controller
 		public static final int DRIVE_STICK_NUMBER = 0;
 		public static final int AUXILLIARY_STICK_NUMBER = 1;
 //		public static final int SHOOTER_CONTROL_BUTTON = 4;
+		
+		//Pnuematics Values
+		public static final int INTAKE_SOLENOID_CHANNEL_A = 6;
+		public static final int INTAKE_SOLENOID_CHANNEL_B = 7;
 }
 

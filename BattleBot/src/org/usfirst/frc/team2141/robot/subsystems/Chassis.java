@@ -25,7 +25,7 @@ public class Chassis extends Subsystem {
     // here. Call these from Commands.
 	
 	public Chassis() {
-		rightMotor = new Spark(RobotMap.RIGHT_MOTOR);
+		rightMotor = new Spark(4);
 		leftMotor = new Spark(RobotMap.LEFT_MOTOR);
 		drive = new RobotDrive(rightMotor, leftMotor);
 		

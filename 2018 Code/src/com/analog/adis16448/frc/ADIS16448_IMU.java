@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package utils;
+package com.analog.adis16448.frc;
 
 import java.nio.ByteOrder;
 import java.nio.ByteBuffer;
@@ -14,8 +14,6 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-
-
 //import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tInstances;
 //import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tResourceType;
 //import edu.wpi.first.wpilibj.communication.UsageReporting;
@@ -23,8 +21,10 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 import edu.wpi.first.wpilibj.tables.ITable;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DigitalInput;
-//import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GyroBase;
 import edu.wpi.first.wpilibj.InterruptableSensorBase;
@@ -126,7 +126,7 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWind
   private AtomicBoolean m_freed = new AtomicBoolean(false);
 
   private SPI m_spi;
-  //private DigitalOutput m_reset;
+  private DigitalOutput m_reset;
   private DigitalInput m_interrupt;
 
   // Sample from the IMU
@@ -140,14 +140,10 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWind
     public double mag_x;
     public double mag_y;
     public double mag_z;
-    @SuppressWarnings("unused")
-	public double baro;
-    @SuppressWarnings("unused")
-	public double temp;
+    public double baro;
+    public double temp;
     public double dt;
 
-    
-    
     // Swap axis as appropriate for yaw axis selection
     public void adjustYawAxis(Axis yaw_axis) {
       switch (yaw_axis) {
@@ -257,13 +253,13 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWind
     }
 
     // Set IMU internal decimation to 204.8 SPS
-    writeRegister(kRegSMPL_PRD, 201);
+    writeRegister(kRegSMPL_PRD, 0x0201);
 
     // Enable Data Ready (LOW = Good Data) on DIO1 (PWM0 on MXP) & PoP
-    writeRegister(kRegMSC_CTRL, 0x44);
+    writeRegister(kRegMSC_CTRL, 0x0044);
 
     // Configure IMU internal Bartlett filter
-    writeRegister(kRegSENS_AVG, 400);
+    writeRegister(kRegSENS_AVG, 0x0400);
 
     // Read serial number and lot ID
     //m_serial_num = readRegister(kRegSERIAL_NUM);
@@ -1084,23 +1080,27 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWind
     m_tilt_comp_yaw = enabled;
   }
 
+@Override
+public void updateTable() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void startLiveWindowMode() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void stopLiveWindowMode() {
+	// TODO Auto-generated method stub
+	
+}
+
   /**
    * {@inheritDoc}
    */
-  @Override
-  public void updateTable() {
-    ITable table = getTable();
-    if (table != null) {
-      table.putNumber("Value", getAngle());
-      table.putNumber("Pitch", getPitch());
-      table.putNumber("Roll", getRoll());
-      table.putNumber("Yaw", getYaw());
-      table.putNumber("AccelX", getAccelX());
-      table.putNumber("AccelY", getAccelY());
-      table.putNumber("AccelZ", getAccelZ());
-      table.putNumber("AngleX", getAngleX());
-      table.putNumber("AngleY", getAngleY());
-      table.putNumber("AngleZ", getAngleZ());
-    }
-  }
+
+
 }
