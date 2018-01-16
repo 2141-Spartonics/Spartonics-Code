@@ -7,14 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Intake_In extends Command {
-	double speed;
+public class Climber_Control extends Command {
+	double velocity;
 
-    public Intake_In(double speed) {
+    public Climber_Control(double velocity) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);
-    	speed = this.speed;
+    	requires(Robot.elevator_climber);
+    	velocity = this.velocity;
     }
 
     // Called just before this Command runs the first time
@@ -23,7 +23,8 @@ public class Intake_In extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.setIntakeSpeed(speed);
+    	Robot.elevator_climber.setElevatorVelocity(velocity);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,13 +34,14 @@ public class Intake_In extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.setIntakeSpeed(0);
+    	Robot.elevator_climber.setElevatorVelocity(0);
 
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.intake.setIntakeSpeed(0);
+    	Robot.elevator_climber.setElevatorVelocity(0);
+
     }
 }
