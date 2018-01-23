@@ -9,7 +9,9 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,15 +28,14 @@ public class Chassis extends Subsystem {
 	TalonSRX leftSlaveMotor;
 	TalonSRX rightMasterMotor;
 	TalonSRX rightSlaveMotor;
-	
-	Talon testLeft;
-	Talon testRight;
-	DifferentialDrive drive;
+
+	Encoder absoluteEncoder;
 
 	double pidP = 0.1;
 	double pidI = 0.0;
 	double pidD = 0.0;
 	double pidF = 0.0;
+	int currentProfile;
 		
 	public static final int kSlotIdx = 0;
 	public static final int kPIDLoopIdx = 0;
@@ -48,17 +49,18 @@ public class Chassis extends Subsystem {
 		rightMasterMotor = new TalonSRX(RobotMap.RIGHT_MASTER_MOTOR);
 		rightSlaveMotor = new TalonSRX(RobotMap.RIGHT_SLAVE_MOTOR);
 		
+		absoluteEncoder = new Encoder(0, 1);
 		
 		//Setup Master Motor
 		this.leftMasterMotor.setNeutralMode(NeutralMode.Brake);
-		this.leftMasterMotor.setSensorPhase(false);
+		this.leftMasterMotor.setSensorPhase(true);
 		this.leftMasterMotor.setInverted(true);
 		this.leftMasterMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, kTimeoutMs);
 		this.leftMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, kSlotIdx, kTimeoutMs);
 		
 		this.rightMasterMotor.setNeutralMode(NeutralMode.Brake);
-		this.rightMasterMotor.setSensorPhase(false);
-		this.rightMasterMotor.setInverted(true);
+		this.rightMasterMotor.setSensorPhase(true);
+		this.rightMasterMotor.setInverted(false);
 		this.rightMasterMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, kTimeoutMs);
 		this.rightMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, kSlotIdx, kTimeoutMs);
 		
@@ -86,14 +88,25 @@ public class Chassis extends Subsystem {
 		leftMasterMotor.config_kI(kPIDLoopIdx, pidI, kTimeoutMs);
 		leftMasterMotor.config_kD(kPIDLoopIdx, pidD, kTimeoutMs);
         leftMasterMotor.config_kF(kPIDLoopIdx, pidF, kTimeoutMs);
-        leftMasterMotor.selectProfileSlot(0, 0);
         
         rightMasterMotor.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs); 
         rightMasterMotor.config_kP(kPIDLoopIdx, pidP, kTimeoutMs);
         rightMasterMotor.config_kI(kPIDLoopIdx, pidI, kTimeoutMs);
         rightMasterMotor.config_kD(kPIDLoopIdx, pidD, kTimeoutMs);
         rightMasterMotor.config_kF(kPIDLoopIdx, pidF, kTimeoutMs);
-        rightMasterMotor.selectProfileSlot(0, 0);
+        
+        //Ignore PID
+		leftMasterMotor.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs); 
+		leftMasterMotor.config_kP(1, 0, kTimeoutMs);
+		leftMasterMotor.config_kI(1, 0, kTimeoutMs);
+		leftMasterMotor.config_kD(1, 0, kTimeoutMs);
+        leftMasterMotor.config_kF(1, 0, kTimeoutMs);
+        
+        rightMasterMotor.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs); 
+        rightMasterMotor.config_kP(1, 0, kTimeoutMs);
+        rightMasterMotor.config_kI(1, 0, kTimeoutMs);
+        rightMasterMotor.config_kD(1, 0, kTimeoutMs);
+        rightMasterMotor.config_kF(1, 0, kTimeoutMs);
 
 
 		//Setup Slave Motor
@@ -105,23 +118,29 @@ public class Chassis extends Subsystem {
 		rightSlaveMotor.setNeutralMode(NeutralMode.Brake);
 		rightSlaveMotor.follow(rightMasterMotor);
 		rightSlaveMotor.configClosedloopRamp(0.5, 0);
+		leftSlaveMotor.setInverted(true);
 				
 	}
 
 	
 	public void publishToSmartDashboard() {
+        SmartDashboard.putNumber("PID Profile", currentProfile);
+        SmartDashboard.putNumber("Abolute Encoder", getEncoderValue());
+
 		SmartDashboard.putNumber("Left Encoder Speed", leftMasterMotor.getSelectedSensorVelocity(0));
-		SmartDashboard.putNumber("Left Encoder Distance", leftMasterMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Left Encoder Distance", leftMasterMotor.getSelectedSensorPosition(0) / 1024);
 		//SmartDashboard.putNumber("Velocity Error", armMotorAlpha.getClosedLoopError());
 		SmartDashboard.putNumber("Left Motor Voltage", leftMasterMotor.getMotorOutputVoltage());
 		SmartDashboard.putNumber("Left Motor Percent", leftMasterMotor.getMotorOutputPercent());
+		SmartDashboard.putNumber("Left Motor Error", leftMasterMotor.getClosedLoopError(0));
 		
 		SmartDashboard.putNumber("Right Encoder Speed", rightMasterMotor.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("Right Encoder Distance", rightMasterMotor.getSelectedSensorPosition(0));
 		//SmartDashboard.putNumber("Velocity Error", armMotorAlpha.getClosedLoopError());
 		SmartDashboard.putNumber("Right Motor Voltage", rightMasterMotor.getMotorOutputVoltage());
 		SmartDashboard.putNumber("Right Motor Percent", rightMasterMotor.getMotorOutputPercent());
-		
+		SmartDashboard.putNumber("Right Motor Error", rightMasterMotor.getClosedLoopError(0));
+
 		SmartDashboard.putNumber("Right Slave Motor Percent", rightSlaveMotor.getMotorOutputPercent());
 		SmartDashboard.putNumber("Left Slave Motor Percent", leftSlaveMotor.getMotorOutputPercent());
 
@@ -129,6 +148,12 @@ public class Chassis extends Subsystem {
 	
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveWithJoystick());
+	}
+	
+	public void setPIDProfile(int profile) {
+        leftMasterMotor.selectProfileSlot(profile, 0);
+        rightMasterMotor.selectProfileSlot(profile, 0);
+        currentProfile = profile;
 	}
 	
 	public void arcadeDrive(double moveValue, double rotateValue) {
@@ -216,6 +241,22 @@ public class Chassis extends Subsystem {
 	public void zeroEncoders() {
 		leftMasterMotor.setSelectedSensorPosition(0, kSlotIdx, kTimeoutMs);
 		rightMasterMotor.setSelectedSensorPosition(0, kSlotIdx, kTimeoutMs);
+	}
+	
+	public double convertRPMToTicks(double RPM) {
+		return RPM * 12;
+	}
+	
+	public double convertTicksToInches(double ticks) {
+		return ticks / 1024 * 4 * Math.PI;
+	}
+	
+	public double convertInchesToTicks(double inches) {
+		return inches / (4 * Math.PI) * 1024;
+	}
+	
+	public int getEncoderValue() {
+		return absoluteEncoder.getRaw();
 	}
 	
 	}

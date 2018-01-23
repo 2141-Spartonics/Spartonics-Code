@@ -1,21 +1,22 @@
-package org.usfirst.frc.team2141.robot.commands;
+package org.usfirst.frc.team2141.robot.commands.autonomous;
 
 import org.usfirst.frc.team2141.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class driveForward extends Command {
+public class DriveStraight extends Command {
 
 	double encoderCount;
 	double maxSpeed;
 	
-	public driveForward(double distanceInInches, double drivingSpeed) {
+	public DriveStraight(double distanceInInches, double drivingSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.chassis);		
-		encoderCount = distanceInInches * 440.0;
+		encoderCount = Robot.chassis.convertInchesToTicks(distanceInInches);
 		maxSpeed = drivingSpeed;
 	}
 
@@ -27,8 +28,11 @@ public class driveForward extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		double error = encoderCount - Robot.chassis.getAverageEncoderPosition();
-		Robot.chassis.setLeftMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.00005*error)+0.05));
-		Robot.chassis.setRightMotorVelocity(error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.00005*error)+0.05));
+		//double setpoint = error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.00005*error)+0.05);
+		
+		Robot.chassis.setLeftMotorVelocity(maxSpeed);
+		Robot.chassis.setRightMotorVelocity(maxSpeed);
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -49,5 +53,7 @@ public class driveForward extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		Robot.chassis.setLeftMotorVelocity(0);
+		Robot.chassis.setRightMotorVelocity(0);
 	}
 }

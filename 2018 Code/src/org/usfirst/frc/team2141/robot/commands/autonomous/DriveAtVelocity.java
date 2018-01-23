@@ -1,27 +1,34 @@
-package org.usfirst.frc.team2141.robot.commands;
+package org.usfirst.frc.team2141.robot.commands.autonomous;
+
 
 import org.usfirst.frc.team2141.robot.Robot;
+import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class stopIntake extends Command {
+public class DriveAtVelocity extends Command {
 
-    public stopIntake() {
+	double velocity;
+    public DriveAtVelocity(double velocity) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);
+		requires(Robot.chassis);		
+    	velocity = this.velocity;
     }
+    
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.chassis.zeroEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.stopIntake();
+    	Robot.chassis.setLeftMotorVelocity(velocity);
+    	Robot.chassis.setRightMotorVelocity(velocity);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,10 +38,14 @@ public class stopIntake extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.chassis.setLeftMotorVelocity(0);
+    	Robot.chassis.setRightMotorVelocity(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.chassis.setLeftMotorVelocity(0);
+    	Robot.chassis.setRightMotorVelocity(0);
     }
 }
