@@ -9,12 +9,12 @@ package org.usfirst.frc.team2141.robot;
 public class RobotMap {
 	
 	//Motor channel numbers
-		public static final int LEFT_MASTER_MOTOR = 3;
-		public static final int LEFT_SLAVE_MOTOR = 1;
-		public static final int RIGHT_MASTER_MOTOR = 8;
-		public static final int RIGHT_SLAVE_MOTOR = 5; 
-		public static final int ELEVATOR_CLIMB_MOTOR = 0;
-		public static final int ELEVATOR_INTAKE_MOTOR = 0;
+		public static final int LEFT_MASTER_MOTOR = 8;
+		public static final int LEFT_SLAVE_MOTOR = 7;
+		public static final int RIGHT_MASTER_MOTOR = 3;
+		public static final int RIGHT_SLAVE_MOTOR = 9; 
+		public static final int ELEVATOR_CLIMB_MOTOR = 2;
+		public static final int ELEVATOR_INTAKE_MOTOR = 1;
 		
 		//Drive Controller
 		public static final int DRIVE_STICK_NUMBER = 0;

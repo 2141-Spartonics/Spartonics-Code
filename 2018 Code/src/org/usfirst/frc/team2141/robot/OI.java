@@ -2,6 +2,7 @@ package org.usfirst.frc.team2141.robot;
 
 import org.usfirst.frc.team2141.robot.commands.Intake_Close;
 import org.usfirst.frc.team2141.robot.commands.Intake_Open;
+import org.usfirst.frc.team2141.robot.commands.autonomous.DriveAtVelocity;
 import org.usfirst.frc.team2141.robot.commands.autonomous.DriveStraight;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -38,12 +39,10 @@ public class OI {
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
 		this.getButton(2).whenPressed(new Intake_Open());
 		this.getButton(3).whenPressed(new Intake_Close());
-		this.getButton(4).whileHeld(new DriveStraight(20, 0.25));	
+		this.getButton(4).whileHeld(new DriveAtVelocity(0.5));
+		this.getButton(5).whileHeld(new DriveStraight(2000, 0.5));
 		
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
-				this.getButton(2).whenPressed(new Intake_Open());
-				this.getButton(3).whenPressed(new Intake_Close());
-				this.getButton(4).whileHeld(new DriveStraight(20, 0.25));
 				
 				/* Left joystick drive
 				 * Right joystick x

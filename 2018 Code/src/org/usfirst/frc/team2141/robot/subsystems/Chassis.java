@@ -9,7 +9,9 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,12 +28,10 @@ public class Chassis extends Subsystem {
 	TalonSRX leftSlaveMotor;
 	TalonSRX rightMasterMotor;
 	TalonSRX rightSlaveMotor;
-	
-	Talon testLeft;
-	Talon testRight;
-	DifferentialDrive drive;
 
-	double pidP = 0.2;
+	Encoder absoluteEncoder;
+
+	double pidP = 0.1;
 	double pidI = 0.0;
 	double pidD = 0.0;
 	double pidF = 0.0;
@@ -49,6 +49,7 @@ public class Chassis extends Subsystem {
 		rightMasterMotor = new TalonSRX(RobotMap.RIGHT_MASTER_MOTOR);
 		rightSlaveMotor = new TalonSRX(RobotMap.RIGHT_SLAVE_MOTOR);
 		
+		absoluteEncoder = new Encoder(0, 1);
 		
 		//Setup Master Motor
 		this.leftMasterMotor.setNeutralMode(NeutralMode.Brake);
@@ -59,7 +60,7 @@ public class Chassis extends Subsystem {
 		
 		this.rightMasterMotor.setNeutralMode(NeutralMode.Brake);
 		this.rightMasterMotor.setSensorPhase(true);
-		this.rightMasterMotor.setInverted(true);
+		this.rightMasterMotor.setInverted(false);
 		this.rightMasterMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, kTimeoutMs);
 		this.rightMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, kSlotIdx, kTimeoutMs);
 		
@@ -124,9 +125,10 @@ public class Chassis extends Subsystem {
 	
 	public void publishToSmartDashboard() {
         SmartDashboard.putNumber("PID Profile", currentProfile);
+        SmartDashboard.putNumber("Abolute Encoder", getEncoderValue());
 
 		SmartDashboard.putNumber("Left Encoder Speed", leftMasterMotor.getSelectedSensorVelocity(0));
-		SmartDashboard.putNumber("Left Encoder Distance", leftMasterMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Left Encoder Distance", leftMasterMotor.getSelectedSensorPosition(0) / 1024);
 		//SmartDashboard.putNumber("Velocity Error", armMotorAlpha.getClosedLoopError());
 		SmartDashboard.putNumber("Left Motor Voltage", leftMasterMotor.getMotorOutputVoltage());
 		SmartDashboard.putNumber("Left Motor Percent", leftMasterMotor.getMotorOutputPercent());
@@ -196,11 +198,11 @@ public class Chassis extends Subsystem {
 	}
 	
 	public void setLeftMotorVelocity(double speed) {
-		this.leftMasterMotor.set(ControlMode.Velocity, speed * 4096 * 500 / 600);	
+		this.leftMasterMotor.set(ControlMode.Velocity, speed);	
 	}
 
 	public void setRightMotorVelocity(double speed) {
-		this.rightMasterMotor.set(ControlMode.Velocity, speed* 4096 * 500 / 600);	
+		this.rightMasterMotor.set(ControlMode.Velocity, speed);	
 	
 	}
 	
@@ -233,7 +235,7 @@ public class Chassis extends Subsystem {
 	}
 	
 	public double getAverageEncoderPosition(){
-		return ((rightMasterMotor.getSelectedSensorPosition(0)) + leftMasterMotor.getSelectedSensorPosition(0)) / 2.0;
+		return ((rightMasterMotor.getSelectedSensorPosition(0)) + leftMasterMotor.getSelectedSensorPosition(0)) / 1.0;
 	}
 	
 	public void zeroEncoders() {
@@ -246,11 +248,15 @@ public class Chassis extends Subsystem {
 	}
 	
 	public double convertTicksToInches(double ticks) {
-		return ticks * 54 / 20 * 4 * Math.PI;
+		return ticks / 1024 * 4 * Math.PI;
 	}
 	
 	public double convertInchesToTicks(double inches) {
-		return inches / (4 * Math.PI) * 20 / 54;
+		return inches / (4 * Math.PI) * 1024;
+	}
+	
+	public int getEncoderValue() {
+		return absoluteEncoder.getRaw();
 	}
 	
 	}
