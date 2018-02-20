@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class stopElevator extends Command {
+public class CurrentLimiting_Disable extends Command {
 
-    public stopElevator() {
+    public CurrentLimiting_Disable() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
@@ -21,7 +21,7 @@ public class stopElevator extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.setPercentOutput(0);
+    	Robot.elevator.disableCurrentLimiting();
     }
 
     // Make this return true when this Command no longer needs to run execute()

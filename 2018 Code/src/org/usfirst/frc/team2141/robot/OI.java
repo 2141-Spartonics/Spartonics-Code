@@ -4,19 +4,16 @@ import org.usfirst.frc.team2141.robot.commands.ExtraValve_Open;
 import org.usfirst.frc.team2141.robot.commands.Extra_Close;
 import org.usfirst.frc.team2141.robot.commands.Intake_Close;
 import org.usfirst.frc.team2141.robot.commands.Intake_Open;
-import org.usfirst.frc.team2141.robot.commands.LowerElevator;
-import org.usfirst.frc.team2141.robot.commands.RaiseElevator;
-import org.usfirst.frc.team2141.robot.commands.disableCurrent;
-import org.usfirst.frc.team2141.robot.commands.disablePID;
-import org.usfirst.frc.team2141.robot.commands.enableCompressor;
-import org.usfirst.frc.team2141.robot.commands.enableCurrent;
-import org.usfirst.frc.team2141.robot.commands.setElevatorToHigh;
-import org.usfirst.frc.team2141.robot.commands.setElevatorToLow;
-import org.usfirst.frc.team2141.robot.commands.setMotorSpeedLeft;
-import org.usfirst.frc.team2141.robot.commands.setMotorSpeedRight;
-import org.usfirst.frc.team2141.robot.commands.stopElevator;
-import org.usfirst.frc.team2141.robot.commands.autonomous.DriveAtVelocity;
-import org.usfirst.frc.team2141.robot.commands.autonomous.DriveStraight;
+import org.usfirst.frc.team2141.robot.commands.Elevator_Lower;
+import org.usfirst.frc.team2141.robot.commands.Elevator_Raise;
+import org.usfirst.frc.team2141.robot.commands.CurrentLimiting_Disable;
+import org.usfirst.frc.team2141.robot.commands.Compressor_Enable;
+import org.usfirst.frc.team2141.robot.commands.CurrentLimiting_Enable;
+import org.usfirst.frc.team2141.robot.commands.Elevator_ShiftUp;
+import org.usfirst.frc.team2141.robot.commands.Elevator_ShiftDown;
+import org.usfirst.frc.team2141.robot.commands.Chassis_TestLeft;
+import org.usfirst.frc.team2141.robot.commands.Chassis_TestRight;
+import org.usfirst.frc.team2141.robot.commands.Elevator_Stop;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
@@ -54,24 +51,24 @@ public class OI {
 		
 		//this.getButton(10, true).whenPressed(new DriveStraight(4 * Math.PI));
 		//this.getButton(11, true).whileHeld(new DriveAtVelocity(0.25));
-		this.getButton(8, true).whenPressed(new setMotorSpeedLeft());
-		this.getButton(9, true).whenPressed(new setMotorSpeedRight());
+		this.getButton(8, true).whenPressed(new Chassis_TestLeft());
+		this.getButton(9, true).whenPressed(new Chassis_TestRight());
 		//this.getButton(3).whenPressed(new DriveAtSpeed());
 		
-		this.getButton(5).whileHeld(new RaiseElevator());
-		this.getButton(6).whileHeld(new LowerElevator());
-		this.getButton(1).whenPressed(new stopElevator());
-		this.getButton(9).whenPressed(new enableCurrent());
-		this.getButton(10).whenPressed(new disableCurrent());
+		this.getButton(5).whileHeld(new Elevator_Raise());
+		this.getButton(6).whileHeld(new Elevator_Lower());
+		this.getButton(1).whenPressed(new Elevator_Stop());
+		this.getButton(9).whenPressed(new CurrentLimiting_Enable());
+		this.getButton(10).whenPressed(new CurrentLimiting_Disable());
 		
-		this.getButton(3, true).whenPressed(new setElevatorToHigh());
-		this.getButton(2, true).whenPressed(new setElevatorToLow());
+		this.getButton(3, true).whenPressed(new Elevator_ShiftUp());
+		this.getButton(2, true).whenPressed(new Elevator_ShiftDown());
 		this.getButton(5, true).whenPressed(new Intake_Open());
 		this.getButton(4, true).whenPressed(new Intake_Close());
-		this.getButton(10, true).whenPressed(new Extra_Close());
-		this.getButton(11, true).whenPressed(new ExtraValve_Open());
+		//this.getButton(10, true).whenPressed(new Extra_Close());
+		//this.getButton(11, true).whenPressed(new ExtraValve_Open());
 		
-		this.getButton(1, true).whileHeld(new enableCompressor());
+		this.getButton(1, true).whileHeld(new Compressor_Enable());
 		
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
 	}

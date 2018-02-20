@@ -1,6 +1,7 @@
-package org.usfirst.frc.team2141.robot.commands.autonomous;
+package org.usfirst.frc.team2141.robot.commands.autonomousGroups;
 
-import org.usfirst.frc.team2141.robot.commands.DriveWithJoystick;
+import org.usfirst.frc.team2141.robot.autonomousCommands.DriveStraight;
+import org.usfirst.frc.team2141.robot.commands.Chassis_DriveWithJoystick;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -28,6 +29,6 @@ public class A_DriveStraight extends CommandGroup {
         // arm.
     	
     	addSequential(new DriveStraight(100));
-    	addSequential(new DriveWithJoystick());
+    	addSequential(new Chassis_DriveWithJoystick());
     }
 }

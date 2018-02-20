@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2141.robot.subsystems;
 
 import org.usfirst.frc.team2141.robot.RobotMap;
-import org.usfirst.frc.team2141.robot.commands.DriveWithJoystick;
+import org.usfirst.frc.team2141.robot.commands.Chassis_DriveWithJoystick;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -25,14 +25,11 @@ public class Chassis extends Subsystem {
 	TalonSRX rightSlaveMotorBeta;
 
 	int currentProfile;
-	StringBuilder _sb = new StringBuilder();
 
 	public static final int kPIDProfile = 0;
 	public static final int kIgnoreProfile = 1;
 	public static final int kTimeoutMs = 10;
-		
-	//private boolean flipped;
-		
+				
 	public Chassis() {
 		leftMasterMotor = new TalonSRX(RobotMap.LEFT_MASTER_MOTOR);
 		leftSlaveMotorAlpha = new TalonSRX(RobotMap.LEFT_SLAVE_MOTOR_ALPHA);
@@ -48,12 +45,14 @@ public class Chassis extends Subsystem {
 		leftMasterMotor.setInverted(false);
 		leftMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, kPIDProfile, kTimeoutMs);
 		leftMasterMotor.configAllowableClosedloopError(kPIDProfile, 10, kTimeoutMs);
+		leftMasterMotor.configClosedloopRamp(RobotMap.CHASSIS_RAMP_RATE, kTimeoutMs);
 		
 		rightMasterMotor.setNeutralMode(NeutralMode.Brake);
 		rightMasterMotor.setSensorPhase(true);
 		rightMasterMotor.setInverted(false);
 		rightMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, kPIDProfile, kTimeoutMs);
 		rightMasterMotor.configAllowableClosedloopError(kPIDProfile, 10, kTimeoutMs);
+		rightMasterMotor.configClosedloopRamp(RobotMap.CHASSIS_RAMP_RATE, kTimeoutMs);
 		
         leftSlaveMotorAlpha.setNeutralMode(NeutralMode.Brake);
 		leftSlaveMotorAlpha.follow(leftMasterMotor);
@@ -87,31 +86,31 @@ public class Chassis extends Subsystem {
 		rightMasterMotor.configPeakOutputForward(1, kTimeoutMs);
 		rightMasterMotor.configPeakOutputReverse(-1, kTimeoutMs);
         
-        //Configure closed pid loop
-		leftMasterMotor.configAllowableClosedloopError(0, 200, kTimeoutMs); 
+        //Configure & Enable Closed PID Loop
+		leftMasterMotor.configAllowableClosedloopError(0, 25, kTimeoutMs); 
 		leftMasterMotor.config_kP(kPIDProfile, RobotMap.LEFT_CHASSIS_P, kTimeoutMs);
 		leftMasterMotor.config_kI(kPIDProfile, RobotMap.LEFT_CHASSIS_I, kTimeoutMs);
 		leftMasterMotor.config_kD(kPIDProfile, RobotMap.LEFT_CHASSIS_D, kTimeoutMs);
         leftMasterMotor.config_kF(kPIDProfile, RobotMap.LEFT_CHASSIS_F, kTimeoutMs);
         leftMasterMotor.selectProfileSlot(0, 0);
         
-        rightMasterMotor.configAllowableClosedloopError(0, 200, kTimeoutMs); 
+        rightMasterMotor.configAllowableClosedloopError(0, 25, kTimeoutMs); 
         rightMasterMotor.config_kP(kPIDProfile, RobotMap.RIGHT_CHASSIS_P, kTimeoutMs);
         rightMasterMotor.config_kI(kPIDProfile, RobotMap.RIGHT_CHASSIS_I, kTimeoutMs);
         rightMasterMotor.config_kD(kPIDProfile, RobotMap.RIGHT_CHASSIS_D, kTimeoutMs);
         rightMasterMotor.config_kF(kPIDProfile, RobotMap.RIGHT_CHASSIS_F, kTimeoutMs);
         rightMasterMotor.selectProfileSlot(0, 0);
         
-        //Configure closed pid loop
-		leftMasterMotor.config_kP(1, 0, kTimeoutMs);
-		leftMasterMotor.config_kI(1, 0, kTimeoutMs);
-		leftMasterMotor.config_kD(1, 0, kTimeoutMs);	
-		leftMasterMotor.config_kF(1, 0, kTimeoutMs);
+        //Configure Ignore Loop
+		leftMasterMotor.config_kP(kIgnoreProfile, 0, kTimeoutMs);
+		leftMasterMotor.config_kI(kIgnoreProfile, 0, kTimeoutMs);
+		leftMasterMotor.config_kD(kIgnoreProfile, 0, kTimeoutMs);	
+		leftMasterMotor.config_kF(kIgnoreProfile, 0, kTimeoutMs);
       
-		rightMasterMotor.config_kP(1, 0, kTimeoutMs);
-		rightMasterMotor.config_kI(1, 0, kTimeoutMs);
-		rightMasterMotor.config_kD(1, 0, kTimeoutMs);
-		rightMasterMotor.config_kF(1, 0, kTimeoutMs);
+		rightMasterMotor.config_kP(kIgnoreProfile, 0, kTimeoutMs);
+		rightMasterMotor.config_kI(kIgnoreProfile, 0, kTimeoutMs);
+		rightMasterMotor.config_kD(kIgnoreProfile, 0, kTimeoutMs);
+		rightMasterMotor.config_kF(kIgnoreProfile, 0, kTimeoutMs);
 	
 				
 	}
@@ -119,33 +118,27 @@ public class Chassis extends Subsystem {
 	
 	public void publishToSmartDashboard() {
         SmartDashboard.putNumber("PID Profile", currentProfile);
-		SmartDashboard.putNumber("Left Encoder Speed", leftMasterMotor.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("Left Encoder Distance", getLeftMotorPosistion());
 		SmartDashboard.putNumber("Left Motor Voltage", leftMasterMotor.getMotorOutputVoltage());
 		SmartDashboard.putNumber("Left Motor Percent", leftMasterMotor.getMotorOutputPercent());
 		SmartDashboard.putNumber("Left Motor Error", leftMasterMotor.getClosedLoopError(0));
 		SmartDashboard.putNumber("Left Encoder Velocity", leftMasterMotor.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("Left Encoder Velocity Setpoint", getLeftMotorVelocitySetpoint());
 		
-		SmartDashboard.putNumber("Right Encoder Speed", rightMasterMotor.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("Right Encoder Distance", getRightMotorPosistion());
 		SmartDashboard.putNumber("Right Motor Voltage", rightMasterMotor.getMotorOutputVoltage());
-		SmartDashboard.putNumber("Right Motor Voltage 2", rightSlaveMotorAlpha.getMotorOutputVoltage());
-		SmartDashboard.putNumber("Right Motor Voltage 2", rightSlaveMotorBeta.getMotorOutputVoltage());
 		SmartDashboard.putNumber("Right Motor Percent", rightMasterMotor.getMotorOutputPercent());
 		SmartDashboard.putNumber("Right Motor Error", rightMasterMotor.getClosedLoopError(0));
 		SmartDashboard.putNumber("Right Encoder Velocity", rightMasterMotor.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("Right Encoder Velocity Setpoint", getRightMotorPosistion());
 
-		SmartDashboard.putNumber("Right Slave Motor Percent", rightSlaveMotorAlpha.getMotorOutputPercent());
-		SmartDashboard.putNumber("Left Slave Motor Percent", leftSlaveMotorAlpha.getMotorOutputPercent());
-		
 
 	}
 	
 	public void initDefaultCommand() {
-		setDefaultCommand(new DriveWithJoystick());
+		setDefaultCommand(new Chassis_DriveWithJoystick());
 	}
 
-	
 	public void arcadeDrive(double moveValue, double rotateValue) {
 
 		double leftMotorSpeed;
@@ -188,11 +181,19 @@ public class Chassis extends Subsystem {
 	}
 	
 	public void setLeftMotorVelocity(double velocity) {
-		this.leftMasterMotor.set(ControlMode.Velocity, velocity * 256 * 5840 / 600 * 0.5885);
+		this.leftMasterMotor.set(ControlMode.Velocity, velocity * 5000 * 5840 / 3600);
 	}
 
 	public void setRightMotorVelocity(double velocity) {
-		this.rightMasterMotor.set(ControlMode.Velocity, velocity * 256 * 5840 / 600 * 0.6294);		
+		this.rightMasterMotor.set(ControlMode.Velocity, velocity * 5000 *  5840  / 3600);		
+	}
+	
+	public double getLeftMotorVelocitySetpoint() {
+		return this.leftMasterMotor.getClosedLoopTarget(0);
+	}
+	
+	public double getRightMotorVelocitySetpoint() {
+		return rightMasterMotor.getClosedLoopTarget(0);
 	}
 	
 	public void setLeftMotorSpeed(double speed) {
@@ -248,11 +249,11 @@ public class Chassis extends Subsystem {
 	}
 	
 	public void disablePID() {
-		leftMasterMotor.selectProfileSlot(1, 0);
-		rightMasterMotor.selectProfileSlot(1, 0);
+		leftMasterMotor.selectProfileSlot(kIgnoreProfile, 0);
+		rightMasterMotor.selectProfileSlot(kIgnoreProfile, 0);
 	}
 	
-	public void zeroEncoders() {
+	public void resetEncoders() {
 		leftMasterMotor.setSelectedSensorPosition(0, kPIDProfile, kTimeoutMs);
 		rightMasterMotor.setSelectedSensorPosition(0, kPIDProfile, kTimeoutMs);
 	}

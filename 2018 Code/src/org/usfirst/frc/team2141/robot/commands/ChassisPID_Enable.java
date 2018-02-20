@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class enableCompressor extends Command {
+public class ChassisPID_Enable extends Command {
 
-    public enableCompressor() {
+    public ChassisPID_Enable() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
+    	requires(Robot.chassis);
     }
 
     // Called just before this Command runs the first time
@@ -21,27 +21,20 @@ public class enableCompressor extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.enableCompressor();
+    	Robot.chassis.enablePID();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Robot.elevator.getPressure() >= 50) {
-    		return true;
-    	} else 
-    
-    	
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevator.disableCompressor();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.elevator.disableCompressor();
     }
 }

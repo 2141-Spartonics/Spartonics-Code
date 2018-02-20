@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team2141.robot.commands.DriveWithJoystick;
-import org.usfirst.frc.team2141.robot.commands.enableCompressor;
-import org.usfirst.frc.team2141.robot.commands.autonomous.A_DriveStraight;
+import org.usfirst.frc.team2141.robot.commands.Chassis_DriveWithJoystick;
+import org.usfirst.frc.team2141.robot.commands.Compressor_Enable;
+import org.usfirst.frc.team2141.robot.commands.autonomousGroups.A_DriveStraight;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 import org.usfirst.frc.team2141.robot.subsystems.Elevator;
-import org.usfirst.frc.team2141.robot.subsystems.Intake;
+import org.usfirst.frc.team2141.robot.subsystems.Pneumatics;
 
 import com.analog.adis16448.ADIS16448_IMU;
 
@@ -30,7 +30,7 @@ public class Robot extends IterativeRobot {
 
 	public static Elevator elevator;
 	public static Chassis chassis;
-	public static Intake intake;
+	public static Pneumatics pneumatics;
 	
 	StringBuilder _sb = new StringBuilder();
 	
@@ -50,43 +50,54 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		elevator = new Elevator();
 		chassis = new Chassis();
-		intake = new Intake();
+		pneumatics = new Pneumatics();
 		
 		
 		imu = new ADIS16448_IMU();
 		//pdp = new PowerDistributionPanel();
 		
 		oi = new OI();
-		chooser.addDefault("Default Auto", new DriveWithJoystick());
+		chooser.addDefault("Default Auto", new Chassis_DriveWithJoystick());
 		chooser.addDefault("Drive 2 For 1 Back", new A_DriveStraight());
 		SmartDashboard.putData("Auto mode", chooser);
-		
-		chassis.publishToSmartDashboard();
-		intake.publishToSmartDashboard();
 	
 	}
 	
 	public void publishToSmartDashboard(){
 		chassis.publishToSmartDashboard();
-		intake.publishToSmartDashboard();
 		elevator.publishToSmartDashboard();
+		pneumatics.publishToSmartDashBoard();
 		
+		SmartDashboard.putNumber("Gyro-X", imu.getAngleX());
+	    SmartDashboard.putNumber("Gyro-Y", imu.getAngleY());
+	    SmartDashboard.putNumber("Gyro-Z", imu.getAngleZ());
+	    
+	    SmartDashboard.putNumber("Accel-X", imu.getAccelX());
+	    SmartDashboard.putNumber("Accel-Y", imu.getAccelY());
+	    SmartDashboard.putNumber("Accel-Z", imu.getAccelZ());
+	    
+	    SmartDashboard.putNumber("Pitch", imu.getPitch());
+	    SmartDashboard.putNumber("Roll", imu.getRoll());
+	    SmartDashboard.putNumber("Yaw", imu.getYaw());
+	    
+	    SmartDashboard.putNumber("Pressure: ", imu.getBarometricPressure());
+	    SmartDashboard.putNumber("Temperature: ", imu.getTemperature()); 		
 	
 	}
 
 	/**
-	 * This function is called onpp................ce each time the robot enters Disabled mode.
+	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
 	 */
 	@Override
 	public void disabledInit() {
-
+		Robot.chassis.resetEncoders();
 	}
 
 	@Override
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
+		Robot.chassis.resetEncoders();
 	}
 
 	/**
@@ -122,6 +133,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		publishToSmartDashboard();
 	}
 
 	@Override
@@ -132,8 +144,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		chassis.zeroEncoders();
-		intake.openintake();
+		chassis.resetEncoders();
 	}
 
 	/**
@@ -151,22 +162,6 @@ public class Robot extends IterativeRobot {
     	} else {
     		Robot.elevator.disableCompressor();
     	}
-		
-		SmartDashboard.putNumber("Gyro-X", imu.getAngleX());
-	    SmartDashboard.putNumber("Gyro-Y", imu.getAngleY());
-	    SmartDashboard.putNumber("Gyro-Z", imu.getAngleZ());
-	    
-	    SmartDashboard.putNumber("Accel-X", imu.getAccelX());
-	    SmartDashboard.putNumber("Accel-Y", imu.getAccelY());
-	    SmartDashboard.putNumber("Accel-Z", imu.getAccelZ());
-	    
-	    SmartDashboard.putNumber("Pitch", imu.getPitch());
-	    SmartDashboard.putNumber("Roll", imu.getRoll());
-	    SmartDashboard.putNumber("Yaw", imu.getYaw());
-	    
-	    SmartDashboard.putNumber("Pressure: ", imu.getBarometricPressure());
-	    SmartDashboard.putNumber("Temperature: ", imu.getTemperature()); 
-		
 
 	}
 

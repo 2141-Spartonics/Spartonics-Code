@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RaiseElevator extends Command {
+public class Elevator_ShiftUp extends Command {
 
-    public RaiseElevator() {
+    public Elevator_ShiftUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
+    	requires(Robot.pneumatics);
     }
 
     // Called just before this Command runs the first time
@@ -21,27 +21,20 @@ public class RaiseElevator extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.setPercentOutput(0.5);
+    	Robot.pneumatics.setGearboxToHigh();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    /*	if(Robot.elevator.getUppwerSwitch()) {
-    		return true; }
-    	else {
-    		return false;
-    	} */
-    	return false;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevator.setPercentOutput(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.elevator.setPercentOutput(0);
     }
 }

@@ -31,15 +31,10 @@ public class Elevator extends Subsystem {
 	DigitalInput bottomLimitSwitch;
 	DigitalInput upperLimitSwitch;
 	AnalogInput proximitySensor;
-	AnalogInput pressureSensor;
-	DoubleSolenoid elevatorGearboxShifter;
-	DoubleSolenoid extraValve;
-	Relay compressor;
 	
 	Encoder elevatorEncoder;
 	
 	int ampCap = 20;
-	boolean highGear;
 	boolean currentLimit;
 	
 	public Elevator() {
@@ -50,11 +45,7 @@ public class Elevator extends Subsystem {
 		bottomLimitSwitch = new DigitalInput(1);
 		upperLimitSwitch = new DigitalInput(0);
 		proximitySensor = new AnalogInput(0);
-		pressureSensor = new AnalogInput(1);
-		compressor = new Relay(RobotMap.COMPRESSOR_RELAY);
 		elevatorTimer = new StopWatch();
-		elevatorGearboxShifter = new DoubleSolenoid(RobotMap.GEARBOX_SHIFTER_A, RobotMap.GEARBOX_SHIFTER_B);
-		extraValve = new DoubleSolenoid(6, 7);
 		
 		elevatorClimbMotorAlpha.setNeutralMode(NeutralMode.Brake);
 		elevatorClimbMotorBeta.setNeutralMode(NeutralMode.Brake);
@@ -62,10 +53,8 @@ public class Elevator extends Subsystem {
 		
 		elevatorClimbMotorBeta.follow(elevatorClimbMotorAlpha);
 		elevatorClimbMotorCharlie.follow(elevatorClimbMotorAlpha);
-		
 		elevatorClimbMotorCharlie.configContinuousCurrentLimit(20, 10);
 			
-
 	}
 
     // Put methods for controlling this subsystem
@@ -79,28 +68,8 @@ public class Elevator extends Subsystem {
 		elevatorClimbMotorAlpha.set(ControlMode.Current, speed * 12);
 	}	
 	
-	public double getPressure() {
-		return 250 * (pressureSensor.getVoltage() / 5) - 25;
-	}
-	
-	public void enableCompressor() {
-		compressor.set(Value.kOn);
-	}
-	
-	public void disableCompressor() {
-		compressor.set(Value.kOff);
-	}
-	
-	public void enableExtra() {
-		extraValve.set(DoubleSolenoid.Value.kReverse);
-	}
-	
-	public void disableExtra() {
-		extraValve.set(DoubleSolenoid.Value.kForward);
-	}
 	
 	public void publishToSmartDashboard() {
-		SmartDashboard.putBoolean("Gearbox in High", highGear);
 		SmartDashboard.putNumber("Elevator Speed", this.elevatorClimbMotorAlpha.getMotorOutputPercent());
 		
 		SmartDashboard.putBoolean("Current Limiting Elevator", currentLimit);
@@ -110,7 +79,6 @@ public class Elevator extends Subsystem {
 		SmartDashboard.putBoolean("Upper Limit Switch", getUppwerSwitch());
 		SmartDashboard.putNumber("Proximity Value", proximitySensor.getVoltage());
 		
-		SmartDashboard.putNumber("Stored Pressure", getPressure());
 	}
 	
 	public void enableCurrentLimiting() {
@@ -123,10 +91,6 @@ public class Elevator extends Subsystem {
 		elevatorClimbMotorCharlie.enableCurrentLimit(currentLimit);
 	}
 	
-	public void startElevatorTimer() {
-		elevatorTimer.start();
-	}
-	
 	public boolean getBottomSwitch() {
 		return bottomLimitSwitch.get();
 	}
@@ -134,17 +98,7 @@ public class Elevator extends Subsystem {
 	public boolean getUppwerSwitch() {
 		return upperLimitSwitch.get();
 	}
-	
-
-
-	public void setToLow() {
-		elevatorGearboxShifter.set(DoubleSolenoid.Value.kReverse);
-	}
-	
-	public void setToHigh() {
-		elevatorGearboxShifter.set(DoubleSolenoid.Value.kForward);
-	}
-	
+		
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

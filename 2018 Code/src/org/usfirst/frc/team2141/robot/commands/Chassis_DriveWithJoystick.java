@@ -8,8 +8,8 @@ import org.usfirst.frc.team2141.robot.RobotMap;
 /**
  *
  */
-public class DriveWithJoystick extends Command {
-	public DriveWithJoystick() {
+public class Chassis_DriveWithJoystick extends Command {
+	public Chassis_DriveWithJoystick() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.chassis);
 	}
