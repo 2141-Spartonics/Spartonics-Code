@@ -3,57 +3,49 @@ package org.usfirst.frc.team2141.robot.commands.autonomous;
 import org.usfirst.frc.team2141.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class DriveStraight extends Command {
 
-	double encoderCount;
-	double maxSpeed;
-	
-	public DriveStraight(double distanceInInches, double drivingSpeed) {
-		// Use requires() here to declare subsystem dependencies
-		requires(Robot.chassis);		
-		encoderCount = Robot.chassis.convertInchesToTicks(distanceInInches);
-		maxSpeed = drivingSpeed;
-	}
+	double position;
+    public DriveStraight(double inches) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.chassis);
+    	position = inches / (4 * Math.PI) * 1030;
+    }
 
-	// Called just before this Command runs the first time
-	protected void initialize() {
-		Robot.chassis.zeroEncoders();
-	}
+    // Called just before this Command runs the first time
+    protected void initialize() {
+    	Robot.chassis.zeroEncoders();
+    }
 
-	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		double error = encoderCount - Robot.chassis.getAverageEncoderPosition();
-		//double setpoint = error/Math.abs(error)*Math.min(maxSpeed, Math.abs(.00005*error)+0.05);
-		
-		Robot.chassis.setLeftMotorVelocity(maxSpeed);
-		Robot.chassis.setRightMotorVelocity(maxSpeed);
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    	double error = position - Robot.chassis.getAverageEncoderPosition();
+		Robot.chassis.setLeftMotorVelocity(error/Math.abs(error)*Math.min(0.25, Math.abs(.0005*error)+0.0375));
+		Robot.chassis.setRightMotorVelocity(-error/Math.abs(error)*Math.min(0.25, Math.abs(.0005*error)+0.0375));
 
-	}
+    }
 
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		if (encoderCount > 0) {
-			return Robot.chassis.getAverageEncoderPosition() > encoderCount;
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+		if (position > 0) {
+			return Robot.chassis.getAverageEncoderPosition() > position;
 		} else {
-			return Robot.chassis.getAverageEncoderPosition() < encoderCount;
+			return Robot.chassis.getAverageEncoderPosition() < position;
 		}
 	}
+    // Called once after isFinished returns true
+    protected void end() {
+    	Robot.chassis.setLeftMotorVelocity(0);
+    	Robot.chassis.setRightMotorVelocity(0);
+    }
 
-	// Called once after isFinished returns true
-	protected void end() {
-		Robot.chassis.setLeftMotorVelocity(0);
-		Robot.chassis.setRightMotorVelocity(0);
-	}
-
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-		Robot.chassis.setLeftMotorVelocity(0);
-		Robot.chassis.setRightMotorVelocity(0);
-	}
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    }
 }

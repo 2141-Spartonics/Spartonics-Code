@@ -10,13 +10,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2141.robot.commands.DriveWithJoystick;
-
+import org.usfirst.frc.team2141.robot.commands.enableCompressor;
+import org.usfirst.frc.team2141.robot.commands.autonomous.A_DriveStraight;
 import org.usfirst.frc.team2141.robot.subsystems.Chassis;
-import org.usfirst.frc.team2141.robot.subsystems.Elevator_Climber;
-import org.usfirst.frc.team2141.robot.subsystems.Elevator_Intake;
+import org.usfirst.frc.team2141.robot.subsystems.Elevator;
 import org.usfirst.frc.team2141.robot.subsystems.Intake;
 
-import com.analog.adis16448.frc.ADIS16448_IMU;
+import com.analog.adis16448.ADIS16448_IMU;
 
 
 /**
@@ -28,13 +28,14 @@ import com.analog.adis16448.frc.ADIS16448_IMU;
  */
 public class Robot extends IterativeRobot {
 
-	public static Elevator_Climber elevator_climber;
-	public static Elevator_Intake elevator_intake;
+	public static Elevator elevator;
 	public static Chassis chassis;
 	public static Intake intake;
 	
-	PowerDistributionPanel pdp;
-    ADIS16448_IMU imu;
+	StringBuilder _sb = new StringBuilder();
+	
+	public ADIS16448_IMU imu;
+    //public PowerDistributionPanel pdp;
 
 	public static OI oi;
 
@@ -47,16 +48,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		elevator_climber = new Elevator_Climber();
-		elevator_intake = new Elevator_Intake();
+		elevator = new Elevator();
 		chassis = new Chassis();
 		intake = new Intake();
 		
+		
 		imu = new ADIS16448_IMU();
-		pdp = new PowerDistributionPanel();
-
+		//pdp = new PowerDistributionPanel();
+		
 		oi = new OI();
 		chooser.addDefault("Default Auto", new DriveWithJoystick());
+		chooser.addDefault("Drive 2 For 1 Back", new A_DriveStraight());
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		chassis.publishToSmartDashboard();
@@ -67,14 +69,13 @@ public class Robot extends IterativeRobot {
 	public void publishToSmartDashboard(){
 		chassis.publishToSmartDashboard();
 		intake.publishToSmartDashboard();
-		SmartDashboard.putData(imu);
-		SmartDashboard.putData(pdp);
+		elevator.publishToSmartDashboard();
 		
-		SmartDashboard.putNumber("Angle", imu.getYaw());
+	
 	}
 
 	/**
-	 * This function is called once each time the robot enters Disabled mode.
+	 * This function is called onpp................ce each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
 	 */
@@ -132,8 +133,6 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		chassis.zeroEncoders();
-		chassis.setPIDProfile(0);
-		
 		intake.openintake();
 	}
 
@@ -145,6 +144,30 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		publishToSmartDashboard();
 		
+    	if (Robot.elevator.getPressure() >= 110) {
+    		Robot.elevator.disableCompressor();
+    	} else if (Robot.elevator.getPressure() < 115) {
+    		Robot.elevator.enableCompressor();
+    	} else {
+    		Robot.elevator.disableCompressor();
+    	}
+		
+		SmartDashboard.putNumber("Gyro-X", imu.getAngleX());
+	    SmartDashboard.putNumber("Gyro-Y", imu.getAngleY());
+	    SmartDashboard.putNumber("Gyro-Z", imu.getAngleZ());
+	    
+	    SmartDashboard.putNumber("Accel-X", imu.getAccelX());
+	    SmartDashboard.putNumber("Accel-Y", imu.getAccelY());
+	    SmartDashboard.putNumber("Accel-Z", imu.getAccelZ());
+	    
+	    SmartDashboard.putNumber("Pitch", imu.getPitch());
+	    SmartDashboard.putNumber("Roll", imu.getRoll());
+	    SmartDashboard.putNumber("Yaw", imu.getYaw());
+	    
+	    SmartDashboard.putNumber("Pressure: ", imu.getBarometricPressure());
+	    SmartDashboard.putNumber("Temperature: ", imu.getTemperature()); 
+		
+
 	}
 
 	/**

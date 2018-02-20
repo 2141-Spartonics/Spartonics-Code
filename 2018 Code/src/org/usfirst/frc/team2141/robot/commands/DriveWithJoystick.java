@@ -23,9 +23,7 @@ public class DriveWithJoystick extends Command {
 	@Override
 	protected void execute() {
 		//Robot.chassis.setCurrentLimitEnabled(false);
-		    	
-    	Robot.chassis.arcadeDrive(Robot.oi.getLeftY(), Robot.oi.getLeftX());
- 
+    	Robot.chassis.arcadeDrive(Robot.oi.getRightY(), Robot.oi.getLeftX());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

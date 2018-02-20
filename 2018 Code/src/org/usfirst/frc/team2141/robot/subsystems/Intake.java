@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Intake extends Subsystem {
 	
-	private DoubleSolenoid intakePiston;
+	private DoubleSolenoid intake;
 	boolean intakeClosed;
 	AnalogInput pressureSensor;
 
@@ -21,33 +21,35 @@ public class Intake extends Subsystem {
 	}
 
 	public Intake() {
-			intakePiston = new DoubleSolenoid(RobotMap.INTAKE_SOLENOID_CHANNEL_A, RobotMap.INTAKE_SOLENOID_CHANNEL_B);
-			pressureSensor = new AnalogInput(0);
+			intake = new DoubleSolenoid(RobotMap.INTAKE_SOLENOID_CHANNEL_A, RobotMap.INTAKE_SOLENOID_CHANNEL_B);
+			//pressureSensor = new AnalogInput(0);
 	}
 	
 	public void publishToSmartDashboard(){
 		SmartDashboard.putBoolean("Intake Closed", intakeClosed);
-		SmartDashboard.putNumber("Pressure", convertVoltageToPressure(getVoltageRecieved(), .5));
-		SmartDashboard.putNumber("raw pressure", pressureSensor.getVoltage());
+		//SmartDashboard.putNumber("Pressure", convertVoltageToPressure(getVoltageRecieved(), .5));
+		//SmartDashboard.putNumber("raw pressure", pressureSensor.getVoltage());
 	}
 
 	public void closeIntake() {
-		this.intakePiston.set(DoubleSolenoid.Value.kReverse);
+		this.intake.set(DoubleSolenoid.Value.kReverse);
 		intakeClosed = true;
 	}
 	
 	
 	public void openintake() {
-		this.intakePiston.set(DoubleSolenoid.Value.kForward);
+		this.intake.set(DoubleSolenoid.Value.kForward);
 		intakeClosed = false;
 	}
 	
-	public double convertVoltageToPressure(double voltageRecieved, double voltageSent) {
+	/*public double convertVoltageToPressure(double voltageRecieved, double voltageSent) {
 		return 250 * (voltageRecieved / voltageSent) - 25;
 	}
- 
+	
+	*/
+ /*
 	public double getVoltageRecieved() {
 		return pressureSensor.getVoltage();
 	}
-
+*/
 }
