@@ -154,14 +154,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		publishToSmartDashboard();
-		
-    	if (Robot.elevator.getPressure() >= 110) {
-    		Robot.elevator.disableCompressor();
-    	} else if (Robot.elevator.getPressure() < 115) {
-    		Robot.elevator.enableCompressor();
-    	} else {
-    		Robot.elevator.disableCompressor();
-    	}
+
 
 	}
 
