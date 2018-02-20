@@ -1,34 +1,27 @@
-package org.usfirst.frc.team2141.robot.commands.autonomous;
-
+package org.usfirst.frc.team2141.robot.commands;
 
 import org.usfirst.frc.team2141.robot.Robot;
-import org.usfirst.frc.team2141.robot.subsystems.Chassis;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveAtVelocity extends Command {
+public class Elevator_ShiftUp extends Command {
 
-	double velocity;
-    public DriveAtVelocity(double velocity) {
+    public Elevator_ShiftUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-		requires(Robot.chassis);		
-    	velocity = this.velocity;
+    	requires(Robot.pneumatics);
     }
-    
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.chassis.zeroEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.setLeftMotorVelocity(velocity);
-    	Robot.chassis.setRightMotorVelocity(velocity);
+    	Robot.pneumatics.setGearboxToHigh();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -38,14 +31,10 @@ public class DriveAtVelocity extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.chassis.setLeftMotorVelocity(0);
-    	Robot.chassis.setRightMotorVelocity(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.chassis.setLeftMotorVelocity(0);
-    	Robot.chassis.setRightMotorVelocity(0);
     }
 }

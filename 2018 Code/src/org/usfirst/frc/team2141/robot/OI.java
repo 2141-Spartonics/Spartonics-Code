@@ -1,9 +1,18 @@
 package org.usfirst.frc.team2141.robot;
 
+
 import org.usfirst.frc.team2141.robot.commands.Intake_Close;
 import org.usfirst.frc.team2141.robot.commands.Intake_Open;
-import org.usfirst.frc.team2141.robot.commands.autonomous.DriveAtVelocity;
-import org.usfirst.frc.team2141.robot.commands.autonomous.DriveStraight;
+import org.usfirst.frc.team2141.robot.commands.Elevator_Lower;
+import org.usfirst.frc.team2141.robot.commands.Elevator_Raise;
+import org.usfirst.frc.team2141.robot.commands.CurrentLimiting_Disable;
+import org.usfirst.frc.team2141.robot.commands.Compressor_Enable;
+import org.usfirst.frc.team2141.robot.commands.CurrentLimiting_Enable;
+import org.usfirst.frc.team2141.robot.commands.Elevator_ShiftUp;
+import org.usfirst.frc.team2141.robot.commands.Elevator_ShiftDown;
+import org.usfirst.frc.team2141.robot.commands.Chassis_TestLeft;
+import org.usfirst.frc.team2141.robot.commands.Chassis_TestRight;
+import org.usfirst.frc.team2141.robot.commands.Elevator_Stop;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
@@ -37,22 +46,30 @@ public class OI {
 		}
 
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
-		this.getButton(2).whenPressed(new Intake_Open());
-		this.getButton(3).whenPressed(new Intake_Close());
-		this.getButton(4).whileHeld(new DriveAtVelocity(0.5));
-		this.getButton(5).whileHeld(new DriveStraight(2000, 0.5));
+		
+		
+		//this.getButton(10, true).whenPressed(new DriveStraight(4 * Math.PI));
+		//this.getButton(11, true).whileHeld(new DriveAtVelocity(0.25));
+		this.getButton(8, true).whenPressed(new Chassis_TestLeft());
+		this.getButton(9, true).whenPressed(new Chassis_TestRight());
+		//this.getButton(3).whenPressed(new DriveAtSpeed());
+		
+		this.getButton(5).whileHeld(new Elevator_Raise());
+		this.getButton(6).whileHeld(new Elevator_Lower());
+		this.getButton(1).whenPressed(new Elevator_Stop());
+		this.getButton(9).whenPressed(new CurrentLimiting_Enable());
+		this.getButton(10).whenPressed(new CurrentLimiting_Disable());
+		
+		this.getButton(3, true).whenPressed(new Elevator_ShiftUp());
+		this.getButton(2, true).whenPressed(new Elevator_ShiftDown());
+		this.getButton(5, true).whenPressed(new Intake_Open());
+		this.getButton(4, true).whenPressed(new Intake_Close());
+		//this.getButton(10, true).whenPressed(new Extra_Close());
+		//this.getButton(11, true).whenPressed(new ExtraValve_Open());
+		
+		this.getButton(1, true).whileHeld(new Compressor_Enable());
 		
 		//this.getButton(RobotMap.SHOOTER_CONTROL_BUTTON).whileHeld(new ShooterControl());
-				
-				/* Left joystick drive
-				 * Right joystick x
-				 * X extend intake
-				 * B bring in intake
-				 * Y raise intake
-				 * A lower intake
-				 * Left bumper open/close cube holder
-				 * right bumper up/down climber
-				 */
 	}
 	
 	public Joystick getDriveStick() {

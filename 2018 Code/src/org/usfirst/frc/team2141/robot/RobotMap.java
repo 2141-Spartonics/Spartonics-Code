@@ -8,21 +8,54 @@ package org.usfirst.frc.team2141.robot;
  */
 public class RobotMap {
 	
-	//Motor channel numbers
+		//CAN Bus Values
 		public static final int LEFT_MASTER_MOTOR = 8;
-		public static final int LEFT_SLAVE_MOTOR = 7;
+		public static final int LEFT_SLAVE_MOTOR_ALPHA = 9;
+		public static final int LEFT_SLAVE_MOTOR_BETA = 10;
 		public static final int RIGHT_MASTER_MOTOR = 3;
-		public static final int RIGHT_SLAVE_MOTOR = 9; 
-		public static final int ELEVATOR_CLIMB_MOTOR = 2;
-		public static final int ELEVATOR_INTAKE_MOTOR = 1;
+		public static final int RIGHT_SLAVE_MOTOR_ALPHA = 7; 
+		public static final int RIGHT_SLAVE_MOTOR_BETA = 5; 
+		public static final int ELEVATOR_CLIMB_MOTOR_ALPHA = 1;
+		public static final int ELEVATOR_CLIMB_MOTOR_BETA = 2;
+		public static final int ELEVATOR_CLIMB_MOTOR_CHARLIE = 6;
 		
-		//Drive Controller
+		//Chassis Primitives
+		public static final Double LEFT_CHASSIS_P = 2.22391;
+		public static final Double LEFT_CHASSIS_I = 0.0;
+		public static final Double LEFT_CHASSIS_D = 22.2391;
+		public static final Double LEFT_CHASSIS_F = 0.10518;
+		
+		public static final Double RIGHT_CHASSIS_P = 1.67704;
+		public static final Double RIGHT_CHASSIS_I = 0.0;
+		public static final Double RIGHT_CHASSIS_D = 16.7704;
+		public static final Double RIGHT_CHASSIS_F = 0.106256;
+		
+		public static final Double CHASSIS_RAMP_RATE = 1.0;
+
+		//PCM Values
+		public static final int INTAKE_SOLENOID_CHANNEL_A = 2;
+		public static final int INTAKE_SOLENOID_CHANNEL_B = 3;
+		public static final int GEARBOX_SOLENOID_CHANNEL_A = 4;
+		public static final int GEARBOX_SOLENOID_CHANNEL_B = 5;
+		public static final int EXTRA_SOLENOID_CHANNEL_A = 6;
+		public static final int EXTRA_SOLENOID_CHANNEL_B = 7;
+		
+		//Analog Inputs
+		public static final int STORED_PRESSURE_SENSOR = 0;
+		
+		//Digital Inputs
+		public static final int ELEVATOR_BOTTOM_LIMIT_SWITCH = 0;
+		public static final int ELEVATOR_UPPER_LIMIT_SWITCH = 1;
+		
+		//PWN Outputs
+		public static final int COMPRESSOR_SPIKE = 0;
+
+		//Control Values
 		public static final int DRIVE_STICK_NUMBER = 0;
 		public static final int AUXILLIARY_STICK_NUMBER = 1;
+		
 //		public static final int SHOOTER_CONTROL_BUTTON = 4;
 		
-		//Pnuematics Values
-		public static final int INTAKE_SOLENOID_CHANNEL_A = 6;
-		public static final int INTAKE_SOLENOID_CHANNEL_B = 7;
+
 }
 

@@ -8,8 +8,8 @@ import org.usfirst.frc.team2141.robot.RobotMap;
 /**
  *
  */
-public class DriveWithJoystick extends Command {
-	public DriveWithJoystick() {
+public class Chassis_DriveWithJoystick extends Command {
+	public Chassis_DriveWithJoystick() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.chassis);
 	}
@@ -23,9 +23,7 @@ public class DriveWithJoystick extends Command {
 	@Override
 	protected void execute() {
 		//Robot.chassis.setCurrentLimitEnabled(false);
-		    	
-    	Robot.chassis.arcadeDrive(Robot.oi.getLeftY(), Robot.oi.getLeftX());
- 
+    	Robot.chassis.arcadeDrive(Robot.oi.getRightY(), Robot.oi.getLeftX());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

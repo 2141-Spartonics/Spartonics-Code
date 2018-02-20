@@ -7,14 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Climber_Control extends Command {
-	double velocity;
+public class CurrentLimiting_Disable extends Command {
 
-    public Climber_Control(double velocity) {
+    public CurrentLimiting_Disable() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator_climber);
-    	velocity = this.velocity;
+    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
@@ -23,8 +21,7 @@ public class Climber_Control extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator_climber.setElevatorVelocity(velocity);
-    	
+    	Robot.elevator.disableCurrentLimiting();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -34,14 +31,10 @@ public class Climber_Control extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevator_climber.setElevatorVelocity(0);
-
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.elevator_climber.setElevatorVelocity(0);
-
     }
 }
