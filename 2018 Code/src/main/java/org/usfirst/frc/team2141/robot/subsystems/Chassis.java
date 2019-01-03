@@ -174,7 +174,8 @@ public class Chassis extends Subsystem {
 
 	public void setLeftMotorSpeed(double speed, Boolean pid) {
 		if (pid) {
-			leftMasterMotor.set(ControlMode.Velocity, speed * 4.0 * 256.0 * 12.0 / 50.0 * 24.0 / 50.0 * 5840.0 / 600.0 * 1080.0 / 1148.0);
+			leftMasterMotor.set(ControlMode.Velocity,
+					speed * 4.0 * 256.0 * 12.0 / 50.0 * 24.0 / 50.0 * 5840.0 / 600.0 * 1080.0 / 1148.0);
 		} else {
 			leftMasterMotor.set(ControlMode.PercentOutput, speed);
 		}
@@ -182,7 +183,8 @@ public class Chassis extends Subsystem {
 
 	public void setRightMotorSpeed(double speed, Boolean pid) {
 		if (pid) {
-			rightMasterMotor.set(ControlMode.Velocity, speed * 256.0 * 4.0 * 12.0 / 50.0 * 24.0 / 50.0 * 5840.0 / 600.0 * 1080.0 / 1148.0);
+			rightMasterMotor.set(ControlMode.Velocity,
+					speed * 256.0 * 4.0 * 12.0 / 50.0 * 24.0 / 50.0 * 5840.0 / 600.0 * 1080.0 / 1148.0);
 		} else {
 			rightMasterMotor.set(ControlMode.PercentOutput, speed);
 		}
