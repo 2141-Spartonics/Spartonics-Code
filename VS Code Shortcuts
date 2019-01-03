@@ -1,0 +1,14 @@
+These are the shortcuts Bernie thinks are kinda cool
+
+ALT + SHIFT + F : Autoformat
+CTRL + SHIFT + P : Opens Pallete
+CTRL + SHIFT + O : Organize Imports 
+CTRL + SHIFT + \ : Jumps to Paired Bracket
+ALT + Z : Word Wrap Toggle
+CTRL + SPACE : Suggestion
+CTRL + . : Iterate through errors
+F2 : Full page refractor
+
+
+Right Click commands or subsystems and select "create new class/command" to do just that
+Right click on an import error, select "Source Action" then "organize imports"
