@@ -98,17 +98,17 @@ public class Chassis extends Subsystem {
     }
   }
 
-  public Integer getLeftPosition() {
+  public int getLeftPosition() {
     // TODO
     return null;
   }
 
-  public Integer getRightPosition() {
+  public int getRightPosition() {
     // TODO
     return null;
-  }
+  } 
 
-  public Integer getAveragePosition() {
+  public int getAveragePosition() {
     return (getLeftPosition() + getRightPosition()) / 2;
   }
 
