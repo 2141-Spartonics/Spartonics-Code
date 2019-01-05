@@ -10,6 +10,6 @@
     ".classpath": true,
     ".project": true
   },
-  "wpilib.online": true
-  "java.home": "C:\\Program Files\\Java\\java-11-openjdk-11.0.1.13-1.redhat.windows.x86_64"
+  "wpilib.online": true,
+  "java.home": "C:\\Program Files\\Java\\jdk1.8.0_181"
 }
