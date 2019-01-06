@@ -27,6 +27,7 @@ public class Robot extends TimedRobot {
   public static Chassis chassis;
   public static Elevator elevator;
   public static Pneumatics pneumatics;
+  public Configs configs;
 
   public static OI oi;
 
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    configs = new Configs();
     chassis = new Chassis();
     elevator = new Elevator();
     pneumatics = new Pneumatics();

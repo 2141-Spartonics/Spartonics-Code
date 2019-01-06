@@ -25,6 +25,10 @@ public class RobotMap {
   public static final int LEFT_SLAVE_SPARK = 1;
   public static final int RIGHT_MASTER_SPARK = 2;
   public static final int RIGHT_SLAVE_SPARK = 3;
+  public static final int MASTER_ELEVATOR_TALON = 0;
+  public static final int SLAVE_ELEVATOR_TALON_ONE = 0;
+  public static final int SLAVE_ELEVATOR_TALON_TWO = 0;
+
 
   // Chassis PID Constants
   public static final int CHASSIS_KP_INT = 0;
