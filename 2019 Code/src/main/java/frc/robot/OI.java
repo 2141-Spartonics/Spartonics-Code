@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -16,17 +17,22 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  private Joystick primaryStick;
-  private JoystickButton[] primaryButtons;
-  private Joystick auxiliaryStick;
-  private JoystickButton[] auxiliaryButtons;
-  public OI() {
+	private Joystick primaryStick;
+	private JoystickButton[] primaryButtons;
+	private Joystick auxiliaryStick;
+	private JoystickButton[] auxiliaryButtons;
+
+	private XboxController xboxController;
+
+	public OI() {
 
 		primaryStick = new Joystick(RobotMap.PRIMARY_STICK_PORT);
 		primaryButtons = new JoystickButton[13];
 
-    auxiliaryStick = new Joystick(RobotMap.AUXILIARY_STICK_PORT);
+		auxiliaryStick = new Joystick(RobotMap.AUXILIARY_STICK_PORT);
 		auxiliaryButtons = new JoystickButton[13];
+ 
+		xboxController = new XboxController(RobotMap.XBOX_CONTROLLER_PORT);
 
 		for (int i = 1; i <= primaryButtons.length - 1; i++) {
 			primaryButtons[i] = new JoystickButton(primaryStick, i);
@@ -35,6 +41,7 @@ public class OI {
 		for (int i = 1; i <= auxiliaryButtons.length - 1; i++) {
 			auxiliaryButtons[i] = new JoystickButton(auxiliaryStick, i);
 		}
+
 
 	}
 
@@ -60,8 +67,8 @@ public class OI {
 		} else {
 			return this.primaryButtons[buttonNum];
 		}
-  }
-  
+	}
+
 	public double getLeftX() {
 		return primaryStick.getRawAxis(0);
 	}
@@ -77,6 +84,7 @@ public class OI {
 	public double getRightY() {
 		return primaryStick.getRawAxis(5);
 	}
+
 	public void rumbleLeftJoystick(int rumbleValue) {
 		this.primaryStick.setRumble(RumbleType.kLeftRumble, rumbleValue);
 	}
@@ -85,19 +93,74 @@ public class OI {
 		this.primaryStick.setRumble(RumbleType.kRightRumble, rumbeValue);
 	}
 
-  /**
-   * @return the primaryStick
-   */
-  public Joystick getPrimaryStick() {
-    return primaryStick;
-  }
+	/**
+	 * @return the primaryStick
+	 */
+	public Joystick getPrimaryStick() {
+		return primaryStick;
+	}
 
-  /**
-   * @return the auxiliaryStick
-   */
-  public Joystick getAuxiliaryStick() {
-    return auxiliaryStick;
-  }
+	/**
+	 * @return the auxiliaryStick
+	 */
+	public Joystick getAuxiliaryStick() {
+		return auxiliaryStick;
+	}
 
+	/**
+	 * @param primaryStick the primaryStick to set
+	 */
+	public void setPrimaryStick(Joystick primaryStick) {
+		this.primaryStick = primaryStick;
+	}
+
+	/**
+	 * @return the primaryButtons
+	 */
+	public JoystickButton[] getPrimaryButtons() {
+		return primaryButtons;
+	}
+
+	/**
+	 * @param primaryButtons the primaryButtons to set
+	 */
+	public void setPrimaryButtons(JoystickButton[] primaryButtons) {
+		this.primaryButtons = primaryButtons;
+	}
+
+	/**
+	 * @param auxiliaryStick the auxiliaryStick to set
+	 */
+	public void setAuxiliaryStick(Joystick auxiliaryStick) {
+		this.auxiliaryStick = auxiliaryStick;
+	}
+
+	/**
+	 * @return the auxiliaryButtons
+	 */
+	public JoystickButton[] getAuxiliaryButtons() {
+		return auxiliaryButtons;
+	}
+
+	/**
+	 * @param auxiliaryButtons the auxiliaryButtons to set
+	 */
+	public void setAuxiliaryButtons(JoystickButton[] auxiliaryButtons) {
+		this.auxiliaryButtons = auxiliaryButtons;
+	}
+
+	/**
+	 * @return the xboxController
+	 */
+	public XboxController getXboxController() {
+		return xboxController;
+	}
+
+	/**
+	 * @param xboxController the xboxController to set
+	 */
+	public void setXboxController(XboxController xboxController) {
+		this.xboxController = xboxController;
+	}
 
 }

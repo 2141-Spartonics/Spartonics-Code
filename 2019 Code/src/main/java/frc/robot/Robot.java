@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Chassis;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Pneumatics;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +25,9 @@ import frc.robot.subsystems.Chassis;
  */
 public class Robot extends TimedRobot {
   public static Chassis chassis;
+  public static Elevator elevator;
+  public static Pneumatics pneumatics;
+
   public static OI oi;
 
   Command m_autonomousCommand;
@@ -35,6 +40,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     chassis = new Chassis();
+    elevator = new Elevator();
+    pneumatics = new Pneumatics();
     oi = new OI();
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

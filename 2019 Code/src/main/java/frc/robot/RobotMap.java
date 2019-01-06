@@ -18,6 +18,7 @@ public class RobotMap {
   // PORTS
   public static final int PRIMARY_STICK_PORT = 0;
   public static final int AUXILIARY_STICK_PORT = 1;
+  public static final int XBOX_CONTROLLER_PORT = 2;
 
   // CAN BUS
   public static final int LEFT_MASTER_SPARK = 0;
