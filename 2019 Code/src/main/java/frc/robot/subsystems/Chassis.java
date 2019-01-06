@@ -98,18 +98,14 @@ public class Chassis extends Subsystem {
     }
   }
 
-  public int getLeftPosition() {
+  public double getLeftPosition() {
     // TODO
-    return null;
+    return 0.0;
   }
 
-  public int getRightPosition() {
+  public double getRightPosition() {
     // TODO
-    return null;
-  } 
-
-  public int getAveragePosition() {
-    return (getLeftPosition() + getRightPosition()) / 2;
+    return 0.0;
   }
 
   public void enablePid() {
