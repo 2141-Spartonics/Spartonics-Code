@@ -27,7 +27,7 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
 
   Configs configs = new Configs();
-
+ 
   private TalonSRX masterElevatorMotor;
   private TalonSRX slaveElevatorMotorOne;
   private TalonSRX slaveElevatorMotorTwo;

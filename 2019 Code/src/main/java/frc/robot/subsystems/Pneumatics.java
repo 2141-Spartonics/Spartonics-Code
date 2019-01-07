@@ -11,9 +11,8 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.RobotMap;
 
 /**
  * TODO the whole thing
@@ -35,10 +34,10 @@ public class Pneumatics extends Subsystem {
 	boolean gearboxInHigh;
 
 	public Pneumatics() {
-		compressor = new Relay(RobotMap.COMPRESSOR_SPIKE_PORT);
+		compressor = new Relay(1);
 		compressorPressure = new Compressor();
 
-		pressureSensor = new AnalogInput(RobotMap.STORED_PRESSURE_SENSOR_PORT);
+		pressureSensor = new AnalogInput(0);
 	}
 
 	public void publishToSmartDashBoard() {
@@ -56,7 +55,7 @@ public class Pneumatics extends Subsystem {
 
 
 	public void enableCompressor() {
-		compressor.set
+		compressor.set(Value.kOn);
 	}
 
 	public void disableCompressor() {
