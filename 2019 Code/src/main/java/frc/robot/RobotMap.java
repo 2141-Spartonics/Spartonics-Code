@@ -38,6 +38,16 @@ public class RobotMap {
   public static final int INTAKE_CHANNEL_A = 0;
   public static final int INTAKE_CHANNEL_B = 1;
 
+  public static final int LEFT_OUTTAKE_PISTON_CHANNEL_A = 0;
+  public static final int LEFT_OUTTAKE_PISTON_CHANNEL_B = 1;
+  public static final int RIGHT_OUTTAKE_PISTON_CHANNEL_A = 0;
+  public static final int RIGHT_OUTTAKE_PISTON_CHANNEL_B = 1;
+
+  public static final int COMPRESSOR = 0;
+
+  public static final int WORKING_PRESSURE_SENSOR = 0;
+  public static final int STORED_PRESSURE_SENSOR = 0;
+
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
