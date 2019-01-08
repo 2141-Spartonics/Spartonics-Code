@@ -29,11 +29,14 @@ public class RobotMap {
   public static final int SLAVE_ELEVATOR_TALON_ONE = 0;
   public static final int SLAVE_ELEVATOR_TALON_TWO = 0;
 
-
   // Chassis PID Constants
   public static final int CHASSIS_KP_INT = 0;
   public static final int CHASSIS_KD_INT = 0;
   public static final int CHASSIS_KF_INT = 1;
+
+  // Pneumatics
+  public static final int INTAKE_CHANNEL_A = 0;
+  public static final int INTAKE_CHANNEL_B = 1;
 
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
