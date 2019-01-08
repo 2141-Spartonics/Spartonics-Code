@@ -111,7 +111,6 @@ public class Pneumatics extends Subsystem {
 
 	/**
 	 * Returns the compressors state in a boolean
-	 * 
 	 * @return boolean indicating whether or not the compressor is enabled
 	 */
 	public boolean getCompressorState() {

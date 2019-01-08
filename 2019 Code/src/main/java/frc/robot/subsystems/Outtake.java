@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 /**
- * Outtake subsytem, includes both pistons used for outtake a hatch panel and possibly a cargo ball 
+ * Outtake subsytem, includes both pistons used for outtake a hatch panel and
+ * possibly a cargo ball
  * 
  * @author Bernie Conrad
  * @version 1/7/19
@@ -43,6 +44,7 @@ public class Outtake extends Subsystem {
 
   /**
    * Determines whether or not the outtake is currently active
+   * 
    * @return true if the outtake is extended
    */
   public boolean getOuttakeExtended() {
@@ -57,6 +59,7 @@ public class Outtake extends Subsystem {
 
   /**
    * Determines whether the outtake pistons are out of sync
+   * 
    * @return true if outtake piston's don't share the same state
    */
   public boolean getOuttakeErrorState() {

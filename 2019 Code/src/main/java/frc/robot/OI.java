@@ -12,7 +12,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.outtakecmds.*;
 import frc.robot.commands.pneumaticscmds.*;
+import frc.robot.commands.intakecmds.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -47,10 +49,18 @@ public class OI {
 		// Pneumatics
 		getButton(1, true).whileHeld(new enableCompressor());
 		getButton(2, true).whenPressed(new disableCompressor());
+		getButton(3, true).whenPressed(new extendOuttake());
+		getButton(4, true).whenPressed(new retractOuttake());
+		getButton(5, true).whenPressed(new openIntake());
+		getButton(6, true).whenPressed(new closeIntake());
 
 		// SmartDashboard Manual
 		SmartDashboard.putData("Enable Compressor", new enableCompressor());
 		SmartDashboard.putData("Disable Compressor", new disableCompressor());
+		SmartDashboard.putData("Extend Outtake", new extendOuttake());
+		SmartDashboard.putData("Retract Outtake", new retractOuttake());
+		SmartDashboard.putData("Open Intake", new openIntake());
+		SmartDashboard.putData("Close Intake", new closeIntake());
 	}
 
 	public boolean getButtonValue(int buttonNum) {
