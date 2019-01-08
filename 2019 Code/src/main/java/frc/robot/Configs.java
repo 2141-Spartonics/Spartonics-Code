@@ -11,8 +11,8 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
 /**
- * TODO Bernie's kinda cool talonSrx configs, trying this out fingers crossed it
- * works
+ * Config page for all TalonSRX's 
+ * @author Bernie
  */
 
 public class Configs {
@@ -31,7 +31,7 @@ public class Configs {
         elevatorTalonConfig.slot0.kF = elevatorGains.kF;
         elevatorTalonConfig.slot0.integralZone = 500; // TODO wtf does this mean?
         elevatorTalonConfig.slot0.allowableClosedloopError = 10;
-        elevatorTalonConfig.slot0.maxIntegralAccumulator = elevatorGains.kIzone; // TODO whats diff between this an izone
+        //elevatorTalonConfig.slot0.maxIntegralAccumulator = elevatorGains.kIzone;
         elevatorTalonConfig.slot0.closedLoopPeakOutput = elevatorGains.kPeakOutput;
         elevatorTalonConfig.closedloopRamp = 1;
         elevatorTalonConfig.openloopRamp = 1;

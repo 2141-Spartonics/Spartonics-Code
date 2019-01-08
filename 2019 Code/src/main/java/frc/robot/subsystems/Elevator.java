@@ -64,7 +64,7 @@ public class Elevator extends Subsystem {
   }
 
   public void publishToSmartDashboard() {
-    // TODO have fun flushing this mess
+    // TODO have fun flushing out this mess
   }
 
   public void setElevatorSpeed(double speed) {
