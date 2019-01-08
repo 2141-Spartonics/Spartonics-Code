@@ -31,7 +31,7 @@ public class OI {
 
 		auxiliaryStick = new Joystick(RobotMap.AUXILIARY_STICK_PORT);
 		auxiliaryButtons = new JoystickButton[13];
- 
+
 		xboxController = new XboxController(RobotMap.XBOX_CONTROLLER_PORT);
 
 		for (int i = 1; i <= primaryButtons.length - 1; i++) {
@@ -41,7 +41,6 @@ public class OI {
 		for (int i = 1; i <= auxiliaryButtons.length - 1; i++) {
 			auxiliaryButtons[i] = new JoystickButton(auxiliaryStick, i);
 		}
-
 
 	}
 

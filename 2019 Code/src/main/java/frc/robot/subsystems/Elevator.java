@@ -27,7 +27,7 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
 
   Configs configs = new Configs();
- 
+
   private TalonSRX masterElevatorMotor;
   private TalonSRX slaveElevatorMotorOne;
   private TalonSRX slaveElevatorMotorTwo;
@@ -64,7 +64,7 @@ public class Elevator extends Subsystem {
   }
 
   public void publishToSmartDashboard() {
-    //TODO have fun flushing this mess 
+    // TODO have fun flushing this mess
   }
 
   public void setElevatorSpeed(double speed) {
