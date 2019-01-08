@@ -14,7 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
+ * Outtake subsytem, includes both pistons used for outtake a hatch panel and possibly a cargo ball 
+ * 
+ * @author Bernie Conrad
+ * @version 1/7/19
  */
 public class Outtake extends Subsystem {
   // Put methods for controlling this subsystem
@@ -30,11 +33,18 @@ public class Outtake extends Subsystem {
         RobotMap.RIGHT_OUTTAKE_PISTON_CHANNEL_B);
   }
 
+  /**
+   * Publishes outtake data to the smart dashboard
+   */
   public void publishToSmartDashboard() {
     SmartDashboard.putBoolean("Outtake Extended", getOuttakeExtended());
     SmartDashboard.putBoolean("Outtake Error State", getOuttakeErrorState());
   }
 
+  /**
+   * Determines whether or not the outtake is currently active
+   * @return true if the outtake is extended
+   */
   public boolean getOuttakeExtended() {
     if (rightOuttakePiston.get() == Value.kForward & leftOuttakePiston.get() == Value.kForward) {
       return true;
@@ -45,6 +55,10 @@ public class Outtake extends Subsystem {
     }
   }
 
+  /**
+   * Determines whether the outtake pistons are out of sync
+   * @return true if outtake piston's don't share the same state
+   */
   public boolean getOuttakeErrorState() {
     if (rightOuttakePiston.get() == leftOuttakePiston.get()) {
       return false;
@@ -53,20 +67,30 @@ public class Outtake extends Subsystem {
     }
   }
 
+  /**
+   * Extends both outtake pistons
+   */
   public void extendOuttake() {
     leftOuttakePiston.set(Value.kForward);
     rightOuttakePiston.set(Value.kForward);
   }
 
+  /**
+   * Reverses both outtake pistons
+   */
   public void closeOuttake() {
     leftOuttakePiston.set(Value.kReverse);
     rightOuttakePiston.set(Value.kReverse);
   }
 
+  /**
+   * Sets default command of outtake subsystem to null
+   */
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(null);
   }
+
 }

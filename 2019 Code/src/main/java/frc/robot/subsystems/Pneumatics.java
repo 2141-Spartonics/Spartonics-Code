@@ -14,12 +14,20 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
+/**
+ * Pneumatics subsystem, inclides all pressure sensors and the on board
+ * compressor
+ * 
+ * @author Bernie Conrad
+ * @version 1/7/19
+ */
 public class Pneumatics extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	Relay compressor;
+	boolean manualControl = false;
 
 	AnalogInput storedPressureSensor;
 	AnalogInput workingPressureSensor;
@@ -37,7 +45,6 @@ public class Pneumatics extends Subsystem {
 		SmartDashboard.putNumber("Stored Pressure", getPressure(getStoredPressureSensor()));
 		SmartDashboard.putNumber("Working Pressure", getPressure(getWorkingPressureSensor()));
 		SmartDashboard.putBoolean("Compressor Enabled", getCompressorState());
-
 	}
 
 	/**
@@ -48,18 +55,38 @@ public class Pneumatics extends Subsystem {
 		setDefaultCommand(null);
 	}
 
+	/** 
+	 * Automatically controls the compressor when a command that would otherwise control it is not enabled with some fancy pants historesis
+	 */
+	public void automaticCompressorControl() {
+		// TODO test accuracy of method for compressor control
+		if (!manualControl & getPressure(getStoredPressureSensor()) < 100) {
+			manualEnableCompressor();
+		}
+
+		if (!manualControl & getPressure(getStoredPressureSensor()) > 120) {
+			manualDisableCompressor();
+		}
+	}
+
+	/** 
+	 * Sets control mode of the compressor
+	 */
+	public void setControlMode(boolean manualEnabled) {
+		manualControl = manualEnabled;
+	}
+
 	/**
 	 * Sets the value of the relay that controls the compressor to on
 	 */
-	public void enableCompressor() {
-		// TODO historises mumbo jumbo
+	public void manualEnableCompressor() {
 		compressor.set(Value.kOn);
 	}
 
 	/**
 	 * Sets the value of the relay that controls the compressor to off
 	 */
-	public void disableCompressor() {
+	public void manualDisableCompressor() {
 		compressor.set(Value.kOff);
 	}
 

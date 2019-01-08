@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Outtake;
 import frc.robot.subsystems.Pneumatics;
 
 /**
@@ -27,6 +29,8 @@ public class Robot extends TimedRobot {
   public static Chassis chassis;
   public static Elevator elevator;
   public static Pneumatics pneumatics;
+  public static Intake intake;
+  public static Outtake outtake;
   public Configs configs;
 
   public static OI oi;
@@ -44,6 +48,8 @@ public class Robot extends TimedRobot {
     chassis = new Chassis();
     elevator = new Elevator();
     pneumatics = new Pneumatics();
+    intake = new Intake();
+    outtake = new Outtake();
     oi = new OI();
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -60,6 +66,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    // TODO add all publish to smart dashboards
+
+    pneumatics.automaticCompressorControl();
   }
 
   /**

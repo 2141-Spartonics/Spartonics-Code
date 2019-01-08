@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.pneumaticscmds.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -42,6 +44,13 @@ public class OI {
 			auxiliaryButtons[i] = new JoystickButton(auxiliaryStick, i);
 		}
 
+		// Pneumatics
+		getButton(1, true).whileHeld(new enableCompressor());
+		getButton(2, true).whenPressed(new disableCompressor());
+
+		// SmartDashboard Manual
+		SmartDashboard.putData("Enable Compressor", new enableCompressor());
+		SmartDashboard.putData("Disable Compressor", new disableCompressor());
 	}
 
 	public boolean getButtonValue(int buttonNum) {
