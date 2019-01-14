@@ -7,43 +7,160 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  public Joystick driveStick = new Joystick(RobotMap.DRIVE_STICK);
+	private Joystick primaryStick;
+	private JoystickButton[] primaryButtons;
+	private Joystick auxiliaryStick;
+	private JoystickButton[] auxiliaryButtons;
 
-  public Joystick getDriveStick() {
-    return driveStick;
-  }
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
+	private XboxController xboxController;
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
+	public OI() {
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
+		primaryStick = new Joystick(1);
+		primaryButtons = new JoystickButton[13];
 
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
+		auxiliaryStick = new Joystick(2);
+		auxiliaryButtons = new JoystickButton[13];
 
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
+		xboxController = new XboxController(0);
 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+		for (int i = 1; i <= primaryButtons.length - 1; i++) {
+			primaryButtons[i] = new JoystickButton(primaryStick, i);
+		}
+
+		for (int i = 1; i <= auxiliaryButtons.length - 1; i++) {
+			auxiliaryButtons[i] = new JoystickButton(auxiliaryStick, i);
+		}
+
+	
+	}
+
+	public boolean getButtonValue(int buttonNum) {
+		return this.primaryButtons[buttonNum].get();
+	}
+
+	public boolean getButtonValue(int buttonNum, boolean auxiliary) {
+		if (auxiliary) {
+			return this.auxiliaryButtons[buttonNum].get();
+		} else {
+			return this.primaryButtons[buttonNum].get();
+		}
+	}
+
+	public JoystickButton getButton(int buttonNum) {
+		return this.primaryButtons[buttonNum];
+	}
+
+	public JoystickButton getButton(int buttonNum, boolean auxiliary) {
+		if (auxiliary) {
+			return this.auxiliaryButtons[buttonNum];
+		} else {
+			return this.primaryButtons[buttonNum];
+		}
+	}
+
+	public double getLeftX() {
+		return primaryStick.getRawAxis(0);
+	}
+
+	public double getLeftY() {
+		return primaryStick.getRawAxis(1);
+	}
+
+	public double getRightX() {
+		return primaryStick.getRawAxis(4);
+	}
+
+	public double getRightY() {
+		return primaryStick.getRawAxis(5);
+	}
+
+	public void rumbleLeftJoystick(int rumbleValue) {
+		this.primaryStick.setRumble(RumbleType.kLeftRumble, rumbleValue);
+	}
+
+	public void rumbleRightJoystick(int rumbeValue) {
+		this.primaryStick.setRumble(RumbleType.kRightRumble, rumbeValue);
+	}
+
+	/**
+	 * @return the primaryStick
+	 */
+	public Joystick getPrimaryStick() {
+		return primaryStick;
+	}
+
+	/**
+	 * @return the auxiliaryStick
+	 */
+	public Joystick getAuxiliaryStick() {
+		return auxiliaryStick;
+	}
+
+	/**
+	 * @param primaryStick the primaryStick to set
+	 */
+	public void setPrimaryStick(Joystick primaryStick) {
+		this.primaryStick = primaryStick;
+	}
+
+	/**
+	 * @return the primaryButtons
+	 */
+	public JoystickButton[] getPrimaryButtons() {
+		return primaryButtons;
+	}
+
+	/**
+	 * @param primaryButtons the primaryButtons to set
+	 */
+	public void setPrimaryButtons(JoystickButton[] primaryButtons) {
+		this.primaryButtons = primaryButtons;
+	}
+
+	/**
+	 * @param auxiliaryStick the auxiliaryStick to set
+	 */
+	public void setAuxiliaryStick(Joystick auxiliaryStick) {
+		this.auxiliaryStick = auxiliaryStick;
+	}
+
+	/**
+	 * @return the auxiliaryButtons
+	 */
+	public JoystickButton[] getAuxiliaryButtons() {
+		return auxiliaryButtons;
+	}
+
+	/**
+	 * @param auxiliaryButtons the auxiliaryButtons to set
+	 */
+	public void setAuxiliaryButtons(JoystickButton[] auxiliaryButtons) {
+		this.auxiliaryButtons = auxiliaryButtons;
+	}
+
+	/**
+	 * @return the xboxController
+	 */
+	public XboxController getXboxController() {
+		return xboxController;
+	}
+
+	/**
+	 * @param xboxController the xboxController to set
+	 */
+	public void setXboxController(XboxController xboxController) {
+		this.xboxController = xboxController;
+	}
+
 }

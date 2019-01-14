@@ -18,6 +18,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 public class Configs {
     public TalonSRXConfiguration elevatorTalonConfig;
     public static final Gains elevatorGains = new Gains(0.0, 0.0, 0.0, 0.0, 0, 0.0); // TODO need to actually calculate
+    public static final Gains leftChassis = new Gains(0.0, 0.0, 0.0, 0.0, 0, 0.0);
+    public static final Gains rightChassis = new Gains(0.0, 0.0, 0.0, 0.0, 0, 0.0);
 
     public Configs() {
         elevatorTalonConfig = new TalonSRXConfiguration();
@@ -29,7 +31,7 @@ public class Configs {
         elevatorTalonConfig.slot0.kI = elevatorGains.kI;
         elevatorTalonConfig.slot0.kD = elevatorGains.kD;
         elevatorTalonConfig.slot0.kF = elevatorGains.kF;
-        elevatorTalonConfig.slot0.integralZone = 500; // TODO wtf does this mean?
+        elevatorTalonConfig.slot0.integralZone = 25; // TODO wtf does this mean?
         elevatorTalonConfig.slot0.allowableClosedloopError = 10;
         //elevatorTalonConfig.slot0.maxIntegralAccumulator = elevatorGains.kIzone;
         elevatorTalonConfig.slot0.closedLoopPeakOutput = elevatorGains.kPeakOutput;

@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -11,37 +11,23 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.DriveWithJoystick;
 
-/**
- * An example subsystem. You can replace me with your own Subsystem.
- */
 public class Chassis extends Subsystem {
 
-  private Spark rightMotor;
-  private Spark rightSlave;
-  private Spark leftMotor;
+  private Spark leftMaster;
   private Spark leftSlave;
+  private Spark rightMaster;
+  private Spark rightSlave;
 
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
   public Chassis() {
-    rightMotor = new Spark(4);
-    rightSlave = new Spark(2);
-    leftMotor = new Spark(3);
+    leftMaster = new Spark(0);
     leftSlave = new Spark(1);
+    rightMaster = new Spark(2);
+    rightSlave = new Spark(3);
 
-    rightMotor.setInverted(false);
-    rightSlave.setInverted(false);
-    leftMotor.setInverted(false);
-    leftSlave.setInverted(false);
 
   }
 
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new DriveWithJoystick());
-  }
 
   public void arcadeDrive(double moveValue, double rotateValue) {
 
@@ -84,15 +70,26 @@ public class Chassis extends Subsystem {
     this.setRightSpeed(rightMotorSpeed);
   }
 
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new DriveWithJoystick());
+  }
+
   public void setLeftSpeed(double speed) {
-    leftMotor.set(speed);
+    leftMaster.set(speed);
     leftSlave.set(speed);
   }
 
   public void setRightSpeed(double speed) {
-    rightMotor.set(speed);
+    rightMaster.set(speed);
     rightSlave.set(speed);
   }
+
+  
+
+
 
   private double limit(double val) {
     if (val > 1.0) {
@@ -102,6 +99,5 @@ public class Chassis extends Subsystem {
     } else {
       return val;
     }
-
   }
 }

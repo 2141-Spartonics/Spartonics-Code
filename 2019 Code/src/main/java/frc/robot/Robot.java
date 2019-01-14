@@ -66,13 +66,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    chassis.publishToSmartDashboard();
-    elevator.publishToSmartDashboard();
-    intake.publishToSmartDashboard();
-    outtake.publishToSmartDashboard();
-    pneumatics.publishToSmartDashBoard();
+    //chassis.publishToSmartDashboard();
+    //elevator.publishToSmartDashboard();
+    //intake.publishToSmartDashboard();
+    //outtake.publishToSmartDashboard();
+    //pneumatics.publishToSmartDashBoard();
 
-    pneumatics.automaticCompressorControl();
+    //pneumatics.automaticCompressorControl();
   }
 
   /**

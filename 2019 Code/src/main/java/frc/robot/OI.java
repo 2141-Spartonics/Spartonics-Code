@@ -88,27 +88,27 @@ public class OI {
 	}
 
 	public double getLeftX() {
-		return primaryStick.getRawAxis(0);
+		return xboxController.getRawAxis(0);
 	}
 
 	public double getLeftY() {
-		return primaryStick.getRawAxis(1);
+		return xboxController.getRawAxis(1);
 	}
 
 	public double getRightX() {
-		return primaryStick.getRawAxis(4);
+		return xboxController.getRawAxis(4);
 	}
 
 	public double getRightY() {
-		return primaryStick.getRawAxis(5);
+		return xboxController.getRawAxis(5);
 	}
 
 	public void rumbleLeftJoystick(int rumbleValue) {
-		this.primaryStick.setRumble(RumbleType.kLeftRumble, rumbleValue);
+		this.xboxController.setRumble(RumbleType.kLeftRumble, rumbleValue);
 	}
 
 	public void rumbleRightJoystick(int rumbeValue) {
-		this.primaryStick.setRumble(RumbleType.kRightRumble, rumbeValue);
+		this.xboxController.setRumble(RumbleType.kRightRumble, rumbeValue);
 	}
 
 	/**

@@ -29,8 +29,8 @@ public class Elevator extends Subsystem {
   Configs configs = new Configs();
 
   private TalonSRX masterElevatorMotor;
-  private TalonSRX slaveElevatorMotorOne;
-  private TalonSRX slaveElevatorMotorTwo;
+  //private TalonSRX slaveElevatorMotorOne;
+  //private TalonSRX slaveElevatorMotorTwo;
 
   private int PIDProfile = 1;
   private boolean usingPid = true;
@@ -38,12 +38,12 @@ public class Elevator extends Subsystem {
 
   public Elevator() {
     masterElevatorMotor = new TalonSRX(RobotMap.MASTER_ELEVATOR_TALON);
-    slaveElevatorMotorOne = new TalonSRX(RobotMap.SLAVE_ELEVATOR_TALON_ONE);
-    slaveElevatorMotorTwo = new TalonSRX(RobotMap.SLAVE_ELEVATOR_TALON_TWO);
+    //slaveElevatorMotorOne = new TalonSRX(RobotMap.SLAVE_ELEVATOR_TALON_ONE);
+    //slaveElevatorMotorTwo = new TalonSRX(RobotMap.SLAVE_ELEVATOR_TALON_TWO);
 
     masterElevatorMotor.configFactoryDefault();
-    slaveElevatorMotorOne.configFactoryDefault();
-    slaveElevatorMotorTwo.configFactoryDefault();
+    //slaveElevatorMotorOne.configFactoryDefault();
+    //slaveElevatorMotorTwo.configFactoryDefault();
 
     masterElevatorMotor.setInverted(InvertType.None);
     masterElevatorMotor.setNeutralMode(NeutralMode.Brake);
@@ -54,11 +54,11 @@ public class Elevator extends Subsystem {
     masterElevatorMotor.configAllowableClosedloopError(PIDProfile, 0);
     masterElevatorMotor.configAllSettings(configs.elevatorTalonConfig);
 
-    slaveElevatorMotorOne.follow(masterElevatorMotor, FollowerType.PercentOutput);
-    slaveElevatorMotorTwo.follow(masterElevatorMotor, FollowerType.PercentOutput);
+    //slaveElevatorMotorOne.follow(masterElevatorMotor, FollowerType.PercentOutput);
+    //slaveElevatorMotorTwo.follow(masterElevatorMotor, FollowerType.PercentOutput);
 
-    slaveElevatorMotorOne.setInverted(InvertType.FollowMaster);
-    slaveElevatorMotorTwo.setInverted(InvertType.FollowMaster);
+    //slaveElevatorMotorOne.setInverted(InvertType.FollowMaster);
+    //slaveElevatorMotorTwo.setInverted(InvertType.FollowMaster);
     // TODO figure out difference between percent output and AuxOutput1
 
   }

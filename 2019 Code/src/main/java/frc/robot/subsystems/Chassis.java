@@ -7,32 +7,66 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Spark;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Configs;
 import frc.robot.RobotMap;
 import frc.robot.commands.driveWithJoystick;
 
 public class Chassis extends Subsystem {
+  Configs configs = new Configs();
 
-  private Spark leftMaster;
-  private Spark leftSlave;
-  private Spark rightMaster;
-  private Spark rightSlave;
+  private CANSparkMax leftMaster;
+  private CANSparkMax leftSlave;
+  private CANSparkMax rightMaster;
+  private CANSparkMax rightSlave;
 
-  private static int pidProfile = 1; // 0 is no PID, 1 is tuned
+  private CANPIDController leftMasterController;
+  private CANPIDController rightMasterController;
+
+  private static int pidProfile = 0; // 0 is no PID, 1 is tuned
 
   public Chassis() {
-    leftMaster = new Spark(RobotMap.LEFT_MASTER_SPARK);
-    leftSlave = new Spark(RobotMap.LEFT_SLAVE_SPARK);
-    rightMaster = new Spark(RobotMap.RIGHT_MASTER_SPARK);
-    rightSlave = new Spark(RobotMap.RIGHT_SLAVE_SPARK);
+    
+    leftMaster = new CANSparkMax(RobotMap.LEFT_MASTER_SPARK, MotorType.kBrushless);
+    leftSlave = new CANSparkMax(RobotMap.LEFT_SLAVE_SPARK, MotorType.kBrushless);
+    rightMaster = new CANSparkMax(RobotMap.RIGHT_MASTER_SPARK, MotorType.kBrushless);
+    rightSlave = new CANSparkMax(RobotMap.RIGHT_SLAVE_SPARK, MotorType.kBrushless);
 
-    // TODO Configure motors when SparkMax api comes out
+    leftMasterController = new CANPIDController(leftMaster);
+    rightMasterController = new CANPIDController(rightMaster);
+
+    leftMasterController.setP(Configs.leftChassis.kP, 1);
+    leftMasterController.setI(Configs.leftChassis.kI, 1);
+    leftMasterController.setD(Configs.leftChassis.kD, 1);
+
+    rightMasterController.setP(Configs.rightChassis.kP, 1);
+    rightMasterController.setI(Configs.rightChassis.kI, 1);
+    rightMasterController.setD(Configs.rightChassis.kD, 1);
+
+    leftSlave.follow(leftMaster);
+    rightSlave.follow(rightMaster);
+
+    leftMaster.setIdleMode(IdleMode.kCoast);
+    rightMaster.setIdleMode(IdleMode.kCoast);
+
+    leftMaster.setInverted(true);
+    rightMaster.setInverted(true);
 
   }
 
   public void publishToSmartDashboard() {
-    // TODO Setup for debugging
+    SmartDashboard.putNumber("Left Velocity", getLeftVelocity());
+    SmartDashboard.putNumber("Right Velocity", getRightVelocity());
+    SmartDashboard.putNumber("Left Position", getLeftPosition());
+    SmartDashboard.putNumber("Right Position", getRightPosition());
+    SmartDashboard.putNumber("PID State", pidProfile);
   }
 
   public void arcadeDrive(double moveValue, double rotateValue) {
@@ -85,27 +119,35 @@ public class Chassis extends Subsystem {
 
   public void setLeftSpeed(double speed) {
     if (pidProfile == 1) {
+      leftMasterController.setReference(speed, ControlType.kVelocity, 1);
     } else {
-      leftMaster.set(speed); // TODO Check against controlmode.kpercentoutput
+      rightMasterController.setReference(speed, ControlType.kDutyCycle);
     }
   }
 
   public void setRightSpeed(double speed) {
     if (pidProfile == 1) {
-
+      leftMasterController.setReference(speed, ControlType.kVelocity, 1);
     } else {
-      rightMaster.set(speed); // TODO Check against controlmode.kpercentoutput
+      rightMaster.set(speed);
     }
   }
 
   public double getLeftPosition() {
-    // TODO
-    return 0.0;
+    return leftMaster.getEncoder().getPosition();
   }
 
   public double getRightPosition() {
-    // TODO
-    return 0.0;
+    return rightMaster.getEncoder().getPosition();
+  }
+
+  public double getLeftVelocity() {
+    return leftMaster.getEncoder().getVelocity();
+
+  }
+
+  public double getRightVelocity() {
+    return rightMaster.getEncoder().getVelocity();
   }
 
   public void enablePid() {
