@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    //chassis.publishToSmartDashboard();
+    chassis.publishToSmartDashboard();
     //elevator.publishToSmartDashboard();
     //intake.publishToSmartDashboard();
     //outtake.publishToSmartDashboard();
@@ -150,5 +150,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    chassis.testAllMotors(1.0);
   }
 }

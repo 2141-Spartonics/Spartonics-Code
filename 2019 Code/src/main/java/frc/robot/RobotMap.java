@@ -21,11 +21,11 @@ public class RobotMap {
   public static final int XBOX_CONTROLLER_PORT = 2;
 
   // CAN BUS
-  public static final int LEFT_MASTER_SPARK = 6;
-  public static final int LEFT_SLAVE_SPARK = 1;
-  public static final int RIGHT_MASTER_SPARK = 2;
+  public static final int LEFT_MASTER_SPARK = 4;
+  public static final int LEFT_SLAVE_SPARK = 2;
+  public static final int RIGHT_MASTER_SPARK = 1;
   public static final int RIGHT_SLAVE_SPARK = 3;
-  public static final int MASTER_ELEVATOR_TALON = 4;
+  public static final int MASTER_ELEVATOR_TALON = 7;
   public static final int SLAVE_ELEVATOR_TALON_ONE = 5;
   public static final int SLAVE_ELEVATOR_TALON_TWO = 6;
 

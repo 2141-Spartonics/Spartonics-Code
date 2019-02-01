@@ -42,13 +42,13 @@ public class Chassis extends Subsystem {
     leftMasterController = new CANPIDController(leftMaster);
     rightMasterController = new CANPIDController(rightMaster);
 
-    leftMasterController.setP(Configs.leftChassis.kP, 1);
-    leftMasterController.setI(Configs.leftChassis.kI, 1);
-    leftMasterController.setD(Configs.leftChassis.kD, 1);
+    //leftMasterController.setP(Configs.leftChassis.kP, 1);
+    //leftMasterController.setI(Configs.leftChassis.kI, 1);
+    //leftMasterController.setD(Configs.leftChassis.kD, 1);
 
-    rightMasterController.setP(Configs.rightChassis.kP, 1);
-    rightMasterController.setI(Configs.rightChassis.kI, 1);
-    rightMasterController.setD(Configs.rightChassis.kD, 1);
+    //rightMasterController.setP(Configs.rightChassis.kP, 1);
+    //rightMasterController.setI(Configs.rightChassis.kI, 1);
+    //rightMasterController.setD(Configs.rightChassis.kD, 1);
 
     leftSlave.follow(leftMaster);
     rightSlave.follow(rightMaster);
@@ -121,13 +121,14 @@ public class Chassis extends Subsystem {
     if (pidProfile == 1) {
       leftMasterController.setReference(speed, ControlType.kVelocity, 1);
     } else {
-      rightMasterController.setReference(speed, ControlType.kDutyCycle);
+      leftMasterController.setReference(speed, ControlType.kDutyCycle);
+      leftMaster.set(speed);
     }
   }
 
   public void setRightSpeed(double speed) {
     if (pidProfile == 1) {
-      leftMasterController.setReference(speed, ControlType.kVelocity, 1);
+      rightMasterController.setReference(speed, ControlType.kVelocity, 1);
     } else {
       rightMaster.set(speed);
     }
@@ -148,6 +149,12 @@ public class Chassis extends Subsystem {
 
   public double getRightVelocity() {
     return rightMaster.getEncoder().getVelocity();
+  }
+
+  public void testAllMotors(double speed) {
+    leftMaster.set(speed);
+    rightMaster.set(speed);
+
   }
 
   public void enablePid() {
