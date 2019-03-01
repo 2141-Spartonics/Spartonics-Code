@@ -1,5 +1,5 @@
 # The Spartonics Repository
-## Team 2141
+Team 2141
 
 ## Introduction
 
