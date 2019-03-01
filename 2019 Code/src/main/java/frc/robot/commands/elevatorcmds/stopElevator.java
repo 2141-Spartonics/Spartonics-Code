@@ -5,21 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.elevatorcmds;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class elevatorControl extends Command {
-
-  double delta;
-
-  public elevatorControl(double heightChange) {
+public class stopElevator extends Command {
+  public stopElevator() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.elevator);
-    delta = heightChange;
-
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +25,7 @@ public class elevatorControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.elevator.changeElevatorPosition(delta);
+    Robot.elevator.setElevatorSpeed(0.0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

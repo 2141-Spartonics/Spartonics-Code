@@ -11,9 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.outtakecmds.*;
-import frc.robot.commands.pneumaticscmds.*;
+import frc.robot.commands.elevatorcmds.*;
 import frc.robot.commands.intakecmds.*;
 
 /**
@@ -21,7 +19,7 @@ import frc.robot.commands.intakecmds.*;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	private Joystick primaryStick;
+	//private Joystick primaryStick;
 	private JoystickButton[] primaryButtons;
 	private Joystick auxiliaryStick;
 	private JoystickButton[] auxiliaryButtons;
@@ -30,7 +28,7 @@ public class OI {
 
 	public OI() {
 
-		primaryStick = new Joystick(RobotMap.PRIMARY_STICK_PORT);
+//		primaryStick = new Joystick(RobotMap.PRIMARY_STICK_PORT);
 		primaryButtons = new JoystickButton[13];
 
 		auxiliaryStick = new Joystick(RobotMap.AUXILIARY_STICK_PORT);
@@ -39,28 +37,37 @@ public class OI {
 		xboxController = new XboxController(RobotMap.XBOX_CONTROLLER_PORT);
 
 		for (int i = 1; i <= primaryButtons.length - 1; i++) {
-			primaryButtons[i] = new JoystickButton(primaryStick, i);
+			primaryButtons[i] = new JoystickButton(xboxController, i);
 		}
 
 		for (int i = 1; i <= auxiliaryButtons.length - 1; i++) {
 			auxiliaryButtons[i] = new JoystickButton(auxiliaryStick, i);
 		}
 
-		// Pneumatics
-		getButton(1, true).whileHeld(new enableCompressor());
-		getButton(2, true).whenPressed(new disableCompressor());
-		getButton(3, true).whenPressed(new extendOuttake());
-		getButton(4, true).whenPressed(new retractOuttake());
-		getButton(5, true).whenPressed(new openIntake());
-		getButton(6, true).whenPressed(new closeIntake());
+		getButton(2, true).whileHeld(new intakeCargo());
+		getButton(3, true).whileHeld(new outtakeCargo());
 
-		// SmartDashboard Manual
+		getButton(1, true).whileHeld(new lowerElevator());
+		getButton(4, true).whileHeld(new raiseElevator());
+		getButton(6, true).whenPressed(new stopElevator());
+
+		getButton(2).whileHeld(new intakeCargo());
+		getButton(3).whileHeld(new outtakeCargo());
+
+		getButton(4).whileHeld(new lowerElevator());
+		getButton(5).whileHeld(new raiseElevator());
+		getButton(6).whenPressed(new stopElevator());
+
+		getButton(11, true).whenPressed(new intakeHatch());
+		getButton(10, true).whenPressed(new outtakeHatch());
+
+		//getButton(5).whileHeld(new setElevatorPosition(5000));
+		/*// SmartDashboard Manual
 		SmartDashboard.putData("Enable Compressor", new enableCompressor());
 		SmartDashboard.putData("Disable Compressor", new disableCompressor());
-		SmartDashboard.putData("Extend Outtake", new extendOuttake());
-		SmartDashboard.putData("Retract Outtake", new retractOuttake());
 		SmartDashboard.putData("Open Intake", new openIntake());
 		SmartDashboard.putData("Close Intake", new closeIntake());
+		*/
 	}
 
 	public boolean getButtonValue(int buttonNum) {
@@ -88,34 +95,35 @@ public class OI {
 	}
 
 	public double getLeftX() {
-		return xboxController.getRawAxis(0);
-	}
+		double leftX = getXboxController().getRawAxis(0);
+		if (Math.abs(leftX) > 0.1)
+			return leftX;
+		else	
+			return 0;	}
 
 	public double getLeftY() {
-		return xboxController.getRawAxis(1);
+		return getXboxController().getRawAxis(1);
 	}
 
 	public double getRightX() {
-		return xboxController.getRawAxis(4);
+		return getXboxController().getRawAxis(4);
 	}
 
 	public double getRightY() {
-		return xboxController.getRawAxis(5);
+		double rightY = getXboxController().getRawAxis(5);
+		if (Math.abs(rightY) > 0.1)
+			return rightY;
+		else	
+			return 0;
 	}
+
 
 	public void rumbleLeftJoystick(int rumbleValue) {
 		this.xboxController.setRumble(RumbleType.kLeftRumble, rumbleValue);
 	}
 
-	public void rumbleRightJoystick(int rumbeValue) {
-		this.xboxController.setRumble(RumbleType.kRightRumble, rumbeValue);
-	}
-
-	/**
-	 * @return the primaryStick
-	 */
-	public Joystick getPrimaryStick() {
-		return primaryStick;
+	public void rumbleRightJoystick(int rumbleValue) {
+		this.xboxController.setRumble(RumbleType.kRightRumble, rumbleValue);
 	}
 
 	/**
@@ -125,12 +133,6 @@ public class OI {
 		return auxiliaryStick;
 	}
 
-	/**
-	 * @param primaryStick the primaryStick to set
-	 */
-	public void setPrimaryStick(Joystick primaryStick) {
-		this.primaryStick = primaryStick;
-	}
 
 	/**
 	 * @return the primaryButtons

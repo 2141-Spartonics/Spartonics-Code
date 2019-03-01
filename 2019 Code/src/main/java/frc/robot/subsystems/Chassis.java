@@ -22,10 +22,10 @@ import frc.robot.commands.driveWithJoystick;
 public class Chassis extends Subsystem {
   Configs configs = new Configs();
 
-  private CANSparkMax leftMaster;
-  private CANSparkMax leftSlave;
-  private CANSparkMax rightMaster;
-  private CANSparkMax rightSlave;
+  CANSparkMax leftMaster;
+  CANSparkMax leftSlave;
+  CANSparkMax rightMaster;
+  CANSparkMax rightSlave;
 
   private CANPIDController leftMasterController;
   private CANPIDController rightMasterController;
@@ -42,13 +42,13 @@ public class Chassis extends Subsystem {
     leftMasterController = new CANPIDController(leftMaster);
     rightMasterController = new CANPIDController(rightMaster);
 
-    //leftMasterController.setP(Configs.leftChassis.kP, 1);
-    //leftMasterController.setI(Configs.leftChassis.kI, 1);
-    //leftMasterController.setD(Configs.leftChassis.kD, 1);
+    leftMasterController.setP(Configs.leftChassis.kP, 1);
+    leftMasterController.setI(Configs.leftChassis.kI, 1);
+    leftMasterController.setD(Configs.leftChassis.kD, 1);
 
-    //rightMasterController.setP(Configs.rightChassis.kP, 1);
-    //rightMasterController.setI(Configs.rightChassis.kI, 1);
-    //rightMasterController.setD(Configs.rightChassis.kD, 1);
+    rightMasterController.setP(Configs.rightChassis.kP, 1);
+    rightMasterController.setI(Configs.rightChassis.kI, 1);
+    rightMasterController.setD(Configs.rightChassis.kD, 1);
 
     leftSlave.follow(leftMaster);
     rightSlave.follow(rightMaster);
@@ -63,7 +63,9 @@ public class Chassis extends Subsystem {
 
   public void publishToSmartDashboard() {
     SmartDashboard.putNumber("Left Velocity", getLeftVelocity());
-    SmartDashboard.putNumber("Right Velocity", getRightVelocity());
+    SmartDashboard.putNumber("Right Velocity", getRightVelocity());    
+    SmartDashboard.putNumber("Left Follower Velocity", getLeftFollowerVelocity());
+    SmartDashboard.putNumber("Right Follower Velocity", getRightVelocity());
     SmartDashboard.putNumber("Left Position", getLeftPosition());
     SmartDashboard.putNumber("Right Position", getRightPosition());
     SmartDashboard.putNumber("PID State", pidProfile);
@@ -106,8 +108,8 @@ public class Chassis extends Subsystem {
       }
     }
 
-    this.setLeftSpeed(-leftMotorSpeed);
-    this.setRightSpeed(rightMotorSpeed);
+    this.setLeftSpeed(leftMotorSpeed);
+    this.setRightSpeed(-rightMotorSpeed);
   }
 
   @Override
@@ -121,7 +123,6 @@ public class Chassis extends Subsystem {
     if (pidProfile == 1) {
       leftMasterController.setReference(speed, ControlType.kVelocity, 1);
     } else {
-      leftMasterController.setReference(speed, ControlType.kDutyCycle);
       leftMaster.set(speed);
     }
   }
@@ -139,7 +140,11 @@ public class Chassis extends Subsystem {
   }
 
   public double getRightPosition() {
-    return rightMaster.getEncoder().getPosition();
+    return -rightMaster.getEncoder().getPosition();
+  }
+
+  public double getRightFollowerVelocity() {
+    return rightSlave.getEncoder().getVelocity();
   }
 
   public double getLeftVelocity() {
@@ -147,13 +152,17 @@ public class Chassis extends Subsystem {
 
   }
 
+  public double getLeftFollowerVelocity() {
+    return leftSlave.getEncoder().getVelocity();
+  }
+
   public double getRightVelocity() {
-    return rightMaster.getEncoder().getVelocity();
+    return -rightMaster.getEncoder().getVelocity();
   }
 
   public void testAllMotors(double speed) {
     leftMaster.set(speed);
-    rightMaster.set(speed);
+    rightMaster.set(-speed);
 
   }
 

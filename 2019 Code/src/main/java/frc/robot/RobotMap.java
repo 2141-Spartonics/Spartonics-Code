@@ -21,13 +21,13 @@ public class RobotMap {
   public static final int XBOX_CONTROLLER_PORT = 2;
 
   // CAN BUS
-  public static final int LEFT_MASTER_SPARK = 4;
+  public static final int LEFT_MASTER_SPARK = 10;
   public static final int LEFT_SLAVE_SPARK = 2;
-  public static final int RIGHT_MASTER_SPARK = 1;
-  public static final int RIGHT_SLAVE_SPARK = 3;
-  public static final int MASTER_ELEVATOR_TALON = 7;
-  public static final int SLAVE_ELEVATOR_TALON_ONE = 5;
-  public static final int SLAVE_ELEVATOR_TALON_TWO = 6;
+  public static final int RIGHT_MASTER_SPARK = 3;
+  public static final int RIGHT_SLAVE_SPARK = 4;
+  public static final int MASTER_ELEVATOR_TALON = 5;
+  public static final int LEFT_INTAKE_MOTOR = 1;
+  public static final int RIGHT_INTAKE_MOTOR = 0;
 
   // Chassis PID Constants
   public static final int CHASSIS_KP_INT = 0;
@@ -38,15 +38,17 @@ public class RobotMap {
   public static final int INTAKE_CHANNEL_A = 4;
   public static final int INTAKE_CHANNEL_B = 5;
 
-  public static final int LEFT_OUTTAKE_PISTON_CHANNEL_A = 0;
-  public static final int LEFT_OUTTAKE_PISTON_CHANNEL_B = 1;
-  public static final int RIGHT_OUTTAKE_PISTON_CHANNEL_A = 2;
-  public static final int RIGHT_OUTTAKE_PISTON_CHANNEL_B = 3;
+  public static final int HATCH_INTAKE_SOLENOID_A = 0;
+  public static final int HATCH_INTAKE_SOLENOID_B = 1;
 
-  public static final int COMPRESSOR = 0;
+  public static final int COMPRESSOR = 1;
 
   public static final int WORKING_PRESSURE_SENSOR = 0;
   public static final int STORED_PRESSURE_SENSOR = 1;
+
+  // Digital Switches
+  public static final int ELEVATOR_BOTTOM_LIMIT_SWITCH = 0;
+  public static final int ELEVATOR_UPPER_LIMIT_SWITCH = 1;
 
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.

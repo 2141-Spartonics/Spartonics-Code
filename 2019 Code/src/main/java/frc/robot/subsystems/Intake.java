@@ -7,10 +7,11 @@
 
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 /**
@@ -23,10 +24,17 @@ public class Intake extends Subsystem {
   // here. Call these from Commands.
 
   // TODO sensor for object
-  DoubleSolenoid intake;
+  Spark leftIntakeMotor;
+  Spark rightIntakeMotor;
+
+  DoubleSolenoid hatchIntake;
+  
 
   public Intake() {
-    intake = new DoubleSolenoid(RobotMap.INTAKE_CHANNEL_A, RobotMap.INTAKE_CHANNEL_B);
+    leftIntakeMotor = new Spark(RobotMap.LEFT_INTAKE_MOTOR);
+    rightIntakeMotor = new Spark(RobotMap.RIGHT_INTAKE_MOTOR);
+
+    hatchIntake = new DoubleSolenoid(RobotMap.HATCH_INTAKE_SOLENOID_A, RobotMap.HATCH_INTAKE_SOLENOID_B);
 
   }
 
@@ -34,32 +42,19 @@ public class Intake extends Subsystem {
    * Publishes state of intake to smartDashboard
    */
   public void publishToSmartDashboard() {
-    SmartDashboard.putBoolean("Intake Closed", getIntakeClosed());
   }
 
-  /**
-   * Gets state of the intake 
-   * @return true if the intake is closed
-   */
-  public boolean getIntakeClosed() {
-    if (intake.get() == Value.kForward)
-      return true;
-    else
-      return false;
+  public void setIntakeMotorsSpeed(double speed) {
+    leftIntakeMotor.set(speed);
+    rightIntakeMotor.set(-speed);
   }
 
-  /**
-   * closes the intake
-   */
-  public void closeIntake() {
-    intake.set(Value.kForward);
+  public void extendHatchIntake() {
+    hatchIntake.set(Value.kForward);
   }
 
-  /**
-   * Opens the intake
-   */
-  public void openIntake() {
-    intake.set(Value.kReverse);
+  public void retractHatchIntake() {
+    hatchIntake.set(Value.kReverse);
   }
 
   /**

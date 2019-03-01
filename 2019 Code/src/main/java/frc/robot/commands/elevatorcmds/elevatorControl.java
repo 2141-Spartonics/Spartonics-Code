@@ -5,16 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.pneumaticscmds;
+package frc.robot.commands.elevatorcmds;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class disableCompressor extends Command {
-  public disableCompressor() {
+public class elevatorControl extends Command {
+
+  double delta;
+  //TODO NOT DONE
+  public elevatorControl(double heightChange) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.pneumatics);
+    requires(Robot.elevator);
+    delta = heightChange;
+
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +30,7 @@ public class disableCompressor extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.pneumatics.manualDisableCompressor();
+    //Robot.elevator.changeElevatorPosition(delta);
   }
 
   // Make this return true when this Command no longer needs to run execute()

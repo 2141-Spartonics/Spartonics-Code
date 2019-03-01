@@ -9,12 +9,13 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Configs;
 import frc.robot.RobotMap;
 
@@ -28,59 +29,47 @@ public class Elevator extends Subsystem {
   Configs configs = new Configs();
 
   private TalonSRX masterElevatorMotor;
-  // private TalonSRX slaveElevatorMotorOne;
+  public TalonSRXConfiguration elevatorTalonConfig;
+  /// private TalonSRX slaveElevatorMotorOne;
   // private TalonSRX slaveElevatorMotorTwo;
 
   private int PIDProfile = 1;
-  private boolean usingPid = true;
+  private boolean usingPid = false;
   private int pidTimout = 10;
 
+  DigitalInput bottomLimitSwitch;
+  DigitalInput upperLimitSwitch;
+
   public Elevator() {
-    //masterElevatorMotor = new TalonSRX(RobotMap.MASTER_ELEVATOR_TALON);
-    // slaveElevatorMotorOne = new TalonSRX(RobotMap.SLAVE_ELEVATOR_TALON_ONE);
-    // slaveElevatorMotorTwo = new TalonSRX(RobotMap.SLAVE_ELEVATOR_TALON_TWO);
+    masterElevatorMotor = new TalonSRX(RobotMap.MASTER_ELEVATOR_TALON);
 
-    //masterElevatorMotor.configFactoryDefault();
-    // slaveElevatorMotorOne.configFactoryDefault();
-    // slaveElevatorMotorTwo.configFactoryDefault();
+    bottomLimitSwitch = new DigitalInput(RobotMap.ELEVATOR_BOTTOM_LIMIT_SWITCH);
+    upperLimitSwitch = new DigitalInput(RobotMap.ELEVATOR_UPPER_LIMIT_SWITCH);
 
-    //masterElevatorMotor.setInverted(InvertType.None);
-    //masterElevatorMotor.setNeutralMode(NeutralMode.Brake);
-    //masterElevatorMotor.setSensorPhase(true);
+    TalonSRXConfiguration elevatorTalonConfig = new TalonSRXConfiguration();
+    masterElevatorMotor.setNeutralMode(NeutralMode.Brake);
 
-    //masterElevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PIDProfile, pidTimout);
-    //masterElevatorMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, pidTimout, 0);
-    //masterElevatorMotor.configAllowableClosedloopError(PIDProfile, 0);
-    //masterElevatorMotor.configAllSettings(configs.elevatorTalonConfig);
+    elevatorTalonConfig.slot0.kP = Configs.elevatorGains.kP;
+    elevatorTalonConfig.slot0.kI = Configs.elevatorGains.kI;
+    elevatorTalonConfig.slot0.kD = Configs.elevatorGains.kD;
 
-    // slaveElevatorMotorOne.follow(masterElevatorMotor,
-    // FollowerType.PercentOutput);
-    // slaveElevatorMotorTwo.follow(masterElevatorMotor,
-    // FollowerType.PercentOutput);
-
-    // slaveElevatorMotorOne.setInverted(InvertType.FollowMaster);
-    // slaveElevatorMotorTwo.setInverted(InvertType.FollowMaster);
-    // TODO figure out difference between percent output and AuxOutput1
+    masterElevatorMotor.configAllSettings(elevatorTalonConfig);
+    masterElevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, PIDProfile, pidTimout);
 
   }
 
   public void publishToSmartDashboard() {
-    // TODO have fun flushing out this mess
+    SmartDashboard.putNumber("Elevator Speed", getElevatorSpeed());
+    SmartDashboard.putBoolean("Bottom Limit Switch", getBottomSwitch());
+    SmartDashboard.putBoolean("Upper Limit Switch", getUppwerSwitch());
   }
-/*
+
   public void setElevatorSpeed(double speed) {
-    if (usingPid)
-      masterElevatorMotor.set(ControlMode.Velocity, speed);
-    else
       masterElevatorMotor.set(ControlMode.PercentOutput, speed);
   }
 
-  public void enablePid() {
-    usingPid = true;
-  }
-
-  public void disablePid() {
-    usingPid = false;
+  public double getElevatorSpeed() {
+    return masterElevatorMotor.getSelectedSensorVelocity();
   }
 
   public double getRawElevatorPosition() {
@@ -98,7 +87,23 @@ public class Elevator extends Subsystem {
   public void changeElevatorPosition(double deltaHeight) {
     masterElevatorMotor.set(ControlMode.Position, deltaHeight + getRawElevatorPosition());
   }
-*/
+
+  public boolean getBottomSwitch() {
+    return !bottomLimitSwitch.get();
+  }
+
+  public boolean getUppwerSwitch() {
+    return !upperLimitSwitch.get();
+  }
+
+  public void enablePid() {
+    usingPid = true;
+  }
+
+  public void disablePid() {
+    usingPid = false;
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

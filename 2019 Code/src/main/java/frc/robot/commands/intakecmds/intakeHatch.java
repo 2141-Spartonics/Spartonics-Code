@@ -5,20 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.outtakecmds;
+package frc.robot.commands.intakecmds;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-/**
- * Command to un out the outtake
- * @author Bernie Conrad
- */
-public class retractOuttake extends Command {
-  public retractOuttake() {
+public class intakeHatch extends Command {
+  public intakeHatch() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.outtake); 
+    requires(Robot.intake);
   }
 
   // Called just before this Command runs the first time
@@ -29,7 +25,7 @@ public class retractOuttake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.outtake.closeOuttake();
+    Robot.intake.retractHatchIntake();
   }
 
   // Make this return true when this Command no longer needs to run execute()

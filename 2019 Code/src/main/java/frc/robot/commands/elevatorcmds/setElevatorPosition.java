@@ -5,20 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.outtakecmds;
+package frc.robot.commands.elevatorcmds;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-/**
- * Command to extend the outtake
- * @author Bernie Conrad
- */
-public class extendOuttake extends Command {
-  public extendOuttake() {
+//TODO Not done
+public class setElevatorPosition extends Command {
+  Double heightChange;
+  public setElevatorPosition(double heightChange) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.outtake);
+    requires(Robot.elevator);
+
+    this.heightChange = heightChange;
   }
 
   // Called just before this Command runs the first time
@@ -29,7 +29,7 @@ public class extendOuttake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.outtake.extendOuttake();
+    Robot.elevator.changeElevatorPosition(heightChange);
   }
 
   // Make this return true when this Command no longer needs to run execute()

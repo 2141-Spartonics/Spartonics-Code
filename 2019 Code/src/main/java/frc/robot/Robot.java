@@ -15,8 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Outtake;
-import frc.robot.subsystems.Pneumatics;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,10 +26,10 @@ import frc.robot.subsystems.Pneumatics;
 public class Robot extends TimedRobot {
   public static Chassis chassis;
   public static Elevator elevator;
-  public static Pneumatics pneumatics;
   public static Intake intake;
-  public static Outtake outtake;
   public Configs configs;
+
+  //public static ADIS16448_IMU imu;
 
   public static OI oi;
 
@@ -47,9 +45,8 @@ public class Robot extends TimedRobot {
     configs = new Configs();
     chassis = new Chassis();
     elevator = new Elevator();
-    pneumatics = new Pneumatics();
     intake = new Intake();
-    outtake = new Outtake();
+    //imu = new ADIS16448_IMU();
     oi = new OI();
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -67,10 +64,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     chassis.publishToSmartDashboard();
-    //elevator.publishToSmartDashboard();
-    //intake.publishToSmartDashboard();
-    //outtake.publishToSmartDashboard();
-    //pneumatics.publishToSmartDashBoard();
+    elevator.publishToSmartDashboard();
+    intake.publishToSmartDashboard();
 
     //pneumatics.automaticCompressorControl();
   }
@@ -104,6 +99,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
+    //TODO autonomous start check pressure
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -152,4 +148,21 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
     chassis.testAllMotors(1.0);
   }
+
+  /*public void publishIMUStuff() {
+    SmartDashboard.putNumber("Gyro-X", imu.getAngleX());
+    SmartDashboard.putNumber("Gyro-Y", imu.getAngleY());
+    SmartDashboard.putNumber("Gyro-Z", imu.getAngleZ());
+    
+    SmartDashboard.putNumber("Accel-X", imu.getAccelX());
+    SmartDashboard.putNumber("Accel-Y", imu.getAccelY());
+    SmartDashboard.putNumber("Accel-Z", imu.getAccelZ());
+    
+    SmartDashboard.putNumber("Pitch", imu.getPitch());
+    SmartDashboard.putNumber("Roll", imu.getRoll());
+    SmartDashboard.putNumber("Yaw", imu.getYaw());
+    
+    SmartDashboard.putNumber("Pressure: ", imu.getBarometricPressure());
+    SmartDashboard.putNumber("Temperature: ", imu.getTemperature()); 
+  } */
 }

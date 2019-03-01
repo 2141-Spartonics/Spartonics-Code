@@ -5,46 +5,55 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.pneumaticscmds;
+package frc.robot.commands.elevatorcmds;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class enableCompressor extends Command {
-  public enableCompressor() {
+public class lowerElevator extends Command {
+  public lowerElevator() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.pneumatics);
+    requires(Robot.elevator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.pneumatics.setControlMode(true);
+    Robot.elevator.setElevatorSpeed(-0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.pneumatics.manualEnableCompressor();
+    Robot.elevator.setElevatorSpeed(-0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
+
   protected boolean isFinished() {
-    return false;
+
+    if (Robot.oi.getButtonValue(7, true)) {
+
+      return false;
+    }
+
+    if (Robot.elevator.getBottomSwitch()) {
+      return true;
+    } else {
+      return false;
+    }
+
   }
 
   // Called once after isFinished returns true
-  @Override
   protected void end() {
-    Robot.pneumatics.setControlMode(false);
+    Robot.elevator.setElevatorSpeed(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
-  @Override
   protected void interrupted() {
-    Robot.pneumatics.setControlMode(false);
   }
 }

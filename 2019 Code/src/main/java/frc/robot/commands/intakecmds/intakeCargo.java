@@ -10,13 +10,8 @@ package frc.robot.commands.intakecmds;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-/**
- * Command to close the intake
- * 
- * @author Bernie Conrad
- */
-public class closeIntake extends Command {
-  public closeIntake() {
+public class intakeCargo extends Command {
+  public intakeCargo() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.intake);
@@ -30,7 +25,7 @@ public class closeIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.closeIntake();
+    Robot.intake.setIntakeMotorsSpeed(0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,11 +37,14 @@ public class closeIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.intake.setIntakeMotorsSpeed(0.0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.intake.setIntakeMotorsSpeed(0.0);
+
   }
 }
