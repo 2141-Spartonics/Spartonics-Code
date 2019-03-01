@@ -2,13 +2,13 @@
 This is a general guide to getting started with visual studio and how to start your own robot project in Java. 
 
 ### Installing VS Code
-Go to [link](https://wpilib.screenstepslive.com/s/currentCS/m/getting_started/l/999999-installing-c-and-java-development-tools-for-frc "this link") to find the complete instructions to install vs code with the WPI lib plugins to your desktop. Note, this cannot use a pre-installed version of vs code so it will create a second directory if one already exists. In this install java should be installed but if not download the latest Java JDK for your OS and set your Path variable to that install, if that was in French check link 2. 
+Go to [this link][1] to find the complete instructions to install vs code with the WPI lib plugins to your desktop. Note, this cannot use a pre-installed version of vs code so it will create a second directory if one already exists. In this install java should be installed but if not download the latest Java JDK for your OS and set your Path variable to that install, if that was in French check this [link][2]. 
 
 ### Adding Libraries to Your Project
-If you're planning to use TalonSRX's, SparkMaxs or an IMU, you're gonna need more libraries to get everything working. For them check link 3 to add them to the project
+If you're planning to use TalonSRX's, SparkMaxs or an IMU, you're gonna need more libraries to get everything working. For them check this [link][3] to add them to the project
 
 ### Driver Station Install
-If you want to use driver station you will need to install the FRC update suite, to do so use link 4 and email me for the organization's code to install everything you need. 
+If you want to use driver station you will need to install the FRC update suite, to do so use this [link][4] and email me for the organization's code to install everything you need. 
 
 ### Rio image busted, Radio acting funky?
 Do you need to update either to competition specs? Link 5 and 6 pal.
