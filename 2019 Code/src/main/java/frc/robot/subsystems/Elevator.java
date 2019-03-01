@@ -25,7 +25,7 @@ import frc.robot.RobotMap;
 public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
+  
   Configs configs = new Configs();
 
   private TalonSRX masterElevatorMotor;
