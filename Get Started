@@ -2,7 +2,7 @@
 This is a general guide to getting started with visual studio and how to start your own robot project in Java. 
 
 ### Installing VS Code
-Go to [this link](https://wpilib.screenstepslive.com/s/currentCS/m/getting_started/l/999999-installing-c-and-java-development-tools-for-frc) to find the complete instructions to install vs code with the WPI lib plugins to your desktop. Note, this cannot use a pre-installed version of vs code so it will create a second directory if one already exists. In this install java should be installed but if not download the latest Java JDK for your OS and set your Path variable to that install, if that was in French check link 2. 
+Go to [link](https://wpilib.screenstepslive.com/s/currentCS/m/getting_started/l/999999-installing-c-and-java-development-tools-for-frc "this link") to find the complete instructions to install vs code with the WPI lib plugins to your desktop. Note, this cannot use a pre-installed version of vs code so it will create a second directory if one already exists. In this install java should be installed but if not download the latest Java JDK for your OS and set your Path variable to that install, if that was in French check link 2. 
 
 ### Adding Libraries to Your Project
 If you're planning to use TalonSRX's, SparkMaxs or an IMU, you're gonna need more libraries to get everything working. For them check link 3 to add them to the project
