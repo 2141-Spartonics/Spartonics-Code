@@ -37,9 +37,11 @@ public class ArduinoInterface extends Subsystem {
     setSerialPortBuffer("get");
   }
 
-  /*
-
-  */
+  /**
+   * Find angle given string containing vector coordinates
+   * @param arduinoOutput
+   * @return 
+   */
   public double findAngle(String arduinoOutput) {
     double angleFindX1 = Double.parseDouble((arduinoOutput.substring(9, 10)));
     double angleFindY1 = Double.parseDouble(arduinoOutput.substring(12, 13));
@@ -52,6 +54,11 @@ public class ArduinoInterface extends Subsystem {
 
     return Angle;
 
+  }
+
+  public double getAngleFromArduino() {
+    String arduinoData = getSerialPortBuffer();
+    
   }
 
   @Override
