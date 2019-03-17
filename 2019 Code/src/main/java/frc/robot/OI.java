@@ -47,15 +47,15 @@ public class OI {
 		getButton(2, true).whileHeld(new intakeCargo());
 		getButton(3, true).whileHeld(new outtakeCargo());
 
-		getButton(1, true).whileHeld(new lowerElevator());
-		getButton(4, true).whileHeld(new raiseElevator());
+		getButton(1, true).whileHeld(new lowerElevator(0.2));
+		getButton(4, true).whileHeld(new raiseElevator(0.2));
 		getButton(6, true).whenPressed(new stopElevator());
 
 		getButton(2).whileHeld(new intakeCargo());
 		getButton(3).whileHeld(new outtakeCargo());
 
-		getButton(4).whileHeld(new lowerElevator());
-		getButton(5).whileHeld(new raiseElevator());
+		getButton(4).whileHeld(new lowerElevator(getLeftTrigger()));
+		getButton(5).whileHeld(new raiseElevator(getRightTrigger()));
 		getButton(6).whenPressed(new stopElevator());
 
 		getButton(11, true).whenPressed(new intakeHatch());
@@ -115,6 +115,14 @@ public class OI {
 			return rightY;
 		else	
 			return 0;
+	}
+
+	public double getLeftTrigger() {
+		return getXboxController().getRawAxis(5);
+	}
+
+	public double getRightTrigger() {
+		return getXboxController().getRawAxis(6);
 	}
 
 

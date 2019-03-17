@@ -11,22 +11,25 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class raiseElevator extends Command {
-  public raiseElevator() {
+  double speed;
+  
+  public raiseElevator(double speed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.elevator);
+    this.speed = speed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.elevator.setElevatorSpeed(1.0);
+    Robot.elevator.setElevatorSpeed(speed);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.setElevatorSpeed(1.0);
+    Robot.elevator.setElevatorSpeed(speed);
   }
 
   protected boolean isFinished() {

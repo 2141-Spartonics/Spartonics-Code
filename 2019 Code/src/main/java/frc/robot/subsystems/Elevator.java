@@ -32,7 +32,6 @@ public class Elevator extends Subsystem {
   public TalonSRXConfiguration elevatorTalonConfig;
   /// private TalonSRX slaveElevatorMotorOne;
   // private TalonSRX slaveElevatorMotorTwo;
-  // Something
   private int PIDProfile = 1;
   private boolean usingPid = false;
   private int pidTimout = 10;
@@ -65,7 +64,9 @@ public class Elevator extends Subsystem {
   }
 
   public void setElevatorSpeed(double speed) {
-      masterElevatorMotor.set(ControlMode.PercentOutput, speed);
+    if (Math.abs(speed) > 1)
+      speed = speed / Math.abs(speed);
+    masterElevatorMotor.set(ControlMode.PercentOutput, speed);
   }
 
   public double getElevatorSpeed() {
