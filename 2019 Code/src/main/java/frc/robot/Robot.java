@@ -7,11 +7,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.ArduinoInterface;
 import frc.robot.subsystems.Chassis;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
@@ -27,9 +30,11 @@ public class Robot extends TimedRobot {
   public static Chassis chassis;
   public static Elevator elevator;
   public static Intake intake;
+  public static ArduinoInterface arduinoInterface;
   public Configs configs;
 
   //public static ADIS16448_IMU imu;
+  public static UsbCamera camera;
 
   public static OI oi;
 
@@ -46,8 +51,17 @@ public class Robot extends TimedRobot {
     chassis = new Chassis();
     elevator = new Elevator();
     intake = new Intake();
+    arduinoInterface = new ArduinoInterface();
+    CameraServer.getInstance().startAutomaticCapture();
+
     //imu = new ADIS16448_IMU();
+
+    /*
+    //Camera on the back of the Robot
+    camera = new UsbCamera("aCamera", 0);
+    */
     oi = new OI();
+
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
@@ -66,6 +80,7 @@ public class Robot extends TimedRobot {
     chassis.publishToSmartDashboard();
     elevator.publishToSmartDashboard();
     intake.publishToSmartDashboard();
+    arduinoInterface.publishToSmartDashboard();
 
     //pneumatics.automaticCompressorControl();
   }

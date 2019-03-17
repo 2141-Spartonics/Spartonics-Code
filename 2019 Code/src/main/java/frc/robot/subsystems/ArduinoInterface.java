@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Add your docs here.
@@ -28,9 +29,18 @@ public class ArduinoInterface extends Subsystem {
     arduino.writeString(message);
   }
 
+  public void publishToSmartDashboard() {
+    SmartDashboard.putString("ArduinoData", getSerialPortBuffer());
+    SmartDashboard.putNumber("Angle", findAngle(getSerialPortBuffer());
+  }
+
   public String getSerialPortBuffer() {
-    System.out.println(arduino.readString());
-    return arduino.readString();
+    try {
+      System.out.println(arduino.readString());
+      return arduino.readString();
+    } catch (Exception e) {
+      return "damit, guess what didn't work";
+    }
   }
 
   public void coordsRequest() {
@@ -39,26 +49,69 @@ public class ArduinoInterface extends Subsystem {
 
   /**
    * Find angle given string containing vector coordinates
+   * 
    * @param arduinoOutput
-   * @return 
+   * @return
    */
   public double findAngle(String arduinoOutput) {
-    double angleFindX1 = Double.parseDouble((arduinoOutput.substring(9, 10)));
-    double angleFindY1 = Double.parseDouble(arduinoOutput.substring(12, 13));
-    double angleFindX2 = Double.parseDouble(arduinoOutput.substring(17, 18));
-    double angleFindY2 = Double.parseDouble(arduinoOutput.substring(20, 21));
 
-    double differenceX = Math.abs(angleFindX2 - angleFindX1);
-    double differenceY = Math.abs(angleFindY2 - angleFindY1);
+    // String arduinoOutput = "vector: (34 16) (37 0) index: 2 flags 4";
+    double x1, x2, y1, y2;
+    x1 = x2 = y1 = y2 = 0;
+    try {
+      arduinoOutput = arduinoOutput.substring(9);
+      x1 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(" ")));
+
+      arduinoOutput = arduinoOutput.substring(arduinoOutput.indexOf(" ") + 1);
+      y1 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(")")));
+
+      arduinoOutput = arduinoOutput.substring(arduinoOutput.indexOf("(") + 1);
+      x2 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(" ")));
+
+      arduinoOutput = arduinoOutput.substring(arduinoOutput.indexOf(" ") + 1);
+      y2 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(")")));
+
+    } catch (Exception StringIndexOutOfBoundsException) {
+      System.out.println("ArduinoData error, check buffer");
+    } finally {
+    }
+
+    double differenceX = Math.abs(x2 - x1);
+    double differenceY = Math.abs(y2 - y1);
     double Angle = Math.toDegrees(Math.atan((differenceY) / (differenceX)));
 
     return Angle;
 
   }
 
-  public double getAngleFromArduino() {
-    String arduinoData = getSerialPortBuffer();
-    
+  public double findAngle(String arduinoOutput, boolean DEBUG) {
+    // String arduinoOutput = "vector: (34 16) (37 0) index: 2 flags 4";
+    double x1, x2, y1, y2;
+    x1 = x2 = y1 = y2 = 0;
+    try {
+      arduinoOutput = arduinoOutput.substring(9);
+      x1 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(" ")));
+
+      arduinoOutput = arduinoOutput.substring(arduinoOutput.indexOf(" ") + 1);
+      y1 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(")")));
+
+      arduinoOutput = arduinoOutput.substring(arduinoOutput.indexOf("(") + 1);
+      x2 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(" ")));
+
+      arduinoOutput = arduinoOutput.substring(arduinoOutput.indexOf(" ") + 1);
+      y2 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(")")));
+
+    } catch (Exception StringIndexOutOfBoundsException) {
+      System.out.println("ArduinoData error, check buffer");
+    } finally {
+      System.out.println("Arduino data parse: " + x1 + " " + y1 + " " + x2 + " " + y2);
+    }
+
+    double differenceX = Math.abs(x2 - x1);
+    double differenceY = Math.abs(y2 - y1);
+    double Angle = Math.toDegrees(Math.atan((differenceY) / (differenceX)));
+
+    return Angle;
   }
 
   @Override
