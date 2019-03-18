@@ -16,6 +16,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Configs;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.driveWithJoystick;
 
@@ -33,7 +34,7 @@ public class Chassis extends Subsystem {
   private static int pidProfile = 0; // 0 is no PID, 1 is tuned
 
   public Chassis() {
-    
+
     leftMaster = new CANSparkMax(RobotMap.LEFT_MASTER_SPARK, MotorType.kBrushless);
     leftSlave = new CANSparkMax(RobotMap.LEFT_SLAVE_SPARK, MotorType.kBrushless);
     rightMaster = new CANSparkMax(RobotMap.RIGHT_MASTER_SPARK, MotorType.kBrushless);
@@ -43,12 +44,12 @@ public class Chassis extends Subsystem {
     rightMasterController = new CANPIDController(rightMaster);
 
     leftMasterController.setP(Configs.leftChassis.kP, 1);
-    leftMasterController.setI(Configs.leftChassis.kI, 1);
-    leftMasterController.setD(Configs.leftChassis.kD, 1);
+    // leftMasterController.setI(Configs.leftChassis.kI, 1);
+    // leftMasterController.setD(Configs.leftChassis.kD, 1);
 
     rightMasterController.setP(Configs.rightChassis.kP, 1);
-    rightMasterController.setI(Configs.rightChassis.kI, 1);
-    rightMasterController.setD(Configs.rightChassis.kD, 1);
+    // rightMasterController.setI(Configs.rightChassis.kI, 1);
+    // rightMasterController.setD(Configs.rightChassis.kD, 1);
 
     leftSlave.follow(leftMaster);
     rightSlave.follow(rightMaster);
@@ -63,7 +64,7 @@ public class Chassis extends Subsystem {
 
   public void publishToSmartDashboard() {
     SmartDashboard.putNumber("Left Velocity", getLeftVelocity());
-    SmartDashboard.putNumber("Right Velocity", getRightVelocity());    
+    SmartDashboard.putNumber("Right Velocity", getRightVelocity());
     SmartDashboard.putNumber("Left Follower Velocity", getLeftFollowerVelocity());
     SmartDashboard.putNumber("Right Follower Velocity", getRightVelocity());
     SmartDashboard.putNumber("Left Position", getLeftPosition());
@@ -110,6 +111,19 @@ public class Chassis extends Subsystem {
 
     this.setLeftSpeed(leftMotorSpeed);
     this.setRightSpeed(-rightMotorSpeed);
+  }
+
+  public void rotate(double angle) {
+    double startingAngle = Robot.imu.getAngleX();
+    if (angle > 0) {
+      while (Math.abs(angle - Robot.imu.getAngleX()) > 5) {
+        arcadeDrive(0, 1 - ((Robot.imu.getAngleX() - startingAngle) / angle));
+      }
+    } else {
+      while (Math.abs(angle - Robot.imu.getAngleX()) > 5) {
+        arcadeDrive(0, (-1) * (1 - ((Robot.imu.getAngleX() - startingAngle) / angle)));
+      }
+    }
   }
 
   @Override

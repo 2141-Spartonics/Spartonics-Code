@@ -7,8 +7,10 @@
 
 package frc.robot;
 
-import edu.wpi.first.cameraserver.CameraServer;
+import com.analog.adis16448.frc.ADIS16448_IMU;
+
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -33,7 +35,7 @@ public class Robot extends TimedRobot {
   public static ArduinoInterface arduinoInterface;
   public Configs configs;
 
-  //public static ADIS16448_IMU imu;
+  public static ADIS16448_IMU imu;
   public static UsbCamera camera;
 
   public static OI oi;
@@ -54,7 +56,7 @@ public class Robot extends TimedRobot {
     arduinoInterface = new ArduinoInterface();
     CameraServer.getInstance().startAutomaticCapture();
 
-    //imu = new ADIS16448_IMU();
+    imu = new ADIS16448_IMU();
 
     /*
     //Camera on the back of the Robot
@@ -164,7 +166,7 @@ public class Robot extends TimedRobot {
     chassis.testAllMotors(1.0);
   }
 
-  /*public void publishIMUStuff() {
+  public void publishIMUStuff() {
     SmartDashboard.putNumber("Gyro-X", imu.getAngleX());
     SmartDashboard.putNumber("Gyro-Y", imu.getAngleY());
     SmartDashboard.putNumber("Gyro-Z", imu.getAngleZ());
@@ -179,5 +181,5 @@ public class Robot extends TimedRobot {
     
     SmartDashboard.putNumber("Pressure: ", imu.getBarometricPressure());
     SmartDashboard.putNumber("Temperature: ", imu.getTemperature()); 
-  } */
+  } 
 }

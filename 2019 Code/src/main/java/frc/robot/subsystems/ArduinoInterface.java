@@ -31,7 +31,7 @@ public class ArduinoInterface extends Subsystem {
 
   public void publishToSmartDashboard() {
     SmartDashboard.putString("ArduinoData", getSerialPortBuffer());
-    SmartDashboard.putNumber("Angle", findAngle(getSerialPortBuffer());
+    SmartDashboard.putNumber("Angle", findAngle(getSerialPortBuffer()));
   }
 
   public String getSerialPortBuffer() {
