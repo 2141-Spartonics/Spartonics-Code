@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -18,10 +19,42 @@ public class ArduinoInterface extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public SerialPort arduino;
+  private SerialPort arduino;
 
   public ArduinoInterface() {
-    arduino = new SerialPort(9600, SerialPort.Port.kUSB);
+    Timer timer = new Timer();
+    timer.start();
+
+    try {
+      for (SerialPort.Port c : SerialPort.Port.values())
+        System.out.println(c);
+      arduino = new SerialPort(9600, SerialPort.Port.kUSB);
+      System.out.println("Connected to Arduino kUSB");
+
+    } catch (Exception e) {
+      System.out.println("Failed to initially connect to Arduino, gonna try again!");
+
+      try {
+        for (SerialPort.Port c : SerialPort.Port.values())
+          System.out.println(c);
+        arduino = new SerialPort(9600, SerialPort.Port.kUSB1);
+        System.out.println("Connected to Arduino kUSB1");
+
+      } catch (Exception ekusb1) {
+        System.out.println("Failed to initially connect to Arduino on kUSB1, gonna try again!");
+
+        try {
+          for (SerialPort.Port c : SerialPort.Port.values())
+            System.out.println(c);
+          arduino = new SerialPort(9600, SerialPort.Port.kUSB2);
+          System.out.println("Connected to Arduino");
+
+        } catch (Exception ekusb2) {
+          System.out.println("Failed to initially connect to Arduino on kUSB2, gonna try again!");
+        }
+      }
+
+    }
 
   }
 
@@ -31,21 +64,21 @@ public class ArduinoInterface extends Subsystem {
 
   public void publishToSmartDashboard() {
     SmartDashboard.putString("ArduinoData", getSerialPortBuffer());
-    SmartDashboard.putNumber("Angle", findAngle(getSerialPortBuffer()));
+    SmartDashboard.putNumber("Angle", findAngle(getSerialPortBuffer(), true));
   }
 
   public String getSerialPortBuffer() {
-    try {
-      System.out.println(arduino.readString());
+    if (arduino.getBytesReceived() > 0) {
+      // System.out.println(arduino.readString());
       return arduino.readString();
-    } catch (Exception e) {
-      return "damit, guess what didn't work";
+    } else {
+      return null;
     }
   }
 
   public void coordsRequest() {
     setSerialPortBuffer("get");
-  }
+  };
 
   /**
    * Find angle given string containing vector coordinates
@@ -54,7 +87,7 @@ public class ArduinoInterface extends Subsystem {
    * @return
    */
   public double findAngle(String arduinoOutput) {
-
+    // System.out.println(arduinoOutput);
     // String arduinoOutput = "vector: (34 16) (37 0) index: 2 flags 4";
     double x1, x2, y1, y2;
     x1 = x2 = y1 = y2 = 0;
@@ -72,14 +105,14 @@ public class ArduinoInterface extends Subsystem {
       y2 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(")")));
 
     } catch (Exception StringIndexOutOfBoundsException) {
-      System.out.println("ArduinoData error, check buffer");
+      // System.out.println("ArduinoData error, check buffer");
     } finally {
     }
 
     double differenceX = Math.abs(x2 - x1);
     double differenceY = Math.abs(y2 - y1);
     double Angle = Math.toDegrees(Math.atan((differenceY) / (differenceX)));
-
+    System.out.println(Angle);
     return Angle;
 
   }
@@ -102,7 +135,7 @@ public class ArduinoInterface extends Subsystem {
       y2 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(")")));
 
     } catch (Exception StringIndexOutOfBoundsException) {
-      System.out.println("ArduinoData error, check buffer");
+      // System.out.println("ArduinoData error, check buffer");
     } finally {
       System.out.println("Arduino data parse: " + x1 + " " + y1 + " " + x2 + " " + y2);
     }

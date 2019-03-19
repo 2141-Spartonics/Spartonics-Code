@@ -1,0 +1,3546 @@
+[
+    {
+        "line": "********** Robot program starting **********",
+        "messageType": 2,
+        "seqNumber": -19944,
+        "timestamp": 0
+    },
+    {
+        "line": "NT: server: client CONNECTED: 172.22.11.1 port 63511",
+        "messageType": 2,
+        "seqNumber": -19943,
+        "timestamp": 0.217529296875
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19942,
+        "timestamp": 0.507080078125
+    },
+    {
+        "callStack": "",
+        "details": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "errorCode": 1,
+        "flags": 1,
+        "location": "com.revrobotics.CANSparkMaxLowLevel.notifyOnCANDisconnect(CANSparkMaxLowLevel.java:774)",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19941,
+        "timestamp": 0.51513671875
+    },
+    {
+        "line": "Error at com.revrobotics.CANSparkMaxLowLevel.notifyOnCANDisconnect(CANSparkMaxLowLevel.java:774): Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19940,
+        "timestamp": 0.51611328125
+    },
+    {
+        "callStack": "",
+        "details": "Unable to retrieve SPARK MAX firmware version for CAN ID:  10. Please verify the deviceID field matches the configured CAN ID of the controller, and that the controller is connected to the CAN Bus.",
+        "errorCode": 1,
+        "flags": 1,
+        "location": "com.revrobotics.CANSparkMaxLowLevel.<init>(CANSparkMaxLowLevel.java:206)",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19939,
+        "timestamp": 0.520263671875
+    },
+    {
+        "line": "Error at com.revrobotics.CANSparkMaxLowLevel.<init>(CANSparkMaxLowLevel.java:206): Unable to retrieve SPARK MAX firmware version for CAN ID:  10. Please verify the deviceID field matches the configured CAN ID of the controller, and that the controller is connected to the CAN Bus.",
+        "messageType": 2,
+        "seqNumber": -19938,
+        "timestamp": 0.521240234375
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19937,
+        "timestamp": 0.54443359375
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19936,
+        "timestamp": 0.568359375
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19935,
+        "timestamp": 0.57177734375
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19934,
+        "timestamp": 0.5751953125
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19933,
+        "timestamp": 0.5791015625
+    },
+    {
+        "callStack": "",
+        "details": "Unable to retrieve SPARK MAX firmware version for CAN ID:  2. Please verify the deviceID field matches the configured CAN ID of the controller, and that the controller is connected to the CAN Bus.",
+        "errorCode": 1,
+        "flags": 1,
+        "location": "com.revrobotics.CANSparkMaxLowLevel.<init>(CANSparkMaxLowLevel.java:206)",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19932,
+        "timestamp": 0.58203125
+    },
+    {
+        "line": "Error at com.revrobotics.CANSparkMaxLowLevel.<init>(CANSparkMaxLowLevel.java:206): Unable to retrieve SPARK MAX firmware version for CAN ID:  2. Please verify the deviceID field matches the configured CAN ID of the controller, and that the controller is connected to the CAN Bus.",
+        "messageType": 2,
+        "seqNumber": -19931,
+        "timestamp": 0.5830078125
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19930,
+        "timestamp": 0.5849609375
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19929,
+        "timestamp": 0.588623046875
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19928,
+        "timestamp": 0.59228515625
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19927,
+        "timestamp": 0.59912109375
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19926,
+        "timestamp": 0.60205078125
+    },
+    {
+        "callStack": "",
+        "details": "Unable to retrieve SPARK MAX firmware version for CAN ID:  3. Please verify the deviceID field matches the configured CAN ID of the controller, and that the controller is connected to the CAN Bus.",
+        "errorCode": 1,
+        "flags": 1,
+        "location": "com.revrobotics.CANSparkMaxLowLevel.<init>(CANSparkMaxLowLevel.java:206)",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19925,
+        "timestamp": 0.604736328125
+    },
+    {
+        "line": "Error at com.revrobotics.CANSparkMaxLowLevel.<init>(CANSparkMaxLowLevel.java:206): Unable to retrieve SPARK MAX firmware version for CAN ID:  3. Please verify the deviceID field matches the configured CAN ID of the controller, and that the controller is connected to the CAN Bus.",
+        "messageType": 2,
+        "seqNumber": -19924,
+        "timestamp": 0.605712890625
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19923,
+        "timestamp": 0.607666015625
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19922,
+        "timestamp": 0.612060546875
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19921,
+        "timestamp": 0.62060546875
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19920,
+        "timestamp": 0.62353515625
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19919,
+        "timestamp": 0.62646484375
+    },
+    {
+        "callStack": "",
+        "details": "Unable to retrieve SPARK MAX firmware version for CAN ID:  4. Please verify the deviceID field matches the configured CAN ID of the controller, and that the controller is connected to the CAN Bus.",
+        "errorCode": 1,
+        "flags": 1,
+        "location": "com.revrobotics.CANSparkMaxLowLevel.<init>(CANSparkMaxLowLevel.java:206)",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19918,
+        "timestamp": 0.629150390625
+    },
+    {
+        "line": "Error at com.revrobotics.CANSparkMaxLowLevel.<init>(CANSparkMaxLowLevel.java:206): Unable to retrieve SPARK MAX firmware version for CAN ID:  4. Please verify the deviceID field matches the configured CAN ID of the controller, and that the controller is connected to the CAN Bus.",
+        "messageType": 2,
+        "seqNumber": -19917,
+        "timestamp": 0.63037109375
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19916,
+        "timestamp": 0.637451171875
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19915,
+        "timestamp": 0.640625
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19914,
+        "timestamp": 0.64404296875
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19913,
+        "timestamp": 0.646728515625
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19912,
+        "timestamp": 0.665283203125
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19911,
+        "timestamp": 0.6689453125
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19910,
+        "timestamp": 0.698486328125
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19909,
+        "timestamp": 0.70263671875
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19908,
+        "timestamp": 0.711669921875
+    },
+    {
+        "line": "Error! CAN BUS suffered a fatal unrecoverable error. Most likely a physical disconnect. Check your wires!",
+        "messageType": 2,
+        "seqNumber": -19907,
+        "timestamp": 0.720458984375
+    },
+    {
+        "callStack": "\tat c_MotController_ConfigFactoryDefault\n\tat Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigFactoryDefault\n",
+        "details": "CTR: No new response to update signal",
+        "errorCode": -200,
+        "flags": 1,
+        "location": "Talon SRX 5 ConfigFactoryDefault",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19906,
+        "timestamp": 1.00341796875
+    },
+    {
+        "callStack": "Stack Trace not received for performance reasons.",
+        "details": "CTR: No new response to update signal",
+        "errorCode": -200,
+        "flags": 1,
+        "location": "Talon SRX 5 ConfigFactoryDefault",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19905,
+        "timestamp": 1.004150390625
+    },
+    {
+        "line": "kOnboard",
+        "messageType": 2,
+        "seqNumber": -19904,
+        "timestamp": 1.093994140625
+    },
+    {
+        "line": "kMXP",
+        "messageType": 2,
+        "seqNumber": -19903,
+        "timestamp": 1.0947265625
+    },
+    {
+        "line": "kUSB",
+        "messageType": 2,
+        "seqNumber": -19902,
+        "timestamp": 1.095703125
+    },
+    {
+        "line": "kUSB1",
+        "messageType": 2,
+        "seqNumber": -19901,
+        "timestamp": 1.09619140625
+    },
+    {
+        "line": "kUSB2",
+        "messageType": 2,
+        "seqNumber": -19900,
+        "timestamp": 1.0966796875
+    },
+    {
+        "line": "Connected to Arduino kUSB",
+        "messageType": 2,
+        "seqNumber": -19899,
+        "timestamp": 1.306884765625
+    },
+    {
+        "line": "CS: USB Camera 0: Connecting to USB camera on /dev/video0",
+        "messageType": 2,
+        "seqNumber": -19898,
+        "timestamp": 1.431396484375
+    },
+    {
+        "callStack": "",
+        "details": "[phoenix] Initialization is complete.",
+        "errorCode": 0,
+        "flags": 0,
+        "location": "",
+        "messageType": 1,
+        "numOccur": 1,
+        "seqNumber": -19897,
+        "timestamp": 4.08642578125
+    },
+    {
+        "callStack": "",
+        "details": "Joystick Button 2 on port 1 not available, check if controller is plugged in",
+        "errorCode": 1,
+        "flags": 0,
+        "location": "edu.wpi.first.wpilibj.DriverStation.reportJoystickUnpluggedWarning(DriverStation.java:1110)",
+        "messageType": 1,
+        "numOccur": 1,
+        "seqNumber": -19896,
+        "timestamp": 7.23046875
+    },
+    {
+        "line": "Warning at edu.wpi.first.wpilibj.DriverStation.reportJoystickUnpluggedWarning(DriverStation.java:1110): Joystick Button 2 on port 1 not available, check if controller is plugged in",
+        "messageType": 2,
+        "seqNumber": -19895,
+        "timestamp": 7.231201171875
+    },
+    {
+        "line": "error: no response\r",
+        "messageType": 2,
+        "seqNumber": -19894,
+        "timestamp": 7.23828125
+    },
+    {
+        "line": "0\r",
+        "messageType": 2,
+        "seqNumber": -19893,
+        "timestamp": 7.238525390625
+    },
+    {
+        "line": "",
+        "messageType": 2,
+        "seqNumber": -19892,
+        "timestamp": 7.23876953125
+    },
+    {
+        "line": "",
+        "messageType": 2,
+        "seqNumber": -19891,
+        "timestamp": 7.239013671875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19890,
+        "timestamp": 7.239990234375
+    },
+    {
+        "callStack": "\tat c_MotController_GetSelectedSensorVelocity\n\tat Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_GetSelectedSensorVelocity\n",
+        "details": "CTR: CAN frame not received/too-stale.",
+        "errorCode": -3,
+        "flags": 1,
+        "location": "Talon SRX 5 GetSelectedSensorVelocity",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19889,
+        "timestamp": 7.390869140625
+    },
+    {
+        "callStack": "Stack Trace not received for performance reasons.",
+        "details": "CTR: CAN frame not received/too-stale.",
+        "errorCode": -3,
+        "flags": 1,
+        "location": "Talon SRX 5 GetSelectedSensorVelocity",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19888,
+        "timestamp": 7.39404296875
+    },
+    {
+        "line": "Watchdog not fed within 0.020000s",
+        "messageType": 2,
+        "seqNumber": -19887,
+        "timestamp": 7.635498046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19886,
+        "timestamp": 7.6376953125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19885,
+        "timestamp": 7.638916015625
+    },
+    {
+        "callStack": "",
+        "details": "Loop time of 0.02s overrun\n",
+        "errorCode": 1,
+        "flags": 0,
+        "location": "edu.wpi.first.wpilibj.IterativeRobotBase.printLoopOverrunMessage(IterativeRobotBase.java:273)",
+        "messageType": 1,
+        "numOccur": 1,
+        "seqNumber": -19884,
+        "timestamp": 7.6484375
+    },
+    {
+        "line": "Warning at edu.wpi.first.wpilibj.IterativeRobotBase.printLoopOverrunMessage(IterativeRobotBase.java:273): Loop time of 0.02s overrun",
+        "messageType": 2,
+        "seqNumber": -19883,
+        "timestamp": 7.651611328125
+    },
+    {
+        "line": "",
+        "messageType": 2,
+        "seqNumber": -19882,
+        "timestamp": 7.663330078125
+    },
+    {
+        "line": "\tdisabledInit(): 0.001719s",
+        "messageType": 2,
+        "seqNumber": -19881,
+        "timestamp": 7.755859375
+    },
+    {
+        "line": "\tdisablePeriodic(): 0.007123s",
+        "messageType": 2,
+        "seqNumber": -19880,
+        "timestamp": 7.7587890625
+    },
+    {
+        "line": "\trobotPeriodic(): 0.288593s",
+        "messageType": 2,
+        "seqNumber": -19879,
+        "timestamp": 7.76123046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19878,
+        "timestamp": 7.77294921875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19877,
+        "timestamp": 7.774658203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19876,
+        "timestamp": 7.786376953125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19875,
+        "timestamp": 7.788330078125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19874,
+        "timestamp": 7.802490234375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19873,
+        "timestamp": 7.8037109375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19872,
+        "timestamp": 7.817626953125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19871,
+        "timestamp": 7.81982421875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19870,
+        "timestamp": 7.830078125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19869,
+        "timestamp": 7.831787109375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19868,
+        "timestamp": 7.84375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19867,
+        "timestamp": 7.844970703125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19866,
+        "timestamp": 7.85986328125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19865,
+        "timestamp": 7.862060546875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19864,
+        "timestamp": 7.870849609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19863,
+        "timestamp": 7.872802734375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19862,
+        "timestamp": 7.889404296875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19861,
+        "timestamp": 7.889892578125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19860,
+        "timestamp": 7.9052734375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19859,
+        "timestamp": 7.90625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19858,
+        "timestamp": 7.919921875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19857,
+        "timestamp": 7.921142578125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19856,
+        "timestamp": 7.932373046875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19855,
+        "timestamp": 7.933837890625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19854,
+        "timestamp": 7.943359375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19853,
+        "timestamp": 7.944580078125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19852,
+        "timestamp": 7.961669921875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19851,
+        "timestamp": 7.962646484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19850,
+        "timestamp": 7.978271484375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19849,
+        "timestamp": 7.979248046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19848,
+        "timestamp": 7.99365234375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19847,
+        "timestamp": 7.994873046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19846,
+        "timestamp": 8.005859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19845,
+        "timestamp": 8.008056640625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19844,
+        "timestamp": 8.0224609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19843,
+        "timestamp": 8.02490234375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19842,
+        "timestamp": 8.03125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19841,
+        "timestamp": 8.033203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19840,
+        "timestamp": 8.044921875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19839,
+        "timestamp": 8.04736328125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19838,
+        "timestamp": 8.062255859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19837,
+        "timestamp": 8.06396484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19836,
+        "timestamp": 8.0712890625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19835,
+        "timestamp": 8.072998046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19834,
+        "timestamp": 8.082763671875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19833,
+        "timestamp": 8.08447265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19832,
+        "timestamp": 8.092529296875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19831,
+        "timestamp": 8.09375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19830,
+        "timestamp": 8.106201171875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19829,
+        "timestamp": 8.107666015625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19828,
+        "timestamp": 8.118408203125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19827,
+        "timestamp": 8.11962890625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19826,
+        "timestamp": 8.131103515625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19825,
+        "timestamp": 8.133544921875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19824,
+        "timestamp": 8.14404296875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19823,
+        "timestamp": 8.146484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19822,
+        "timestamp": 8.156005859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19821,
+        "timestamp": 8.15673828125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19820,
+        "timestamp": 8.16796875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19819,
+        "timestamp": 8.16943359375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19818,
+        "timestamp": 8.1806640625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19817,
+        "timestamp": 8.182373046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19816,
+        "timestamp": 8.197998046875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19815,
+        "timestamp": 8.19921875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19814,
+        "timestamp": 8.214111328125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19813,
+        "timestamp": 8.215576171875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19812,
+        "timestamp": 8.23046875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19811,
+        "timestamp": 8.232421875
+    },
+    {
+        "callStack": "",
+        "details": "Joystick Button 10 on port 1 not available, check if controller is plugged in",
+        "errorCode": 1,
+        "flags": 0,
+        "location": "edu.wpi.first.wpilibj.DriverStation.reportJoystickUnpluggedWarning(DriverStation.java:1110)",
+        "messageType": 1,
+        "numOccur": 1,
+        "seqNumber": -19810,
+        "timestamp": 8.2373046875
+    },
+    {
+        "line": "Warning at edu.wpi.first.wpilibj.DriverStation.reportJoystickUnpluggedWarning(DriverStation.java:1110): Joystick Button 10 on port 1 not available, check if controller is plugged in",
+        "messageType": 2,
+        "seqNumber": -19809,
+        "timestamp": 8.23779296875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19808,
+        "timestamp": 8.249755859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19807,
+        "timestamp": 8.250732421875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19806,
+        "timestamp": 8.26513671875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19805,
+        "timestamp": 8.266845703125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19804,
+        "timestamp": 8.279541015625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19803,
+        "timestamp": 8.281494140625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19802,
+        "timestamp": 8.290283203125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19801,
+        "timestamp": 8.2919921875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19800,
+        "timestamp": 8.30322265625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19799,
+        "timestamp": 8.3056640625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19798,
+        "timestamp": 8.320068359375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19797,
+        "timestamp": 8.322021484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19796,
+        "timestamp": 8.336181640625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19795,
+        "timestamp": 8.338134765625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19794,
+        "timestamp": 8.362060546875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19793,
+        "timestamp": 8.36376953125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19792,
+        "timestamp": 8.3828125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19791,
+        "timestamp": 8.38525390625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19790,
+        "timestamp": 8.390869140625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19789,
+        "timestamp": 8.39306640625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19788,
+        "timestamp": 8.404296875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19787,
+        "timestamp": 8.40625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19786,
+        "timestamp": 8.413818359375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19785,
+        "timestamp": 8.4150390625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19784,
+        "timestamp": 8.4326171875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19783,
+        "timestamp": 8.43505859375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19782,
+        "timestamp": 8.446044921875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19781,
+        "timestamp": 8.448486328125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19780,
+        "timestamp": 8.461181640625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19779,
+        "timestamp": 8.462646484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19778,
+        "timestamp": 8.47216796875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19777,
+        "timestamp": 8.47314453125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19776,
+        "timestamp": 8.48486328125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19775,
+        "timestamp": 8.486083984375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19774,
+        "timestamp": 8.49853515625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19773,
+        "timestamp": 8.5
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19772,
+        "timestamp": 8.513671875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19771,
+        "timestamp": 8.51513671875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19770,
+        "timestamp": 8.529052734375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19769,
+        "timestamp": 8.530517578125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19768,
+        "timestamp": 8.54345703125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19767,
+        "timestamp": 8.546142578125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19766,
+        "timestamp": 8.55859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19765,
+        "timestamp": 8.559814453125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19764,
+        "timestamp": 8.572021484375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19763,
+        "timestamp": 8.57373046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19762,
+        "timestamp": 8.5849609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19761,
+        "timestamp": 8.58642578125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19760,
+        "timestamp": 8.597900390625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19759,
+        "timestamp": 8.599365234375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19758,
+        "timestamp": 8.60986328125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19757,
+        "timestamp": 8.611328125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19756,
+        "timestamp": 8.62939453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19755,
+        "timestamp": 8.630615234375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19754,
+        "timestamp": 8.638916015625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19753,
+        "timestamp": 8.64111328125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19752,
+        "timestamp": 8.650146484375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19751,
+        "timestamp": 8.652587890625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19750,
+        "timestamp": 8.663330078125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19749,
+        "timestamp": 8.664794921875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19748,
+        "timestamp": 8.675537109375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19747,
+        "timestamp": 8.67724609375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19746,
+        "timestamp": 8.68701171875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19745,
+        "timestamp": 8.688232421875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19744,
+        "timestamp": 8.70166015625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19743,
+        "timestamp": 8.703125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19742,
+        "timestamp": 8.712890625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19741,
+        "timestamp": 8.71484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19740,
+        "timestamp": 8.726806640625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19739,
+        "timestamp": 8.729248046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19738,
+        "timestamp": 8.74658203125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19737,
+        "timestamp": 8.747802734375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19736,
+        "timestamp": 8.76513671875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19735,
+        "timestamp": 8.76611328125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19734,
+        "timestamp": 8.798828125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19733,
+        "timestamp": 8.7998046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19732,
+        "timestamp": 8.810546875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19731,
+        "timestamp": 8.811767578125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19730,
+        "timestamp": 8.825927734375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19729,
+        "timestamp": 8.826904296875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19728,
+        "timestamp": 8.84521484375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19727,
+        "timestamp": 8.846435546875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19726,
+        "timestamp": 8.865234375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19725,
+        "timestamp": 8.8662109375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19724,
+        "timestamp": 8.88623046875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19723,
+        "timestamp": 8.887451171875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19722,
+        "timestamp": 8.906005859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19721,
+        "timestamp": 8.907470703125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19720,
+        "timestamp": 8.926513671875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19719,
+        "timestamp": 8.92724609375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19718,
+        "timestamp": 8.9453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19717,
+        "timestamp": 8.945556640625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19716,
+        "timestamp": 8.966064453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19715,
+        "timestamp": 8.967041015625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19714,
+        "timestamp": 8.985595703125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19713,
+        "timestamp": 8.986572265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19712,
+        "timestamp": 9.00634765625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19711,
+        "timestamp": 9.007568359375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19710,
+        "timestamp": 9.026123046875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19709,
+        "timestamp": 9.027099609375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19708,
+        "timestamp": 9.045654296875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19707,
+        "timestamp": 9.046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19706,
+        "timestamp": 9.06591796875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19705,
+        "timestamp": 9.06689453125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19704,
+        "timestamp": 9.08544921875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19703,
+        "timestamp": 9.086181640625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19702,
+        "timestamp": 9.107421875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19701,
+        "timestamp": 9.109130859375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19700,
+        "timestamp": 9.1259765625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19699,
+        "timestamp": 9.127197265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19698,
+        "timestamp": 9.14599609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19697,
+        "timestamp": 9.14697265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19696,
+        "timestamp": 9.16552734375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19695,
+        "timestamp": 9.166748046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19694,
+        "timestamp": 9.203125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19693,
+        "timestamp": 9.204345703125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19692,
+        "timestamp": 9.213134765625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19691,
+        "timestamp": 9.21484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19690,
+        "timestamp": 9.226318359375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19689,
+        "timestamp": 9.2275390625
+    },
+    {
+        "callStack": "",
+        "details": "Joystick Button 10 on port 1 not available, check if controller is plugged in",
+        "errorCode": 1,
+        "flags": 0,
+        "location": "edu.wpi.first.wpilibj.DriverStation.reportJoystickUnpluggedWarning(DriverStation.java:1110)",
+        "messageType": 1,
+        "numOccur": 1,
+        "seqNumber": -19688,
+        "timestamp": 9.242919921875
+    },
+    {
+        "line": "Warning at edu.wpi.first.wpilibj.DriverStation.reportJoystickUnpluggedWarning(DriverStation.java:1110): Joystick Button 10 on port 1 not available, check if controller is plugged in",
+        "messageType": 2,
+        "seqNumber": -19687,
+        "timestamp": 9.243408203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19686,
+        "timestamp": 9.247314453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19685,
+        "timestamp": 9.24755859375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19684,
+        "timestamp": 9.265625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19683,
+        "timestamp": 9.266845703125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19682,
+        "timestamp": 9.286376953125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19681,
+        "timestamp": 9.28759765625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19680,
+        "timestamp": 9.307373046875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19679,
+        "timestamp": 9.308837890625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19678,
+        "timestamp": 9.325439453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19677,
+        "timestamp": 9.325927734375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19676,
+        "timestamp": 9.345947265625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19675,
+        "timestamp": 9.34716796875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19674,
+        "timestamp": 9.3662109375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19673,
+        "timestamp": 9.36767578125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19672,
+        "timestamp": 9.3857421875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19671,
+        "timestamp": 9.38720703125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19670,
+        "timestamp": 9.4052734375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19669,
+        "timestamp": 9.406494140625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19668,
+        "timestamp": 9.4267578125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19667,
+        "timestamp": 9.42822265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19666,
+        "timestamp": 9.4453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19665,
+        "timestamp": 9.446533203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19664,
+        "timestamp": 9.4658203125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19663,
+        "timestamp": 9.47119140625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19662,
+        "timestamp": 9.4853515625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19661,
+        "timestamp": 9.48583984375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19660,
+        "timestamp": 9.50537109375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19659,
+        "timestamp": 9.505859375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19658,
+        "timestamp": 9.525390625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19657,
+        "timestamp": 9.526611328125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19656,
+        "timestamp": 9.544921875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19655,
+        "timestamp": 9.54541015625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19654,
+        "timestamp": 9.56591796875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19653,
+        "timestamp": 9.567138671875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19652,
+        "timestamp": 9.58544921875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19651,
+        "timestamp": 9.5869140625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19650,
+        "timestamp": 9.605224609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19649,
+        "timestamp": 9.606689453125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19648,
+        "timestamp": 9.626220703125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19647,
+        "timestamp": 9.62646484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19646,
+        "timestamp": 9.64599609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19645,
+        "timestamp": 9.646240234375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19644,
+        "timestamp": 9.6650390625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19643,
+        "timestamp": 9.665283203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19642,
+        "timestamp": 9.685546875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19641,
+        "timestamp": 9.685791015625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19640,
+        "timestamp": 9.705322265625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19639,
+        "timestamp": 9.706298828125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19638,
+        "timestamp": 9.726806640625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19637,
+        "timestamp": 9.727783203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19636,
+        "timestamp": 9.746337890625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19635,
+        "timestamp": 9.747314453125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19634,
+        "timestamp": 9.764892578125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19633,
+        "timestamp": 9.765869140625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19632,
+        "timestamp": 9.78515625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19631,
+        "timestamp": 9.78662109375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19630,
+        "timestamp": 9.80517578125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19629,
+        "timestamp": 9.806396484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19628,
+        "timestamp": 9.82666015625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19627,
+        "timestamp": 9.82763671875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19626,
+        "timestamp": 9.84619140625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19625,
+        "timestamp": 9.847412109375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19624,
+        "timestamp": 9.86572265625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19623,
+        "timestamp": 9.866943359375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19622,
+        "timestamp": 9.885009765625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19621,
+        "timestamp": 9.88623046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19620,
+        "timestamp": 9.906005859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19619,
+        "timestamp": 9.9072265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19618,
+        "timestamp": 9.92578125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19617,
+        "timestamp": 9.927001953125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19616,
+        "timestamp": 9.946533203125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19615,
+        "timestamp": 9.947509765625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19614,
+        "timestamp": 9.96630859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19613,
+        "timestamp": 9.967529296875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19612,
+        "timestamp": 9.986083984375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19611,
+        "timestamp": 9.9873046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19610,
+        "timestamp": 10.00537109375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19609,
+        "timestamp": 10.00634765625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19608,
+        "timestamp": 10.026611328125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19607,
+        "timestamp": 10.02734375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19606,
+        "timestamp": 10.062744140625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19605,
+        "timestamp": 10.064697265625
+    },
+    {
+        "line": "Watchdog not fed within 0.020000s",
+        "messageType": 2,
+        "seqNumber": -19604,
+        "timestamp": 10.06689453125
+    },
+    {
+        "callStack": "",
+        "details": "Loop time of 0.02s overrun\n",
+        "errorCode": 1,
+        "flags": 0,
+        "location": "edu.wpi.first.wpilibj.IterativeRobotBase.printLoopOverrunMessage(IterativeRobotBase.java:273)",
+        "messageType": 1,
+        "numOccur": 1,
+        "seqNumber": -19603,
+        "timestamp": 10.06884765625
+    },
+    {
+        "line": "Warning at edu.wpi.first.wpilibj.IterativeRobotBase.printLoopOverrunMessage(IterativeRobotBase.java:273): Loop time of 0.02s overrun",
+        "messageType": 2,
+        "seqNumber": -19602,
+        "timestamp": 10.0693359375
+    },
+    {
+        "line": "",
+        "messageType": 2,
+        "seqNumber": -19601,
+        "timestamp": 10.069580078125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19600,
+        "timestamp": 10.097412109375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19599,
+        "timestamp": 10.099853515625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19598,
+        "timestamp": 10.10693359375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19597,
+        "timestamp": 10.107666015625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19596,
+        "timestamp": 10.11767578125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19595,
+        "timestamp": 10.118896484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19594,
+        "timestamp": 10.128662109375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19593,
+        "timestamp": 10.129150390625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19592,
+        "timestamp": 10.145263671875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19591,
+        "timestamp": 10.146240234375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19590,
+        "timestamp": 10.165771484375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19589,
+        "timestamp": 10.1669921875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19588,
+        "timestamp": 10.18505859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19587,
+        "timestamp": 10.18603515625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19586,
+        "timestamp": 10.206298828125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19585,
+        "timestamp": 10.207275390625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19584,
+        "timestamp": 10.224853515625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19583,
+        "timestamp": 10.22607421875
+    },
+    {
+        "callStack": "",
+        "details": "Joystick Button 10 on port 1 not available, check if controller is plugged in",
+        "errorCode": 1,
+        "flags": 0,
+        "location": "edu.wpi.first.wpilibj.DriverStation.reportJoystickUnpluggedWarning(DriverStation.java:1110)",
+        "messageType": 1,
+        "numOccur": 1,
+        "seqNumber": -19582,
+        "timestamp": 10.243408203125
+    },
+    {
+        "line": "Warning at edu.wpi.first.wpilibj.DriverStation.reportJoystickUnpluggedWarning(DriverStation.java:1110): Joystick Button 10 on port 1 not available, check if controller is plugged in",
+        "messageType": 2,
+        "seqNumber": -19581,
+        "timestamp": 10.243896484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19580,
+        "timestamp": 10.25146484375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19579,
+        "timestamp": 10.2529296875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19578,
+        "timestamp": 10.267578125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19577,
+        "timestamp": 10.268798828125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19576,
+        "timestamp": 10.287353515625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19575,
+        "timestamp": 10.28857421875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19574,
+        "timestamp": 10.304931640625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19573,
+        "timestamp": 10.305908203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19572,
+        "timestamp": 10.32666015625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19571,
+        "timestamp": 10.326904296875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19570,
+        "timestamp": 10.3447265625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19569,
+        "timestamp": 10.345947265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19568,
+        "timestamp": 10.366455078125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19567,
+        "timestamp": 10.368408203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19566,
+        "timestamp": 10.384765625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19565,
+        "timestamp": 10.385009765625
+    },
+    {
+        "callStack": "Stack Trace not received for performance reasons.",
+        "details": "CTR: CAN frame not received/too-stale.",
+        "errorCode": -3,
+        "flags": 1,
+        "location": "Talon SRX 5 GetSelectedSensorVelocity",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19564,
+        "timestamp": 10.404052734375
+    },
+    {
+        "callStack": "Stack Trace not received for performance reasons.",
+        "details": "CTR: CAN frame not received/too-stale.",
+        "errorCode": -3,
+        "flags": 1,
+        "location": "Talon SRX 5 GetSelectedSensorVelocity",
+        "messageType": 0,
+        "numOccur": 1,
+        "seqNumber": -19563,
+        "timestamp": 10.404541015625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19562,
+        "timestamp": 10.40576171875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19561,
+        "timestamp": 10.4072265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19560,
+        "timestamp": 10.426513671875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19559,
+        "timestamp": 10.427734375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19558,
+        "timestamp": 10.446044921875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19557,
+        "timestamp": 10.446533203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19556,
+        "timestamp": 10.466064453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19555,
+        "timestamp": 10.466796875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19554,
+        "timestamp": 10.48486328125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19553,
+        "timestamp": 10.485107421875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19552,
+        "timestamp": 10.5048828125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19551,
+        "timestamp": 10.506103515625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19550,
+        "timestamp": 10.525390625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19549,
+        "timestamp": 10.526611328125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19548,
+        "timestamp": 10.5458984375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19547,
+        "timestamp": 10.547607421875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19546,
+        "timestamp": 10.56494140625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19545,
+        "timestamp": 10.565185546875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19544,
+        "timestamp": 10.5859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19543,
+        "timestamp": 10.586181640625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19542,
+        "timestamp": 10.60498046875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19541,
+        "timestamp": 10.60595703125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19540,
+        "timestamp": 10.627197265625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19539,
+        "timestamp": 10.628173828125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19538,
+        "timestamp": 10.645263671875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19537,
+        "timestamp": 10.646240234375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19536,
+        "timestamp": 10.666015625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19535,
+        "timestamp": 10.666748046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19534,
+        "timestamp": 10.686279296875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19533,
+        "timestamp": 10.6875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19532,
+        "timestamp": 10.70556640625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19531,
+        "timestamp": 10.706787109375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19530,
+        "timestamp": 10.7255859375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19529,
+        "timestamp": 10.726806640625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19528,
+        "timestamp": 10.745361328125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19527,
+        "timestamp": 10.74658203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19526,
+        "timestamp": 10.76611328125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19525,
+        "timestamp": 10.76708984375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19524,
+        "timestamp": 10.78564453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19523,
+        "timestamp": 10.787353515625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19522,
+        "timestamp": 10.804931640625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19521,
+        "timestamp": 10.80615234375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19520,
+        "timestamp": 10.825927734375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19519,
+        "timestamp": 10.82666015625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19518,
+        "timestamp": 10.844970703125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19517,
+        "timestamp": 10.845947265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19516,
+        "timestamp": 10.865234375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19515,
+        "timestamp": 10.866943359375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19514,
+        "timestamp": 10.88525390625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19513,
+        "timestamp": 10.885498046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19512,
+        "timestamp": 10.905029296875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19511,
+        "timestamp": 10.9052734375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19510,
+        "timestamp": 10.92626953125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19509,
+        "timestamp": 10.92724609375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19508,
+        "timestamp": 10.9462890625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19507,
+        "timestamp": 10.946533203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19506,
+        "timestamp": 10.9658203125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19505,
+        "timestamp": 10.966796875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19504,
+        "timestamp": 10.985107421875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19503,
+        "timestamp": 10.986572265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19502,
+        "timestamp": 11.005126953125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19501,
+        "timestamp": 11.006103515625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19500,
+        "timestamp": 11.028076171875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19499,
+        "timestamp": 11.028564453125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19498,
+        "timestamp": 11.046142578125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19497,
+        "timestamp": 11.047607421875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19496,
+        "timestamp": 11.065185546875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19495,
+        "timestamp": 11.0654296875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19494,
+        "timestamp": 11.085693359375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19493,
+        "timestamp": 11.087158203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19492,
+        "timestamp": 11.105224609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19491,
+        "timestamp": 11.10546875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19490,
+        "timestamp": 11.12451171875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19489,
+        "timestamp": 11.125732421875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19488,
+        "timestamp": 11.1455078125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19487,
+        "timestamp": 11.146484375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19486,
+        "timestamp": 11.1650390625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19485,
+        "timestamp": 11.165283203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19484,
+        "timestamp": 11.185302734375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19483,
+        "timestamp": 11.185546875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19482,
+        "timestamp": 11.205322265625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19481,
+        "timestamp": 11.205810546875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19480,
+        "timestamp": 11.225830078125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19479,
+        "timestamp": 11.226806640625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19478,
+        "timestamp": 11.244873046875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19477,
+        "timestamp": 11.2451171875
+    },
+    {
+        "callStack": "",
+        "details": "Joystick Button 10 on port 1 not available, check if controller is plugged in",
+        "errorCode": 1,
+        "flags": 0,
+        "location": "edu.wpi.first.wpilibj.DriverStation.reportJoystickUnpluggedWarning(DriverStation.java:1110)",
+        "messageType": 1,
+        "numOccur": 1,
+        "seqNumber": -19476,
+        "timestamp": 11.262451171875
+    },
+    {
+        "line": "Warning at edu.wpi.first.wpilibj.DriverStation.reportJoystickUnpluggedWarning(DriverStation.java:1110): Joystick Button 10 on port 1 not available, check if controller is plugged in",
+        "messageType": 2,
+        "seqNumber": -19475,
+        "timestamp": 11.262939453125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19474,
+        "timestamp": 11.269775390625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19473,
+        "timestamp": 11.27001953125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19472,
+        "timestamp": 11.28466796875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19471,
+        "timestamp": 11.28564453125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19470,
+        "timestamp": 11.304931640625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19469,
+        "timestamp": 11.305908203125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19468,
+        "timestamp": 11.325927734375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19467,
+        "timestamp": 11.326904296875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19466,
+        "timestamp": 11.347412109375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19465,
+        "timestamp": 11.34765625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19464,
+        "timestamp": 11.3662109375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19463,
+        "timestamp": 11.36767578125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19462,
+        "timestamp": 11.384521484375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19461,
+        "timestamp": 11.385009765625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19460,
+        "timestamp": 11.40478515625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19459,
+        "timestamp": 11.405029296875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19458,
+        "timestamp": 11.42529296875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19457,
+        "timestamp": 11.4267578125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19456,
+        "timestamp": 11.444580078125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19455,
+        "timestamp": 11.445068359375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19454,
+        "timestamp": 11.466064453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19453,
+        "timestamp": 11.467041015625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19452,
+        "timestamp": 11.485107421875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19451,
+        "timestamp": 11.4853515625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19450,
+        "timestamp": 11.505126953125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19449,
+        "timestamp": 11.50537109375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19448,
+        "timestamp": 11.5263671875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19447,
+        "timestamp": 11.527587890625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19446,
+        "timestamp": 11.545166015625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19445,
+        "timestamp": 11.545654296875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19444,
+        "timestamp": 11.5654296875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19443,
+        "timestamp": 11.566650390625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19442,
+        "timestamp": 11.584716796875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19441,
+        "timestamp": 11.586181640625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19440,
+        "timestamp": 11.6044921875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19439,
+        "timestamp": 11.605712890625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19438,
+        "timestamp": 11.628173828125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19437,
+        "timestamp": 11.629150390625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19436,
+        "timestamp": 11.64453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19435,
+        "timestamp": 11.6455078125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19434,
+        "timestamp": 11.665283203125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19433,
+        "timestamp": 11.666748046875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19432,
+        "timestamp": 11.684326171875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19431,
+        "timestamp": 11.685546875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19430,
+        "timestamp": 11.704833984375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19429,
+        "timestamp": 11.706298828125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19428,
+        "timestamp": 11.725341796875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19427,
+        "timestamp": 11.7275390625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19426,
+        "timestamp": 11.745849609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19425,
+        "timestamp": 11.74609375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19424,
+        "timestamp": 11.765869140625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19423,
+        "timestamp": 11.766357421875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19422,
+        "timestamp": 11.785400390625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19421,
+        "timestamp": 11.78564453125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19420,
+        "timestamp": 11.805908203125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19419,
+        "timestamp": 11.806884765625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19418,
+        "timestamp": 11.82666015625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19417,
+        "timestamp": 11.82763671875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19416,
+        "timestamp": 11.844482421875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19415,
+        "timestamp": 11.845947265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19414,
+        "timestamp": 11.86474609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19413,
+        "timestamp": 11.865234375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19412,
+        "timestamp": 11.886474609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19411,
+        "timestamp": 11.887451171875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19410,
+        "timestamp": 11.90576171875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19409,
+        "timestamp": 11.906005859375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19408,
+        "timestamp": 11.92626953125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19407,
+        "timestamp": 11.927490234375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19406,
+        "timestamp": 11.94482421875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19405,
+        "timestamp": 11.945068359375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19404,
+        "timestamp": 11.96435546875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19403,
+        "timestamp": 11.965576171875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19402,
+        "timestamp": 11.98486328125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19401,
+        "timestamp": 11.986083984375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19400,
+        "timestamp": 12.00634765625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19399,
+        "timestamp": 12.0068359375
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19398,
+        "timestamp": 12.025390625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19397,
+        "timestamp": 12.025634765625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19396,
+        "timestamp": 12.04443359375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19395,
+        "timestamp": 12.044921875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19394,
+        "timestamp": 12.064453125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19393,
+        "timestamp": 12.06494140625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19392,
+        "timestamp": 12.0849609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19391,
+        "timestamp": 12.08544921875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19390,
+        "timestamp": 12.10595703125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19389,
+        "timestamp": 12.1064453125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19388,
+        "timestamp": 12.125732421875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19387,
+        "timestamp": 12.127197265625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19386,
+        "timestamp": 12.144775390625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19385,
+        "timestamp": 12.145751953125
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19384,
+        "timestamp": 12.180908203125
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19383,
+        "timestamp": 12.1826171875
+    },
+    {
+        "line": "Watchdog not fed within 0.020000s",
+        "messageType": 2,
+        "seqNumber": -19382,
+        "timestamp": 12.184814453125
+    },
+    {
+        "callStack": "",
+        "details": "Loop time of 0.02s overrun\n",
+        "errorCode": 1,
+        "flags": 0,
+        "location": "edu.wpi.first.wpilibj.IterativeRobotBase.printLoopOverrunMessage(IterativeRobotBase.java:273)",
+        "messageType": 1,
+        "numOccur": 1,
+        "seqNumber": -19381,
+        "timestamp": 12.186279296875
+    },
+    {
+        "line": "Warning at edu.wpi.first.wpilibj.IterativeRobotBase.printLoopOverrunMessage(IterativeRobotBase.java:273): Loop time of 0.02s overrun",
+        "messageType": 2,
+        "seqNumber": -19380,
+        "timestamp": 12.186767578125
+    },
+    {
+        "line": "",
+        "messageType": 2,
+        "seqNumber": -19379,
+        "timestamp": 12.18701171875
+    },
+    {
+        "line": "\tdisablePeriodic(): 0.000468s",
+        "messageType": 2,
+        "seqNumber": -19378,
+        "timestamp": 12.19873046875
+    },
+    {
+        "line": "\trobotPeriodic(): 0.022477s",
+        "messageType": 2,
+        "seqNumber": -19377,
+        "timestamp": 12.2041015625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19376,
+        "timestamp": 12.20849609375
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19375,
+        "timestamp": 12.209716796875
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19374,
+        "timestamp": 12.220947265625
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19373,
+        "timestamp": 12.222900390625
+    },
+    {
+        "line": "Arduino buffer is empty",
+        "messageType": 2,
+        "seqNumber": -19372,
+        "timestamp": 12.231201171875
+    },
+    {
+        "line": "ArduinoData error, check buffer",
+        "messageType": 2,
+        "seqNumber": -19371,
+        "timestamp": 12.23193359375
+    }
+]
