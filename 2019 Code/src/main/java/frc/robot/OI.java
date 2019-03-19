@@ -11,15 +11,21 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.elevatorcmds.*;
-import frc.robot.commands.intakecmds.*;
+import frc.robot.commands.turnOnASpot;
+import frc.robot.commands.elevatorcmds.lowerElevator;
+import frc.robot.commands.elevatorcmds.raiseElevator;
+import frc.robot.commands.elevatorcmds.stopElevator;
+import frc.robot.commands.intakecmds.intakeCargo;
+import frc.robot.commands.intakecmds.intakeHatch;
+import frc.robot.commands.intakecmds.outtakeCargo;
+import frc.robot.commands.intakecmds.outtakeHatch;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	//private Joystick primaryStick;
+	// private Joystick primaryStick;
 	private JoystickButton[] primaryButtons;
 	private Joystick auxiliaryStick;
 	private JoystickButton[] auxiliaryButtons;
@@ -28,7 +34,7 @@ public class OI {
 
 	public OI() {
 
-//		primaryStick = new Joystick(RobotMap.PRIMARY_STICK_PORT);
+		// primaryStick = new Joystick(RobotMap.PRIMARY_STICK_PORT);
 		primaryButtons = new JoystickButton[13];
 
 		auxiliaryStick = new Joystick(RobotMap.AUXILIARY_STICK_PORT);
@@ -51,8 +57,11 @@ public class OI {
 		getButton(4, true).whileHeld(new raiseElevator(0.2));
 		getButton(6, true).whenPressed(new stopElevator());
 
-		getButton(2).whileHeld(new intakeCargo());
-		getButton(3).whileHeld(new outtakeCargo());
+		// getButton(2).whileHeld(new intakeCargo());
+		// getButton(3).whileHeld(new outtakeCargo());
+
+		getButton(1).whenPressed(
+				new turnOnASpot(Robot.arduinoInterface.findAngle(Robot.arduinoInterface.getSerialPortBuffer())));
 
 		getButton(4).whileHeld(new lowerElevator(getLeftTrigger()));
 		getButton(5).whileHeld(new raiseElevator(getRightTrigger()));
@@ -61,13 +70,13 @@ public class OI {
 		getButton(11, true).whenPressed(new intakeHatch());
 		getButton(10, true).whenPressed(new outtakeHatch());
 
-		//getButton(5).whileHeld(new setElevatorPosition(5000));
-		/*// SmartDashboard Manual
-		SmartDashboard.putData("Enable Compressor", new enableCompressor());
-		SmartDashboard.putData("Disable Compressor", new disableCompressor());
-		SmartDashboard.putData("Open Intake", new openIntake());
-		SmartDashboard.putData("Close Intake", new closeIntake());
-		*/
+		// getButton(5).whileHeld(new setElevatorPosition(5000));
+		/*
+		 * // SmartDashboard Manual SmartDashboard.putData("Enable Compressor", new
+		 * enableCompressor()); SmartDashboard.putData("Disable Compressor", new
+		 * disableCompressor()); SmartDashboard.putData("Open Intake", new
+		 * openIntake()); SmartDashboard.putData("Close Intake", new closeIntake());
+		 */
 	}
 
 	public boolean getButtonValue(int buttonNum) {
@@ -98,8 +107,9 @@ public class OI {
 		double leftX = getXboxController().getRawAxis(0);
 		if (Math.abs(leftX) > 0.1)
 			return leftX;
-		else	
-			return 0;	}
+		else
+			return 0;
+	}
 
 	public double getLeftY() {
 		return getXboxController().getRawAxis(1);
@@ -113,7 +123,7 @@ public class OI {
 		double rightY = getXboxController().getRawAxis(5);
 		if (Math.abs(rightY) > 0.1)
 			return rightY;
-		else	
+		else
 			return 0;
 	}
 
@@ -124,7 +134,6 @@ public class OI {
 	public double getRightTrigger() {
 		return getXboxController().getRawAxis(6);
 	}
-
 
 	public void rumbleLeftJoystick(int rumbleValue) {
 		this.xboxController.setRumble(RumbleType.kLeftRumble, rumbleValue);
@@ -140,7 +149,6 @@ public class OI {
 	public Joystick getAuxiliaryStick() {
 		return auxiliaryStick;
 	}
-
 
 	/**
 	 * @return the primaryButtons

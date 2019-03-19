@@ -33,7 +33,6 @@ public class Elevator extends Subsystem {
   /// private TalonSRX slaveElevatorMotorOne;
   // private TalonSRX slaveElevatorMotorTwo;
   private int PIDProfile = 1;
-  private boolean usingPid = false;
   private int pidTimout = 10;
 
   DigitalInput bottomLimitSwitch;
@@ -95,14 +94,6 @@ public class Elevator extends Subsystem {
 
   public boolean getUppwerSwitch() {
     return !upperLimitSwitch.get();
-  }
-
-  public void enablePid() {
-    usingPid = true;
-  }
-
-  public void disablePid() {
-    usingPid = false;
   }
 
   @Override

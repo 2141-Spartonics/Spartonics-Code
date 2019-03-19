@@ -116,7 +116,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
-    //TODO autonomous start check pressure
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");

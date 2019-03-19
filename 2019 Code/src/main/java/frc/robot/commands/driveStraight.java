@@ -5,17 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intakecmds;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-
-public class outtakeHatch extends Command {
-  public outtakeHatch() {
+public class driveStraight extends Command {
+  public driveStraight() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.intake);
+    requires(Robot.chassis);
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +25,6 @@ public class outtakeHatch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.intake.extendHatchIntake();
   }
 
   // Make this return true when this Command no longer needs to run execute()
