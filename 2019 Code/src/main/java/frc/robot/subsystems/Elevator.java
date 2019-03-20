@@ -39,7 +39,11 @@ public class Elevator extends Subsystem {
   DigitalInput upperLimitSwitch;
 
   public Elevator() {
+    try {
     masterElevatorMotor = new TalonSRX(RobotMap.MASTER_ELEVATOR_TALON);
+    } catch (Exception e) {
+      System.out.println("Talon Error: " + e);
+    }
 
     bottomLimitSwitch = new DigitalInput(RobotMap.ELEVATOR_BOTTOM_LIMIT_SWITCH);
     upperLimitSwitch = new DigitalInput(RobotMap.ELEVATOR_UPPER_LIMIT_SWITCH);
