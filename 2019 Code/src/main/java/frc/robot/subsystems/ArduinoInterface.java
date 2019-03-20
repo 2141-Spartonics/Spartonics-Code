@@ -7,6 +7,10 @@
 
 package frc.robot.subsystems;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Time;
+
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,9 +24,14 @@ public class ArduinoInterface extends Subsystem {
   // here. Call these from Commands.
 
   private SerialPort arduino;
+  public Timer timer;
+
+  public String lastMessage = "";
+  public double lastAngle = 0.0;
 
   public ArduinoInterface() {
-    Timer timer = new Timer();
+
+    timer = new Timer();
     timer.start();
 
     try {
@@ -63,16 +72,25 @@ public class ArduinoInterface extends Subsystem {
   }
 
   public void publishToSmartDashboard() {
-    SmartDashboard.putString("ArduinoData", getSerialPortBuffer());
-    SmartDashboard.putNumber("Angle", findAngle(getSerialPortBuffer(), true));
+    try {
+      lastMessage = getSerialPortBuffer();
+      lastAngle = findAngle(lastMessage);
+      SmartDashboard.putString("ArduinoData", lastMessage);
+      SmartDashboard.putNumber("Angle", lastAngle);
+      SmartDashboard.putNumber("Time til next check", 0.2 - timer.get());
+      SmartDashboard.putBoolean("Buffer Filled", arduino.getBytesReceived() > 0);
+    } catch (Exception e) {
+      System.out.println(e);
+    }
   }
 
   public String getSerialPortBuffer() {
-    if (arduino.getBytesReceived() > 0) {
+    if (arduino.getBytesReceived() > 0 && timer.get() > 0.2) {
       // System.out.println(arduino.readString());
+      timer.reset();
       return arduino.readString();
     } else {
-      return null;
+      return lastMessage;
     }
   }
 
@@ -106,6 +124,7 @@ public class ArduinoInterface extends Subsystem {
 
     } catch (Exception StringIndexOutOfBoundsException) {
       // System.out.println("ArduinoData error, check buffer");
+      return lastAngle;
     } finally {
     }
 
