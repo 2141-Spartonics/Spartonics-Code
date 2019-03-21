@@ -7,12 +7,7 @@
 
 package frc.robot.subsystems;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Time;
-
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,47 +18,10 @@ public class ArduinoInterface extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private SerialPort arduino;
-  public Timer timer;
-
-  public String lastMessage = "";
-  public double lastAngle = 0.0;
+  public SerialPort arduino;
 
   public ArduinoInterface() {
-
-    timer = new Timer();
-    timer.start();
-
-    try {
-      for (SerialPort.Port c : SerialPort.Port.values())
-        System.out.println(c);
-      arduino = new SerialPort(9600, SerialPort.Port.kUSB);
-      System.out.println("Connected to Arduino kUSB");
-
-    } catch (Exception e) {
-      System.out.println("Failed to initially connect to Arduino, gonna try again!");
-
-      try {
-        for (SerialPort.Port c : SerialPort.Port.values())
-          System.out.println(c);
-        arduino = new SerialPort(9600, SerialPort.Port.kUSB1);
-        System.out.println("Connected to Arduino kUSB1");
-
-      } catch (Exception ekusb1) {
-        System.out.println("Failed to initially connect to Arduino on kUSB1, gonna try again!");
-
-        try {
-          for (SerialPort.Port c : SerialPort.Port.values())
-            System.out.println(c);
-          arduino = new SerialPort(9600, SerialPort.Port.kUSB2);
-          System.out.println("Connected to Arduino");
-
-        } catch (Exception ekusb2) {
-          System.out.println("Failed to initially connect to Arduino on kUSB2, gonna try again!");
-        }
-      }
-
-    }
+    arduino = new SerialPort(9600, SerialPort.Port.kUSB);
 
   }
 
@@ -72,31 +30,22 @@ public class ArduinoInterface extends Subsystem {
   }
 
   public void publishToSmartDashboard() {
-    try {
-      lastMessage = getSerialPortBuffer();
-      lastAngle = findAngle(lastMessage);
-      SmartDashboard.putString("ArduinoData", lastMessage);
-      SmartDashboard.putNumber("Angle", lastAngle);
-      SmartDashboard.putNumber("Time til next check", 0.2 - timer.get());
-      SmartDashboard.putBoolean("Buffer Filled", arduino.getBytesReceived() > 0);
-    } catch (Exception e) {
-      System.out.println(e);
-    }
+    SmartDashboard.putString("ArduinoData", getSerialPortBuffer());
+    SmartDashboard.putNumber("Angle", findAngle(getSerialPortBuffer()));
   }
 
   public String getSerialPortBuffer() {
-    if (arduino.getBytesReceived() > 0 && timer.get() > 0.2) {
-      // System.out.println(arduino.readString());
-      timer.reset();
+    try {
+      System.out.println(arduino.readString());
       return arduino.readString();
-    } else {
-      return lastMessage;
+    } catch (Exception e) {
+      return "damit, guess what didn't work";
     }
   }
 
   public void coordsRequest() {
     setSerialPortBuffer("get");
-  };
+  }
 
   /**
    * Find angle given string containing vector coordinates
@@ -105,7 +54,7 @@ public class ArduinoInterface extends Subsystem {
    * @return
    */
   public double findAngle(String arduinoOutput) {
-    // System.out.println(arduinoOutput);
+
     // String arduinoOutput = "vector: (34 16) (37 0) index: 2 flags 4";
     double x1, x2, y1, y2;
     x1 = x2 = y1 = y2 = 0;
@@ -123,16 +72,17 @@ public class ArduinoInterface extends Subsystem {
       y2 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(")")));
 
     } catch (Exception StringIndexOutOfBoundsException) {
-      // System.out.println("ArduinoData error, check buffer");
-      return lastAngle;
+      System.out.println("ArduinoData error, check buffer");
     } finally {
     }
 
     double differenceX = Math.abs(x2 - x1);
     double differenceY = Math.abs(y2 - y1);
-    double Angle = Math.toDegrees(Math.atan((differenceY) / (differenceX)));
-    System.out.println(Angle);
-    return Angle;
+    double AngleInRadians = Math.toDegrees(Math.atan((differenceY) / (differenceX)));
+
+    double angle = AngleInRadians / (2 * Math.PI) * 360;
+
+    return angle;
 
   }
 
@@ -154,7 +104,7 @@ public class ArduinoInterface extends Subsystem {
       y2 = Double.parseDouble(arduinoOutput.substring(0, arduinoOutput.indexOf(")")));
 
     } catch (Exception StringIndexOutOfBoundsException) {
-      // System.out.println("ArduinoData error, check buffer");
+      System.out.println("ArduinoData error, check buffer");
     } finally {
       System.out.println("Arduino data parse: " + x1 + " " + y1 + " " + x2 + " " + y2);
     }

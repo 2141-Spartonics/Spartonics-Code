@@ -39,7 +39,6 @@ public class OI {
 
 		auxiliaryStick = new Joystick(RobotMap.AUXILIARY_STICK_PORT);
 		auxiliaryButtons = new JoystickButton[13];
-
 		xboxController = new XboxController(RobotMap.XBOX_CONTROLLER_PORT);
 
 		for (int i = 1; i <= primaryButtons.length - 1; i++) {
@@ -50,25 +49,24 @@ public class OI {
 			auxiliaryButtons[i] = new JoystickButton(auxiliaryStick, i);
 		}
 
-		getButton(2, true).whileHeld(new intakeCargo());
-		getButton(3, true).whileHeld(new outtakeCargo());
+		getButton(4, true).whileHeld(new intakeCargo(0.2));
+		getButton(5, true).whileHeld(new outtakeCargo(0.2));
 
-		getButton(1, true).whileHeld(new lowerElevator(0.2));
-		getButton(4, true).whileHeld(new raiseElevator(0.2));
-		getButton(6, true).whenPressed(new stopElevator());
+		getButton(2, true).whileHeld(new lowerElevator(0.2));
+		getButton(3, true).whileHeld(new raiseElevator(0.2));
+		getButton(7, true).whenPressed(new stopElevator());
 
 		// getButton(2).whileHeld(new intakeCargo());
 		// getButton(3).whileHeld(new outtakeCargo());
 
-		getButton(1).whenPressed(
-				new turnOnASpot(Robot.arduinoInterface.findAngle(Robot.arduinoInterface.getSerialPortBuffer())));
-
-		getButton(4).whileHeld(new lowerElevator(getLeftTrigger()));
-		getButton(5).whileHeld(new raiseElevator(getRightTrigger()));
+		//getButton(1).whenPressed(
+			//	new turnOnASpot(Robot.arduinoInterface.findAngle(Robot.arduinoInterface.getSerialPortBuffer())));
+		getButton(1).whileHeld(new lowerElevator(0.75));
+		getButton(4).whileHeld(new raiseElevator(0.75));
 		getButton(6).whenPressed(new stopElevator());
 
-		getButton(11, true).whenPressed(new intakeHatch());
-		getButton(10, true).whenPressed(new outtakeHatch());
+		getButton(3).whenPressed(new intakeCargo(0.5));
+		getButton(2).whenPressed(new outtakeCargo(0.5));
 
 		// getButton(5).whileHeld(new setElevatorPosition(5000));
 		/*

@@ -25,7 +25,7 @@ import frc.robot.RobotMap;
 public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  
+
   Configs configs = new Configs();
 
   private TalonSRX masterElevatorMotor;
@@ -39,11 +39,7 @@ public class Elevator extends Subsystem {
   DigitalInput upperLimitSwitch;
 
   public Elevator() {
-    try {
     masterElevatorMotor = new TalonSRX(RobotMap.MASTER_ELEVATOR_TALON);
-    } catch (Exception e) {
-      System.out.println("Talon Error: " + e);
-    }
 
     bottomLimitSwitch = new DigitalInput(RobotMap.ELEVATOR_BOTTOM_LIMIT_SWITCH);
     upperLimitSwitch = new DigitalInput(RobotMap.ELEVATOR_UPPER_LIMIT_SWITCH);

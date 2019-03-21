@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class outtakeCargo extends Command {
-  public outtakeCargo() {
+  double speed;
+  public outtakeCargo(double speed) {
+    this.speed = speed;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.intake);
@@ -25,7 +27,7 @@ public class outtakeCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.setIntakeMotorsSpeed(-.5);
+    Robot.intake.setIntakeMotorsSpeed(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

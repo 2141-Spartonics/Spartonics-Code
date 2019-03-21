@@ -18,8 +18,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 public class Configs {
     public TalonSRXConfiguration elevatorTalonConfig;
     public static final Gains elevatorGains = new Gains(0.0, 0.0, 0.0, 0.0, 0, 0.0); // TODO need to actually calculate
-    public static final Gains leftChassis = new Gains(0.0, 0.0, 0.0, 0.0, 0, 0.0);
-    public static final Gains rightChassis = new Gains(0.0, 0.0, 0.0, 0.0, 0, 0.0);
+    public static final Gains leftChassis = new Gains(0.005, 0.0, 0.0, 0.0, 0, 0.0);
+    public static final Gains rightChassis = new Gains(0.005, 0.0, 0.0, 0.0, 0, 0.0);
 
     public Configs() {
         elevatorTalonConfig = new TalonSRXConfiguration();
